@@ -532,7 +532,7 @@ class _State:
 #  Orchestrator
 # ═══════════════════════════════════════════════════════════════════
 
-class BBMPActParser:
+class ActParser:
     """End-to-end pipeline: PDF → cleaned text → Akoma Ntoso XML."""
 
     def __init__(self, pdf_path: str, output_path: str):
@@ -540,31 +540,114 @@ class BBMPActParser:
         self.output_path = output_path
 
     def run(self):
-        print(f"[1/4] Extracting text from {self.pdf_path}...")
+        print(f"  [1/4] Extracting text from {self.pdf_path}...")
         raw = TextExtractor().extract(self.pdf_path)
 
-        print("[2/4] Normalising text...")
+        print("  [2/4] Normalising text...")
         text = TextNormalizer().run(raw)
 
         # Debug dump
         dbg = os.path.splitext(self.output_path)[0] + "_extracted.txt"
         with open(dbg, "w", encoding="utf-8") as f:
             f.write(text)
-        print(f"       (intermediate text → {dbg})")
+        print(f"         (intermediate text → {dbg})")
 
-        print("[3/4] Mapping to Akoma Ntoso...")
+        print("  [3/4] Mapping to Akoma Ntoso...")
         xml = AkomaMapper().map(text)
 
-        print(f"[4/4] Writing XML → {self.output_path}")
+        print(f"  [4/4] Writing XML → {self.output_path}")
         with open(self.output_path, "w", encoding="utf-8") as f:
             f.write(xml)
 
-        print("Done.")
+        print("  ✔ Done.\n")
 
 
 # ═══════════════════════════════════════════════════════════════════
+#  CLI
+# ═══════════════════════════════════════════════════════════════════
+
+import argparse, glob
+
+# Map of document type → subdirectory under data/
+DOC_TYPE_DIRS = {
+    "base_act":   "v0s",
+    "amendment":  "amendments",
+}
+
+LANG_CHOICES = ["eng", "kan", "kan_eng"]
+
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def _build_parser() -> argparse.ArgumentParser:
+    p = argparse.ArgumentParser(
+        prog="akn-parser",
+        description="Convert legislative PDF(s) to Akoma Ntoso XML.",
+    )
+    p.add_argument(
+        "-t", "--type",
+        choices=list(DOC_TYPE_DIRS.keys()),
+        required=True,
+        dest="doc_type",
+        help="Type of document to process (base_act | amendment).",
+    )
+    p.add_argument(
+        "-l", "--lang",
+        choices=LANG_CHOICES,
+        required=True,
+        help="Language variant (eng | kan | kan_eng). "
+             "Determines the subfolder under data/{type}/.",
+    )
+    p.add_argument(
+        "-n", "--count",
+        type=int,
+        default=0,
+        help="Number of PDFs to process (0 = all, default: all).",
+    )
+    return p
+
+
+def _collect_pdfs(doc_type: str, lang: str) -> list[str]:
+    """Return a sorted list of PDF paths for the given type + language."""
+    subdir = DOC_TYPE_DIRS[doc_type]
+    pdf_dir = os.path.join(REPO_ROOT, "data", subdir, lang)
+    if not os.path.isdir(pdf_dir):
+        raise SystemExit(
+            f"Error: PDF directory does not exist: {pdf_dir}\n"
+            f"Expected structure: data/{subdir}/{lang}/*.pdf"
+        )
+    pdfs = sorted(glob.glob(os.path.join(pdf_dir, "*.pdf")))
+    if not pdfs:
+        raise SystemExit(f"Error: No PDF files found in {pdf_dir}")
+    return pdfs
+
+
+def main():
+    args = _build_parser().parse_args()
+
+    pdfs = _collect_pdfs(args.doc_type, args.lang)
+
+    # Limit count (0 means all)
+    if args.count > 0:
+        pdfs = pdfs[: args.count]
+
+    # Output directory: out/{doc_type}/{lang}/
+    out_dir = os.path.join(REPO_ROOT, "out", args.doc_type, args.lang)
+    os.makedirs(out_dir, exist_ok=True)
+
+    total = len(pdfs)
+    print(f"Processing {total} PDF(s)  "
+          f"[type={args.doc_type}, lang={args.lang}]\n")
+
+    for idx, pdf_path in enumerate(pdfs, 1):
+        basename = os.path.splitext(os.path.basename(pdf_path))[0]
+        out_path = os.path.join(out_dir, f"{basename}.xml")
+
+        print(f"[{idx}/{total}] {os.path.basename(pdf_path)}")
+        ActParser(pdf_path, out_path).run()
+
+    print(f"All done — {total} file(s) written to {out_dir}")
+
+
 if __name__ == "__main__":
-    BBMPActParser(
-        pdf_path="/home/liege/workspace/NyayaBandhu/data/PDFs/BBMP-eng.pdf",
-        output_path="/home/liege/workspace/NyayaBandhu/data/XMLs/bbmp_act_serialized.xml",
-    ).run()
+    main()

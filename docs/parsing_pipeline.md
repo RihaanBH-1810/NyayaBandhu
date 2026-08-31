@@ -2,13 +2,15 @@
 
 This document outlines how the structural and semantic elements of the BBMP Act are mapped to the Akoma Ntoso (LegalDocML) XML standard by the `XML-gen.py` script.
 
+<div style="page-break-inside: avoid; break-inside: avoid; margin-bottom: 2em;">
+
 ## 1. Overall Document Structure & Metadata
-The entire document is wrapped in the `<akomaNtoso>` root element and an `<act>` element.
+The entire document is wrapped in the `<akomaNtoso>` root element and an `<act>` element. 
 It begins with a `<meta>` block containing strict FRBR (Functional Requirements for Bibliographic Records) identifiers, lifecycle events, and classifications, followed by the `<preface>` and the main `<body>`.
 
 ```xml
 <?xml version="1.0" ?>
-<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+<akomaNtoso xmlns="[http://docs.oasis-open.org/legaldocml/ns/akn/3.0](http://docs.oasis-open.org/legaldocml/ns/akn/3.0)">
   <act name="TheBruhatBengaluruMahanagaraPalikeAct2020">
     <meta>
       <!-- FRBR Identifiers, Publication details, Lifecycle, Classification -->
@@ -25,9 +27,12 @@ It begins with a `<meta>` block containing strict FRBR (Functional Requirements 
   </act>
 </akomaNtoso>
 ```
+</div>
 
 ## 2. Hierarchical Elements (The Body)
 The Indian legislative drafting style uses a strict hierarchy. The script maps this to nested Akoma Ntoso elements. Each level receives a unique `eId` (Expression ID) and `wId` (Work ID) for precise referencing.
+
+<div style="page-break-inside: avoid; break-inside: avoid; margin-bottom: 1.5em;">
 
 ### A. Chapter
 Chapters are the highest grouping within the body. They contain a number (`<num>`) and an extracted `<heading>`.
@@ -39,6 +44,9 @@ Chapters are the highest grouping within the body. They contain a number (`<num>
   <!-- Sections go here -->
 </chapter>
 ```
+</div>
+
+<div style="page-break-inside: avoid; break-inside: avoid; margin-bottom: 1.5em;">
 
 ### B. Section
 Sections are the primary functional unit. They contain the section number and the section title.
@@ -53,6 +61,9 @@ Sections are the primary functional unit. They contain the section number and th
   <!-- Subsections go here -->
 </section>
 ```
+</div>
+
+<div style="page-break-inside: avoid; break-inside: avoid; margin-bottom: 1.5em;">
 
 ### C. Subsection
 Denoted by numbers in parentheses, e.g., "(1)", "(2)". Nested inside `<section>`.
@@ -65,6 +76,9 @@ Denoted by numbers in parentheses, e.g., "(1)", "(2)". Nested inside `<section>`
   </content>
 </subsection>
 ```
+</div>
+
+<div style="page-break-inside: avoid; break-inside: avoid; margin-bottom: 1.5em;">
 
 ### D. Clause
 Denoted by lowercase letters in parentheses, e.g., "(a)", "(b)". Nested inside `<subsection>` (or directly in `<section>`).
@@ -77,6 +91,9 @@ Denoted by lowercase letters in parentheses, e.g., "(a)", "(b)". Nested inside `
   </content>
 </clause>
 ```
+</div>
+
+<div style="page-break-inside: avoid; break-inside: avoid; margin-bottom: 2em;">
 
 ### E. Subclause
 Denoted by lowercase Roman numerals in parentheses, e.g., "(i)", "(ii)". Nested inside `<clause>`.
@@ -89,8 +106,11 @@ Denoted by lowercase Roman numerals in parentheses, e.g., "(i)", "(ii)". Nested 
   </content>
 </subclause>
 ```
+</div>
 
 ## 3. Semantic Tags & Special Blocks
+
+<div style="page-break-inside: avoid; break-inside: avoid; margin-bottom: 1.5em;">
 
 ### A. Definitions (`<def>`)
 In Section 2 (the definitions section), the specific terms being defined are wrapped in semantic `<def>` tags to allow for automated glossary extraction.
@@ -106,6 +126,9 @@ In Section 2 (the definitions section), the specific terms being defined are wra
   </content>
 </subsection>
 ```
+</div>
+
+<div style="page-break-inside: avoid; break-inside: avoid; margin-bottom: 1.5em;">
 
 ### B. Cross-References (`<ref>`)
 Whenever the text explicitly mentions another section (e.g., "section 208"), it is hyperlinked to the corresponding `eId` within the document.
@@ -117,6 +140,9 @@ Whenever the text explicitly mentions another section (e.g., "section 208"), it 
   ;
 </p>
 ```
+</div>
+
+<div style="page-break-inside: avoid; break-inside: avoid; margin-bottom: 1.5em;">
 
 ### C. Provisos
 Indian laws frequently use "Provided that...". These are mapped to a generic `<block>` element with the attribute `name="proviso"`.
@@ -128,6 +154,9 @@ Indian laws frequently use "Provided that...". These are mapped to a generic `<b
   </content>
 </block>
 ```
+</div>
+
+<div style="page-break-inside: avoid; break-inside: avoid; margin-bottom: 2em;">
 
 ### D. Explanations
 Similar to provisos, explicit "Explanation:" blocks are wrapped with `name="explanation"`.
@@ -139,6 +168,9 @@ Similar to provisos, explicit "Explanation:" blocks are wrapped with `name="expl
   </content>
 </block>
 ```
+</div>
+
+<div style="page-break-inside: avoid; break-inside: avoid;">
 
 ## 4. End-Matter (Schedules)
 Schedules are appended at the end of the Act. They are treated as separate documents within a `<components>` collection and mapped using the `<schedule>` tag.
@@ -157,3 +189,4 @@ Schedules are appended at the end of the Act. They are treated as separate docum
   </component>
 </components>
 ```
+</div>
