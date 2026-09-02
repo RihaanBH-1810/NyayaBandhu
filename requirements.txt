@@ -1,0 +1,6 @@
+# Runtime
+pymupdf>=1.24        # PDF text, font and table extraction
+lxml>=5.0            # XML building and XSD validation
+
+# Development
+pytest>=8.0

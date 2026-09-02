@@ -1,0 +1,287 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <act name="act" contains="originalVersion">
+    <meta>
+      <identification source="#nyayabandhu">
+        <FRBRWork>
+          <FRBRthis value="/akn/in-ka/act/2026-04-09/27/!main"/>
+          <FRBRuri value="/akn/in-ka/act/2026-04-09/27"/>
+          <FRBRalias name="title" value="THE KARNATAKA STATE CIVIL SERVICES (REGULATION OF TRANSFER OF TEACHERS) (AMENDMENT) ACT, 2026"/>
+          <FRBRdate date="2026-04-09" name="assent"/>
+          <FRBRauthor href="#karnatakaLegislature"/>
+          <FRBRcountry value="in-ka"/>
+          <FRBRnumber value="27"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in-ka/act/2026-04-09/27/eng@2026-04-10/!main"/>
+          <FRBRuri value="/akn/in-ka/act/2026-04-09/27/eng@2026-04-10"/>
+          <FRBRdate date="2026-04-10" name="publication"/>
+          <FRBRauthor href="#karnatakaLegislature"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in-ka/act/2026-04-09/27/eng@2026-04-10/!main.xml"/>
+          <FRBRuri value="/akn/in-ka/act/2026-04-09/27/eng@2026-04-10.xml"/>
+          <FRBRdate date="2026-09-01" name="generation"/>
+          <FRBRauthor href="#nyayabandhu"/>
+          <FRBRformat value="xml"/>
+        </FRBRManifestation>
+      </identification>
+      <publication date="2026-04-10" name="Karnataka Gazette Extra-ordinary" showAs="Karnataka Gazette Extra-ordinary"/>
+      <lifecycle source="#nyayabandhu">
+        <eventRef eId="eref_1" date="2026-04-09" type="generation" source="#karnatakaLegislature"/>
+      </lifecycle>
+      <references source="#nyayabandhu">
+        <TLCOrganization eId="karnatakaLegislature" href="/akn/ontology/organization/in-ka/legislature" showAs="Karnataka State Legislature"/>
+        <TLCOrganization eId="karnatakaGazette" href="/akn/ontology/organization/in-ka/gazette" showAs="Karnataka Gazette"/>
+        <TLCRole eId="nyayabandhu" href="/akn/ontology/role/editor" showAs="NyayaBandhu automated parser"/>
+      </references>
+    </meta>
+    <preface eId="preface">
+      <p eId="preface__p_1">[["1", ""], ["2", " (  )"], ["3", " (  )"], ["4", "     (Junior Program Officer)"], ["5", "  ( )"], ["6", " ( )"], ["7", "  (  ) "], ["8", " (  )"]]</p>
+      <p eId="preface__p_2">" <span eId="preface__p_2__span_1" xml:lang="kn">ಕಟಕಜಲರಆರ ಮ ಅವರಸನ</span>, .<span eId="preface__p_2__span_2" xml:lang="kn"> ೕಧ ಸರದಯದ ಸೕಯವವರಗಮ ಸನರಚಇ</span>
+      </p>
+      <p eId="preface__p_3">PARLIAMENTARY AFFAIRS AND LEGISLATION SECRETARIAT NOTIFICATION NO. DPAL 12 SHASANA 2026, BENGALURU, DATED:10.04.2026</p>
+      <p eId="preface__p_4">
+        <span eId="preface__p_4__span_1" xml:lang="kn">ರತನದಅೕಧ</span>348<span eId="preface__p_4__span_2" xml:lang="kn">ರಡ</span>(3)<span eId="preface__p_4__span_3" xml:lang="kn">ರಅಯ ಜಲಂದ ಅತದ ಕಟಕ ಜ</span>  <span eId="preface__p_4__span_4" xml:lang="kn">ಗ</span> (<span eId="preface__p_4__span_5" xml:lang="kn">ಕರ ವವ ತಣ</span>) (<span eId="preface__p_4__span_6" xml:lang="kn">ಪ</span>) <span eId="preface__p_4__span_7" xml:lang="kn">ಅಯಮ</span>, (2026<span eId="preface__p_4__span_8" xml:lang="kn">ರ ಕಟಕ ಅಯಮ</span> :27)<span eId="preface__p_4__span_9" xml:lang="kn">ರ ಂತರವ ಅತಆಂಗ ಪಠಂಕಟಕಜಪತದಷಯ</span> (<span eId="preface__p_4__span_10" xml:lang="kn">ಗ</span>-IV<span eId="preface__p_4__span_11" xml:lang="kn">ಎ</span>)<span eId="preface__p_4__span_12" xml:lang="kn"> ಪಕಸಂಆಸ</span>.-</p>
+      <p eId="preface__p_5">KARNATAKA ACT NO. 27 OF 2026</p>
+      <p eId="preface__p_6">(First Published in the Karnataka Gazette Extra-ordinary on the 10th day of April, 2026)</p>
+      <p eId="preface__p_7">THE KARNATAKA STATE CIVIL SERVICES (REGULATION OF TRANSFER OF TEACHERS) (AMENDMENT) ACT, 2026</p>
+      <p eId="preface__p_8">(Received the assent of the Governor on the 9th day of April, 2026) An Act further to amend the Karnataka State Civil Services (Regulation of Transfer of Teachers) Act, 2020.</p>
+    </preface>
+    <preamble eId="preamble">
+      <recitals eId="preamble__recitals_1">
+        <recital eId="preamble__recitals_1__rec_1">
+          <p eId="preamble__recitals_1__rec_1__p_1">Whereas it is expedient further to amend the Karnataka State Civil Services (Regulation of Transfer of Teachers) Act, 2020 (Karnataka Act 04 of 2020) for the purposes hereinafter appearing;</p>
+        </recital>
+      </recitals>
+      <formula eId="preamble__formula_1" name="enactingFormula">
+        <p eId="preamble__formula_1__p_1">Be it enacted by the Karnataka State Legislature in the Seventy seventh year of the Republic of India, as follows:-</p>
+      </formula>
+    </preamble>
+    <body>
+      <section eId="sec_1">
+        <num>1.</num>
+        <heading>Short title and commencement</heading>
+        <subsection eId="sec_1__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_1__subsec_1__content">
+            <p eId="sec_1__subsec_1__content__p_1">This Act may be called the Karnataka State Civil Services (Regulation of Transfer of Teachers) (Amendment) Act, 2026.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_1__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_1__subsec_2__content">
+            <p eId="sec_1__subsec_2__content__p_1">It shall come into force at once.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_2">
+        <num>2.</num>
+        <heading>Amendment of section 2</heading>
+        <intro eId="sec_2__intro">
+          <p eId="sec_2__intro__p_1">In the Karnataka State Civil Services (Regulation of Transfer of Teachers) Act, 2020 (Karnataka Act 04 of 2020) (hereinafter referred to as the Principal Act) , in <ref eId="sec_2__intro__p_1__ref_1" href="#sec_2">section 2</ref> ,-</p>
+        </intro>
+        <clause eId="sec_2__cl_i">
+          <num>(i)</num>
+          <content eId="sec_2__cl_i__content">
+            <p eId="sec_2__cl_i__content__p_1">clause (ca), shall be renumbered as (cb);</p>
+          </content>
+        </clause>
+        <clause eId="sec_2__cl_ii">
+          <num>(ii)</num>
+          <intro eId="sec_2__cl_ii__intro">
+            <p eId="sec_2__cl_ii__intro__p_1">before clause (cb), as so renumbered the following shall be inserted, namely:- "(ca) "Critical Posts" means and include all the teaching posts including Lecturers in Government Pre-University Colleges, in the following categories, namely:-</p>
+          </intro>
+          <subclause eId="sec_2__cl_ii__subcl_i">
+            <num>(i)</num>
+            <content eId="sec_2__cl_ii__subcl_i__content">
+              <p eId="sec_2__cl_ii__subcl_i__content__p_1">Category 1: Karnataka Public Schools, Adarsha Vidyalaya, PM SHRI schools other than Head Master or Vice-Principal;</p>
+            </content>
+          </subclause>
+          <subclause eId="sec_2__cl_ii__subcl_ii">
+            <num>(ii)</num>
+            <content eId="sec_2__cl_ii__subcl_ii__content">
+              <p eId="sec_2__cl_ii__subcl_ii__content__p_1">Category 2: All other schools and Government Pre-University Colleges having an enrolment exceeding 250 students or as per enrolment threshold notified by the Government from time to time other than Head Master or Vice-Principal; and</p>
+            </content>
+          </subclause>
+          <subclause eId="sec_2__cl_ii__subcl_iii">
+            <num>(iii)</num>
+            <content eId="sec_2__cl_ii__subcl_iii__content">
+              <p eId="sec_2__cl_ii__subcl_iii__content__p_1">Category 3: Head Master or Vice-Principal of High School or Principal in Government Pre-University Colleges under Categories 1 and 2."</p>
+            </content>
+          </subclause>
+        </clause>
+        <clause eId="sec_2__cl_iii">
+          <num>(iii)</num>
+          <content eId="sec_2__cl_iii__content">
+            <p eId="sec_2__cl_iii__content__p_1">in clause (d), the following proviso shall be inserted at the end, namely:- "Provided that in case of transfers to the posts specified in serial number III of Schedule-I shall only be by counselling for which the minimum period of service rendered in the incumbent's present cadre in schools / colleges shall be twelve continuous years.</p>
+          </content>
+        </clause>
+        <proviso eId="sec_2__proviso_1">
+          <content eId="sec_2__proviso_1__content">
+            <p eId="sec_2__proviso_1__content__p_1">Provided further that, the maximum period of service in the posts specified in serial number III of Schedule-I shall only be three years.</p>
+          </content>
+        </proviso>
+        <proviso eId="sec_2__proviso_2">
+          <content eId="sec_2__proviso_2__content">
+            <p eId="sec_2__proviso_2__content__p_1">Provided also that, the incumbents of teaching posts specified in Schedule-I and clause (h) of section 2, shall not be transferred to the non-teaching posts in the School Education and Literacy Department and in any other posts in the State Civil Services or Boards or Corporations."</p>
+          </content>
+        </proviso>
+      </section>
+      <section eId="sec_3">
+        <num>3.</num>
+        <heading>Amendment of section 4</heading>
+        <content eId="sec_3__content">
+          <p eId="sec_3__content__p_1">In the Principal Act, in <ref eId="sec_3__content__p_1__ref_1" href="#sec_4">section 4</ref>, after <ref eId="sec_3__content__p_1__ref_2" href="#sec_1__subsec_2">subsection (2)</ref>, the following shall be inserted, namely:- "(3) All transfers under this process shall be to the Critical posts categorised under clause (ca) of section 2 and if no critical posts available then to other posts which may be notified by the Government."</p>
+        </content>
+      </section>
+      <section eId="sec_4">
+        <num>4.</num>
+        <heading>Amendment of section 5</heading>
+        <content eId="sec_4__content">
+          <p eId="sec_4__content__p_1">In the Principal Act, in <ref eId="sec_4__content__p_1__ref_1" href="#sec_5">section 5</ref>, for <ref eId="sec_4__content__p_1__ref_2" href="#sec_2__cl_iii">clause (iii)</ref>, the following shall be substituted, namely:- "(iii) All transfers under this process shall be to the Critical posts categorised under clause (ca) of section 2 and if no critical posts available then to other posts which may be notified by the Government."</p>
+        </content>
+      </section>
+      <section eId="sec_5">
+        <num>5.</num>
+        <heading>Substitution of section 6</heading>
+        <intro eId="sec_5__intro">
+          <p eId="sec_5__intro__p_1">In the Principal Act, for <ref eId="sec_5__intro__p_1__ref_1" href="#sec_6">section 6</ref>, the following shall be substituted, namely:- "6. Request transfer.- A teacher or Lecturer who has served minimum period of service in a school or Pre-University College shall be offered an option to seek transfer subject to availability of critical post for transfer and such other conditions as may be prescribed:</p>
+        </intro>
+        <proviso eId="sec_5__proviso_1">
+          <content eId="sec_5__proviso_1__content">
+            <p eId="sec_5__proviso_1__content__p_1">Provided that, a teacher or Lecturer working in any of the districts of Kalyana Karnataka region, in addition to all other eligibility conditions shall also have completed a minimum of ten years of service in the region, for seeking transfer outside of Kalyana Karnataka region."</p>
+          </content>
+        </proviso>
+      </section>
+      <section eId="sec_6">
+        <num>6.</num>
+        <heading>Amendment of section 10</heading>
+        <intro eId="sec_6__intro">
+          <p eId="sec_6__intro__p_1">In the Principal Act, in section 10,-</p>
+        </intro>
+        <clause eId="sec_6__cl_i">
+          <num>(i)</num>
+          <intro eId="sec_6__cl_i__intro">
+            <p eId="sec_6__cl_i__intro__p_1">in <ref eId="sec_6__cl_i__intro__p_1__ref_1" href="#sec_1__subsec_1">sub-section (1)</ref>,-</p>
+          </intro>
+          <subclause eId="sec_6__cl_i__subcl_a">
+            <num>(a)</num>
+            <content eId="sec_6__cl_i__subcl_a__content">
+              <p eId="sec_6__cl_i__subcl_a__content__p_1">after <ref eId="sec_6__cl_i__subcl_a__content__p_1__ref_1" href="#sec_2__cl_ii">clause (ii)</ref>, the following shall be inserted, namely:- " (ii-a) pregnant teacher or a female teacher with a child of less than five years:</p>
+            </content>
+          </subclause>
+        </clause>
+        <proviso eId="sec_6__proviso_1">
+          <intro eId="sec_6__proviso_1__intro">
+            <p eId="sec_6__proviso_1__intro__p_1">Provided that, the said provision shall apply only to the general transfer of teachers undertaken in the year in which the teacher resumes to duty upon return from maternity leave."</p>
+          </intro>
+          <clause eId="sec_6__proviso_1__cl_b">
+            <num>(b)</num>
+            <intro eId="sec_6__proviso_1__cl_b__intro">
+              <p eId="sec_6__proviso_1__cl_b__intro__p_1">clause (vii), shall be omitted.</p>
+            </intro>
+            <subclause eId="sec_6__proviso_1__cl_b__subcl_ii">
+              <num>(ii)</num>
+              <content eId="sec_6__proviso_1__cl_b__subcl_ii__content">
+                <p eId="sec_6__proviso_1__cl_b__subcl_ii__content__p_1">in sub-section (4), the word, brackets and figures "and (vii)" shall be omitted.</p>
+              </content>
+            </subclause>
+          </clause>
+        </proviso>
+      </section>
+      <section eId="sec_7">
+        <num>7.</num>
+        <heading>Amendment of Schedule</heading>
+        <content eId="sec_7__content">
+          <p eId="sec_7__content__p_1">In the Principal Act, in Schedule-I, after serial number II and the entries relating thereto, the following shall be inserted, namely:- "</p>
+          <table eId="sec_7__table_1">
+            <tr eId="sec_7__table_1__tr_1">
+              <th eId="sec_7__table_1__tr_1__th_1">
+                <p eId="sec_7__table_1__tr_1__th_1__p_1">III</p>
+              </th>
+              <th eId="sec_7__table_1__tr_1__th_2">
+                <p eId="sec_7__table_1__tr_1__th_2__p_1">The Teaching posts in District Institute of Education and Training (DIET) / Teacher Training Institutes (TTI) / College of Teacher Education (CTE) / State, Division and District level Administrative Offices viz., Office of the Commissioner of School Education/ Additional Commissioner of School Education / DSERT / KSEAB / SSK / KTBS / DDPI</p>
+              </th>
+            </tr>
+            <tr eId="sec_7__table_1__tr_2">
+              <td eId="sec_7__table_1__tr_2__td_1">
+                <p eId="sec_7__table_1__tr_2__td_1__p_1">1</p>
+              </td>
+              <td eId="sec_7__table_1__tr_2__td_2">
+                <p eId="sec_7__table_1__tr_2__td_2__p_1">Lecturer</p>
+              </td>
+            </tr>
+            <tr eId="sec_7__table_1__tr_3">
+              <td eId="sec_7__table_1__tr_3__td_1">
+                <p eId="sec_7__table_1__tr_3__td_1__p_1">2</p>
+              </td>
+              <td eId="sec_7__table_1__tr_3__td_2">
+                <p eId="sec_7__table_1__tr_3__td_2__p_1">Lecturer (Craft)</p>
+              </td>
+            </tr>
+            <tr eId="sec_7__table_1__tr_4">
+              <td eId="sec_7__table_1__tr_4__td_1">
+                <p eId="sec_7__table_1__tr_4__td_1__p_1">3</p>
+              </td>
+              <td eId="sec_7__table_1__tr_4__td_2">
+                <p eId="sec_7__table_1__tr_4__td_2__p_1">Lecturer (Physical Education)</p>
+              </td>
+            </tr>
+            <tr eId="sec_7__table_1__tr_5">
+              <td eId="sec_7__table_1__tr_5__td_1">
+                <p eId="sec_7__table_1__tr_5__td_1__p_1">4</p>
+              </td>
+              <td eId="sec_7__table_1__tr_5__td_2">
+                <p eId="sec_7__table_1__tr_5__td_2__p_1">Junior Program Officer</p>
+              </td>
+            </tr>
+            <tr eId="sec_7__table_1__tr_6">
+              <td eId="sec_7__table_1__tr_6__td_1">
+                <p eId="sec_7__table_1__tr_6__td_1__p_1">5</p>
+              </td>
+              <td eId="sec_7__table_1__tr_6__td_2">
+                <p eId="sec_7__table_1__tr_6__td_2__p_1">Assistant Director (Teaching)</p>
+              </td>
+            </tr>
+            <tr eId="sec_7__table_1__tr_7">
+              <td eId="sec_7__table_1__tr_7__td_1">
+                <p eId="sec_7__table_1__tr_7__td_1__p_1">6</p>
+              </td>
+              <td eId="sec_7__table_1__tr_7__td_2">
+                <p eId="sec_7__table_1__tr_7__td_2__p_1">Lecturer (Work Experience)</p>
+              </td>
+            </tr>
+            <tr eId="sec_7__table_1__tr_8">
+              <td eId="sec_7__table_1__tr_8__td_1">
+                <p eId="sec_7__table_1__tr_8__td_1__p_1">7</p>
+              </td>
+              <td eId="sec_7__table_1__tr_8__td_2">
+                <p eId="sec_7__table_1__tr_8__td_2__p_1">Special Inspector (Vocational Education)</p>
+              </td>
+            </tr>
+            <tr eId="sec_7__table_1__tr_9">
+              <td eId="sec_7__table_1__tr_9__td_1">
+                <p eId="sec_7__table_1__tr_9__td_1__p_1">8</p>
+              </td>
+              <td eId="sec_7__table_1__tr_9__td_2">
+                <p eId="sec_7__table_1__tr_9__td_2__p_1">Lecturer (Drawing)</p>
+              </td>
+            </tr>
+          </table>
+        </content>
+      </section>
+    </body>
+    <conclusions eId="conclusions">
+      <p eId="conclusions__p_1">" The above translation of <span eId="conclusions__p_1__span_1" xml:lang="kn">ಕಟಕಜ ಗ</span>(<span eId="conclusions__p_1__span_2" xml:lang="kn">ಕರವವ ತಣ</span>) (<span eId="conclusions__p_1__span_3" xml:lang="kn">ಪ</span>) <span eId="conclusions__p_1__span_4" xml:lang="kn">ಅಯಮ</span>, 2026 (2026<span eId="conclusions__p_1__span_5" xml:lang="kn">ರಕಟಕಅಯಮ</span>:27) be Published in official Gazette under clause (3) of Article 348 of the Constitution of India.</p>
+      <p eId="conclusions__p_2">THAAWARCHAND GEHLOT GOVERNOR OF KARNATAKA</p>
+      <p eId="conclusions__p_3">By Order and in the name of the Governor of Karnataka,</p>
+      <p eId="conclusions__p_4">G. SRIDHAR</p>
+      <p eId="conclusions__p_5">Secretary to Government Department of Parliamentary Affairs and Legislation [ <span eId="conclusions__p_5__span_1" xml:lang="kn">ಮುದಕರುಾಗೂಪಾಶಕರು</span>:- <span eId="conclusions__p_5__span_2" xml:lang="kn">ಸಂಕಲಾಾಗಳ</span>, <span eId="conclusions__p_5__span_3" xml:lang="kn">ಕಾಟಕಾಜಪತ</span>, <span eId="conclusions__p_5__span_4" xml:lang="kn">ಸಾೇಂದಮುದಾಲಯ</span>, <span eId="conclusions__p_5__span_5" xml:lang="kn">ೆಂಗಳರು</span>
+      </p>
+      <p eId="conclusions__p_6">THAMMAIAH</p>
+      <p eId="conclusions__p_7">DN: c=IN, o=Centre for e-Governance, 2.5.4.20=be54f34f4e31eae50203ca7fab5ceb3794f20a8460a2582ef28294d43b8f8b16, ou=department of printing stationery and Publication,CID - 7048443, postalCode=560001, st=Karnataka, serialNumber=4d9b284dcc53d39f1425f50485de07dd86efa302a3fce3729eddea0c1b5098e0, cn=THAMMAIAH</p>
+    </conclusions>
+  </act>
+</akomaNtoso>

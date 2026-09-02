@@ -1,0 +1,758 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <act name="act" contains="originalVersion">
+    <meta>
+      <identification source="#nyayabandhu">
+        <FRBRWork>
+          <FRBRthis value="/akn/in-ka/act/2020-03-26/4/!main"/>
+          <FRBRuri value="/akn/in-ka/act/2020-03-26/4"/>
+          <FRBRalias name="title" value="THE KARNATAKA STATE CIVIL SERVICES (REGULATION OF TRANSFER OF TEACHERS) ACT, 2020"/>
+          <FRBRalias name="title" value="PÀ£ÁðlPÀ gÁdå ¹«¯ï ¸ÉÃªÉUÀ¼ÀÄ (²PÀëPÀgÀ ªÀUÁðªÀuÉ  ¤AiÀÄAvÀæt) «zsÉÃAiÀÄPÀ, 2020 (2020gÀ PÀ£ÁðlPÀ C¢s¤AiÀÄªÀÄ ¸ÀASÉå:04)" xml:lang="kn-Latn-x-nudi"/>
+          <FRBRdate date="2020-03-26" name="assent"/>
+          <FRBRauthor href="#karnatakaLegislature"/>
+          <FRBRcountry value="in-ka"/>
+          <FRBRnumber value="4"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in-ka/act/2020-03-26/4/eng@2020-03-27/!main"/>
+          <FRBRuri value="/akn/in-ka/act/2020-03-26/4/eng@2020-03-27"/>
+          <FRBRdate date="2020-03-27" name="publication"/>
+          <FRBRauthor href="#karnatakaLegislature"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in-ka/act/2020-03-26/4/eng@2020-03-27/!main.xml"/>
+          <FRBRuri value="/akn/in-ka/act/2020-03-26/4/eng@2020-03-27.xml"/>
+          <FRBRdate date="2026-09-01" name="generation"/>
+          <FRBRauthor href="#nyayabandhu"/>
+          <FRBRformat value="xml"/>
+        </FRBRManifestation>
+      </identification>
+      <publication date="2020-03-27" name="Karnataka Gazette Extra-ordinary" showAs="Karnataka Gazette Extra-ordinary"/>
+      <classification source="#nyayabandhu">
+        <keyword eId="education" value="education" showAs="Education" dictionary="#nyayabandhuSubjects"/>
+        <keyword eId="teacherTransfers" value="teacher transfers" showAs="Teacher transfers" dictionary="#nyayabandhuSubjects"/>
+        <keyword eId="stateCivilServices" value="state civil services" showAs="State civil services" dictionary="#nyayabandhuSubjects"/>
+      </classification>
+      <lifecycle source="#nyayabandhu">
+        <eventRef eId="eref_1" date="2020-03-26" type="generation" source="#karnatakaLegislature"/>
+      </lifecycle>
+      <references source="#nyayabandhu">
+        <TLCOrganization eId="karnatakaLegislature" href="/akn/ontology/organization/in-ka/legislature" showAs="Karnataka State Legislature"/>
+        <TLCOrganization eId="karnatakaGazette" href="/akn/ontology/organization/in-ka/gazette" showAs="Karnataka Gazette"/>
+        <TLCRole eId="nyayabandhu" href="/akn/ontology/role/editor" showAs="NyayaBandhu automated parser"/>
+        <TLCTerm eId="appointingAuthority" href="/akn/ontology/term/appointingAuthority" showAs="Appointing authority"/>
+        <TLCTerm eId="appointment" href="/akn/ontology/term/appointment" showAs="Appointment"/>
+        <TLCTerm eId="competentAuthority" href="/akn/ontology/term/competentAuthority" showAs="Competent authority"/>
+        <TLCTerm eId="minimumPeriodOfService" href="/akn/ontology/term/minimumPeriodOfService" showAs="Minimum period of service"/>
+        <TLCTerm eId="orderOfPriority" href="/akn/ontology/term/orderOfPriority" showAs="Order of priority"/>
+        <TLCTerm eId="reDeployment" href="/akn/ontology/term/reDeployment" showAs="Re-deployment"/>
+        <TLCTerm eId="schedule" href="/akn/ontology/term/schedule" showAs="Schedule"/>
+        <TLCTerm eId="specifiedPosts" href="/akn/ontology/term/specifiedPosts" showAs="Specified posts"/>
+        <TLCTerm eId="teacher" href="/akn/ontology/term/teacher" showAs="Teacher"/>
+        <TLCTerm eId="transfer" href="/akn/ontology/term/transfer" showAs="Transfer"/>
+        <TLCTerm eId="unitOfSeniority" href="/akn/ontology/term/unitOfSeniority" showAs="Unit of seniority"/>
+        <TLCTerm eId="zone" href="/akn/ontology/term/zone" showAs="Zone"/>
+      </references>
+    </meta>
+    <preface eId="preface">
+      <p eId="preface__p_1">Ordered that the translation of <span eId="preface__p_1__span_1" xml:lang="kn-Latn-x-nudi">PÀ£ÁðlPÀ gÁdå ¹«¯ï ¸ÉÃªÉUÀ¼ÀÄ (²PÀëPÀgÀ ªÀUÁðªÀuÉ  ¤AiÀÄAvÀæt) «zsÉÃAiÀÄPÀ, 2020 (2020gÀ PÀ£ÁðlPÀ C¢s¤AiÀÄªÀÄ ¸ÀASÉå:04)</span> in the English language, be published as authorised by the Governor of Karnataka under clause (3) of Article 348 of the constitution of India in the Karnataka Gazette for general information. The following translation of <span eId="preface__p_1__span_2" xml:lang="kn-Latn-x-nudi">PÀ£ÁðlPÀ gÁdå ¹«¯ï ¸ÉÃªÉUÀ¼ÀÄ (²PÀëPÀgÀ ªÀUÁðªÀuÉ  ¤AiÀÄAvÀæt) «zsÉÃAiÀÄPÀ, 2020 (2020gÀ PÀ£ÁðlPÀ C¢s¤AiÀÄªÀÄ ¸ÀASÉå:04) </span>in the English language is published in the Official Gazette under the authority of the Governor of Karnataka under clause (3) of Article 348 of the Constitution of India.</p>
+      <p eId="preface__p_2">KARNATAKA ACT NO. 04 OF 2020</p>
+      <p eId="preface__p_3">(First Published in the Karnataka Gazette Extra-ordinary on the 27th day of March, 2020)</p>
+      <p eId="preface__p_4">THE KARNATAKA STATE CIVIL SERVICES (REGULATION OF TRANSFER OF TEACHERS) ACT, 2020</p>
+      <p eId="preface__p_5">(Received the assent of the Governor on the 26th day of March, 2020)</p>
+      <longTitle eId="preface__longTitle_1">
+        <p eId="preface__longTitle_1__p_1">An Act to provide for regulation of transfer of teachers so as to ensure the availability of teachers in Government Primary school sand Government High schools.</p>
+      </longTitle>
+    </preface>
+    <preamble eId="preamble">
+      <recitals eId="preamble__recitals_1">
+        <recital eId="preamble__recitals_1__rec_1">
+          <p eId="preamble__recitals_1__rec_1__p_1">Whereas it is expedient to provide for regulation of transfer of teachers so as to ensure the availability of teachers in Government Primary Schools and Government High schools and for the matters connected therewith or incidental thereto;</p>
+        </recital>
+      </recitals>
+      <formula eId="preamble__formula_1" name="enactingFormula">
+        <p eId="preamble__formula_1__p_1">Be it enacted by the Karnataka State Legislature in the seventy first year of the Republic of India, as follows:-</p>
+      </formula>
+    </preamble>
+    <body>
+      <section eId="sec_1">
+        <num>1.</num>
+        <heading>Short title and commencement</heading>
+        <subsection eId="sec_1__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_1__subsec_1__content">
+            <p eId="sec_1__subsec_1__content__p_1">This Act may be called the Karnataka State Civil Services (Regulation of transfer of teachers) Act, 2020.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_1__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_1__subsec_2__content">
+            <p eId="sec_1__subsec_2__content__p_1">It shall come into force on such date as the State Government may by notification, appoint.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_2">
+        <num>2.</num>
+        <heading>Definitions</heading>
+        <intro eId="sec_2__intro">
+          <p eId="sec_2__intro__p_1">In this Act, unless the context otherwise requires,-</p>
+        </intro>
+        <clause eId="sec_2__cl_a">
+          <num>(a)</num>
+          <content eId="sec_2__cl_a__content">
+            <p eId="sec_2__cl_a__content__p_1">
+              <def eId="sec_2__cl_a__content__p_1__def_1" refersTo="#appointment">"Appointment"</def> means appointment by direct recruitment, by absorption or by promotion;</p>
+          </content>
+        </clause>
+        <clause eId="sec_2__cl_b">
+          <num>(b)</num>
+          <content eId="sec_2__cl_b__content">
+            <p eId="sec_2__cl_b__content__p_1">
+              <def eId="sec_2__cl_b__content__p_1__def_1" refersTo="#appointingAuthority">"Appointing authority"</def> means the authority competent to make appointment to the post of a teacher;</p>
+          </content>
+        </clause>
+        <clause eId="sec_2__cl_c">
+          <num>(c)</num>
+          <content eId="sec_2__cl_c__content">
+            <p eId="sec_2__cl_c__content__p_1">
+              <def eId="sec_2__cl_c__content__p_1__def_1" refersTo="#competentAuthority">"Competent authority"</def> means the authority competent to make orders of transfer of teachers as may be prescribed;</p>
+          </content>
+        </clause>
+        <clause eId="sec_2__cl_d">
+          <num>(d)</num>
+          <content eId="sec_2__cl_d__content">
+            <p eId="sec_2__cl_d__content__p_1">
+              <def eId="sec_2__cl_d__content__p_1__def_1" refersTo="#minimumPeriodOfService">"Minimum period of service"</def> means a continuous service of three years in a school including service rendered in a school from where he has been re-deployed.</p>
+          </content>
+        </clause>
+        <clause eId="sec_2__cl_e">
+          <num>(e)</num>
+          <content eId="sec_2__cl_e__content">
+            <p eId="sec_2__cl_e__content__p_1">
+              <def eId="sec_2__cl_e__content__p_1__def_1" refersTo="#orderOfPriority">"Order of priority"</def> means priority list of teachers prepared based on weighted score obtained by the teacher as per the criteria as may be prescribed, for the purpose of counselling;</p>
+          </content>
+        </clause>
+        <clause eId="sec_2__cl_f">
+          <num>(f)</num>
+          <content eId="sec_2__cl_f__content">
+            <p eId="sec_2__cl_f__content__p_1">
+              <def eId="sec_2__cl_f__content__p_1__def_1" refersTo="#reDeployment">"Re-deployment"</def>means re-deployment of any post from a school where it is excess, to any school where it is deficit as per pupil-teacher ratio and other norms specified by the State Government;</p>
+          </content>
+        </clause>
+        <clause eId="sec_2__cl_g">
+          <num>(g)</num>
+          <content eId="sec_2__cl_g__content">
+            <p eId="sec_2__cl_g__content__p_1">
+              <def eId="sec_2__cl_g__content__p_1__def_1" refersTo="#schedule">"Schedule"</def> means the schedule appended to this Act;</p>
+          </content>
+        </clause>
+        <clause eId="sec_2__cl_h">
+          <num>(h)</num>
+          <content eId="sec_2__cl_h__content">
+            <p eId="sec_2__cl_h__content__p_1">
+              <def eId="sec_2__cl_h__content__p_1__def_1" refersTo="#specifiedPosts">"Specified posts"</def> means posts of Cluster resource person, Block resource person, Educational co-ordinator, Technical Assistant, Block resource co-ordinator, Assistant project Co-ordinator, Subject Inspector and Assistant Director (mid day meal); and such other posts as may be notified by the State Government in this behalf;</p>
+          </content>
+        </clause>
+        <clause eId="sec_2__cl_i">
+          <num>(i)</num>
+          <content eId="sec_2__cl_i__content">
+            <p eId="sec_2__cl_i__content__p_1">
+              <def eId="sec_2__cl_i__content__p_1__def_1" refersTo="#teacher">"Teacher"</def> means a person appointed to a category of posts of a teacher in a primary school or a high school or composite high school or composite junior college or such other posts belonging to the State Civil Services as specified in <ref eId="sec_2__cl_i__content__p_1__ref_2" href="#att_1">the Schedule</ref>;</p>
+          </content>
+        </clause>
+        <clause eId="sec_2__cl_j">
+          <num>(j)</num>
+          <content eId="sec_2__cl_j__content">
+            <p eId="sec_2__cl_j__content__p_1">
+              <def eId="sec_2__cl_j__content__p_1__def_1" refersTo="#transfer">"Transfer"</def> means posting of a teacher from one place of working to another place of working in the same cadre;</p>
+          </content>
+        </clause>
+        <clause eId="sec_2__cl_k">
+          <num>(k)</num>
+          <content eId="sec_2__cl_k__content">
+            <p eId="sec_2__cl_k__content__p_1">
+              <def eId="sec_2__cl_k__content__p_1__def_1" refersTo="#unitOfSeniority">"Unit of seniority"</def>means for primary school teachers the Unit of Seniority is an Educational district and for high school teachers, the unit of seniority is a Revenue division; and</p>
+          </content>
+        </clause>
+        <clause eId="sec_2__cl_l">
+          <num>(l)</num>
+          <content eId="sec_2__cl_l__content">
+            <p eId="sec_2__cl_l__content__p_1">
+              <def eId="sec_2__cl_l__content__p_1__def_1" refersTo="#zone">"Zone"</def> means Zone-A, Zone-B and Zone-C as defined and prescribed by the State Government.</p>
+          </content>
+        </clause>
+      </section>
+      <section eId="sec_3">
+        <num>3.</num>
+        <heading>Compulsory appointment of a teacher to Zone-C</heading>
+        <subsection eId="sec_3__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_3__subsec_1__content">
+            <p eId="sec_3__subsec_1__content__p_1">Every appointing authority while giving first posting on initial appointment or promotion of a teacher shall ensure that vacancies in Zone-C shall be filled in the first instance. Preferably the taluks with more than twenty percent vacancies shall be filled on priority.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_3__subsec_2">
+          <num>(2)</num>
+          <intro eId="sec_3__subsec_2__intro">
+            <p eId="sec_3__subsec_2__intro__p_1">If no vacancy is available for posting on initial appointment or promotion in Zone-C, vacancy may be created by transfer of willing teachers working in Zone-C who have completed minimum period of service to Zone-B in the order of priority and from Zone B-to Zone-A:</p>
+          </intro>
+          <proviso eId="sec_3__subsec_2__proviso_1">
+            <content eId="sec_3__subsec_2__proviso_1__content">
+              <p eId="sec_3__subsec_2__proviso_1__content__p_1">Provided that, posting of a teacher to Zone-C on initial appointment or promotion shall not apply to a teacher who has been appointed to a unit of seniority which does not comprise any area under Zone-C:</p>
+            </content>
+          </proviso>
+          <proviso eId="sec_3__subsec_2__proviso_2">
+            <content eId="sec_3__subsec_2__proviso_2__content">
+              <p eId="sec_3__subsec_2__proviso_2__content__p_1">Provided further that, if no vacancies are available in Zone-C even after undertaking process under sub-sections <ref eId="sec_3__subsec_2__proviso_2__content__p_1__ref_1" href="#sec_3__subsec_1">(1)</ref> to <ref eId="sec_3__subsec_2__proviso_2__content__p_1__ref_2" href="#sec_3__subsec_2">(2)</ref>, then a teacher may be posted to a school in order of Zone-B or Zone-A:</p>
+            </content>
+          </proviso>
+          <proviso eId="sec_3__subsec_2__proviso_3">
+            <content eId="sec_3__subsec_2__proviso_3__content">
+              <p eId="sec_3__subsec_2__proviso_3__content__p_1">Provided also that, if a teacher who has already served more than ten years in Zone-C continuously or fifteen years in Zone-C cumulatively, such teacher on promotion may be posted to a school in the order to Zone-Bor Zone-A through counselling subject to availability of such vacancies.</p>
+            </content>
+          </proviso>
+        </subsection>
+      </section>
+      <section eId="sec_4">
+        <num>4.</num>
+        <heading>Rationalisation of teachers</heading>
+        <subsection eId="sec_4__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_4__subsec_1__content">
+            <p eId="sec_4__subsec_1__content__p_1">Every alternate year the sanctioned posts and the teachers working thereof in a school shall be rationalized based on the Pupil-Teacher ratio fixed by the State Government from time to time.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_4__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_4__subsec_2__content">
+            <p eId="sec_4__subsec_2__content__p_1">After rationalisation the excess posts of a teacher in any school shall be redeployed to any school where it is deficit. The excess teachers so determined shall be transferred through counselling based on the order of priority, subject to such other conditions as may be prescribed.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_5">
+        <num>5.</num>
+        <heading>Zonal transfers</heading>
+        <intro eId="sec_5__intro">
+          <p eId="sec_5__intro__p_1">Every alternate year,-</p>
+        </intro>
+        <clause eId="sec_5__cl_i">
+          <num>(i)</num>
+          <content eId="sec_5__cl_i__content">
+            <p eId="sec_5__cl_i__content__p_1">every teacher who has not served minimum ten years in Zone-C and has served more than ten years continuously in Zone-A shall be transferred to Zone-C or Zone-B subject to such conditions as may be prescribed by the State Government.</p>
+          </content>
+        </clause>
+        <clause eId="sec_5__cl_ii">
+          <num>(ii)</num>
+          <content eId="sec_5__cl_ii__content">
+            <p eId="sec_5__cl_ii__content__p_1">if no vacancy is available for posting of a teacher transferred under <ref eId="sec_5__cl_ii__content__p_1__ref_1" href="#sec_5__cl_i">sub-clause (i)</ref> to Zone-C, vacancy may be created by transfer of willing teachers working in Zone-C or Zone-B who have completed minimum period of service to Zone A in the order of priority.</p>
+          </content>
+        </clause>
+      </section>
+      <section eId="sec_6">
+        <num>6.</num>
+        <heading>Request transfer</heading>
+        <intro eId="sec_6__intro">
+          <p eId="sec_6__intro__p_1">A teacher who has served minimum period of service in a school shall be offered an option to seek transfer subject to availability of vacancies and such other conditions as may be prescribed:</p>
+        </intro>
+        <proviso eId="sec_6__proviso_1">
+          <content eId="sec_6__proviso_1__content">
+            <p eId="sec_6__proviso_1__content__p_1">Provided that, in case of transfer of teacher from one school to another consequent upon rationalisation or zonal transfer the service rendered in previous school shall be reckoned for the purpose of calculation of minimum service in a school.</p>
+          </content>
+        </proviso>
+        <proviso eId="sec_6__proviso_2">
+          <content eId="sec_6__proviso_2__content">
+            <p eId="sec_6__proviso_2__content__p_1">Provided further that, a teacher working in any of the six districts of Kalyana Karnataka region, in addition to all other eligibility conditions shall also have completed a minimum of ten years of service in the region, for seeking transfer outside of Kalyana Karnataka region.</p>
+          </content>
+        </proviso>
+      </section>
+      <section eId="sec_7">
+        <num>7.</num>
+        <heading>Transfer by counselling</heading>
+        <subsection eId="sec_7__subsec_1">
+          <num>(1)</num>
+          <intro eId="sec_7__subsec_1__intro">
+            <p eId="sec_7__subsec_1__intro__p_1">The transfer of teachers under sections <ref eId="sec_7__subsec_1__intro__p_1__ref_1" href="#sec_4">4</ref>, <ref eId="sec_7__subsec_1__intro__p_1__ref_2" href="#sec_5">5</ref> and <ref eId="sec_7__subsec_1__intro__p_1__ref_3" href="#sec_6">6</ref> shall ordinarily be done during the General transfer in the month of April and May, in a year through a process of computerized counselling conducted in such manner as may be prescribed:</p>
+          </intro>
+          <proviso eId="sec_7__subsec_1__proviso_1">
+            <content eId="sec_7__subsec_1__proviso_1__content">
+              <p eId="sec_7__subsec_1__proviso_1__content__p_1">Provided that, the transfer may be made even after the month of April and May in special circumstances for the reasons to be recorded in writing on direction of the State Government:</p>
+            </content>
+          </proviso>
+          <proviso eId="sec_7__subsec_1__proviso_2">
+            <content eId="sec_7__subsec_1__proviso_2__content">
+              <p eId="sec_7__subsec_1__proviso_2__content__p_1">Provided further that, where no teacher has opted for a place in the process of counselling and it is required to be filled in the public interest based on the pupil-teacher ratio, the State Government may transfer any teacher to such place who has completed minimum period of service, subject to such other conditions as may be prescribed:</p>
+            </content>
+          </proviso>
+          <proviso eId="sec_7__subsec_1__proviso_3">
+            <content eId="sec_7__subsec_1__proviso_3__content">
+              <p eId="sec_7__subsec_1__proviso_3__content__p_1">Provided also that, a teacher undergoing a major penalty under the Karnataka Civil Service (Classification, Control and Appeal) Rules, 1957 or facing criminal charges in Court of Law shall be transferred to any vacancy in 'Zone-C' even if he has not completed minimum period of service:</p>
+            </content>
+          </proviso>
+          <proviso eId="sec_7__subsec_1__proviso_4">
+            <content eId="sec_7__subsec_1__proviso_4__content">
+              <p eId="sec_7__subsec_1__proviso_4__content__p_1">Provided also that, the total number of transfers made under sections <ref eId="sec_7__subsec_1__proviso_4__content__p_1__ref_1" href="#sec_5">5</ref> and <ref eId="sec_7__subsec_1__proviso_4__content__p_1__ref_2" href="#sec_6">6</ref> under this Act in a year, for any cadre and in any unit of seniority shall not exceed fifteen percent or such lower limit as notified by the State Government:</p>
+            </content>
+          </proviso>
+          <proviso eId="sec_7__subsec_1__proviso_5">
+            <content eId="sec_7__subsec_1__proviso_5__content">
+              <p eId="sec_7__subsec_1__proviso_5__content__p_1">Provided also that, the limit prescribed in <ref eId="sec_7__subsec_1__proviso_5__content__p_1__ref_1" href="#sec_7__subsec_1__proviso_4">the fourth proviso</ref>, shall not be applicable to mutual transfers and transfers made under special categories as defined in clause <ref eId="sec_7__subsec_1__proviso_5__content__p_1__ref_2" href="#sec_10__subsec_1__cl_i">(i)</ref> to <ref eId="sec_7__subsec_1__proviso_5__content__p_1__ref_3" href="#sec_10__subsec_1__cl_iv">(iv)</ref> of sub-section (1) of section 10.</p>
+            </content>
+          </proviso>
+        </subsection>
+        <subsection eId="sec_7__subsec_2">
+          <num>(2)</num>
+          <intro eId="sec_7__subsec_2__intro">
+            <p eId="sec_7__subsec_2__intro__p_1">The mutual transfer to a place outside the unit of seniority shall be permitted not more than once in-service subject to condition that both teachers must have completed minimum seven years of service; must be otherwise eligible to be transferred to that zone and must have minimum five years of leftover service. He shall not be eligible for protection of seniority and be subject to such other conditions as may be prescribed.</p>
+          </intro>
+          <proviso eId="sec_7__subsec_2__proviso_1">
+            <content eId="sec_7__subsec_2__proviso_1__content">
+              <p eId="sec_7__subsec_2__proviso_1__content__p_1">Provided that, in respect of mutual transfer of a teacher within the unit of seniority he shall be otherwise eligible for transfer to that post.</p>
+            </content>
+          </proviso>
+        </subsection>
+        <subsection eId="sec_7__subsec_3">
+          <num>(3)</num>
+          <content eId="sec_7__subsec_3__content">
+            <p eId="sec_7__subsec_3__content__p_1">The competent authority shall ensure that as for as possible the percentage of vacancies in all the districts are distributed equally.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_8">
+        <num>8.</num>
+        <heading>Transfer of teachers to specified posts</heading>
+        <subsection eId="sec_8__subsec_1">
+          <num>(1)</num>
+          <intro eId="sec_8__subsec_1__intro">
+            <p eId="sec_8__subsec_1__intro__p_1">All specified posts shall be filled only through counselling by posting of a teacher based on merit list prepared through the examination specified for such posts:</p>
+          </intro>
+          <proviso eId="sec_8__subsec_1__proviso_1">
+            <content eId="sec_8__subsec_1__proviso_1__content">
+              <p eId="sec_8__subsec_1__proviso_1__content__p_1">Provided that, the State Government may in its discretion, post any teacher to a specified post, who has passed the prescribed examination and has fulfilled eligibility norms.</p>
+            </content>
+          </proviso>
+        </subsection>
+        <subsection eId="sec_8__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_8__subsec_2__content">
+            <p eId="sec_8__subsec_2__content__p_1">The minimum and maximum periods of posting to such posts shall be three years and five years respectively.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_9">
+        <num>9.</num>
+        <heading>Redressal of grievances during transfers</heading>
+        <content eId="sec_9__content">
+          <p eId="sec_9__content__p_1">The departmental Officer not below the rank of a Joint Director of Public Instruction shall be designated as the Grievance Redressal Officer to oversee all transfer process under his jurisdiction and hear any written complaints and pass orders within seven days. The appeal against the order passed by the Grievance Redressal Officer shall lie with Additional Commissioner of Public Instruction, Dharwad for Belagavi division;Additional Commissioner of Public Instruction, Kalaburagi for Kalaburagi division and Director (Transfer Cell), Commissioner of Public Instruction office, Bengaluruin respect of Bengaluru and Mysuru Division. In case of violation of any provision of the Act or the rules made there under by any officer, the same shall be reported to the concerned Disciplinary Authority.</p>
+        </content>
+      </section>
+      <section eId="sec_10">
+        <num>10.</num>
+        <heading>Exemptions from rationalization, zonal transfers and priority for request transfers</heading>
+        <subsection eId="sec_10__subsec_1">
+          <num>(1)</num>
+          <intro eId="sec_10__subsec_1__intro">
+            <p eId="sec_10__subsec_1__intro__p_1">The exemptions from rationalization, zonal transfers and priority for request transfers are as follows, subject to conditions specified in sub-sections <ref eId="sec_10__subsec_1__intro__p_1__ref_1" href="#sec_10__subsec_2">(2)</ref> to <ref eId="sec_10__subsec_1__intro__p_1__ref_2" href="#sec_10__subsec_5">(5)</ref>,-</p>
+          </intro>
+          <clause eId="sec_10__subsec_1__cl_i">
+            <num>(i)</num>
+            <content eId="sec_10__subsec_1__cl_i__content">
+              <p eId="sec_10__subsec_1__cl_i__content__p_1">teacher or spouse or children suffering from terminal illness or serious ailments for which treatment is not available within the taluk in which teacher is working;</p>
+            </content>
+          </clause>
+          <clause eId="sec_10__subsec_1__cl_ii">
+            <num>(ii)</num>
+            <content eId="sec_10__subsec_1__cl_ii__content">
+              <p eId="sec_10__subsec_1__cl_ii__content__p_1">teacher or spouse or children with bench mark disability as defined in clause (r) of section 2 of the Rights of persons with disabilities Act, 2016 (Central Act 49 of 2016);</p>
+            </content>
+          </clause>
+          <clause eId="sec_10__subsec_1__cl_iii">
+            <num>(iii)</num>
+            <content eId="sec_10__subsec_1__cl_iii__content">
+              <p eId="sec_10__subsec_1__cl_iii__content__p_1">widow or widower or a divorcee teacher with dependent children; below the age of 12 years;</p>
+            </content>
+          </clause>
+          <clause eId="sec_10__subsec_1__cl_iv">
+            <num>(iv)</num>
+            <content eId="sec_10__subsec_1__cl_iv__content">
+              <p eId="sec_10__subsec_1__cl_iv__content__p_1">teacher with spouse being a working soldier or retired or permanently disabled or deceased soldier of Indian Defence Forces or Para-Military Forces;</p>
+            </content>
+          </clause>
+          <clause eId="sec_10__subsec_1__cl_v">
+            <num>(v)</num>
+            <content eId="sec_10__subsec_1__cl_v__content">
+              <p eId="sec_10__subsec_1__cl_v__content__p_1">teacher with spouse working with the State or Central Government or aided educational institution;</p>
+            </content>
+          </clause>
+          <clause eId="sec_10__subsec_1__cl_vi">
+            <num>(vi)</num>
+            <content eId="sec_10__subsec_1__cl_vi__content">
+              <p eId="sec_10__subsec_1__cl_vi__content__p_1">teachers above the age of fifty years in case of female teachers and fifty five years in case of male teachers; and</p>
+            </content>
+          </clause>
+          <clause eId="sec_10__subsec_1__cl_vii">
+            <num>(vii)</num>
+            <content eId="sec_10__subsec_1__cl_vii__content">
+              <p eId="sec_10__subsec_1__cl_vii__content__p_1">pregnant teacher or a female teacher with a child of less than one year.</p>
+            </content>
+          </clause>
+        </subsection>
+        <subsection eId="sec_10__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_10__subsec_2__content">
+            <p eId="sec_10__subsec_2__content__p_1">The categories falling under clauses <ref eId="sec_10__subsec_2__content__p_1__ref_1" href="#sec_10__subsec_1__cl_i">(i)</ref> to <ref eId="sec_10__subsec_2__content__p_1__ref_2" href="#sec_10__subsec_1__cl_iv">(iv)</ref> are eligible for both exemptions under rationalization and zonal transfers and also priority under request transfers. The priorities shall be claimed only once during the service of a teacher.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_10__subsec_3">
+          <num>(3)</num>
+          <content eId="sec_10__subsec_3__content">
+            <p eId="sec_10__subsec_3__content__p_1">The categories falling under clauses <ref eId="sec_10__subsec_3__content__p_1__ref_1" href="#sec_10__subsec_1__cl_i">(i)</ref> to <ref eId="sec_10__subsec_3__content__p_1__ref_2" href="#sec_10__subsec_1__cl_iv">(iv)</ref> are classified as special categories. The transfers made under these categories shall not be counted under fifteen percent transfer limits specified under <ref eId="sec_10__subsec_3__content__p_1__ref_3" href="#sec_7">section 7</ref>.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_10__subsec_4">
+          <num>(4)</num>
+          <content eId="sec_10__subsec_4__content">
+            <p eId="sec_10__subsec_4__content__p_1">The categories falling under clause <ref eId="sec_10__subsec_4__content__p_1__ref_1" href="#sec_10__subsec_1__cl_vi">(vi)</ref> and <ref eId="sec_10__subsec_4__content__p_1__ref_2" href="#sec_10__subsec_1__cl_vii">(vii)</ref> are eligible only for exemptions under rationalization and zonal transfers.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_10__subsec_5">
+          <num>(5)</num>
+          <intro eId="sec_10__subsec_5__intro">
+            <p eId="sec_10__subsec_5__intro__p_1">The teachers falling under <ref eId="sec_10__subsec_5__intro__p_1__ref_1" href="#sec_10__subsec_1__cl_v">category (v)</ref> shall be given priority during request transfer. If the teacher is working in a different taluk as that of the spouse is allowed to seek transfer to the working taluk of the spouse only. If both are working in the same taluk then they are not eligible to make application under priority:</p>
+          </intro>
+          <proviso eId="sec_10__subsec_5__proviso_1">
+            <content eId="sec_10__subsec_5__proviso_1__content">
+              <p eId="sec_10__subsec_5__proviso_1__content__p_1">Provided that, during rationalization and zonal transfers the excess teacher shall be posted within the working taluk of the spouse.</p>
+            </content>
+          </proviso>
+        </subsection>
+      </section>
+      <section eId="sec_11">
+        <num>11.</num>
+        <heading>Prohibition of manual counselling</heading>
+        <content eId="sec_11__content">
+          <p eId="sec_11__content__p_1">The carrying out of transfers through manual counselling is prohibited. If transfers are done through manual counselling they shall be considered as null and void and officers who are responsible for such transfers are liable for disciplinary action.</p>
+        </content>
+      </section>
+      <section eId="sec_12">
+        <num>12.</num>
+        <heading>Penalties</heading>
+        <content eId="sec_12__content">
+          <p eId="sec_12__content__p_1">If any officer or staff acts or makes an order in contravention of the provisions of this Act or the rules made thereunder, such officer or staff as the case may be, shall be liablefor disciplinary action under the Karnataka Civil Services(Classification, Control and Appeal ) Rules, 1957.</p>
+        </content>
+      </section>
+      <section eId="sec_13">
+        <num>13.</num>
+        <heading>Cognizance of offences</heading>
+        <content eId="sec_13__content">
+          <p eId="sec_13__content__p_1">No Court shall take cognizance of any offence under this Act except on a complaint made in writing by an officer authorized by the State Government by notification published in this behalf in the Official Gazette.</p>
+        </content>
+      </section>
+      <section eId="sec_14">
+        <num>14.</num>
+        <heading>An Act to override other laws</heading>
+        <content eId="sec_14__content">
+          <p eId="sec_14__content__p_1">The provisions of this Act shall have an over-riding effect on anything inconsistent therewith contained in any other law for the time being in force.</p>
+        </content>
+      </section>
+      <section eId="sec_15">
+        <num>15.</num>
+        <heading>Power to remove difficulties</heading>
+        <intro eId="sec_15__intro">
+          <p eId="sec_15__intro__p_1">If any difficulty arises in giving effect to the provisions of this Act, the State Government if it is necessary and expedient for removing the difficulty, may by order published in the official Gazette make provisions not inconsistent with the provisions of this Act:</p>
+        </intro>
+        <proviso eId="sec_15__proviso_1">
+          <content eId="sec_15__proviso_1__content">
+            <p eId="sec_15__proviso_1__content__p_1">Provided that, no such order shall be made after the expiry of a period of two years from the date of commencement of this Act.</p>
+          </content>
+        </proviso>
+      </section>
+      <section eId="sec_16">
+        <num>16.</num>
+        <heading>Power to amend the Schedule</heading>
+        <content eId="sec_16__content">
+          <p eId="sec_16__content__p_1">The State Government may, by notification, add, alter or remove any of the entries specified in <ref eId="sec_16__content__p_1__ref_1" href="#att_1">the Schedule</ref>.</p>
+        </content>
+      </section>
+      <section eId="sec_17">
+        <num>17.</num>
+        <heading>Protection of action taken in good faith</heading>
+        <content eId="sec_17__content">
+          <p eId="sec_17__content__p_1">No suit, prosecution or other legal proceeding shall lie against any officer of the State Government for anything done in good faith or intended to be done under this Act.</p>
+        </content>
+      </section>
+      <section eId="sec_18">
+        <num>18.</num>
+        <heading>Power to make rules</heading>
+        <subsection eId="sec_18__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_18__subsec_1__content">
+            <p eId="sec_18__subsec_1__content__p_1">The State Government may by notification and after previous publication, make rules to carry out the purposes of this Act.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_18__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_18__subsec_2__content">
+            <p eId="sec_18__subsec_2__content__p_1">Any rule made under this Act may be made with retrospective effect and when such a rule is made, the reasons for making the rule shall be specified in a statement to be laid before both Houses of the State Legislature and subject to any modification made under <ref eId="sec_18__subsec_2__content__p_1__ref_1" href="#sec_18__subsec_3">sub-section (3)</ref>. Every rule made under this Act shall have effect as if it is enacted under this Act.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_18__subsec_3">
+          <num>(3)</num>
+          <content eId="sec_18__subsec_3__content">
+            <p eId="sec_18__subsec_3__content__p_1">Every rule made or notification issued under this Act, shall be laid, as soon as may be, after it is made before each House of the State Legislature, while it is in session for a total period of thirty days, which may be comprised in one session or in two or more successive sessions, and if, before the expiry of the session in which it is so laid or the session immediately following both Houses agree in making any modification, in the rule or notification or decide that any rule or notification should not be made, the rule or notification shall thereafter have effect only in such modified form or be of no effect, as the case may be; so, however, that any such modification or annulment shall be without prejudice to the validity of anything previously done under that rule or notification.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_19">
+        <num>19.</num>
+        <heading>Transitory provisions</heading>
+        <content eId="sec_19__content">
+          <p eId="sec_19__content__p_1">Any rule, notification, order or appointment, made or issued under the Karnataka State Civil Services (Regulation of transfer of teachers) Act, 2007 (Karnataka Act 29 of 2007) and Rules made there under or otherwise providing for or relating to any of the matters for the furtherance of which this Act is enacted, before the date of commencement of this Act and in force on the date of commencement of this Act, to the extent they are not inconsistent with the provisions of this Act, shall continue to be in force and effective as if they are made or issued or appointed under the corresponding provisions of this Act unless and until superseded by anything done or any action taken or any rules, notification, order or appointment made under this Act.</p>
+        </content>
+      </section>
+      <section eId="sec_20">
+        <num>20.</num>
+        <heading>Repeal and savings</heading>
+        <intro eId="sec_20__intro">
+          <p eId="sec_20__intro__p_1">Except the provisions relating to transfer of Lecturer or Principal of Pre-University college, the Karnataka State Civil Services (Regulation of transfer of teachers) Act, 2007 (Karnataka Act 29 of 2007) is hereby repealed:</p>
+        </intro>
+        <proviso eId="sec_20__proviso_1">
+          <intro eId="sec_20__proviso_1__intro">
+            <p eId="sec_20__proviso_1__intro__p_1">Provided that, such repeal shall not affect,-</p>
+          </intro>
+          <clause eId="sec_20__proviso_1__cl_a">
+            <num>(a)</num>
+            <content eId="sec_20__proviso_1__cl_a__content">
+              <p eId="sec_20__proviso_1__cl_a__content__p_1">anything done or any action taken under the said Act; or</p>
+            </content>
+          </clause>
+          <clause eId="sec_20__proviso_1__cl_b">
+            <num>(b)</num>
+            <content eId="sec_20__proviso_1__cl_b__content">
+              <p eId="sec_20__proviso_1__cl_b__content__p_1">the previous operation of the said Act or anything duly done or suffered thereunder; or</p>
+            </content>
+          </clause>
+          <clause eId="sec_20__proviso_1__cl_c">
+            <num>(c)</num>
+            <content eId="sec_20__proviso_1__cl_c__content">
+              <p eId="sec_20__proviso_1__cl_c__content__p_1">any right, privilege, obligation or liability acquired, accrued or incurred under the said Act; or</p>
+            </content>
+          </clause>
+          <clause eId="sec_20__proviso_1__cl_d">
+            <num>(d)</num>
+            <content eId="sec_20__proviso_1__cl_d__content">
+              <p eId="sec_20__proviso_1__cl_d__content__p_1">any penalty or punishment incurred in respect of any offence committed under the said Act:</p>
+            </content>
+          </clause>
+        </proviso>
+        <proviso eId="sec_20__proviso_2">
+          <content eId="sec_20__proviso_2__content">
+            <p eId="sec_20__proviso_2__content__p_1">Provided further that, the provisions of section 6 of the Karnataka General Clauses Act, 1899 (Karnataka Act III of 1899) shall be applicable in respect of repeal of the said Act.</p>
+          </content>
+        </proviso>
+      </section>
+    </body>
+    <conclusions eId="conclusions">
+      <p eId="conclusions__p_1">The above translation of <span eId="conclusions__p_1__span_1" xml:lang="kn-Latn-x-nudi">PÀ£ÁðlPÀ gÁdå ¹«¯ï ¸ÉÃªÉUÀ¼ÀÄ (²PÀëPÀgÀ ªÀUÁðªÀuÉ  ¤AiÀÄAvÀæt) </span>
+        <span eId="conclusions__p_1__span_2" xml:lang="kn">ಅಧಿನಿಯಮ</span>, 2020 <span eId="conclusions__p_1__span_3" xml:lang="kn-Latn-x-nudi">(2020gÀ PÀ£ÁðlPÀ C¢s¤AiÀÄªÀÄ ¸ÀASÉå:04)</span> (be published in the official Gazette under clause (3) of Article 348 of the Constitution of India.</p>
+      <p eId="conclusions__p_2">VAJUBHAI VALA GOVERNOR OF KARNATAKA</p>
+      <p eId="conclusions__p_3">By Order and in the name of the Governor of Karnataka,</p>
+      <p eId="conclusions__p_4">(K.DWARAKANATH BABU)</p>
+      <p eId="conclusions__p_5">Secretary to Government Department of Parliamentary Affairs and Legislation <span eId="conclusions__p_5__span_1" xml:lang="kn">ಮುದರ್ಕರು ಹಾಗೂ ಪರ್ಕಾಶಕರು</span>:- <span eId="conclusions__p_5__span_2" xml:lang="kn">ಸಂಕಲನಾಧಿಕಾರಿಗಳು</span>, <span eId="conclusions__p_5__span_3" xml:lang="kn">ಕನಾರ್ಟಕ ರಾಜಯ್ಪತರ್</span>, <span eId="conclusions__p_5__span_4" xml:lang="kn">ಸಕಾರ್ರಿ ಕೇಂದರ್ ಮುದರ್ಣಾಲಯ</span>, <span eId="conclusions__p_5__span_5" xml:lang="kn">ಬೆಂಗಳೂರು</span>
+      </p>
+      <p eId="conclusions__p_6">SUNIL GARDE</p>
+    </conclusions>
+    <attachments>
+      <attachment eId="att_1">
+        <doc name="schedule">
+          <meta>
+            <identification source="#nyayabandhu">
+              <FRBRWork>
+                <FRBRthis value="/akn/in-ka/act/2020-03-26/4/!schedule_1"/>
+                <FRBRuri value="/akn/in-ka/act/2020-03-26/4"/>
+                <FRBRdate date="2020-03-26" name="assent"/>
+                <FRBRauthor href="#karnatakaLegislature"/>
+                <FRBRcountry value="in-ka"/>
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="/akn/in-ka/act/2020-03-26/4/eng@2020-03-27/!schedule_1"/>
+                <FRBRuri value="/akn/in-ka/act/2020-03-26/4/eng@2020-03-27"/>
+                <FRBRdate date="2020-03-27" name="publication"/>
+                <FRBRauthor href="#karnatakaLegislature"/>
+                <FRBRlanguage language="eng"/>
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="/akn/in-ka/act/2020-03-26/4/eng@2020-03-27/!schedule_1.xml"/>
+                <FRBRuri value="/akn/in-ka/act/2020-03-26/4/eng@2020-03-27.xml"/>
+                <FRBRdate date="2026-09-01" name="generation"/>
+                <FRBRauthor href="#nyayabandhu"/>
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody eId="att_1__body">
+            <hcontainer eId="att_1__hcontainer_1" name="schedule">
+              <heading>SCHEDULE</heading>
+              <subheading eId="att_1__hcontainer_1__subheading">(see section <ref eId="att_1__hcontainer_1__subheading__ref_1" href="/akn/in-ka/act/2020-03-26/4/eng@2020-03-27/!main#sec_2">2</ref> and <ref eId="att_1__hcontainer_1__subheading__ref_2" href="/akn/in-ka/act/2020-03-26/4/eng@2020-03-27/!main#sec_16">16</ref>)</subheading>
+              <content eId="att_1__hcontainer_1__content">
+                <table eId="att_1__hcontainer_1__table_1">
+                  <tr eId="att_1__hcontainer_1__table_1__tr_1">
+                    <th eId="att_1__hcontainer_1__table_1__tr_1__th_1">
+                      <p eId="att_1__hcontainer_1__table_1__tr_1__th_1__p_1">Sl. No.</p>
+                    </th>
+                    <th eId="att_1__hcontainer_1__table_1__tr_1__th_2">
+                      <p eId="att_1__hcontainer_1__table_1__tr_1__th_2__p_1">Cadre of teachers</p>
+                    </th>
+                  </tr>
+                  <tr eId="att_1__hcontainer_1__table_1__tr_2">
+                    <td eId="att_1__hcontainer_1__table_1__tr_2__td_1">
+                      <p eId="att_1__hcontainer_1__table_1__tr_2__td_1__p_1">I</p>
+                    </td>
+                    <td eId="att_1__hcontainer_1__table_1__tr_2__td_2">
+                      <p eId="att_1__hcontainer_1__table_1__tr_2__td_2__p_1">Posts in Government Primary Schools.-</p>
+                    </td>
+                  </tr>
+                  <tr eId="att_1__hcontainer_1__table_1__tr_3">
+                    <td eId="att_1__hcontainer_1__table_1__tr_3__td_1">
+                      <p eId="att_1__hcontainer_1__table_1__tr_3__td_1__p_1">1.</p>
+                    </td>
+                    <td eId="att_1__hcontainer_1__table_1__tr_3__td_2">
+                      <p eId="att_1__hcontainer_1__table_1__tr_3__td_2__p_1">Head master/Head mistress in Government Higher Primary school</p>
+                    </td>
+                  </tr>
+                  <tr eId="att_1__hcontainer_1__table_1__tr_4">
+                    <td eId="att_1__hcontainer_1__table_1__tr_4__td_1">
+                      <p eId="att_1__hcontainer_1__table_1__tr_4__td_1__p_1">2</p>
+                    </td>
+                    <td eId="att_1__hcontainer_1__table_1__tr_4__td_2">
+                      <p eId="att_1__hcontainer_1__table_1__tr_4__td_2__p_1">Senior Headmaster/Head mistress in Model higher primary school/ Higher Primary School</p>
+                    </td>
+                  </tr>
+                  <tr eId="att_1__hcontainer_1__table_1__tr_5">
+                    <td eId="att_1__hcontainer_1__table_1__tr_5__td_1">
+                      <p eId="att_1__hcontainer_1__table_1__tr_5__td_1__p_1">3</p>
+                    </td>
+                    <td eId="att_1__hcontainer_1__table_1__tr_5__td_2">
+                      <p eId="att_1__hcontainer_1__table_1__tr_5__td_2__p_1">Primary school Assistant master/mistress consisting of the following categories .- (i) Primary School Teachers (for class 1 to 5) (ii) Graduate Primary Teachers (for class 6 to 8)</p>
+                    </td>
+                  </tr>
+                  <tr eId="att_1__hcontainer_1__table_1__tr_6">
+                    <td eId="att_1__hcontainer_1__table_1__tr_6__td_1">
+                      <p eId="att_1__hcontainer_1__table_1__tr_6__td_1__p_1">4</p>
+                    </td>
+                    <td eId="att_1__hcontainer_1__table_1__tr_6__td_2">
+                      <p eId="att_1__hcontainer_1__table_1__tr_6__td_2__p_1">Music teacher</p>
+                    </td>
+                  </tr>
+                  <tr eId="att_1__hcontainer_1__table_1__tr_7">
+                    <td eId="att_1__hcontainer_1__table_1__tr_7__td_1">
+                      <p eId="att_1__hcontainer_1__table_1__tr_7__td_1__p_1">5</p>
+                    </td>
+                    <td eId="att_1__hcontainer_1__table_1__tr_7__td_2">
+                      <p eId="att_1__hcontainer_1__table_1__tr_7__td_2__p_1">Physical education teacher</p>
+                    </td>
+                  </tr>
+                  <tr eId="att_1__hcontainer_1__table_1__tr_8">
+                    <td eId="att_1__hcontainer_1__table_1__tr_8__td_1">
+                      <p eId="att_1__hcontainer_1__table_1__tr_8__td_1__p_1">6</p>
+                    </td>
+                    <td eId="att_1__hcontainer_1__table_1__tr_8__td_2">
+                      <p eId="att_1__hcontainer_1__table_1__tr_8__td_2__p_1">Drawing Teacher in Government Higher primary school/Model Higher primary school / any other special teachers.</p>
+                    </td>
+                  </tr>
+                  <tr eId="att_1__hcontainer_1__table_1__tr_9">
+                    <td eId="att_1__hcontainer_1__table_1__tr_9__td_1">
+                      <p eId="att_1__hcontainer_1__table_1__tr_9__td_1__p_1">II)</p>
+                    </td>
+                    <td eId="att_1__hcontainer_1__table_1__tr_9__td_2">
+                      <p eId="att_1__hcontainer_1__table_1__tr_9__td_2__p_1">Posts in Government High schools :</p>
+                    </td>
+                  </tr>
+                  <tr eId="att_1__hcontainer_1__table_1__tr_10">
+                    <td eId="att_1__hcontainer_1__table_1__tr_10__td_1">
+                      <p eId="att_1__hcontainer_1__table_1__tr_10__td_1__p_1">1</p>
+                    </td>
+                    <td eId="att_1__hcontainer_1__table_1__tr_10__td_2">
+                      <p eId="att_1__hcontainer_1__table_1__tr_10__td_2__p_1">Head Master/Head Mistress in Government High schools by whatever name called including Head Master/Mistress of Government Higher Secondary / Multipurpose High School and Head Master/Head Mistress of Government High School / Vice Principal of composite Pre-University college/ Karnataka Public School / Composite High school consisting of the following categories of posts</p>
+                    </td>
+                  </tr>
+                  <tr eId="att_1__hcontainer_1__table_1__tr_11">
+                    <td eId="att_1__hcontainer_1__table_1__tr_11__td_1">
+                      <p eId="att_1__hcontainer_1__table_1__tr_11__td_1__p_1">2</p>
+                    </td>
+                    <td eId="att_1__hcontainer_1__table_1__tr_11__td_2">
+                      <p eId="att_1__hcontainer_1__table_1__tr_11__td_2__p_1">Secondary school assistant (Grade - I)</p>
+                    </td>
+                  </tr>
+                  <tr eId="att_1__hcontainer_1__table_1__tr_12">
+                    <td eId="att_1__hcontainer_1__table_1__tr_12__td_1">
+                      <p eId="att_1__hcontainer_1__table_1__tr_12__td_1__p_1">3</p>
+                    </td>
+                    <td eId="att_1__hcontainer_1__table_1__tr_12__td_2">
+                      <p eId="att_1__hcontainer_1__table_1__tr_12__td_2__p_1">Secondary school assistant (Grade - II)</p>
+                    </td>
+                  </tr>
+                  <tr eId="att_1__hcontainer_1__table_1__tr_13">
+                    <td eId="att_1__hcontainer_1__table_1__tr_13__td_1">
+                      <p eId="att_1__hcontainer_1__table_1__tr_13__td_1__p_1">4</p>
+                    </td>
+                    <td eId="att_1__hcontainer_1__table_1__tr_13__td_2">
+                      <p eId="att_1__hcontainer_1__table_1__tr_13__td_2__p_1">Graduate Assistant Master/Mistress in Government High school, composite Pre-University college, Composite High school, consisting of the following categories of posts, namely:- (i) Assistant Master Arts in Kannada, English, Urdu, Hindi, Marathi, Tamil and Telugu mediums of instruction; (ii) Assistant Master in Physical Science in Kannada, English, Urdu, Hindi, Marathi, Tamil and Telugu mediums of instruction; (iii) Assistant Master in Biological Science in Kannada, English, Urdu, Hindi, Marathi, Tamil and Telugu mediums of instruction; (iv) Language Assistant in Kannada, English, Urdu, Hindi, Marathi, Tamil, Telugu and Sanskrit languages.</p>
+                    </td>
+                  </tr>
+                  <tr eId="att_1__hcontainer_1__table_1__tr_14">
+                    <td eId="att_1__hcontainer_1__table_1__tr_14__td_1">
+                      <p eId="att_1__hcontainer_1__table_1__tr_14__td_1__p_1">5</p>
+                    </td>
+                    <td eId="att_1__hcontainer_1__table_1__tr_14__td_2">
+                      <p eId="att_1__hcontainer_1__table_1__tr_14__td_2__p_1">Physical Education Teacher in Government High Schools and Composite Pre-University Colleges</p>
+                    </td>
+                  </tr>
+                  <tr eId="att_1__hcontainer_1__table_1__tr_15">
+                    <td eId="att_1__hcontainer_1__table_1__tr_15__td_1">
+                      <p eId="att_1__hcontainer_1__table_1__tr_15__td_1__p_1">6</p>
+                    </td>
+                    <td eId="att_1__hcontainer_1__table_1__tr_15__td_2">
+                      <p eId="att_1__hcontainer_1__table_1__tr_15__td_2__p_1">Drama Teacher</p>
+                    </td>
+                  </tr>
+                  <tr eId="att_1__hcontainer_1__table_1__tr_16">
+                    <td eId="att_1__hcontainer_1__table_1__tr_16__td_1">
+                      <p eId="att_1__hcontainer_1__table_1__tr_16__td_1__p_1">7</p>
+                    </td>
+                    <td eId="att_1__hcontainer_1__table_1__tr_16__td_2">
+                      <p eId="att_1__hcontainer_1__table_1__tr_16__td_2__p_1">Dance Teacher</p>
+                    </td>
+                  </tr>
+                  <tr eId="att_1__hcontainer_1__table_1__tr_17">
+                    <td eId="att_1__hcontainer_1__table_1__tr_17__td_1">
+                      <p eId="att_1__hcontainer_1__table_1__tr_17__td_1__p_1">8</p>
+                    </td>
+                    <td eId="att_1__hcontainer_1__table_1__tr_17__td_2">
+                      <p eId="att_1__hcontainer_1__table_1__tr_17__td_2__p_1">Drawing Teacher</p>
+                    </td>
+                  </tr>
+                  <tr eId="att_1__hcontainer_1__table_1__tr_18">
+                    <td eId="att_1__hcontainer_1__table_1__tr_18__td_1">
+                      <p eId="att_1__hcontainer_1__table_1__tr_18__td_1__p_1">9</p>
+                    </td>
+                    <td eId="att_1__hcontainer_1__table_1__tr_18__td_2">
+                      <p eId="att_1__hcontainer_1__table_1__tr_18__td_2__p_1">Music Teacher</p>
+                    </td>
+                  </tr>
+                  <tr eId="att_1__hcontainer_1__table_1__tr_19">
+                    <td eId="att_1__hcontainer_1__table_1__tr_19__td_1">
+                      <p eId="att_1__hcontainer_1__table_1__tr_19__td_1__p_1">10</p>
+                    </td>
+                    <td eId="att_1__hcontainer_1__table_1__tr_19__td_2">
+                      <p eId="att_1__hcontainer_1__table_1__tr_19__td_2__p_1">All Special Teachers</p>
+                    </td>
+                  </tr>
+                </table>
+              </content>
+            </hcontainer>
+          </mainBody>
+        </doc>
+      </attachment>
+    </attachments>
+  </act>
+</akomaNtoso>
