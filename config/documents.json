@@ -1,0 +1,21 @@
+{
+  "_comment": [
+    "Per-document metadata overrides, keyed by the PDF's file name (with or",
+    "without the .pdf extension). Everything here is normally read out of the",
+    "gazette's own front matter; use this file only where the text is absent,",
+    "damaged, or wrong. Any field of akn_parser.meta.DocumentMeta may be set.",
+    "Keys beginning with an underscore are ignored."
+  ],
+
+  "tranfer_of_teachers": {
+    "keywords": ["Education", "Teacher transfers", "State civil services"]
+  },
+
+  "BBMP-eng": {
+    "keywords": ["Municipal governance", "Urban local body", "Bengaluru"]
+  },
+
+  "BBMP Act": {
+    "keywords": ["Municipal governance", "Urban local body", "Bengaluru"]
+  }
+}

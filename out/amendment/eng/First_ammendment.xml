@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <act name="act" contains="originalVersion">
+    <meta>
+      <identification source="#nyayabandhu">
+        <FRBRWork>
+          <FRBRthis value="/akn/in-ka/act/2021-10-01/27/!main"/>
+          <FRBRuri value="/akn/in-ka/act/2021-10-01/27"/>
+          <FRBRalias name="title" value="THE KARNATAKA STATE CIVIL SERVICES (REGULATION OF TRANSFER OF TEACHERS) (AMENDMENT) ACT, 2021"/>
+          <FRBRdate date="2021-10-01" name="assent"/>
+          <FRBRauthor href="#karnatakaLegislature"/>
+          <FRBRcountry value="in-ka"/>
+          <FRBRnumber value="27"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in-ka/act/2021-10-01/27/eng@2021-10-05/!main"/>
+          <FRBRuri value="/akn/in-ka/act/2021-10-01/27/eng@2021-10-05"/>
+          <FRBRdate date="2021-10-05" name="publication"/>
+          <FRBRauthor href="#karnatakaLegislature"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in-ka/act/2021-10-01/27/eng@2021-10-05/!main.xml"/>
+          <FRBRuri value="/akn/in-ka/act/2021-10-01/27/eng@2021-10-05.xml"/>
+          <FRBRdate date="2026-09-01" name="generation"/>
+          <FRBRauthor href="#nyayabandhu"/>
+          <FRBRformat value="xml"/>
+        </FRBRManifestation>
+      </identification>
+      <publication date="2021-10-05" name="Karnataka Gazette Extra-ordinary" showAs="Karnataka Gazette Extra-ordinary"/>
+      <lifecycle source="#nyayabandhu">
+        <eventRef eId="eref_1" date="2021-10-01" type="generation" source="#karnatakaLegislature"/>
+      </lifecycle>
+      <references source="#nyayabandhu">
+        <TLCOrganization eId="karnatakaLegislature" href="/akn/ontology/organization/in-ka/legislature" showAs="Karnataka State Legislature"/>
+        <TLCOrganization eId="karnatakaGazette" href="/akn/ontology/organization/in-ka/gazette" showAs="Karnataka Gazette"/>
+        <TLCRole eId="nyayabandhu" href="/akn/ontology/role/editor" showAs="NyayaBandhu automated parser"/>
+      </references>
+    </meta>
+    <preface eId="preface">
+      <p eId="preface__p_1">PARLIAMENTARY AFFAIRS AND LEGISLATION SECRETARIAT NOTIFICATION NO. DPAL 40 SHASANA 2021, BENGALURU, DATED: 05.10.2021</p>
+      <p eId="preface__p_2">
+        <span eId="preface__p_2__span_1" xml:lang="kn">ರತ </span>๸เඋ<span eId="preface__p_2__span_2" xml:lang="kn">ನದ ಅඝ೎౟ೕಧ 348ರ ಘಡ (3)ರ ಅ</span>ല<span eId="preface__p_2__span_3" xml:lang="kn">ಯ</span>ย౵ ฃ<span eId="preface__p_2__span_4" xml:lang="kn">ಜ</span>౲ඩ<span eId="preface__p_2__span_5" xml:lang="kn">ಲ</span>ค<span eId="preface__p_2__span_6" xml:lang="kn">ಂದ  ಅඌಂತತั</span> ๭<span eId="preface__p_2__span_7" xml:lang="kn">ದ ಕ</span>කბ<span eId="preface__p_2__span_8" xml:lang="kn">ಟಕ </span>ฃ<span eId="preface__p_2__span_9" xml:lang="kn">ಜ</span>౲ ๭เฯ ๳ๅ<span eId="preface__p_2__span_10" xml:lang="kn">ಗ</span>ำ (๏ౘ<span eId="preface__p_2__span_11" xml:lang="kn">ಕರ ವಛბವ</span>ൕ ඛ฀<span eId="preface__p_2__span_12" xml:lang="kn">ತ</span>౳<span eId="preface__p_2__span_13" xml:lang="kn">ಣ) </span> (ൟൿ౪<span eId="preface__p_2__span_14" xml:lang="kn">ಪ</span>ല) <span eId="preface__p_2__span_15" xml:lang="kn">ಅ</span>ඌඛ<span eId="preface__p_2__span_16" xml:lang="kn">ಯಮ, </span> (<span eId="preface__p_2__span_17" xml:lang="kn">2021ರ  ಕ</span>කბ<span eId="preface__p_2__span_18" xml:lang="kn">ಟಕ  ಅ</span>ඌඛ<span eId="preface__p_2__span_19" xml:lang="kn">ಯಮ  ๸ಒ౲</span>: 27) <span eId="preface__p_2__span_20" xml:lang="kn">ರ </span> ๝<span eId="preface__p_2__span_21" xml:lang="kn">ಂತರವ</span>ඝ౬<span eId="preface__p_2__span_22" xml:lang="kn"> ಅඌಂತ ಆಂಗ</span>౵<span eId="preface__p_2__span_23" xml:lang="kn"> ಪಠ</span>౲ๅ<span eId="preface__p_2__span_24" xml:lang="kn">ಂ</span>ൿ<span eId="preface__p_2__span_25" xml:lang="kn"> ಕ</span>කბ<span eId="preface__p_2__span_26" xml:lang="kn">ಟಕ </span>ฃ<span eId="preface__p_2__span_27" xml:lang="kn">ಜ</span>౲<span eId="preface__p_2__span_28" xml:lang="kn">ಪತ</span>౳<span eId="preface__p_2__span_29" xml:lang="kn">ದ </span>เ๕<span eId="preface__p_2__span_30" xml:lang="kn">ಷ ๸೉ಃಯ</span>ย౵ ( <span eId="preface__p_2__span_31" xml:lang="kn">ಗ-IV) ಪ</span>౳<span eId="preface__p_2__span_32" xml:lang="kn">ಕ</span>ഔ<span eId="preface__p_2__span_33" xml:lang="kn">ಸ෎ಃಂ</span>ൿ<span eId="preface__p_2__span_34" xml:lang="kn"> ಆ</span>ඃ๏<span eId="preface__p_2__span_35" xml:lang="kn">ಸมಜං</span>.</p>
+      <p eId="preface__p_3">KARNATAKA ACT NO. 27 OF 2021</p>
+      <p eId="preface__p_4">(First Published in the Karnataka Gazette Extra-ordinary on the 5th day of October 2021)</p>
+      <p eId="preface__p_5">THE KARNATAKA STATE CIVIL SERVICES (REGULATION OF TRANSFER OF TEACHERS) (AMENDMENT) ACT, 2021</p>
+      <p eId="preface__p_6">(Received the assent of the Governor on the 1st day of October 2021)</p>
+      <longTitle eId="preface__longTitle_1">
+        <p eId="preface__longTitle_1__p_1">An Act to amend the Karnataka State Civil Services (Regulation of Transfer of Teachers) Act, 2020.</p>
+      </longTitle>
+    </preface>
+    <preamble eId="preamble">
+      <recitals eId="preamble__recitals_1">
+        <recital eId="preamble__recitals_1__rec_1">
+          <p eId="preamble__recitals_1__rec_1__p_1">Whereas it is expedient to amend the Karnataka State Civil Services (Regulation of Transfer of Teachers) Act, 2020 (Karnataka Act 04 of 2020) for the purposes hereinafter appearing;</p>
+        </recital>
+      </recitals>
+      <formula eId="preamble__formula_1" name="enactingFormula">
+        <p eId="preamble__formula_1__p_1">Be it enacted by the Karnataka State Legislature in the Seventy second year of the Republic of India, as follows:-</p>
+      </formula>
+    </preamble>
+    <body>
+      <section eId="sec_1">
+        <num>1.</num>
+        <heading>Short title and commencement</heading>
+        <subsection eId="sec_1__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_1__subsec_1__content">
+            <p eId="sec_1__subsec_1__content__p_1">This Act may be called the Karnataka State Civil Services (Regulation of Transfer of Teachers) (Amendment) Act, 2021.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_1__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_1__subsec_2__content">
+            <p eId="sec_1__subsec_2__content__p_1">It shall be deemed to have come into force with effect from 29th day of April 2021.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_2">
+        <num>2.</num>
+        <heading>Amendment of section 10</heading>
+        <content eId="sec_2__content">
+          <p eId="sec_2__content__p_1">In the Karnataka State Civil Services (Regulation of Transfer of Teachers) Act, 2020 (Karnataka Act 04 of 2020), in section 10, after sub-section (5), the following shall be inserted, namely:- "(6) In case of a teacher who was transferred on compulsory transfer, zonal transfer or under rationalisation outside the taluk in case of a primary school teacher or district in case of a high school teacher during the year 2019-20 shall also be provided an opportunity to opt a place of transfer within the taluk or district where they were working during the year 2019-20 as a onetime measure ahead of other types of transfers subject to the availability of vacancies so as to give the benefit of posting within the concerned taluk or district in the transfer done immediately after the date of commencement of the Karnataka State Civil Services (Regulation of Transfer of Teachers) (Amendment) Act, 2021 in the manner as may be prescribed."</p>
+        </content>
+      </section>
+      <section eId="sec_3">
+        <num>3.</num>
+        <heading>Repeal and savings</heading>
+        <subsection eId="sec_3__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_3__subsec_1__content">
+            <p eId="sec_3__subsec_1__content__p_1">The Karnataka State Civil Services (Regulation of transfer of Teachers) (Amendment) Ordinance, 2021 (Karnataka Ordinance 04 of 2021) is hereby repealed.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_3__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_3__subsec_2__content">
+            <p eId="sec_3__subsec_2__content__p_1">Notwithstanding such repeal, anything done or any action taken under the principal Act, as amended by the said Ordinance, shall be deemed to have been done or taken under the principal Act, as amended by this Act. The above translation of <span eId="sec_3__subsec_2__content__p_1__span_1" xml:lang="kn">ಕ</span>කბ<span eId="sec_3__subsec_2__content__p_1__span_2" xml:lang="kn">ಟಕ </span>ฃ<span eId="sec_3__subsec_2__content__p_1__span_3" xml:lang="kn">ಜ</span>౲ ๭เฯ ๳ๅ<span eId="sec_3__subsec_2__content__p_1__span_4" xml:lang="kn">ಗ</span>ำ (๏ౘ<span eId="sec_3__subsec_2__content__p_1__span_5" xml:lang="kn">ಕರ ವಛბವ</span>ൕ ඛ฀<span eId="sec_3__subsec_2__content__p_1__span_6" xml:lang="kn">ತ</span>౳<span eId="sec_3__subsec_2__content__p_1__span_7" xml:lang="kn">ಣ) (</span>ൟൿ౪<span eId="sec_3__subsec_2__content__p_1__span_8" xml:lang="kn">ಪ</span>ല<span eId="sec_3__subsec_2__content__p_1__span_9" xml:lang="kn">) ಅ</span>ඌඛ<span eId="sec_3__subsec_2__content__p_1__span_10" xml:lang="kn">ಯಮ</span>, 2021 <span eId="sec_3__subsec_2__content__p_1__span_11" xml:lang="kn">(2021ರ ಕ</span>කბ<span eId="sec_3__subsec_2__content__p_1__span_12" xml:lang="kn">ಟಕ ಅ</span>ඌඛ<span eId="sec_3__subsec_2__content__p_1__span_13" xml:lang="kn">ಯಮ ๸ಒ౲</span>:27) be published in the official Gazette under clause (3) of Article 348 of the constitution of India.</p>
+          </content>
+        </subsection>
+      </section>
+    </body>
+    <conclusions eId="conclusions">
+      <p eId="conclusions__p_1">THAAWARCHAND GEHLOT GOVERNOR OF KARANATAKA</p>
+      <p eId="conclusions__p_2">By Order and in the name of the Governor of Karnataka,</p>
+      <p eId="conclusions__p_3">G.SRIDHAR</p>
+      <p eId="conclusions__p_4">Secretary to Government Department of Parliamentary Affairs and Legislation <span eId="conclusions__p_4__span_1" xml:lang="kn">ಮುದ</span>
+        <span eId="conclusions__p_4__span_2" xml:lang="kn-Latn-x-nudi">Î</span>
+        <span eId="conclusions__p_4__span_3" xml:lang="kn">ಕರು</span> ²<span eId="conclusions__p_4__span_4" xml:lang="kn">ಾಗೂ ಪ</span>
+        <span eId="conclusions__p_4__span_5" xml:lang="kn-Latn-x-nudi">Î</span>
+        <span eId="conclusions__p_4__span_6" xml:lang="kn">ಾಶಕರು</span>:- <span eId="conclusions__p_4__span_7" xml:lang="kn">ಸಂಕಲ</span>£<span eId="conclusions__p_4__span_8" xml:lang="kn">ಾ</span>
+        <span eId="conclusions__p_4__span_9" xml:lang="kn-Latn-x-nudi">ĩ</span>
+        <span eId="conclusions__p_4__span_10" xml:lang="kn">ಾ</span>
+        <span eId="conclusions__p_4__span_11" xml:lang="kn-Latn-x-nudi">ĸ</span>
+        <span eId="conclusions__p_4__span_12" xml:lang="kn">ಗಳ</span> , <span eId="conclusions__p_4__span_13" xml:lang="kn">ಕ</span>£<span eId="conclusions__p_4__span_14" xml:lang="kn">ಾ</span><span eId="conclusions__p_4__span_15" xml:lang="kn">ಟಕ</span> ª<span eId="conclusions__p_4__span_16" xml:lang="kn">ಾಜ</span>
+        <span eId="conclusions__p_4__span_17" xml:lang="kn-Latn-x-nudi">Í</span>
+        <span eId="conclusions__p_4__span_18" xml:lang="kn">ಪತ</span>
+        <span eId="conclusions__p_4__span_19" xml:lang="kn-Latn-x-nudi">Î</span>, <span eId="conclusions__p_4__span_20" xml:lang="kn">ಸ</span><span eId="conclusions__p_4__span_21" xml:lang="kn">ಾ</span>
+        <span eId="conclusions__p_4__span_22" xml:lang="kn-Latn-x-nudi">ĸ</span> <span eId="conclusions__p_4__span_23" xml:lang="kn">ೇಂದ</span>
+        <span eId="conclusions__p_4__span_24" xml:lang="kn-Latn-x-nudi">Î</span>
+        <span eId="conclusions__p_4__span_25" xml:lang="kn">ಮುದ</span>
+        <span eId="conclusions__p_4__span_26" xml:lang="kn-Latn-x-nudi">Î</span>
+        <span eId="conclusions__p_4__span_27" xml:lang="kn">ಾಲಯ</span>, ¦<span eId="conclusions__p_4__span_28" xml:lang="kn">ೆಂಗಳ</span><span eId="conclusions__p_4__span_29" xml:lang="kn">ರು</span>
+      </p>
+      <p eId="conclusions__p_5">SUNIL GARDE</p>
+    </conclusions>
+  </act>
+</akomaNtoso>
