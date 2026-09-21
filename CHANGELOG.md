@@ -40,6 +40,15 @@ All notable changes to the parser are recorded here. Format follows
 - Per-document report showing pages used, redactions, schema result,
   identifier counts, reference counts and unresolved citations.
 - Documentation set under `docs/`, plus `CONTRIBUTING.md`.
+- `webui/`, a local FastAPI viewer for the generated XML: a reading-order
+  document view with clickable cross-references, a filterable outline, raw
+  XML, and the same validation report the CLI prints. The XML can be shown
+  beside the rendered text in a resizable split, with clicks in either pane
+  keeping both on the same provision. Text still in a legacy font encoding is
+  styled apart from clean Unicode, so a run that looks like mojibake is
+  identifiable as unconverted rather than mis-rendered. Converts a source PDF
+  on demand through the same `ActParser` the CLI uses. See
+  [docs/webui.md](docs/webui.md).
 
 ### Changed
 
@@ -74,8 +83,8 @@ All notable changes to the parser are recorded here. Format follows
 - **`eventRef/@type` is `generation`.** The previous value `publication` is not
   in the attribute's permitted set.
 - **`<keyword>` carries the required `dictionary` attribute.**
-- **FRBR metadata is derived from each document's own front matter** — act
-  number, assent date, first-publication date, title — rather than being
+- **FRBR metadata is derived from each document's own front matter** (act
+  number, assent date, first-publication date, title) rather than being
   hard-coded. Every document previously carried the BBMP Act's identifiers.
 - **FRBR URIs follow Naming Convention §4**: `/akn/in-ka/act/2020-03-26/4`,
   with an ISO 3166-2 jurisdiction code, the full date of the Work, and
@@ -127,7 +136,7 @@ parliamentary debates.
 
 One difference matters here: Canada, Switzerland, Belgium, Hong Kong and the EU
 apply the equal-authenticity rule, under which no language version is a
-translation. India does not work that way for state legislation — Article
+translation. India does not work that way for state legislation. Article
 348(3) deems the English translation "the authoritative text thereof in the
 English language". Which expression is the master for `wId` purposes is
 therefore a legal question, and the documentation now says so rather than
