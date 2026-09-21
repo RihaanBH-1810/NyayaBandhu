@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}NyayaBandhu Viewer{% endblock %}
+{% block content %}
+
+{% if error %}
+<div class="banner banner-error">{{ error }}</div>
+{% endif %}
+
+<section class="panel">
+  <h1>Converted documents</h1>
+  {% if documents %}
+  <table class="doc-table">
+    <thead>
+      <tr><th>Document</th><th>Path</th><th class="col-numeric">Size</th><th>Converted</th></tr>
+    </thead>
+    <tbody>
+      {% for doc in documents %}
+      <tr>
+        <td><a href="/view?path={{ doc.rel_path | urlencode }}">{{ doc.name }}</a></td>
+        <td class="doc-path">{{ doc.rel_path }}</td>
+        <td class="doc-path col-numeric">{{ doc.size_kb }} KB</td>
+        <td class="doc-path">{{ doc.converted }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="empty">Nothing under <code>out/</code> yet. Convert a source PDF below.</p>
+  {% endif %}
+</section>
+
+<section class="panel">
+  <h1>Convert a source PDF</h1>
+  <form method="post" action="/convert" class="convert-form" id="convert-form">
+    <label>
+      Document type
+      <select name="doc_type" id="doc_type">
+        {% for doc_type, pdfs in sources.items() %}
+        <option value="{{ doc_type }}">{{ doc_type }} ({{ pdfs|length }})</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label>
+      PDF
+      <select name="pdf" id="pdf"></select>
+    </label>
+
+    <label>
+      Language
+      <select name="lang">
+        {% for lang in lang_choices %}
+        <option value="{{ lang }}">{{ lang }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label>
+      Other-language text
+      <select name="foreign">
+        {% for value in foreign_choices %}
+        <option value="{{ value }}" {% if value == default_foreign %}selected{% endif %}>{{ value }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <button type="submit" id="convert-button">Convert</button>
+  </form>
+  <p class="convert-status" id="convert-status" hidden>
+    <span class="spinner" aria-hidden="true"></span>
+    Converting. This extracts the text, builds the tree and validates it against
+    the Akoma Ntoso schema. A long Act (the BBMP Act is 264 pages) takes around half
+    a minute; the page will open by itself when it is done.
+  </p>
+</section>
+
+<script>
+  const sources = {{ sources|tojson }};
+  const docTypeSelect = document.getElementById("doc_type");
+  const pdfSelect = document.getElementById("pdf");
+
+  function fillPdfOptions() {
+    const pdfs = sources[docTypeSelect.value] || [];
+    pdfSelect.innerHTML = pdfs
+      .map((p) => `<option value="${p}">${p}</option>`)
+      .join("");
+  }
+  docTypeSelect.addEventListener("change", fillPdfOptions);
+  fillPdfOptions();
+
+  // Conversion is synchronous and can run for well over half a minute on a
+  // long Act. Without this the browser just sits there looking hung.
+  document.getElementById("convert-form").addEventListener("submit", () => {
+    const button = document.getElementById("convert-button");
+    button.disabled = true;
+    button.textContent = "Converting…";
+    document.getElementById("convert-status").hidden = false;
+  });
+</script>
+{% endblock %}

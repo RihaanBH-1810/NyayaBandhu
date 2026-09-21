@@ -1,0 +1,389 @@
+/*
+ * Tokens below are copied from @wikimedia/codex-design-tokens v2.7.0
+ * (theme-wikimedia-ui.css), the actual values MediaWiki/Wikipedia ship,
+ * not approximations. Only the subset this page uses is included.
+ * https://doc.wikimedia.org/codex/latest/design-tokens/overview.html
+ */
+:root {
+  --color-base: #202122;
+  --color-emphasized: #101418;
+  --color-subtle: #54595d;
+  --color-placeholder: #72777d;
+  --color-disabled: #a2a9b1;
+  --color-inverted: #fff;
+  --color-progressive: #36c;
+  --color-progressive--hover: #3056a9;
+  --color-progressive--active: #233566;
+  --color-destructive: #bf3c2c;
+  --color-success: #177860;
+  --color-warning: #886425;
+
+  --background-color-base: #fff;
+  --background-color-neutral: #eaecf0;
+  --background-color-neutral-subtle: #f8f9fa;
+  --background-color-interactive: #eaecf0;
+  --background-color-interactive--hover: #dadde3;
+  --background-color-interactive-subtle: #f8f9fa;
+  --background-color-progressive: #36c;
+  --background-color-progressive--hover: #3056a9;
+  --background-color-progressive-subtle: #e8eeff;
+  --background-color-destructive-subtle: #ffe9e5;
+  --background-color-warning-subtle: #fdf2d5;
+  --background-color-success-subtle: #dff2eb;
+
+  --border-color-base: #a2a9b1;
+  --border-color-subtle: #c8ccd1;
+  --border-color-muted: #dadde3;
+  --border-color-interactive: #72777d;
+  --border-color-progressive: #36c;
+  --border-width-base: 1px;
+  --border-width-thick: 2px;
+  --border-radius-base: 2px;
+
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", Helvetica, Arial, sans-serif;
+  --font-family-heading-main: "Linux Libertine", Georgia, "Times New Roman", "Source Serif 4", serif;
+  --font-family-monospace: "SFMono-Regular", Consolas, Menlo, monospace;
+  --font-size-x-small: 0.75rem;
+  --font-size-small: 0.875rem;
+  --font-size-medium: 1rem;
+  --font-size-large: 1.125rem;
+  --font-size-x-large: 1.25rem;
+  --font-size-xx-large: 1.5rem;
+  --font-weight-normal: 400;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+  --line-height-content: 1.625;
+
+  --spacing-25: 0.25rem;
+  --spacing-50: 0.5rem;
+  --spacing-75: 0.75rem;
+  --spacing-100: 1rem;
+  --spacing-150: 1.5rem;
+  --spacing-200: 2rem;
+
+  font-size: 16px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--background-color-neutral-subtle);
+  color: var(--color-base);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-medium);
+  line-height: var(--line-height-content);
+}
+
+a { color: var(--color-progressive); }
+a:hover { color: var(--color-progressive--hover); }
+a:active { color: var(--color-progressive--active); }
+
+.site-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-75);
+  padding: var(--spacing-100) var(--spacing-200);
+  border-bottom: var(--border-width-thick) solid var(--color-base);
+  background: var(--background-color-base);
+}
+.site-title {
+  font-family: var(--font-family-heading-main);
+  font-size: var(--font-size-x-large);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-base);
+  text-decoration: none;
+}
+.site-subtitle {
+  color: var(--color-placeholder);
+  font-size: var(--font-size-small);
+}
+
+main {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: var(--spacing-150) var(--spacing-200) 4rem;
+}
+
+.panel {
+  background: var(--background-color-base);
+  border: var(--border-width-base) solid var(--border-color-base);
+  border-radius: var(--border-radius-base);
+  padding: var(--spacing-150);
+  margin-bottom: var(--spacing-150);
+}
+.panel h1 {
+  margin-top: 0; font-size: var(--font-size-small); font-weight: var(--font-weight-semi-bold);
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-subtle);
+}
+
+.banner {
+  padding: var(--spacing-75) var(--spacing-100); border-radius: var(--border-radius-base);
+  margin-bottom: var(--spacing-100); border: var(--border-width-base) solid;
+}
+.banner-error {
+  background: var(--background-color-destructive-subtle);
+  border-color: var(--color-destructive); color: var(--color-destructive);
+}
+
+.doc-table { width: 100%; border-collapse: collapse; }
+.doc-table th, .doc-table td {
+  text-align: left; padding: var(--spacing-50); border-bottom: var(--border-width-base) solid var(--border-color-muted);
+}
+.doc-table th { font-size: var(--font-size-small); color: var(--color-subtle); font-weight: var(--font-weight-semi-bold); }
+.doc-table a { color: var(--color-progressive); text-decoration: none; font-weight: var(--font-weight-semi-bold); }
+.doc-table a:hover { text-decoration: underline; }
+.doc-path { color: var(--color-placeholder); font-family: var(--font-family-monospace); font-size: var(--font-size-small); }
+.empty { color: var(--color-placeholder); }
+
+.convert-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: var(--spacing-100); align-items: end; }
+.convert-form label { display: flex; flex-direction: column; gap: var(--spacing-25); font-size: var(--font-size-small); color: var(--color-subtle); }
+.convert-form select {
+  font: inherit; font-size: var(--font-size-small); padding: var(--spacing-50) var(--spacing-75);
+  border: var(--border-width-base) solid var(--border-color-interactive); border-radius: var(--border-radius-base);
+  background: var(--background-color-base); color: var(--color-base);
+}
+.convert-form select:focus { outline: var(--border-width-thick) solid var(--color-progressive); outline-offset: -1px; }
+.convert-form button {
+  font: inherit; font-weight: var(--font-weight-semi-bold); font-size: var(--font-size-small);
+  padding: var(--spacing-50) var(--spacing-100); border: var(--border-width-base) solid var(--color-progressive);
+  border-radius: var(--border-radius-base); background: var(--background-color-progressive);
+  color: var(--color-inverted); cursor: pointer;
+}
+.convert-form button:hover { background: var(--background-color-progressive--hover); border-color: var(--background-color-progressive--hover); }
+.convert-form button:disabled {
+  background: var(--background-color-disabled); border-color: var(--background-color-disabled);
+  color: var(--color-base); cursor: progress;
+}
+
+.convert-status {
+  display: flex; align-items: flex-start; gap: var(--spacing-50);
+  margin: var(--spacing-100) 0 0; font-size: var(--font-size-small); color: var(--color-subtle);
+}
+.convert-status[hidden] { display: none; }
+.spinner {
+  flex: none; width: 1rem; height: 1rem; margin-top: 0.2rem;
+  border: 2px solid var(--border-color-muted); border-top-color: var(--color-progressive);
+  border-radius: var(--border-radius-circle, 50%); animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.col-numeric { text-align: right; }
+
+.view-header { margin-bottom: var(--spacing-100); }
+.back-link { color: var(--color-subtle); text-decoration: none; font-size: var(--font-size-small); }
+.back-link:hover { color: var(--color-progressive); text-decoration: underline; }
+.view-header h1 {
+  font-family: var(--font-family-heading-main); font-weight: var(--font-weight-normal);
+  margin: var(--spacing-50) 0 0.1rem; border-bottom: var(--border-width-base) solid var(--border-color-muted); padding-bottom: var(--spacing-50);
+}
+.source-title { color: var(--color-subtle); font-style: italic; margin: 0.1rem 0; }
+.source-title-legacy {
+  display: inline-block; background: var(--background-color-warning-subtle);
+  border-bottom: var(--border-width-thick) dashed var(--color-warning);
+  padding: 0.1rem 0.3rem; border-radius: var(--border-radius-base); cursor: help;
+}
+.legacy-note { display: block; font-style: normal; font-size: var(--font-size-x-small); color: var(--color-subtle); margin-top: 0.2rem; }
+
+/* -- tabs (Codex Tabs: framed, underline on the selected item) -------- */
+
+.tabs {
+  display: flex; align-items: center; gap: var(--spacing-25);
+  border-bottom: var(--border-width-base) solid var(--border-color-base); margin-bottom: var(--spacing-150);
+}
+.tab-button {
+  font: inherit; font-size: var(--font-size-small); background: none; border: none; cursor: pointer;
+  padding: var(--spacing-75) var(--spacing-100); color: var(--color-subtle);
+  border-bottom: var(--border-width-thick) solid transparent; margin-bottom: -1px;
+}
+.tab-button:hover { background: var(--background-color-interactive-subtle); color: var(--color-base); }
+.tab-button.active { color: var(--color-progressive); border-bottom-color: var(--color-progressive); font-weight: var(--font-weight-semi-bold); }
+.tab-button[hidden] { display: none; }
+
+.split-toggle {
+  margin-left: auto; display: flex; align-items: center; gap: var(--spacing-25);
+  font-size: var(--font-size-small); color: var(--color-subtle); cursor: pointer; user-select: none;
+}
+.split-toggle input { cursor: pointer; accent-color: var(--color-progressive); }
+
+.tab-panel { display: none; }
+.tab-panel[data-active="true"] { display: block; }
+
+/* Split view: the active main tab on the left, raw XML pinned on the
+   right, dragged apart by the resizer between them. Starts at 50/50 (the
+   default grid-template-columns below); app.js overwrites it inline while
+   dragging. min-width:0 on both sides so the XML pane's long unwrapped
+   lines scroll inside their own column instead of the grid track growing
+   to fit them (the usual cause of a lopsided, undraggable-looking split). */
+#viewer-panels.split-mode {
+  display: grid; grid-template-columns: 1fr 10px 1fr; align-items: start;
+}
+#viewer-panels.split-mode > .tab-panel { min-width: 0; }
+#viewer-panels.split-mode > .tab-panel[data-active="true"]:not(#tab-raw) { padding-right: var(--spacing-150); }
+#viewer-panels.split-mode #tab-raw {
+  display: block; position: sticky; top: var(--spacing-100); padding-left: var(--spacing-150);
+  max-height: calc(100vh - 2rem); overflow: auto;
+}
+
+.split-resizer {
+  display: none; align-self: stretch; cursor: col-resize; position: relative;
+}
+#viewer-panels.split-mode .split-resizer { display: block; }
+.split-resizer::after {
+  content: ""; position: absolute; top: 0; bottom: 0; left: 4px; width: 2px;
+  background: var(--border-color-muted); border-radius: var(--border-radius-base);
+}
+.split-resizer:hover::after, .split-resizer.dragging::after { background: var(--color-progressive); }
+
+/* -- the rendered document -------------------------------------------- */
+
+.akn-document { scroll-behavior: smooth; }
+
+/* :target covers arriving by a pasted '#sec_7' URL. Following a citation
+   inside the page is handled in JS (the destination may be on a closed
+   tab), which never sets the hash. Hence the separate landing flash, so
+   the reader can see where the jump actually put them. */
+.akn-document :target { background: var(--background-color-progressive-subtle); }
+.akn-landed { animation: akn-landed-flash 2.5s ease-out 1; }
+@keyframes akn-landed-flash {
+  0%, 35% { background: var(--background-color-progressive-subtle); }
+  100% { background: transparent; }
+}
+
+.akn-container-label {
+  font-size: var(--font-size-x-small); font-weight: var(--font-weight-semi-bold); text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--color-subtle); margin: var(--spacing-150) 0 var(--spacing-25);
+}
+.akn-preface, .akn-preamble, .akn-conclusions { margin-bottom: var(--spacing-150); }
+.akn-longTitle { font-style: italic; margin: var(--spacing-50) 0 var(--spacing-150); }
+
+.akn-chapter, .akn-part { margin: var(--spacing-200) 0 var(--spacing-100); }
+.akn-chapter > .akn-label, .akn-part > .akn-label {
+  font-size: var(--font-size-large); font-weight: var(--font-weight-bold); letter-spacing: 0.03em; text-transform: uppercase;
+}
+
+.akn-section { margin: var(--spacing-150) 0; }
+.akn-section > .akn-label { font-weight: var(--font-weight-bold); }
+.akn-section > .akn-label .akn-num { margin-right: 0.4em; }
+
+.akn-subsection, .akn-clause, .akn-subclause, .akn-point, .akn-indent {
+  margin: var(--spacing-50) 0 var(--spacing-50) var(--spacing-150);
+}
+.akn-proviso {
+  margin: var(--spacing-50) 0 var(--spacing-50) var(--spacing-150);
+  padding-left: var(--spacing-75); border-left: var(--border-width-thick) solid var(--border-color-muted);
+}
+.akn-hcontainer { margin: var(--spacing-50) 0 var(--spacing-50) var(--spacing-150); }
+.akn-hcontainer .akn-name { color: var(--color-subtle); font-style: italic; font-weight: var(--font-weight-normal); margin-left: 0.4em; }
+
+.akn-label { display: inline; }
+.akn-num { font-weight: var(--font-weight-bold); }
+.akn-subheading { color: var(--color-subtle); font-style: italic; margin: var(--spacing-25) 0 var(--spacing-50); }
+
+.akn-p { margin: var(--spacing-50) 0; }
+.akn-crossHeading {
+  font-weight: var(--font-weight-bold); text-transform: uppercase;
+  margin: var(--spacing-150) 0 var(--spacing-50); letter-spacing: 0.04em;
+}
+
+.akn-ref { color: var(--color-progressive); text-decoration: none; border-bottom: 1px dotted var(--color-progressive); }
+.akn-ref:hover { background: var(--background-color-progressive-subtle); }
+.akn-ref-external { color: var(--color-subtle); border-bottom: 1px dotted var(--color-subtle); cursor: help; }
+
+.akn-foreign { background: var(--background-color-neutral); padding: 0 0.2rem; border-radius: var(--border-radius-base); cursor: help; }
+.akn-foreign-legacy { background: var(--background-color-warning-subtle); border-bottom: var(--border-width-thick) dashed var(--color-warning); }
+.akn-omissis { color: var(--color-subtle); font-style: italic; }
+
+.akn-legend {
+  font-size: var(--font-size-x-small); color: var(--color-subtle);
+  margin: 0 0 var(--spacing-100); padding-bottom: var(--spacing-50); border-bottom: var(--border-width-base) solid var(--border-color-muted);
+}
+.akn-legend-swatch {
+  display: inline-block; width: 0.9em; height: 0.9em; border-radius: var(--border-radius-base);
+  vertical-align: -0.1em; margin-right: 0.15rem; cursor: default;
+}
+.akn-def { font-style: normal; font-weight: var(--font-weight-bold); text-decoration: underline dotted; cursor: help; }
+
+.akn-table { border-collapse: collapse; margin: var(--spacing-75) 0; width: 100%; }
+.akn-table th, .akn-table td { border: var(--border-width-base) solid var(--border-color-subtle); padding: var(--spacing-50) var(--spacing-75); text-align: left; }
+.akn-table th { background: var(--background-color-neutral); font-weight: var(--font-weight-semi-bold); }
+
+.akn-attachments { margin-top: var(--spacing-200); border-top: var(--border-width-thick) solid var(--color-base); padding-top: var(--spacing-100); }
+.akn-attachment { margin-bottom: var(--spacing-150); }
+
+/* -- outline ------------------------------------------------------------ */
+
+.outline ul { list-style: none; margin: 0; padding-left: 1.1rem; }
+.outline > ul { padding-left: 0; }
+.outline li[hidden] { display: none; }
+.outline summary { cursor: pointer; }
+.outline a.outline-link { color: var(--color-base); text-decoration: none; font-size: var(--font-size-small); }
+.outline a.outline-link:hover { color: var(--color-progressive); }
+.outline li[data-hit="true"] > a.outline-link,
+.outline li[data-hit="true"] > details > summary > a.outline-link {
+  background: var(--background-color-progressive-subtle); font-weight: var(--font-weight-semi-bold);
+}
+
+.outline-filter {
+  width: 100%; font: inherit; font-size: var(--font-size-small);
+  padding: var(--spacing-50) var(--spacing-75); margin-bottom: var(--spacing-75);
+  border: var(--border-width-base) solid var(--border-color-interactive);
+  border-radius: var(--border-radius-base); background: var(--background-color-base); color: var(--color-base);
+}
+.outline-filter:focus { outline: var(--border-width-thick) solid var(--color-progressive); outline-offset: -1px; }
+.outline-empty { color: var(--color-subtle); font-size: var(--font-size-small); }
+
+/* -- raw xml -------------------------------------------------------------- */
+
+.raw-xml {
+  background: var(--color-emphasized); color: #f8f9fa; padding: var(--spacing-100); border-radius: var(--border-radius-base);
+  overflow-x: auto; font-family: var(--font-family-monospace); font-size: var(--font-size-small); line-height: 1.5;
+}
+.xml-tag { color: #ffa89a; }
+.xml-attr { color: #edc76f; }
+.xml-value { color: #a2e6b8; }
+.xml-comment { color: #8a8f98; font-style: italic; }
+.xml-line { display: block; border-radius: var(--border-radius-base); }
+.xml-line.located { background: #26456e; box-shadow: inset 3px 0 0 var(--color-progressive); }
+
+/* Split mode: a section/subsection's own label locates it in the XML pane. */
+#viewer-panels.split-mode .akn-label,
+#viewer-panels.split-mode .akn-container-label {
+  cursor: pointer;
+}
+#viewer-panels.split-mode .akn-label:hover,
+#viewer-panels.split-mode .akn-container-label:hover {
+  text-decoration: underline; text-decoration-style: dotted; text-decoration-color: var(--color-progressive);
+}
+
+/* -- metadata -------------------------------------------------------------- */
+
+.meta-table { width: 100%; border-collapse: collapse; margin-bottom: var(--spacing-150); }
+.meta-table th, .meta-table td {
+  text-align: left; padding: var(--spacing-50) var(--spacing-75);
+  border-bottom: var(--border-width-base) solid var(--border-color-muted); vertical-align: top;
+}
+.meta-table th { width: 12rem; color: var(--color-subtle); font-weight: var(--font-weight-semi-bold); font-size: var(--font-size-small); }
+.meta-missing { color: var(--color-placeholder); font-style: italic; }
+.status-ok { color: var(--color-success); font-weight: var(--font-weight-semi-bold); }
+.status-bad { color: var(--color-destructive); font-weight: var(--font-weight-semi-bold); }
+.error-list { color: var(--color-destructive); }
+
+/* -- narrow screens ---------------------------------------------------- */
+
+/* Below Codex's tablet breakpoint two columns of legal text are too narrow
+   to read, so the split stacks and the XML pane stops being sticky. The
+   inline grid-template-columns the resizer writes has to be overridden,
+   hence the !important. */
+@media (max-width: 1119px) {
+  main { padding: var(--spacing-100); }
+  #viewer-panels.split-mode { grid-template-columns: 1fr !important; }
+  #viewer-panels.split-mode > .tab-panel[data-active="true"]:not(#tab-raw) { padding-right: 0; }
+  #viewer-panels.split-mode #tab-raw {
+    position: static; padding-left: 0; max-height: 60vh;
+    border-top: var(--border-width-base) solid var(--border-color-muted); padding-top: var(--spacing-100);
+  }
+  #viewer-panels.split-mode .split-resizer { display: none; }
+  .tabs { flex-wrap: wrap; }
+  .meta-table th { width: auto; }
+}
