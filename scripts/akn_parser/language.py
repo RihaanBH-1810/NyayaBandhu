@@ -68,7 +68,7 @@ def classify_span_detail(text: str, font: str = ""):
     ``font`` is the font name as reported by the PDF (e.g. ``Nudi01e``).
     ``encoding`` is UNICODE when the codepoints really are the script they
     render as, and LEGACY when they are ASCII bytes that only a particular
-    font turns into Kannada glyphs -- text that has to be transliterated
+    font turns into Kannada glyphs. That text has to be transliterated
     before it means anything.
     """
     if not text or not text.strip():

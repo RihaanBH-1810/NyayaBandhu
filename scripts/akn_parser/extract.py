@@ -82,7 +82,7 @@ def misencoded_share(text: str, script_range) -> float:
 
     A PDF whose font carries a partial or wrong ``ToUnicode`` map yields
     plausible-looking output in which a share of the glyphs have been mapped
-    into unrelated blocks -- typically General Punctuation.  Counting those
+    into unrelated blocks, typically General Punctuation.  Counting those
     against the real letters of the script measures how far the text can be
     trusted.
     """
@@ -114,6 +114,12 @@ class _ForeignRun:
 
 @dataclasses.dataclass
 class PageStats:
+    """Why one page was kept or dropped from the extracted text.
+
+    ``reason`` is set only when the page's own letter counts decided the
+    outcome; a page re-admitted because it sits inside the main run (see
+    :meth:`TextExtractor.extract`) gets a reason saying so instead.
+    """
     number: int
     target_letters: int
     foreign_letters: int
@@ -129,6 +135,8 @@ class PageStats:
 
 @dataclasses.dataclass
 class ExtractionResult:
+    """The output of :meth:`TextExtractor.extract`: the kept pages' text
+    concatenated, plus per-page stats and the redaction count."""
     text: str
     pages: list[PageStats]
     redactions: int
@@ -141,8 +149,8 @@ class ExtractionResult:
 def encode_foreign(text: str, lang: str, encoding: str, font_encoding: str) -> str:
     """Wrap a run of other-language text as an opaque, whitespace-safe token.
 
-    The payload is base64 so that the later text pipeline -- which collapses
-    whitespace and re-flows lines -- cannot alter the text it carries.
+    The payload is base64 so that the later text pipeline, which collapses
+    whitespace and re-flows lines, cannot alter the text it carries.
     """
     payload = json.dumps(
         {"t": text, "l": lang, "e": encoding, "f": font_encoding},
@@ -198,6 +206,15 @@ class TextExtractor:
     # -- public API --------------------------------------------------
 
     def extract(self, pdf_path: str) -> ExtractionResult:
+        """Extract *self.target_lang*'s text from *pdf_path*, page by page.
+
+        A page is kept when it has at least ``min_page_letters`` letters of
+        the target language and they are at least ``min_page_ratio`` of its
+        letters; gaps inside the resulting run of kept pages are re-admitted,
+        so a table-heavy page in the middle of an Act (which falls below the
+        letter threshold on its own) is not dropped out of the sequence.
+        Raises ``ValueError`` if no page qualifies at all.
+        """
         if not os.path.exists(pdf_path):
             raise FileNotFoundError(pdf_path)
 
@@ -258,7 +275,7 @@ class TextExtractor:
                 f"{name}: {self.legacy_letters / total:.0%} of the "
                 f"'{self.target_lang}' text is set in a legacy ASCII-mapped "
                 f"font (the Nudi/Baraha family), which maps Kannada glyphs "
-                f"onto Latin-1 bytes -- what comes out is 'PÀ£ÁðlPÀ gÁdå', "
+                f"onto Latin-1 bytes, so what comes out is 'PÀ£ÁðlPÀ gÁdå', "
                 f"not 'ಕರ್ನಾಟಕ ರಾಜ್ಯ'. Recovering it needs a font-specific "
                 f"transliteration step, which this parser does not have yet. "
                 f"Use --lang eng for this document, or --foreign keep to "
@@ -274,14 +291,17 @@ class TextExtractor:
                     f"which means the font's ToUnicode map is wrong or "
                     f"incomplete. Roughly one letter in "
                     f"{max(2, round(1 / share))} would be incorrect. The text "
-                    f"has to be repaired -- by OCR or by a font-specific "
-                    f"mapping -- before it can be marked up. Use --lang eng "
+                    f"has to be repaired, by OCR or by a font-specific "
+                    f"mapping, before it can be marked up. Use --lang eng "
                     f"for this document in the meantime."
                 )
 
     # -- internals ---------------------------------------------------
 
     def _page_text(self, page):
+        """Render one page to text, tables first, then reading-order blocks
+        with the lines inside a table box removed. Returns ``(text,
+        target_letters, foreign_letters, table_count)``."""
         table_boxes = []
         tables = []
         if self.detect_tables:
@@ -328,6 +348,12 @@ class TextExtractor:
         return text, target_letters, foreign_letters, len(tables)
 
     def _line_text(self, line: dict):
+        """Render one line's spans, applying ``foreign_policy`` to any run
+        not in the target language. Adjacent other-language spans of the same
+        language and encoding are merged into a single run before the policy
+        is applied, since the gazette breaks one title across several spans
+        wherever the typesetter changed size or weight. Returns ``(text,
+        target_letters, foreign_letters)``."""
         pieces = []
         pending = None          # an open run of other-language spans
         target_letters = foreign_letters = 0
@@ -402,7 +428,7 @@ class TextExtractor:
         """Normalise a detected table: drop empty rows, merge wrapped rows.
 
         ``find_tables`` reports empty cells as None, and a row whose first cell
-        is empty is the continuation of the row above -- very common where a
+        is empty is the continuation of the row above, as is common where a
         long schedule entry wraps across a page break.
         """
         out = []

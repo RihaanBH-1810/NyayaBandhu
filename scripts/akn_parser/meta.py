@@ -35,21 +35,32 @@ _MONTHS = {
          "August", "September", "October", "November", "December"], 1)
 }
 
+#: ``KARNATAKA ACT NO. 04 OF 2020`` -> state, act number and year. Supplies
+#: ``jurisdiction`` (via :data:`JURISDICTIONS`), ``number`` and ``year``.
 _RE_ACT_NUMBER = re.compile(
     r"\b(?P<state>[A-Z][A-Za-z]+)\s+ACT\s+NO\.?\s*(?P<number>[0-9]+[A-Z]?)\s+OF\s+(?P<year>\d{4})",
     re.I,
 )
+#: "(Received the assent of the Governor on the 26th day of March, 2020)" ->
+#: ``work_date``. The Work's date in the naming convention is the date it
+#: came into being, which for an Act is the date of assent, not enactment or
+#: publication.
 _RE_ASSENT = re.compile(
     r"assent of the (?:Governor|President)[^)]*?on the\s+(?P<day>\d{1,2})\w*\s+day of\s+"
     r"(?P<month>[A-Za-z]+),?\s*(?P<year>\d{4})",
     re.I,
 )
+#: "(First Published in the Karnataka Gazette Extraordinary on the 27th day
+#: of March, 2020)" -> ``expression_date`` and ``gazette``.
 _RE_PUBLISHED = re.compile(
     r"First Published in the (?P<gazette>[^)]*?Gazette[^)]*?)\s+on the\s+(?P<day>\d{1,2})\w*\s+"
     r"day of\s+(?P<month>[A-Za-z]+),?\s*(?P<year>\d{4})",
     re.I,
 )
+#: A preface line that is nothing but the Act's own title in capitals, e.g.
+#: "THE KARNATAKA STATE CIVIL SERVICES ... ACT, 2020".
 _RE_TITLE = re.compile(r"^THE\s+.+?ACT,\s*\d{4}\s*$")
+#: "No. DPAL 12 SHASANA 2020" -> the gazette notification number.
 _RE_NOTIFICATION = re.compile(r"No\.?\s*(?P<no>[A-Z]{2,6}\s+\d+\s+[A-Z]+\s+\d{4})")
 
 #: The notification names the Act in the enacting language before saying that
@@ -77,6 +88,13 @@ JURISDICTIONS = {
 
 @dataclasses.dataclass
 class DocumentMeta:
+    """Everything :meth:`AknRenderer._meta_block` needs to write ``<meta>``.
+
+    Populated by :meth:`MetadataExtractor.build` from the gazette's own front
+    matter, then overridden field-by-field from ``config/documents.json``;
+    see ``docs/identifiers.md#metadata-overrides``. The FRBR URI properties
+    below are derived from these fields, not stored separately.
+    """
     jurisdiction: str = "in-ka"
     doc_type: str = "act"
     number: str = "nn"
@@ -128,6 +146,11 @@ class DocumentMeta:
 
 
 def _iso(day, month, year) -> str:
+    """Turn a gazette date's day/month-name/year into an ISO 8601 string.
+
+    The month name is matched in full first, then by its first three letters,
+    so a scan artefact that clipped "March" to "Marc" still resolves.
+    """
     index = _MONTHS.get(str(month).lower()[:3] and str(month).lower(), None)
     if index is None:
         for name, i in _MONTHS.items():
@@ -149,6 +172,14 @@ class MetadataExtractor:
                 self.overrides = json.load(fh)
 
     def build(self, document, source_pdf: str, language: str) -> DocumentMeta:
+        """Extract a :class:`DocumentMeta` from *document*'s front matter.
+
+        Falls back to ``year`` for ``work_date`` and to ``work_date`` for
+        ``expression_date`` when the assent or publication sentence was not
+        found, so the FRBR URIs are still well-formed with a coarser date
+        rather than empty. ``manifestation_date`` is always today's date
+        unless overridden; see ``docs/architecture.md#determinism``.
+        """
         front = "\n".join(document.preface + [document.long_title])
         meta = DocumentMeta(language=language, source_pdf=os.path.basename(source_pdf))
 
@@ -208,5 +239,8 @@ class MetadataExtractor:
 
 
 def _short_name(title: str) -> str:
+    """Reduce a title to a CamelCase identifier, e.g.
+    ``KarnatakaStateCivilServicesAct``, for consumers that want a
+    filename-safe short name rather than the full statutory title."""
     words = re.findall(r"[A-Za-z0-9]+", title.title())
     return "".join(words) or "Act"

@@ -36,14 +36,28 @@ T_TABLE = "table"
 T_HEADING = "heading"
 T_TEXT = "text"
 
+#: ``CHAPTER IV.-Miscellaneous`` -> ordinal ``IV``, heading ``Miscellaneous``.
 _RE_CHAPTER = re.compile(r"^CHAPTER\s+([IVXLCDM]+|\d+)\b[.\-–]*\s*(.*)$")
+#: Same shape as a chapter, one level up the hierarchy.
 _RE_PART = re.compile(r"^PART\s+([IVXLCDM]+|\d+)\b[.\-–]*\s*(.*)$")
+#: ``12A. Short title`` -> number ``12A``, rest of the line as heading+body.
+#: Letter suffixes (``12A``) mark a section inserted by amendment after
+#: section 12 without renumbering what follows it.
 _RE_SECTION = re.compile(r"^(\d+[A-Z]{0,2})\s*\.\s*(.+)$")
+#: ``(2a)`` -> ``2a``, same amendment-insertion pattern as a lettered section.
 _RE_SUBSECTION = re.compile(r"^\((\d+[a-z]?)\)\s*(.*)$")
+#: ``(a)`` / ``(bb)``.  Matched only after roman, since ``(ii)`` would
+#: otherwise be read as the two-letter alphabetic marker ``ii``.
 _RE_ALPHA = re.compile(r"^\(([a-z]{1,2})\)\s*(.*)$")
 _RE_ROMAN = re.compile(rf"^\(({ROMAN})\)\s*(.*)$")
+#: ``Provided that`` / ``Provided further that`` / ``Provided also that``.
+#: Non-greedy up to the first comma, colon or full stop so the proviso's own
+#: qualifying clauses do not get swallowed into the "Provided ... that" head.
 _RE_PROVISO = re.compile(r"^(Provided\b[^,:.]*?that)\b[,:]?\s*(.*)$", re.S)
+#: ``Explanation.-`` / ``Explanation 2:``, with an optional ordinal for the case
+#: where a provision carries more than one Explanation.
 _RE_EXPLANATION = re.compile(r"^(Explanation\s*[-–.:]*\s*(?:\d+)?)\s*[-–.:]*\s*(.*)$")
+#: ``SCHEDULE`` / ``FIRST SCHEDULE`` / ``THE SECOND SCHEDULE``.
 _RE_SCHEDULE = re.compile(
     r"^(?:THE\s+)?((?:FIRST|SECOND|THIRD|FOURTH|FIFTH|SIXTH)\s+)?SCHEDULE\b\s*(.*)$"
 )
@@ -54,6 +68,9 @@ _RE_SCHEDULE = re.compile(
 #: words inside the heading ("Zone-C") survive.
 _RE_SECTION_HEADING = re.compile(r"^(.{2,160}?)\s*\.\s*[-–—]\s*(.*)$", re.S)
 
+#: The two enumerator sequences a marker can continue, letters and roman
+#: numerals, used by ``_predecessor`` and ``_resolve_ambiguous`` to settle
+#: which one ``(i)``, ``(v)`` and ``(x)`` mean in context.
 _ALPHA_ORDER = "abcdefghijklmnopqrstuvwxyz"
 _ROMAN_ORDER = [
     "i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x",
@@ -76,6 +93,13 @@ def _predecessor(list_type: str, num: str):
 
 @dataclasses.dataclass
 class Token:
+    """One classified logical line: its structural kind, enumerator, and text.
+
+    ``raw`` keeps the untouched line alongside the split-out ``num``/``text``,
+    so front matter can be re-emitted verbatim when a token's classification
+    turns out not to apply there (a subsection marker inside ``clause (3) of
+    Article 348`` is not a subsection).
+    """
     kind: str
     num: str = ""
     text: str = ""
@@ -93,6 +117,15 @@ class TableBlock:
 
 @dataclasses.dataclass
 class Node:
+    """One element of the document tree built by :class:`TreeBuilder`.
+
+    ``kind`` is the Akoma Ntoso element name (``section``, ``clause``, ...).
+    Text is split into ``paragraphs`` (blocks added before the node had any
+    children) and ``wrap_paragraphs`` (blocks added after); the renderer uses
+    that split to choose between ``<content>``, ``<intro>`` and ``<wrapUp>``,
+    since a hierarchical element may carry ``<content>`` or child provisions
+    but never both.
+    """
     kind: str
     num: str = ""
     heading: str = ""
@@ -130,6 +163,13 @@ class Node:
 
 @dataclasses.dataclass
 class Schedule:
+    """One Schedule, rendered as an ``<attachment>`` holding a ``<doc>``.
+
+    ``container`` is the schedule's own :class:`Node` tree (kind
+    ``hcontainer``, name ``schedule``); it is a separate numbering context
+    from the main body, per the naming convention's treatment of document
+    elements.
+    """
     num: str
     heading: str
     note: str = ""
@@ -139,6 +179,14 @@ class Schedule:
 
 @dataclasses.dataclass
 class ActDocument:
+    """The whole parsed Act: front matter, body, schedules and closing matter.
+
+    ``preface`` holds front-matter lines not otherwise classified (act
+    citation, gazette notification, "Ordered that ..." publication line);
+    ``recitals`` and ``enacting_formula`` are the preamble; ``conclusions``
+    is the signature block. ``body`` is the top-level list of chapters,
+    parts and sections, the tree :class:`TreeBuilder` actually builds.
+    """
     preface: list = dataclasses.field(default_factory=list)
     long_title: str = ""
     recitals: list = dataclasses.field(default_factory=list)
@@ -316,6 +364,16 @@ class TreeBuilder:
     """Assemble tokens into an :class:`ActDocument`."""
 
     def build(self, tokens: list) -> ActDocument:
+        """Walk *tokens* once, in order, producing an :class:`ActDocument`.
+
+        A state machine over a stack of open elements moves through four
+        phases as it goes: front matter (until a section token arrives after
+        the enacting formula, or a chapter/part token arrives), body, any
+        schedules (entered on a schedule token), and conclusions (entered by
+        the signature block, and sticky, since everything after it is
+        closing matter). Placement within the body is delegated to
+        :meth:`_place`.
+        """
         doc = ActDocument()
         body_root = Node("body")
         stack = [body_root]
@@ -366,8 +424,8 @@ class TreeBuilder:
                     continue
 
             # The signature block ends the document.  Once it starts, every
-            # remaining line is closing matter -- the Governor's name, the
-            # countersignature, the publication formula -- so the flag is
+            # remaining line is closing matter (the Governor's name, the
+            # countersignature, the publication formula), so the flag is
             # sticky rather than re-tested line by line.
             if not in_conclusions and _CONCLUSION.search(tok.text):
                 in_conclusions = True
@@ -384,6 +442,13 @@ class TreeBuilder:
     # -- placement ---------------------------------------------------
 
     def _place(self, tok: Token, stack: list, doc: ActDocument) -> None:
+        """Attach one body token to the tree at *stack*'s current position.
+
+        Each token kind closes the stack down to the nearest element it is
+        allowed to nest under, then either pushes a new node (chapter, part,
+        section, subsection, list item, proviso, explanation) or appends text
+        to whatever is now on top.
+        """
         if tok.kind == T_TABLE:
             stack[-1].add_table(tok.rows)
             return

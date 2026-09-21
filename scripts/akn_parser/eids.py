@@ -6,7 +6,7 @@ Rules implemented here:
 * an eId is ``<ancestor eId>__<element_ref>_<number>``.  Levels are separated
   by a **double** underscore, the element abbreviation from its number by a
   single one.  (The previous parser used ``-`` for both, which is not a legal
-  AKN identifier, and used ``__`` as a de-duplication suffix -- colliding with
+  AKN identifier, and used ``__`` as a de-duplication suffix, colliding with
   the level separator.)
 * ``element_ref`` is the element name, except for the abbreviations fixed by
   the specification (``section`` -> ``sec``, ``clause`` -> ``cl`` and so on).
@@ -93,8 +93,8 @@ class EIdAssigner:
         A schedule sits in a ``doc`` inside an ``attachment``, which the naming
         convention treats as a fresh numbering context.  Restarting the
         *counters* there is therefore correct, but the identifiers still carry
-        the attachment's eId as their prefix -- the convention's own example is
-        ``doc_1__body`` "in case of a composite document" -- and that also
+        the attachment's eId as their prefix (the convention's own example is
+        ``doc_1__body`` "in case of a composite document"), and that also
         satisfies the schema, whose uniqueness constraint on ``act`` selects
         every descendant, attachments included.
         """

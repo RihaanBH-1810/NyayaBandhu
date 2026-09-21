@@ -5,7 +5,7 @@ Two content-model rules from the OASIS schema drive most of this module, and
 both were violated by the previous parser:
 
 * a hierarchical element contains *either* ``<content>`` *or* the sequence
-  ``intro?, (hierarchy|crossHeading)*, wrapUp?`` -- never a ``<content>``
+  ``intro?, (hierarchy|crossHeading)*, wrapUp?``, never a ``<content>``
   followed by child provisions.  Text that introduces sub-provisions therefore
   goes in ``<intro>``, and only leaf provisions get ``<content>``.
 * ``<meta>`` has a fixed child order: identification, publication,
@@ -30,9 +30,15 @@ XML_NS = "http://www.w3.org/XML/1998/namespace"
 XML_LANG = f"{{{XML_NS}}}lang"
 NSMAP = {None: AKN_NS}
 
+#: The defined term opening a definition clause: ``"holding" means ...`` or
+#: ``occupier includes ...``. Matched only at the start of the paragraph, and
+#: only up to the keyword that introduces the definition, so the term itself
+#: (optionally quoted) is captured without swallowing the definition's body.
 _DEFINITION = re.compile(
     r'^\s*[""\']?(?P<term>[^""\'\n]{2,80}?)[""\']?\s*(?=\b(?:means|includes|shall mean)\b)'
 )
+#: A section heading that marks its section as the Act's definitions section,
+#: so terms inside it are wrapped in ``<def>`` rather than left as plain text.
 _DEFINITION_SECTION = re.compile(r"\bdefinitions?\b", re.I)
 
 
@@ -41,6 +47,14 @@ def _q(tag: str) -> str:
 
 
 class AknRenderer:
+    """Render an :class:`~akn_parser.structure.ActDocument` as AKN 3.0 XML.
+
+    One instance renders one document. State accumulates across the walk:
+    ``terms`` collects every defined term so ``<references>`` can declare a
+    ``TLCTerm`` for each, and ``foreign_runs`` collects every other-language
+    span emitted, for reporting. Call :meth:`render` once.
+    """
+
     def __init__(self, meta, resolver: CitationResolver):
         self.meta = meta
         self.refs = resolver
@@ -282,6 +296,14 @@ class AknRenderer:
             self._render_node(parent, node, in_definitions)
 
     def _render_node(self, parent, node, in_definitions: bool = False) -> None:
+        """Render one :class:`Node` and its subtree.
+
+        Enforces the schema's either/or content model: a node with children
+        gets ``<intro>``/``<wrapUp>`` around them (never ``<content>``), and a
+        leaf node gets ``<content>`` instead. ``in_definitions`` is threaded
+        down from a section matching :data:`_DEFINITION_SECTION` so every
+        descendant paragraph gets a chance to wrap its defined term.
+        """
         if node.kind == "crossHeading":
             ch = etree.SubElement(parent, _q("crossHeading"))
             ch.set("eId", node.eid)
@@ -337,6 +359,9 @@ class AknRenderer:
             )
 
     def _display_num(self, node) -> str:
+        """Format ``<num>`` the way Indian drafting shows each element kind:
+        ``"7."`` for a section, bare ``"IV"`` for a chapter/part, ``"(1)"``
+        for everything else (subsections, clauses, provisos by number)."""
         if node.kind in ("section", "article", "rule"):
             return f"{node.num}."
         if node.kind in ("chapter", "part"):
@@ -406,7 +431,7 @@ class AknRenderer:
         """Emit a run of text in another language, tagged for what it is.
 
         The text is preserved rather than dropped, and ``xml:lang`` records
-        both the language and -- through a private-use subtag -- whether the
+        both the language and, through a private-use subtag, whether the
         codepoints have yet been converted out of a legacy font encoding.
         """
         text, encoding = transliterate.convert(
