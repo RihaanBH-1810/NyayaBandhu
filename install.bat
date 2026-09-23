@@ -34,21 +34,25 @@ echo.
 
 set "DEFAULT_DIR=C:\NyayaBandhu"
 
-:: Open a PowerShell folder-picker dialog. A TopMost form is used as
-:: the owner so the dialog appears in the foreground even when launched
-:: from a console or shortcut.
+:: Write a small PowerShell script to a temp file, then run it.
+:: This avoids cmd.exe misinterpreting the parentheses in the
+:: PowerShell code.
+set "PS_PICKER=%TEMP%\nb_pick.ps1"
+
+> "!PS_PICKER!" echo Add-Type -AssemblyName System.Windows.Forms
+>> "!PS_PICKER!" echo [System.Windows.Forms.Application]::EnableVisualStyles^(^)
+>> "!PS_PICKER!" echo $owner = New-Object System.Windows.Forms.Form
+>> "!PS_PICKER!" echo $owner.TopMost = $true
+>> "!PS_PICKER!" echo $dlg = New-Object System.Windows.Forms.FolderBrowserDialog
+>> "!PS_PICKER!" echo $dlg.Description = 'Choose installation folder for NyayaBandhu'
+>> "!PS_PICKER!" echo $dlg.SelectedPath = '!DEFAULT_DIR!'
+>> "!PS_PICKER!" echo $dlg.ShowNewFolderButton = $true
+>> "!PS_PICKER!" echo $result = $dlg.ShowDialog^($owner^)
+>> "!PS_PICKER!" echo if ^($result -eq 'OK'^) { $dlg.SelectedPath } else { '' }
+
 set "INSTALL_DIR="
-for /f "usebackq delims=" %%f in (`powershell -NoProfile -Command ^
-    "Add-Type -AssemblyName System.Windows.Forms; ^
-     [System.Windows.Forms.Application]::EnableVisualStyles(); ^
-     $owner = New-Object System.Windows.Forms.Form; ^
-     $owner.TopMost = $true; ^
-     $dlg = New-Object System.Windows.Forms.FolderBrowserDialog; ^
-     $dlg.Description = 'Choose installation folder for NyayaBandhu'; ^
-     $dlg.SelectedPath = '%DEFAULT_DIR%'; ^
-     $dlg.ShowNewFolderButton = $true; ^
-     if ($dlg.ShowDialog($owner) -eq 'OK') { $dlg.SelectedPath } ^
-     else { '' }"`) do set "INSTALL_DIR=%%f"
+for /f "usebackq delims=" %%f in (`powershell -NoProfile -ExecutionPolicy Bypass -File "!PS_PICKER!"`) do set "INSTALL_DIR=%%f"
+del "!PS_PICKER!" >nul 2>&1
 
 :: Fall back to a console prompt if the dialog did not return a path
 if not defined INSTALL_DIR (
@@ -256,15 +260,21 @@ echo.
 :: ------------------------------------------------------------------
 echo [6/6] Creating desktop shortcut ...
 
-:: Use PowerShell to create a .lnk shortcut on the desktop
-powershell -NoProfile -Command ^
-    "$ws = New-Object -ComObject WScript.Shell; ^
-     $sc = $ws.CreateShortcut([IO.Path]::Combine($ws.SpecialFolders('Desktop'), 'NyayaBandhu.lnk')); ^
-     $sc.TargetPath = [IO.Path]::Combine('!INSTALL_DIR!', 'start.bat'); ^
-     $sc.WorkingDirectory = '!INSTALL_DIR!'; ^
-     $sc.Description = 'Open NyayaBandhu — Akoma Ntoso viewer'; ^
-     $sc.IconLocation = 'shell32.dll,1'; ^
-     $sc.Save()"
+:: Write shortcut-creation script to a temp file to avoid cmd.exe
+:: misinterpreting the parentheses in the PowerShell code.
+set "PS_SHORTCUT=%TEMP%\nb_shortcut.ps1"
+
+> "!PS_SHORTCUT!" echo $ws = New-Object -ComObject WScript.Shell
+>> "!PS_SHORTCUT!" echo $desktop = $ws.SpecialFolders^('Desktop'^)
+>> "!PS_SHORTCUT!" echo $sc = $ws.CreateShortcut^("$desktop\NyayaBandhu.lnk"^)
+>> "!PS_SHORTCUT!" echo $sc.TargetPath = '!INSTALL_DIR!\start.bat'
+>> "!PS_SHORTCUT!" echo $sc.WorkingDirectory = '!INSTALL_DIR!'
+>> "!PS_SHORTCUT!" echo $sc.Description = 'Open NyayaBandhu - Akoma Ntoso viewer'
+>> "!PS_SHORTCUT!" echo $sc.IconLocation = 'shell32.dll,1'
+>> "!PS_SHORTCUT!" echo $sc.Save^(^)
+
+powershell -NoProfile -ExecutionPolicy Bypass -File "!PS_SHORTCUT!" >nul 2>&1
+del "!PS_SHORTCUT!" >nul 2>&1
 
 if !errorlevel! equ 0 (
     echo  Desktop shortcut created: NyayaBandhu.lnk
