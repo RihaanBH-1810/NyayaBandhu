@@ -31,21 +31,33 @@ echo.
 :: ------------------------------------------------------------------
 echo [1/6] Choose installation folder ...
 echo.
-echo  A folder picker will open. Select where you want NyayaBandhu
-echo  installed. Close the dialog to accept the default location.
-echo.
 
 set "DEFAULT_DIR=C:\NyayaBandhu"
 
-:: Open a PowerShell folder-picker dialog
+:: Open a PowerShell folder-picker dialog. A TopMost form is used as
+:: the owner so the dialog appears in the foreground even when launched
+:: from a console or shortcut.
+set "INSTALL_DIR="
 for /f "usebackq delims=" %%f in (`powershell -NoProfile -Command ^
     "Add-Type -AssemblyName System.Windows.Forms; ^
+     [System.Windows.Forms.Application]::EnableVisualStyles(); ^
+     $owner = New-Object System.Windows.Forms.Form; ^
+     $owner.TopMost = $true; ^
      $dlg = New-Object System.Windows.Forms.FolderBrowserDialog; ^
      $dlg.Description = 'Choose installation folder for NyayaBandhu'; ^
      $dlg.SelectedPath = '%DEFAULT_DIR%'; ^
      $dlg.ShowNewFolderButton = $true; ^
-     if ($dlg.ShowDialog() -eq 'OK') { $dlg.SelectedPath } ^
-     else { '%DEFAULT_DIR%' }"`) do set "INSTALL_DIR=%%f"
+     if ($dlg.ShowDialog($owner) -eq 'OK') { $dlg.SelectedPath } ^
+     else { '' }"`) do set "INSTALL_DIR=%%f"
+
+:: Fall back to a console prompt if the dialog did not return a path
+if not defined INSTALL_DIR (
+    echo  Enter the installation folder, or press Enter to accept the
+    echo  default location.
+    echo.
+    set "INSTALL_DIR=!DEFAULT_DIR!"
+    set /p "INSTALL_DIR=  Install location [!DEFAULT_DIR!]: "
+)
 
 echo  Installing to: !INSTALL_DIR!
 echo.
