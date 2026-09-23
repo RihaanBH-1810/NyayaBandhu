@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% block title %}{{ name }} - NyayaBandhu Viewer{% endblock %}
+
+{% macro value(v) -%}
+  {%- if v %}{{ v }}{% else %}<span class="meta-missing">not recorded</span>{% endif -%}
+{%- endmacro %}
+
+{% macro outline_items(nodes) %}
+  <ul>
+    {% for node in nodes %}
+    <li>
+      {% if node.children %}
+      <details>
+        <summary><a href="#{{ node.eid }}" class="outline-link" data-eid="{{ node.eid }}">{{ node.label }}</a></summary>
+        {{ outline_items(node.children) }}
+      </details>
+      {% else %}
+      <a href="#{{ node.eid }}" class="outline-link" data-eid="{{ node.eid }}">{{ node.label }}</a>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+{% block content %}
+<div class="view-header">
+  <a href="/" class="back-link">&larr; All documents</a>
+  <h1>{{ metadata.title or name }}</h1>
+  {% if metadata.source_title %}
+  <p class="source-title {{ 'source-title-legacy' if metadata.source_title_legacy else '' }}"
+     {% if metadata.source_title_lang %}title="xml:lang={{ metadata.source_title_lang }}"{% endif %}>
+    {{ metadata.source_title }}
+    {% if metadata.source_title_legacy %}
+    <span class="legacy-note">The Act's name as enacted, in the gazette's original legacy font
+      encoding. It has not been converted to Unicode; see <code>docs/languages.md</code>.</span>
+    {% endif %}
+  </p>
+  {% endif %}
+  <p class="doc-path">{{ path }}</p>
+</div>
+
+<nav class="tabs" role="tablist" aria-label="Document view">
+  <button class="tab-button active" data-tab="document" role="tab" aria-selected="true" aria-controls="tab-document">Document</button>
+  <button class="tab-button" data-tab="outline" role="tab" aria-selected="false" aria-controls="tab-outline">Outline</button>
+  <button class="tab-button" data-tab="raw" id="raw-tab-button" role="tab" aria-selected="false" aria-controls="tab-raw" hidden>Raw XML</button>
+  <button class="tab-button" data-tab="meta" role="tab" aria-selected="false" aria-controls="tab-meta">Metadata &amp; validation</button>
+  <label class="split-toggle">
+    <input type="checkbox" id="split-toggle" checked>
+    Split with XML
+  </label>
+</nav>
+
+<div id="viewer-panels">
+  <section class="tab-panel" id="tab-document" data-active="true" role="tabpanel">
+    <p class="akn-legend">
+      <span class="akn-legend-swatch akn-foreign"></span> text in another language, kept and tagged &nbsp;
+      <span class="akn-legend-swatch akn-foreign-legacy"></span> same, but in a legacy font encoding not yet
+      converted to Unicode (see <code>docs/languages.md</code>). Hover either to see its <code>xml:lang</code> tag.
+    </p>
+    <div class="akn-document">
+      {{ document_html | safe }}
+    </div>
+  </section>
+
+  <section class="tab-panel" id="tab-outline" role="tabpanel">
+    <input type="search" id="outline-filter" class="outline-filter"
+           placeholder="Filter by number or heading, e.g. transfer or 17" aria-label="Filter provisions">
+    <p class="outline-empty" id="outline-empty" hidden>No provision matches that.</p>
+    <div class="outline" id="outline">
+      {{ outline_items(outline) }}
+    </div>
+  </section>
+
+  <section class="tab-panel" id="tab-meta" role="tabpanel">
+    <h2>Identity</h2>
+    <table class="meta-table">
+      <tr><th>Title</th><td>{{ value(metadata.title) }}</td></tr>
+      <tr>
+        <th>Title (enacting language)</th>
+        <td>
+          {% if metadata.source_title %}
+          <span class="{{ 'source-title-legacy' if metadata.source_title_legacy else '' }}"
+                {% if metadata.source_title_lang %}title="xml:lang={{ metadata.source_title_lang }}"{% endif %}>
+            {{ metadata.source_title }}
+          </span>
+          {% if metadata.source_title_legacy %}<span class="legacy-note">unconverted legacy encoding</span>{% endif %}
+          {% else %}{{ value(none) }}{% endif %}
+        </td>
+      </tr>
+      <tr><th>Jurisdiction</th><td>{{ value(metadata.jurisdiction) }}</td></tr>
+      <tr><th>Act number</th><td>{{ value(metadata.number) }}</td></tr>
+      <tr><th>Assent date</th><td>{{ value(metadata.assent_date) }}</td></tr>
+      <tr><th>Publication date</th><td>{{ value(metadata.publication_date) }}</td></tr>
+      <tr><th>Generated</th><td>{{ value(metadata.generation_date) }}</td></tr>
+      <tr><th>Language</th><td>{{ value(metadata.language) }}</td></tr>
+      <tr><th>Gazette</th><td>{{ value(metadata.gazette) }}</td></tr>
+      <tr><th>Notification</th><td>{{ value(metadata.notification) }}</td></tr>
+      <tr><th>Keywords</th><td>{{ value(metadata.keywords|join(", ")) }}</td></tr>
+    </table>
+
+    <h2>FRBR URIs</h2>
+    <table class="meta-table">
+      <tr><th>Work</th><td>{{ value(metadata.work_uri) }}</td></tr>
+      <tr><th>Expression</th><td>{{ value(metadata.expression_uri) }}</td></tr>
+      <tr><th>Manifestation</th><td>{{ value(metadata.manifestation_uri) }}</td></tr>
+    </table>
+
+    <h2>Validation</h2>
+    <table class="meta-table">
+      <tr>
+        <th>AKN 3.0 schema</th>
+        <td class="{{ 'status-ok' if report.schema_valid else 'status-bad' }}">
+          {{ "valid" if report.schema_valid else ("INVALID" if report.schema_valid is sameas false else "not checked") }}
+        </td>
+      </tr>
+      <tr><th>eIds</th><td>{{ report.counts.get("eids", 0) }} ({{ report.duplicate_eids|length }} duplicate, {{ report.malformed_eids|length }} malformed)</td></tr>
+      <tr><th>References</th><td>{{ report.counts.get("refs", 0) }} internal, {{ report.dangling_refs|length }} dangling</td></tr>
+      <tr><th>Other-language runs</th><td>{{ report.tagged_runs }} tagged</td></tr>
+      <tr>
+        <th>Untagged foreign script</th>
+        <td class="{{ 'status-bad' if report.foreign_residue else 'status-ok' }}">
+          {{ report.foreign_residue or "none" }}
+        </td>
+      </tr>
+    </table>
+    {% if report.schema_errors %}
+    <h3>Schema errors</h3>
+    <ul class="error-list">
+      {% for line, message in report.schema_errors[:10] %}
+      <li>line {{ line }}: {{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </section>
+
+  <div class="split-resizer" id="split-resizer" title="Drag to resize. Double-click to reset to 50/50."></div>
+
+  <section class="tab-panel" id="tab-raw" role="tabpanel">
+    <pre class="raw-xml" id="raw-xml" data-src="/raw?path={{ path | urlencode }}">Loading…</pre>
+  </section>
+</div>
+
+<script src="/static/app.js"></script>
+{% endblock %}

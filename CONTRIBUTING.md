@@ -48,7 +48,7 @@ there deliberately, not by loosening assertions.
    `data/ammendments/` for an amending Act.
 2. Run the parser and read the report.
 3. If metadata was not extracted correctly, add an entry to
-   `config/documents.json` — see
+   `config/documents.json`; see
    [docs/identifiers.md](docs/identifiers.md#metadata-overrides).
 4. Read the output. The validator confirms the document is well-formed Akoma
    Ntoso; it cannot confirm that section 7 contains the text of section 7.
@@ -57,7 +57,7 @@ there deliberately, not by loosening assertions.
 
 The pipeline is nine stages with one-way dependencies, described in
 [docs/architecture.md](docs/architecture.md). Work out which stage a defect
-belongs to before changing anything — `--keep-text` shows the boundary between
+belongs to before changing anything. `--keep-text` shows the boundary between
 extraction and mapping.
 
 ### Conventions
@@ -67,7 +67,7 @@ extraction and mapping.
 - Comments explain why a rule exists, with the provision that motivated it
   where one does. `BBMP s.83(2)(b)(iii)` is more useful than "handle nested
   lists".
-- Structural constants — element abbreviations, keyword tables, font families —
+- Structural constants (element abbreviations, keyword tables, font families)
   live at module level, named and commented, not inline.
 - The parser reports what it could not do rather than guessing. A citation that
   will not resolve is left as plain text and recorded in `warnings`; it is
@@ -102,7 +102,7 @@ interface.
 
 Three things are needed, in order:
 
-1. Span classification in `akn_parser/language.py` — the script's Unicode
+1. Span classification in `akn_parser/language.py`: the script's Unicode
    block, and any legacy font families.
 2. An encoding-repair step ahead of the parser if the sources are not clean
    Unicode. See [docs/languages.md](docs/languages.md#kannada-support).
@@ -114,8 +114,26 @@ Adding a **transliterator** is separate and smaller: implement the contract in
 `akn_parser/transliterate.py` and register it. Every legacy run in every
 document is then converted on the next run, and its `xml:lang` tag changes
 from `kn-Latn-x-nudi` to `kn` automatically. Do not add a mapping table that
-has not been checked by a reader of the script — a wrong table turns a visibly
+has not been checked by a reader of the script. A wrong table turns a visibly
 broken document into an invisibly wrong one.
+
+## Working on the viewer
+
+`webui/` is described in [docs/webui.md](docs/webui.md). A few rules keep it
+from drifting away from the parser:
+
+- The viewer shows what `akn_parser` decided; it does not decide anything
+  itself. If it needs a check or a classification the parser already makes,
+  import it. The validation report comes from `Validator` for this reason,
+  and legacy-encoding detection follows the tags `transliterate.bcp47` writes.
+- No build step and no CDN. `static/app.js` and `static/style.css` are served
+  as written.
+- Colours, spacing and type come from the Codex tokens at the top of
+  `style.css`. Use one of those before adding a new value.
+- The viewer has no automated tests. After changing it, open the Teachers
+  Transfer Act and the BBMP Act and check that the Metadata tab agrees with
+  the CLI report for the same files: 415 and 6,300 eIds, 26 and 251 internal
+  references, none dangling.
 
 ## Determinism
 
@@ -139,6 +157,7 @@ Documentation lives in `docs/` and is grouped by what the reader is doing:
 | --- | --- |
 | Running the tool | [docs/cli.md](docs/cli.md), [docs/troubleshooting.md](docs/troubleshooting.md) |
 | Consuming the XML | [docs/akn-mapping.md](docs/akn-mapping.md), [docs/identifiers.md](docs/identifiers.md), [docs/cross-references.md](docs/cross-references.md) |
+| Reading a document in a browser | [docs/webui.md](docs/webui.md) |
 | Calling the library | [docs/api.md](docs/api.md) |
 | Changing the parser | [docs/architecture.md](docs/architecture.md), [docs/languages.md](docs/languages.md) |
 

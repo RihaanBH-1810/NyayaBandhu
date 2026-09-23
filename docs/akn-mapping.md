@@ -5,7 +5,7 @@ How the structure of an Indian gazette Act maps onto Akoma Ntoso 3.0 elements.
 Normative sources:
 
 - [Akoma Ntoso v1.0 Part 1: XML Vocabulary](https://docs.oasis-open.org/legaldocml/akn-core/v1.0/akn-core-v1.0-part1-vocabulary.html)
-- [Akoma Ntoso v1.0 Part 2: Specifications](https://docs.oasis-open.org/legaldocml/akn-core/v1.0/os/part2-specs/) — `schemas/akomantoso30.xsd` is taken from here unmodified
+- [Akoma Ntoso v1.0 Part 2: Specifications](https://docs.oasis-open.org/legaldocml/akn-core/v1.0/os/part2-specs/). `schemas/akomantoso30.xsd` is taken from here unmodified.
 
 All output is validated against that schema.
 
@@ -328,8 +328,8 @@ and both occur in this corpus:
 
 | Provision | Reading |
 | --- | --- |
-| Teachers Transfer Act s.2(i) — follows `(h)` | alphabetic clause |
-| Teachers Transfer Act s.10(1)(i) — opens a list | roman clause |
+| Teachers Transfer Act s.2(i), following `(h)` | alphabetic clause |
+| Teachers Transfer Act s.10(1)(i), opening a list | roman clause |
 
 Resolution uses the nearest enumerators on either side:
 

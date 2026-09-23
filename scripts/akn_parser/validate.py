@@ -5,11 +5,11 @@ Schema validation is done against the official OASIS Akoma Ntoso 3.0 XSD
 (``schemas/akomantoso30.xsd``), which is the only authority on what is legal
 AKN.  Three further checks catch problems the schema cannot see:
 
-* **eId syntax** -- the schema accepts any string, but the naming convention
+* **eId syntax.** The schema accepts any string, but the naming convention
   does not.
-* **Dangling references** -- ``<ref href="#sec_99">`` where ``sec_99`` does not
+* **Dangling references.** ``<ref href="#sec_99">`` where ``sec_99`` does not
   exist is well-formed and schema-valid, and completely wrong.
-* **Language residue** -- characters of a script other than the target
+* **Language residue.** Characters of a script other than the target
   language surviving into the output means the redaction pass missed
   something.
 """
@@ -45,6 +45,13 @@ _DOCUMENT_TAGS = frozenset(
 
 @dataclasses.dataclass
 class ValidationReport:
+    """Result of every check :class:`Validator` runs on one document.
+
+    ``schema_valid`` is ``None`` when schema validation was skipped (no
+    schema path given), rather than conflated with a pass or fail. See
+    :attr:`ok` for the single pass/fail verdict and :meth:`summary` for a
+    human-readable report.
+    """
     schema_valid: bool | None = None
     schema_errors: list = dataclasses.field(default_factory=list)
     duplicate_eids: list = dataclasses.field(default_factory=list)
@@ -100,6 +107,8 @@ class ValidationReport:
 
 
 class Validator:
+    """Run every check in this module against one rendered document."""
+
     def __init__(self, schema_path: str = ""):
         self.schema = None
         self.schema_path = schema_path
@@ -107,6 +116,13 @@ class Validator:
             self.schema = etree.XMLSchema(etree.parse(schema_path))
 
     def check(self, root, target_lang: str, resolver=None) -> ValidationReport:
+        """Validate *root* and return a :class:`ValidationReport`.
+
+        Schema validation runs only when a schema was loaded. ``resolver``,
+        when given, contributes its collected unresolved-citation warnings
+        and external-reference count, which the schema and this module's
+        own tree walk cannot see on their own.
+        """
         report = ValidationReport()
 
         if self.schema is not None:

@@ -201,7 +201,7 @@ and its legacy tag are kept instead.
 
 ### `TextNormalizer`
 
-**`run(raw) -> str`** — visual lines to one logical line per provision.
+**`run(raw) -> str`**: visual lines to one logical line per provision.
 
 Module-level patterns available for inspection or extension:
 `STRUCTURAL_START`, `ALL_CAPS`, `ORPHAN_ENUMERATOR`, `ROMAN`.
@@ -220,9 +220,9 @@ Module-level patterns available for inspection or extension:
 
 ### Data classes
 
-**`Token`** — `kind`, `num`, `text`, `raw`, `rows`
+**`Token`**: `kind`, `num`, `text`, `raw`, `rows`
 
-**`Node`** — one provision.
+**`Node`**: one provision.
 
 | Attribute | Description |
 | --- | --- |
@@ -237,11 +237,11 @@ Module-level patterns available for inspection or extension:
 | `eid` | Assigned in stage 5 |
 | `walk()` | Depth-first iterator over this node and its descendants |
 
-**`TableBlock`** — `rows`, `eid`
+**`TableBlock`**: `rows`, `eid`
 
-**`Schedule`** — `num`, `heading`, `note`, `container`, `eid`
+**`Schedule`**: `num`, `heading`, `note`, `container`, `eid`
 
-**`ActDocument`** — `preface`, `long_title`, `recitals`, `enacting_formula`,
+**`ActDocument`**: `preface`, `long_title`, `recitals`, `enacting_formula`,
 `body`, `schedules`, `conclusions`, and `walk()`
 
 ```python
@@ -294,10 +294,10 @@ so any mapping with the right keys will do.
 | `internal` | Count of internal references emitted |
 | `external` | Count of citations left as external |
 
-**`Segment`** — `kind` (`"text"`, `"ref"`, `"omissis"`, `"foreign"`), `text`,
+**`Segment`**: `kind` (`"text"`, `"ref"`, `"omissis"`, `"foreign"`), `text`,
 `href`, and for `foreign` also `lang`, `encoding`, `font_encoding`
 
-**`RefWarning`** — `context`, `citation`, `reason`
+**`RefWarning`**: `context`, `citation`, `reason`
 
 Patterns available for extension: `CITATION_CHAIN`, `EXTERNAL_TAIL`,
 `EXTERNAL_LEAD`, `SCHEDULE_REF`, `ORDINAL_PROVISO`.

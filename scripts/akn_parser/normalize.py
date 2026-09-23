@@ -5,7 +5,7 @@ The previous implementation joined a line to its predecessor unless the
 predecessor ended in punctuation.  That gets Indian legislative text wrong in
 both directions: wrapped lines routinely end in a comma (and were wrongly
 split), and a new proviso routinely follows a colon (and was wrongly joined).
-Here the decision is driven by the *current* line instead -- a line starts a
+Here the decision is driven by the *current* line instead: a line starts a
 new logical line only when it opens a recognised structural unit.  Matching is
 case sensitive on purpose: ``NOTIFICATION`` is a gazette heading whereas
 ``notification, appoint.`` is the tail of a wrapped sentence.
@@ -99,6 +99,13 @@ class TextNormalizer:
     """Clean, de-hyphenate and re-flow extracted text."""
 
     def run(self, raw: str) -> str:
+        """Run the seven cleanup and re-flow passes over *raw*, in order.
+
+        Each pass is independent and order-sensitive: furniture is dropped
+        and orphan enumerators stitched before re-flow decides where logical
+        lines begin, and foreign-run merging happens last, after re-flow may
+        have brought adjacent tokens back together.
+        """
         text = self._clean(raw)
         text = self._dehyphenate(text)
         lines = [ln.strip() for ln in text.split("\n")]
@@ -150,6 +157,9 @@ class TextNormalizer:
 
     @staticmethod
     def _stitch_orphans(lines):
+        """Prepend a line matching :data:`ORPHAN_ENUMERATOR` to the line that
+        follows it, so a marker stranded on its own visual line by the PDF's
+        layout (common in table cells) rejoins the text it introduces."""
         out = []
         pending = ""
         for ln in lines:

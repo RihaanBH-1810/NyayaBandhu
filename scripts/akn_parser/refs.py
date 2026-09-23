@@ -9,12 +9,12 @@ sections, and ``href`` values pointing at eIds that do not exist.
 
 This module instead:
 
-* parses a whole citation *chain* -- ``clause (i) to (iv) of sub-section (1)
+* parses a whole citation *chain*: ``clause (i) to (iv) of sub-section (1)
   of section 10`` is one citation, not three;
 * decides external/internal structurally, from the instrument named around
-  the citation -- after it (``section 6 of the Karnataka General Clauses Act,
+  the citation, either after it (``section 6 of the Karnataka General Clauses Act,
   1899``) or before it, as amending Acts write it (``In the ... Act, 2020
-  (Karnataka Act 04 of 2020), in section 10``) -- so no list of statute names
+  (Karnataka Act 04 of 2020), in section 10``), so no list of statute names
   has to be maintained;
 * resolves relative citations (``sub-section (3)`` inside section 18) against
   the element the text actually sits in; and
@@ -55,10 +55,19 @@ _KEYWORD_TARGETS = {
     "category": ("cl", "subcl"),
 }
 
+#: One enumerator as it appears in a citation: parenthesised (``(1)``,
+#: ``(iv)``, ``(2a)``) or a bare section-style number (``10``, ``12A``).
 _NUM_TOKEN = r"(?:\(\s*[0-9A-Za-z]{1,4}\s*\)|[0-9]{1,3}[A-Z]{0,2})"
+#: Every way Indian drafting separates items in a citation list.
 _SEP = r"(?:\s*,\s*|\s+and\s+|\s+to\s+|\s*&\s*|\s+or\s+)"
+#: A run of one or more enumerators of the same kind, e.g. ``(a), (b) and (c)``
+#: or ``(i) to (iv)``.
 _NUM_LIST = rf"{_NUM_TOKEN}(?:{_SEP}{_NUM_TOKEN})*"
 
+#: A whole citation chain, such as ``clause (i) to (iv) of sub-section (1) of
+#: section 10``, matched as one unit rather than as separate citations, so
+#: it can be resolved link by link from the outside in. See
+#: :meth:`CitationResolver._parse_chain`.
 CITATION_CHAIN = re.compile(
     rf"\b(?P<chain>{_KEYWORD}\s+{_NUM_LIST}"
     rf"(?:\s+of\s+(?:the\s+)?{_KEYWORD}\s+{_NUM_LIST})*)",
@@ -66,7 +75,7 @@ CITATION_CHAIN = re.compile(
 )
 
 #: What makes a citation point outside this Act: it is followed by the name of
-#: another instrument.  "of this Act" and "of the said Act" are excluded --
+#: another instrument.  "of this Act" and "of the said Act" are excluded:
 #: they are self-references and their sections do resolve internally.
 EXTERNAL_TAIL = re.compile(
     r"^\s*(?:,\s*\d{4})?\s*of\s+(?!this\b|the\s+said\b|the\s+present\b)"
@@ -119,12 +128,25 @@ class Segment:
 
 @dataclasses.dataclass
 class RefWarning:
+    """A citation that could not be resolved, for the validation report.
+
+    ``context`` is the eId of the provision the citation appears in (empty
+    for front matter), ``citation`` the matched text, ``reason`` why it was
+    left as plain text rather than turned into a ``<ref>``.
+    """
     context: str
     citation: str
     reason: str
 
 
 def _canonical_keyword(word: str) -> str:
+    """Fold a citation keyword to the singular, hyphen/space-free form used
+    as a key into :data:`_KEYWORD_TARGETS`.
+
+    ``sub-section`` and ``subsections`` and ``sub section`` all become
+    ``subsection``, so drafting's inconsistent spelling does not have to be
+    enumerated at every call site.
+    """
     w = re.sub(r"[-\s]", "", word.lower())
     if w.endswith("ies"):
         w = w[:-3] + "y"
@@ -134,6 +156,8 @@ def _canonical_keyword(word: str) -> str:
 
 
 def _num_key(token: str) -> str:
+    """Strip an enumerator down to its bare, lowercased value for eId lookup:
+    ``"(iv)"`` -> ``"iv"``, ``"12A"`` -> ``"12a"``."""
     return token.strip("() \t").lower()
 
 
@@ -156,6 +180,15 @@ class CitationResolver:
     # -- public API --------------------------------------------------
 
     def markup(self, text: str, context_eid: str = "") -> list:
+        """Split *text* into :class:`Segment`\\ s: plain text, resolved
+        citations, redaction markers and other-language runs.
+
+        ``context_eid`` is the eId of the provision *text* belongs to, used
+        to resolve relative citations (a bare ``sub-section (3)``) against
+        the provision they appear in. Citations that do not resolve to an
+        existing eId are left as plain text and recorded in
+        :attr:`warnings` rather than linked to a guess.
+        """
         segments = [Segment("text", text)]
         segments = self._apply(segments, CITATION_CHAIN, self._chain_segments, context_eid)
         segments = self._apply(segments, SCHEDULE_REF, self._schedule_segments, context_eid)
@@ -167,8 +200,8 @@ class CitationResolver:
     def _warn(self, context: str, citation: str, reason: str) -> None:
         """Record an unresolved citation once.
 
-        One citation is examined at several depths -- as a whole chain and
-        again as its innermost link -- so the same failure would otherwise be
+        One citation is examined at several depths, as a whole chain and
+        again as its innermost link, so the same failure would otherwise be
         reported twice under different spellings ("sub-section (5)" and
         "subsection 5").
         """
@@ -316,8 +349,8 @@ class CitationResolver:
     def _absolute(self, keyword: str, number: str):
         """Find a provision cited by number alone, e.g. "section 208".
 
-        In an Act with chapters the section is not at the top of the tree --
-        section 208 of the BBMP Act has the eId ``chp_XV__sec_208`` -- so a
+        In an Act with chapters the section is not at the top of the tree
+        (section 208 of the BBMP Act has the eId ``chp_XV__sec_208``), so a
         top-level lookup alone finds nothing.  A match on the last component
         is accepted when it is unambiguous.
         """

@@ -23,7 +23,7 @@
         <FRBRManifestation>
           <FRBRthis value="/akn/in-ka/act/2020-03-26/4/eng@2020-03-27/!main.xml"/>
           <FRBRuri value="/akn/in-ka/act/2020-03-26/4/eng@2020-03-27.xml"/>
-          <FRBRdate date="2026-09-01" name="generation"/>
+          <FRBRdate date="2026-09-20" name="generation"/>
           <FRBRauthor href="#nyayabandhu"/>
           <FRBRformat value="xml"/>
         </FRBRManifestation>
@@ -584,7 +584,7 @@
               <FRBRManifestation>
                 <FRBRthis value="/akn/in-ka/act/2020-03-26/4/eng@2020-03-27/!schedule_1.xml"/>
                 <FRBRuri value="/akn/in-ka/act/2020-03-26/4/eng@2020-03-27.xml"/>
-                <FRBRdate date="2026-09-01" name="generation"/>
+                <FRBRdate date="2026-09-20" name="generation"/>
                 <FRBRauthor href="#nyayabandhu"/>
               </FRBRManifestation>
             </identification>

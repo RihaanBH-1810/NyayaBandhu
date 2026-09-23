@@ -71,7 +71,7 @@ as defined in clause <ref href="#sec_10__subsec_1__cl_i">(i)</ref> to
 
 ## Internal versus external
 
-A citation is external — a reference to some other instrument — when another
+A citation is external (a reference to some other instrument) when another
 instrument is named adjacent to it. External citations are left as plain text
 and counted separately in the report.
 
@@ -129,7 +129,7 @@ the context before the clause is looked up beneath it.
 
 ## Sections inside chapters
 
-In an Act with chapters a section is not at the top of the tree — section 208
+In an Act with chapters a section is not at the top of the tree: section 208
 of the BBMP Act has the eId `chp_XV__sec_208`. A citation of `section 208`
 matches on the last component of the identifier, provided that match is
 unambiguous.

@@ -95,7 +95,7 @@ att_1__hcontainer_1__subheading
 
 A schedule sits in a `<doc>` inside an `<attachment>`. The naming convention
 treats a document element as a fresh numbering context, so counters restart
-there, but identifiers keep the attachment's `eId` as their prefix — the
+there, but identifiers keep the attachment's `eId` as their prefix. The
 convention's own example is `doc_1__body` "in case of a composite document".
 
 ```
@@ -138,7 +138,7 @@ Which expression is the master is a question this parser does not answer.
 Karnataka Acts are enacted in Kannada, but Article 348(3) of the Constitution
 provides that an English translation published under the Governor's authority
 "shall be deemed to be the authoritative text thereof in the English
-language" — so the English text is not a mere derivative, and India does not
+language", so the English text is not a mere derivative, and India does not
 apply the equal-authenticity rule the way Canada, Switzerland and the EU do.
 The choice should be settled by legal advice before any expression renumbers
 provisions, because at that point `wId` becomes necessary and must carry the
@@ -171,7 +171,7 @@ Rules:
 
 - The country component is an ISO 3166-1 or 3166-2 code, lowercased. Karnataka
   is `in-ka`. It must equal the value of `<FRBRcountry>`.
-- The date in a **Work** URI is the full date the Work came into being — for an
+- The date in a **Work** URI is the full date the Work came into being; for an
   Act, the date of assent.
 - The date in an **Expression** URI is that expression's own date, after `@`.
   For a translation, its date of first publication.

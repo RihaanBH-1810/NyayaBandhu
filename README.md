@@ -14,6 +14,7 @@ gazette PDFs into validated Akoma Ntoso 3.0 XML.
 | --- | --- |
 | `scripts/akn-parser.py` | Command-line entry point |
 | `scripts/akn_parser/` | Parser implementation |
+| `webui/` | Local browser viewer for the generated XML |
 | `data/` | Source gazette PDFs |
 | `out/` | Generated Akoma Ntoso XML |
 | `schemas/` | OASIS Akoma Ntoso 3.0 XSD, used for validation |
@@ -69,6 +70,17 @@ Convert a single file:
 
 See [docs/cli.md](docs/cli.md) for the full command reference.
 
+## Viewing the output
+
+```bash
+.venv/Scripts/python webui/run.py
+```
+
+Opens a local browser viewer at `http://127.0.0.1:8000` for reading a
+converted Act, with cross-references as clickable links, a collapsible outline,
+raw XML, and the same validation report the CLI prints. See
+[docs/webui.md](docs/webui.md).
+
 ## Documentation
 
 | Document | Contents |
@@ -80,6 +92,7 @@ See [docs/cli.md](docs/cli.md) for the full command reference.
 | [docs/cross-references.md](docs/cross-references.md) | Citation detection and resolution |
 | [docs/languages.md](docs/languages.md) | Bilingual extraction and text encoding |
 | [docs/api.md](docs/api.md) | Using the parser as a Python library |
+| [docs/webui.md](docs/webui.md) | The local browser viewer |
 | [docs/troubleshooting.md](docs/troubleshooting.md) | Error messages and diagnostics |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Development setup and conventions |
 | [CHANGELOG.md](CHANGELOG.md) | Release history |
@@ -104,7 +117,7 @@ language is additionally carried as a Work-level `FRBRalias`. See
 [docs/languages.md](docs/languages.md#text-in-the-other-language).
 
 Converting legacy Nudi text to Unicode is supported through a pluggable
-interface, but **no converter ships with the parser** — a mapping table that
+interface, but **no converter ships with the parser**. A mapping table that
 has not been checked by a reader of Kannada would turn a visibly broken
 document into an invisibly wrong one. See
 [docs/languages.md](docs/languages.md#transliteration).

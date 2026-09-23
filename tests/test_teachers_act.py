@@ -1,6 +1,6 @@
 """
 End-to-end checks against the Karnataka State Civil Services (Regulation of
-Transfer of Teachers) Act, 2020 -- a bilingual gazette PDF whose English half
+Transfer of Teachers) Act, 2020: a bilingual gazette PDF whose English half
 runs from page 10 to page 19.
 """
 AKN = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0"

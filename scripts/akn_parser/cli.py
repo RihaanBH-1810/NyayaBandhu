@@ -81,6 +81,13 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def collect_pdfs(doc_type: str, subdir: str | None) -> list:
+    """Find every PDF for *doc_type* under ``data/``, sorted and de-duplicated.
+
+    Exits the process (via ``SystemExit``) rather than returning an empty
+    list when the data directory or a matching PDF is missing, since an empty
+    batch almost always means a path or ``--dir`` typo the caller should see
+    immediately rather than a silent no-op.
+    """
     roots = []
     for name in DOC_TYPE_DIRS[doc_type]:
         base = os.path.join(REPO_ROOT, "data", name)
@@ -105,6 +112,12 @@ def collect_pdfs(doc_type: str, subdir: str | None) -> list:
 
 
 def main(argv=None) -> int:
+    """Parse arguments, convert every selected PDF, and report the outcome.
+
+    Returns 0 unless ``--strict`` was given and at least one document failed
+    a check, so an unattended batch run's exit code reflects data quality
+    rather than merely whether the process crashed.
+    """
     args = build_parser().parse_args(argv)
 
     if args.pdf:
@@ -164,6 +177,8 @@ def main(argv=None) -> int:
 
 
 def _ranges(numbers: list) -> str:
+    """Collapse a sorted list of page numbers into spans, e.g. ``[1,2,3,5]``
+    -> ``"1-3, 5"``, for a compact "pages kept" report line."""
     if not numbers:
         return "none"
     spans, start, prev = [], numbers[0], numbers[0]

@@ -33,9 +33,9 @@ Registering a converter
 Known implementations that could be adapted (check their licences before
 vendoring):
 
-* ``aravindavk/ascii2unicode`` -- Python 3, supports Nudi and Baraha
-* ``looped-labs/asciikannada2unicode`` -- Java
-* Sanka, https://aravindavk.in/sanka/ -- browser tool by the same author
+* ``aravindavk/ascii2unicode``: Python 3, supports Nudi and Baraha
+* ``looped-labs/asciikannada2unicode``: Java
+* Sanka, https://aravindavk.in/sanka/: browser tool by the same author
 
 A converter must be a pure function of its input, must return Unicode text in
 the target script, and must raise or return ``None`` if it cannot convert the
@@ -89,8 +89,8 @@ def convert(text: str, lang: str, encoding: str,
     """Convert *text* out of a legacy encoding.
 
     Two different things are called "encoding" here and they are not
-    interchangeable.  ``encoding`` is the *state* of the codepoints -- one of
-    UNICODE, LEGACY, SUSPECT -- and decides **whether** conversion applies.
+    interchangeable.  ``encoding`` is the *state* of the codepoints (one of
+    UNICODE, LEGACY, SUSPECT) and decides **whether** conversion applies.
     ``font_encoding`` names the legacy glyph layout (``nudi``, ``shreelipi``)
     and decides **which** converter to use.
 

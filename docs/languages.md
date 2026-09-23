@@ -47,7 +47,7 @@ Font families recognised as legacy Kannada: `nudi`, `baraha`, `brh*`,
 `shreelipi`, `akshar`, `kannada`, `kailasam`, `sampige`, `nadanika`, `kedage`,
 `malige`. The pattern is `_LEGACY_KANNADA_FONTS` in `akn_parser/language.py`.
 
-Script-neutral spans — digits, punctuation, whitespace — are kept whichever
+Script-neutral spans (digits, punctuation, whitespace) are kept whichever
 language is requested. A page number set in a Kannada font does not drag the
 line out of the English text.
 
@@ -59,8 +59,8 @@ After spans are filtered, a page is kept when both hold:
 - those letters are at least 55% of its letters.
 
 Gaps inside the resulting run of pages are then re-admitted, so that a
-table-heavy page in the middle of an Act — which can fall below the letter
-threshold — is not dropped.
+table-heavy page in the middle of an Act, which can fall below the letter
+threshold, is not dropped.
 
 ```
     pages          : 10-19 of 19
@@ -92,8 +92,8 @@ the language and the state of its codepoints:
 | Tag | Meaning |
 | --- | --- |
 | `kn` | Kannada, in Kannada codepoints |
-| `kn-Latn-x-nudi` | Kannada, stored as Latin-1 bytes for a Nudi-family font — needs transliteration |
-| `kn-x-misencoded` | Kannada codepoints, but a measurable share of them belong to unrelated Unicode blocks — needs repair |
+| `kn-Latn-x-nudi` | Kannada, stored as Latin-1 bytes for a Nudi-family font; needs transliteration |
+| `kn-x-misencoded` | Kannada codepoints, but a measurable share of them belong to unrelated Unicode blocks; needs repair |
 
 These are BCP-47 tags. `kn-Latn-x-nudi` reads as: the Kannada language, written
 in the Latin script, in the private-use `nudi` encoding. A consumer can
@@ -122,7 +122,7 @@ codepoints in the wrong *block*, not glyphs in the wrong *order*.
 
 `mark` is appropriate where carrying unconverted bytes in a published document
 is unacceptable; the omission is still recorded in the XML rather than leaving
-a hole in the sentence. `keep` is a diagnostic aid — it produces documents
+a hole in the sentence. `keep` is a diagnostic aid. It produces documents
 that fail the untagged-script check and should not be published.
 
 Adjacent runs of the same language and encoding are merged into one element,
@@ -144,7 +144,7 @@ foreign text, it is also lifted into the metadata as a Work-level alias:
 ```
 
 It is a **Work**-level alias because it names the Work, which is the same
-Work the English expression belongs to — not a property of the English
+Work the English expression belongs to, not a property of the English
 expression alone.
 
 ## Transliteration
@@ -175,7 +175,7 @@ Contract:
 - A converter is a pure function of its input.
 - It returns Unicode text in the target script.
 - It raises, or returns `None`, if it cannot convert the input. It must never
-  return a partial result — the parser keeps the original text and its legacy
+  return a partial result. The parser keeps the original text and its legacy
   tag rather than accepting half a conversion.
 
 Existing implementations that could be adapted, subject to a licence check:
@@ -205,7 +205,7 @@ no usable text at all.
 ### Misencoded glyphs
 
 Raised for Kannada when at least 5% of the characters that should be Kannada
-came out in unrelated Unicode blocks — chiefly General Punctuation (`⁏`, `⁄`,
+came out in unrelated Unicode blocks, chiefly General Punctuation (`⁏`, `⁄`,
 `⁋`). This indicates that the embedded font's `ToUnicode` map is wrong or
 incomplete.
 
@@ -251,7 +251,7 @@ Every mature multilingual legal-XML programme models **each language as a
 separate Expression of the same Work**, never as parallel text inside one
 document:
 
-- **AKN4UN** gives each language its own Expression IRI —
+- **AKN4UN** gives each language its own Expression IRI:
   `…/A-RES-66-1/eng@2013-12-12`, `…/fra@2013-12-12`.
 - **Laws.Africa / Indigo** treats a Work as issued in multiple languages, one
   expression each.
@@ -262,8 +262,8 @@ That is already this parser's model: `--lang` selects which expression to
 emit, and the Kannada expression would be `…/kan@2020-03-27`, a separate
 document.
 
-Inline `xml:lang` is for *incidental* foreign text — a quoted name or term
-inside a sentence — which is exactly what the Kannada title in an English
+Inline `xml:lang` is for *incidental* foreign text, a quoted name or term
+inside a sentence, which is exactly what the Kannada title in an English
 notification is. It is not a way to carry parallel translations.
 
 Akoma Ntoso does define a `mul` language code for genuinely mixed documents

@@ -82,7 +82,7 @@ inline Kannada title still yields clean English.
 
 For each page:
 
-1. `page.find_tables()` locates tables. Rows are cleaned — empty rows dropped,
+1. `page.find_tables()` locates tables. Rows are cleaned: empty rows dropped,
    and a row whose first cell is empty is treated as a continuation of the row
    above. The result is encoded as a single JSON line prefixed with a sentinel
    character, so that later line re-flow cannot scramble it.
@@ -105,7 +105,7 @@ target language and they are at least 55% of its letters. Gaps inside the
 resulting run are re-admitted, so a table-heavy page in the middle of an Act is
 not lost.
 
-Finally `_check_encoding()` rejects text that cannot be trusted — see
+Finally `_check_encoding()` rejects text that cannot be trusted; see
 [languages.md](languages.md#encoding-checks).
 
 **Output:** a string containing prose, other-language tokens (`U+E002`),
@@ -129,7 +129,7 @@ Seven passes, in order:
 | `_merge_foreign_runs` | Join other-language tokens that a line break had split |
 
 `_reflow` is the substantive pass. A line begins a new logical line only when
-it opens a recognised structural unit — a section number, `(1)`, `(a)`, `(i)`,
+it opens a recognised structural unit: a section number, `(1)`, `(a)`, `(i)`,
 `Provided`, `Explanation`, `CHAPTER`, `SCHEDULE`, or an all-capitals heading.
 Matching is case sensitive: `NOTIFICATION` is a heading, `notification,
 appoint.` is the tail of a wrapped sentence.
@@ -170,8 +170,8 @@ as a two-letter alphabetic marker.
 | `heading` | An all-capitals line |
 | `text` | Anything else |
 
-A second pass, `_resolve_ambiguous`, settles `(i)`, `(v)` and `(x)` — the three
-markers valid in both a letter list and a roman list — using the nearest
+A second pass, `_resolve_ambiguous`, settles `(i)`, `(v)` and `(x)`, the three
+markers valid in both a letter list and a roman list, using the nearest
 enumerators before and after. See
 [akn-mapping.md](akn-mapping.md#ambiguous-enumerators).
 
@@ -201,7 +201,7 @@ Placement within the body:
 | --- | --- |
 | `section` | Close down to body/chapter/part, then push. Heading split at `.-`; an inline `(1)` becomes a real subsection. |
 | `subsection` | Close down to the section, then push. |
-| `alpha`, `roman` | `_pop_to_list()` — see below. Element name taken from the parent. |
+| `alpha`, `roman` | `_pop_to_list()`, described below. Element name taken from the parent. |
 | `proviso`, `explanation` | Close down to the nearest section or subsection. |
 | `table` | Added to the innermost node's block list, not its children. |
 | `text` | Appended to the innermost node. |
@@ -238,7 +238,7 @@ The renderer walks the tree. For each paragraph it calls
  Segment("text", " are eligible …")]
 ```
 
-Segments are of four kinds: `text`, `ref`, `omissis`, and `foreign` — the
+Segments are of four kinds: `text`, `ref`, `omissis`, and `foreign`, the
 last carrying a run of another language together with its encoding, which the
 renderer emits as a `<span xml:lang="…">` after offering it to any registered
 transliterator.
