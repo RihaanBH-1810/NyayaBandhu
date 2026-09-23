@@ -79,7 +79,7 @@ if /i "!SOURCE_DIR:~0,-1!" == "!INSTALL_DIR!" (
 ) else (
     if not exist "!INSTALL_DIR!" mkdir "!INSTALL_DIR!"
     :: Use robocopy to mirror the project, excluding .venv, .git and __pycache__
-    robocopy "!SOURCE_DIR!" "!INSTALL_DIR!" /e /xd .venv .git __pycache__ .pytest_cache /xf install.bat >nul 2>&1
+    robocopy "!SOURCE_DIR:~0,-1!" "!INSTALL_DIR!" /e /xd .venv .git __pycache__ .pytest_cache /xf install.bat >nul 2>&1
     :: Copy install.bat separately (robocopy excluded it because it's open)
     copy /y "!SOURCE_DIR!install.bat" "!INSTALL_DIR!\install.bat" >nul 2>&1
 )
