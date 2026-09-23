@@ -104,51 +104,8 @@ if exist "python\python.exe" (
     goto :python_ready
 )
 
-:: Try system Python
-set "SYS_PYTHON="
-where python >nul 2>&1
-if !errorlevel! equ 0 (
-    for /f "tokens=*" %%v in ('python -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')"') do set PYVER=%%v
-    for /f "tokens=1,2 delims=." %%a in ("!PYVER!") do (
-        set PYMAJOR=%%a
-        set PYMINOR=%%b
-    )
-
-    set "PYOK=0"
-    if !PYMAJOR! gtr 3 set "PYOK=1"
-    if !PYMAJOR! equ 3 if !PYMINOR! geq 9 set "PYOK=1"
-
-    if "!PYOK!" == "1" (
-        echo  Found Python !PYVER! on the system.
-        set "SYS_PYTHON=1"
-        set "USE_VENV=1"
-    ) else (
-        echo  Python !PYVER! found but 3.9+ is required — will download portable Python.
-    )
-)
-
-if defined SYS_PYTHON (
-    :: Use system Python with a virtual environment
-    if exist ".venv\Scripts\python.exe" (
-        echo  Virtual environment already exists.
-        set "PYTHON_EXE=!INSTALL_DIR!\.venv\Scripts\python.exe"
-    ) else (
-        echo  Creating virtual environment ...
-        python -m venv .venv
-        if !errorlevel! neq 0 (
-            echo  ERROR: Failed to create virtual environment.
-            pause
-            popd
-            exit /b 1
-        )
-        set "PYTHON_EXE=!INSTALL_DIR!\.venv\Scripts\python.exe"
-    )
-    goto :python_ready
-)
-
-:: ----- Download portable Python (no system Python found) -----
+:: ----- Download portable Python -----
 echo.
-echo  Python is not installed on this system.
 echo  Downloading portable Python (no installation required) ...
 echo  This is a one-time download of about 15 MB.
 echo.
@@ -230,33 +187,7 @@ echo  Done.
 echo.
 
 :: ------------------------------------------------------------------
-:: 5. Convert sample documents
-:: ------------------------------------------------------------------
-echo [5/6] Converting sample documents ...
-echo  (This may take a minute on the first run.)
-echo.
-
-:: Only convert if out/ is empty or missing
-set "HAS_XML=0"
-if exist "out\" (
-    for /f %%x in ('dir /b /s "out\*.xml" 2^>nul') do set "HAS_XML=1"
-)
-
-if "!HAS_XML!" == "0" (
-    "!PYTHON_EXE!" scripts/akn-parser.py -t base_act -l eng
-    if !errorlevel! neq 0 (
-        echo.
-        echo  WARNING: Document conversion finished with errors.
-        echo  The viewer will still work; you can convert documents
-        echo  from its interface instead.
-    )
-) else (
-    echo  Converted documents already exist — skipping.
-)
-echo.
-
-:: ------------------------------------------------------------------
-:: 6. Create desktop shortcut
+:: 5. Create desktop shortcut
 :: ------------------------------------------------------------------
 echo [6/6] Creating desktop shortcut ...
 

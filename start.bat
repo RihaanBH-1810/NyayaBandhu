@@ -24,16 +24,12 @@ echo.
 :: ------------------------------------------------------------------
 :: Find the Python interpreter
 :: ------------------------------------------------------------------
-:: Portable Python (downloaded by install.bat) takes priority over a
-:: system venv. Both are checked so the script works regardless of
-:: which path the installer took.
+:: Portable Python (downloaded by install.bat) is required.
 
 set "PYTHON_EXE="
 
 if exist "python\python.exe" (
     set "PYTHON_EXE=%~dp0python\python.exe"
-) else if exist ".venv\Scripts\python.exe" (
-    set "PYTHON_EXE=%~dp0.venv\Scripts\python.exe"
 )
 
 if not defined PYTHON_EXE (
@@ -43,22 +39,6 @@ if not defined PYTHON_EXE (
     echo.
     pause
     exit /b 1
-)
-
-:: ------------------------------------------------------------------
-:: Convert sample documents on first run
-:: ------------------------------------------------------------------
-set "HAS_XML=0"
-if exist "out\" (
-    for /f %%x in ('dir /b /s "out\*.xml" 2^>nul') do set "HAS_XML=1"
-)
-
-if "!HAS_XML!" == "0" (
-    echo  First run detected — converting sample documents ...
-    echo  (This may take a minute.)
-    echo.
-    "!PYTHON_EXE!" scripts/akn-parser.py -t base_act -l eng
-    echo.
 )
 
 :: ------------------------------------------------------------------
