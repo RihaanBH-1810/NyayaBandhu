@@ -45,7 +45,7 @@ set "PS_PICKER=%TEMP%\nb_pick.ps1"
 >> "!PS_PICKER!" echo $owner.TopMost = $true
 >> "!PS_PICKER!" echo $dlg = New-Object System.Windows.Forms.FolderBrowserDialog
 >> "!PS_PICKER!" echo $dlg.Description = 'Choose installation folder for NyayaBandhu'
->> "!PS_PICKER!" echo $dlg.SelectedPath = '!DEFAULT_DIR!'
+>> "!PS_PICKER!" echo $dlg.SelectedPath = "!DEFAULT_DIR!"
 >> "!PS_PICKER!" echo $dlg.ShowNewFolderButton = $true
 >> "!PS_PICKER!" echo $result = $dlg.ShowDialog^($owner^)
 >> "!PS_PICKER!" echo if ^($result -eq 'OK'^) { $dlg.SelectedPath } else { '' }
@@ -117,9 +117,7 @@ set "PY_DIR=!INSTALL_DIR!\python"
 set "PIP_URL=https://bootstrap.pypa.io/get-pip.py"
 
 :: Download the embeddable zip
-powershell -NoProfile -Command ^
-    "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; ^
-     Invoke-WebRequest -Uri '%PY_URL%' -OutFile '%PY_ZIP%'"
+powershell -NoProfile -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri '%PY_URL%' -OutFile '%PY_ZIP%'"
 
 if not exist "%PY_ZIP%" (
     echo.
@@ -147,9 +145,7 @@ for %%p in ("%PY_DIR%\python*._pth") do (
 
 :: Download and run get-pip.py
 echo  Setting up pip ...
-powershell -NoProfile -Command ^
-    "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; ^
-     Invoke-WebRequest -Uri '%PIP_URL%' -OutFile '%PY_DIR%\get-pip.py'"
+powershell -NoProfile -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri '%PIP_URL%' -OutFile '%PY_DIR%\get-pip.py'"
 
 "%PY_DIR%\python.exe" "%PY_DIR%\get-pip.py" --no-warn-script-location >nul 2>&1
 
@@ -187,7 +183,20 @@ echo  Done.
 echo.
 
 :: ------------------------------------------------------------------
-:: 5. Create desktop shortcut
+:: 5. Convert sample documents
+:: ------------------------------------------------------------------
+echo [5/6] Converting sample documents ...
+
+"!PYTHON_EXE!" scripts\akn-parser.py -t base_act -l eng >nul 2>&1
+if !errorlevel! neq 0 (
+    echo  WARNING: Failed to convert some sample documents.
+) else (
+    echo  Done.
+)
+echo.
+
+:: ------------------------------------------------------------------
+:: 6. Create desktop shortcut
 :: ------------------------------------------------------------------
 echo [6/6] Creating desktop shortcut ...
 
@@ -198,8 +207,8 @@ set "PS_SHORTCUT=%TEMP%\nb_shortcut.ps1"
 > "!PS_SHORTCUT!" echo $ws = New-Object -ComObject WScript.Shell
 >> "!PS_SHORTCUT!" echo $desktop = $ws.SpecialFolders^('Desktop'^)
 >> "!PS_SHORTCUT!" echo $sc = $ws.CreateShortcut^("$desktop\NyayaBandhu.lnk"^)
->> "!PS_SHORTCUT!" echo $sc.TargetPath = '!INSTALL_DIR!\start.bat'
->> "!PS_SHORTCUT!" echo $sc.WorkingDirectory = '!INSTALL_DIR!'
+>> "!PS_SHORTCUT!" echo $sc.TargetPath = "!INSTALL_DIR!\start.bat"
+>> "!PS_SHORTCUT!" echo $sc.WorkingDirectory = "!INSTALL_DIR!"
 >> "!PS_SHORTCUT!" echo $sc.Description = 'Open NyayaBandhu - Akoma Ntoso viewer'
 >> "!PS_SHORTCUT!" echo $sc.IconLocation = 'shell32.dll,1'
 >> "!PS_SHORTCUT!" echo $sc.Save^(^)
