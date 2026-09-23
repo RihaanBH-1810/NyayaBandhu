@@ -216,7 +216,7 @@ main {
    lines scroll inside their own column instead of the grid track growing
    to fit them (the usual cause of a lopsided, undraggable-looking split). */
 #viewer-panels.split-mode {
-  display: grid; grid-template-columns: 1fr 10px 1fr; align-items: start;
+  display: grid; grid-template-columns: 7fr 10px 3fr; align-items: start;
 }
 #viewer-panels.split-mode > .tab-panel { min-width: 0; }
 #viewer-panels.split-mode > .tab-panel[data-active="true"]:not(#tab-raw) { padding-right: var(--spacing-150); }
