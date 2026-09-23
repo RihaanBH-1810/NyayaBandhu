@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="/akn/in-ka/act/2020-12-19/53/eng@2020-12-21/!main.xml"/>
           <FRBRuri value="/akn/in-ka/act/2020-12-19/53/eng@2020-12-21.xml"/>
-          <FRBRdate date="2026-09-20" name="generation"/>
+          <FRBRdate date="2026-09-23" name="generation"/>
           <FRBRauthor href="#nyayabandhu"/>
           <FRBRformat value="xml"/>
         </FRBRManifestation>
@@ -11978,7 +11978,7 @@
               <FRBRManifestation>
                 <FRBRthis value="/akn/in-ka/act/2020-12-19/53/eng@2020-12-21/!schedule_1.xml"/>
                 <FRBRuri value="/akn/in-ka/act/2020-12-19/53/eng@2020-12-21.xml"/>
-                <FRBRdate date="2026-09-20" name="generation"/>
+                <FRBRdate date="2026-09-23" name="generation"/>
                 <FRBRauthor href="#nyayabandhu"/>
               </FRBRManifestation>
             </identification>
@@ -12360,7 +12360,7 @@
               <FRBRManifestation>
                 <FRBRthis value="/akn/in-ka/act/2020-12-19/53/eng@2020-12-21/!schedule_2.xml"/>
                 <FRBRuri value="/akn/in-ka/act/2020-12-19/53/eng@2020-12-21.xml"/>
-                <FRBRdate date="2026-09-20" name="generation"/>
+                <FRBRdate date="2026-09-23" name="generation"/>
                 <FRBRauthor href="#nyayabandhu"/>
               </FRBRManifestation>
             </identification>

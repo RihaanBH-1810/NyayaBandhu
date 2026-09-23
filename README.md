@@ -21,6 +21,8 @@ gazette PDFs into validated Akoma Ntoso 3.0 XML.
 | `config/` | Per-document metadata overrides |
 | `tests/` | Test suite |
 | `docs/` | Documentation |
+| `install.bat` | Windows installer (double-click to set up) |
+| `start.bat` | Windows launcher (double-click to open the viewer) |
 
 ## Requirements
 
@@ -39,6 +41,20 @@ python -m venv .venv
 ```
 
 On macOS and Linux the interpreter is `.venv/bin/python`.
+
+## Windows quick start
+
+If you are on Windows and want to get started without using a terminal:
+
+1. Double-click **`install.bat`**. It will let you pick a folder, set up
+   Python automatically (downloading a portable copy if needed), install
+   everything, convert the sample documents, and place a **NyayaBandhu**
+   shortcut on your desktop. No manual installation of anything is required.
+2. Double-click the **NyayaBandhu** desktop shortcut (or **`start.bat`**). The
+   viewer opens in your browser at `http://127.0.0.1:8000`.
+
+See [docs/installation.md](docs/installation.md) for the full walkthrough and
+troubleshooting.
 
 ## Quick start
 
@@ -85,6 +101,7 @@ raw XML, and the same validation report the CLI prints. See
 
 | Document | Contents |
 | --- | --- |
+| [docs/installation.md](docs/installation.md) | Windows installer and start script |
 | [docs/cli.md](docs/cli.md) | Command-line reference |
 | [docs/architecture.md](docs/architecture.md) | Pipeline stages and data flow |
 | [docs/akn-mapping.md](docs/akn-mapping.md) | How gazette structure maps to Akoma Ntoso elements |
