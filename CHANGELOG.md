@@ -7,6 +7,12 @@ All notable changes to the parser are recorded here. Format follows
 
 ### Added
 
+- Installable `akn_parser` package and `akn-parser` console command via
+  `pyproject.toml`; editable installation replaces runtime import-path changes
+  in the CLI entry point and tests (#3).
+- `--traceback` prints full document-processing tracebacks to stderr, including
+  with `--quiet`, while the default failure output remains concise (#9).
+
 - Validation against the OASIS Akoma Ntoso 3.0 XSD, vendored at
   `schemas/akomantoso30.xsd`. Every document is validated before it is written.
 - Checks the schema cannot perform: `eId` uniqueness and naming-convention
@@ -117,6 +123,11 @@ All notable changes to the parser are recorded here. Format follows
   `scripts/akn-parser.py` remains the entry point.
 
 ### Fixed
+
+- CLI rejects negative `--count` values, documents `--quiet`, and specifies
+  the PDF-path return type and command-line argument types (#4, #5, #6, #8).
+- Missing batch input raises `NoInputError` in `collect_pdfs()` and is handled
+  by `main()` with a diagnostic and exit status 1 (#7).
 
 - `-t amendment` looked for `data/amendments/` while the directory is named
   `data/ammendments/`. Both spellings are now accepted.

@@ -1,12 +1,14 @@
 # Command-line reference
 
-`scripts/akn-parser.py` converts legislative PDFs to Akoma Ntoso 3.0 XML.
+`akn-parser` converts legislative PDFs to Akoma Ntoso 3.0 XML. Install it
+with `python -m pip install -e .` from the repository root. The compatibility
+script `scripts/akn-parser.py` and `python -m akn_parser.cli` also work.
 
 ```
 akn-parser [-h] (-t {amendment,base_act} | --pdf PDF) [-l {eng,kan}]
            [-d SUBDIR] [-n COUNT] [--foreign {tag,mark,omit,keep}]
            [--out OUT] [--schema SCHEMA] [--overrides OVERRIDES]
-           [--no-validate] [--strict] [--keep-text] [--quiet]
+           [--no-validate] [--strict] [--keep-text] [--quiet] [--traceback]
 ```
 
 Exactly one of `-t` or `--pdf` is required.
@@ -20,7 +22,7 @@ Exactly one of `-t` or `--pdf` is required.
 | `-t`, `--type {base_act,amendment}` | Process every PDF of this document type. `base_act` reads `data/v0s/`; `amendment` reads `data/amendments/` or `data/ammendments/`, whichever exists. |
 | `--pdf PATH` | Process a single PDF instead. |
 | `-d`, `--dir SUBDIR` | Restrict `-t` to one subdirectory, e.g. `-d kan_eng`. Default: all subdirectories, searched recursively. |
-| `-n`, `--count N` | Process at most `N` PDFs. `0` (default) means all. |
+| `-n`, `--count N` | Process at most `N` PDFs. `0` (default) means all; negative values are rejected. |
 
 ### Language
 
@@ -55,7 +57,7 @@ One XML file is written per input PDF, named after the source file.
 | --- | --- |
 | `--schema PATH` | Akoma Ntoso XSD to validate against. Default `schemas/akomantoso30.xsd`. |
 | `--no-validate` | Skip schema validation. Other checks still run. |
-| `--strict` | Exit with status 1 if any document fails a check. Without it the exit status is 0 as long as every document was written. |
+| `--strict` | Exit with status 1 if any document fails a check or cannot be parsed. Without it, individual document failures do not change the exit status. |
 
 ### Metadata
 
@@ -67,7 +69,8 @@ One XML file is written per input PDF, named after the source file.
 
 | Option | Description |
 | --- | --- |
-| `--quiet` | Suppress per-document progress output. |
+| `--quiet` | Suppress progress, reports, and concise failure messages. |
+| `--traceback` | Print full tracebacks to stderr for document-processing failures, even with `--quiet`. Processing continues with the next PDF. |
 | `-h`, `--help` | Show usage and exit. |
 
 ## Output report
@@ -103,8 +106,9 @@ see [troubleshooting.md](troubleshooting.md).
 
 | Status | Meaning |
 | --- | --- |
-| `0` | All documents were written. With `--strict`, also that all checks passed. |
-| `1` | With `--strict`, at least one document failed a check or could not be parsed. |
+| `0` | Batch completed. Without `--strict`, individual document failures do not change the exit status. |
+| `1` | No input data directory or matching PDFs; or, with `--strict`, at least one document failed a check or could not be parsed. |
+| `2` | Invalid command-line arguments, including a negative `--count`. |
 
 ## Examples
 

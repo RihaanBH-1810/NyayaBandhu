@@ -36,9 +36,15 @@ python -m venv .venv
 
 ```bash
 .venv/Scripts/python -m pip install -r requirements.txt
+.venv/Scripts/python -m pip install -e .
 ```
 
 On macOS and Linux the interpreter is `.venv/bin/python`.
+
+The editable install provides the `akn-parser` command in the virtual
+environment and makes `akn_parser` importable. Keep the checkout available:
+the parser uses its `data/`, `schemas/`, and `config/` directories.
+You can also run `.venv/Scripts/python -m akn_parser.cli --help`.
 
 ## Quick start
 
