@@ -60,7 +60,7 @@ async function change(save) {
     $('draft-html').innerHTML = result.html;
     showPanel('changes');
     showMessage(save ? `Saved revision ${result.revision}` : 'Preview is valid. Save to keep it.');
-    if (save) { await refresh(); await select(selected); }
+    if (save) { await refresh(); await select(result.selected_eid || draft.outline.find(n => n.tag === 'section')?.eid); }
   } catch (error) { showMessage(error.message); }
 }
 document.querySelectorAll('.review-tabs button').forEach(b => b.onclick = () => showPanel(b.dataset.panel));

@@ -177,14 +177,15 @@ def original_xml(draft_id: str):
 def provision(draft_id: str, eid: str):
     folder = _folder(draft_id)
     state = _state(folder)
-    original = _node(_parse((folder / "source.xml").read_bytes()), eid)
+    original_matches = _parse((folder / "source.xml").read_bytes()).xpath("//*[@eId=$eid]", eid=eid)
+    original = original_matches[0] if original_matches else None
     current = _node(_parse((folder / f"revision-{state['revision']}.xml").read_bytes()), eid)
     from webui import review_editor
     editor = review_editor.prepare(current)
     return {"eid": eid, "revision": state["revision"], "editor": editor,
-            "original_xml": etree.tostring(original, encoding="unicode", pretty_print=True),
+            "original_xml": etree.tostring(original, encoding="unicode", pretty_print=True) if original is not None else "No provision with this identifier in the source snapshot.",
             "draft_xml": etree.tostring(current, encoding="unicode", pretty_print=True),
-            "original_html": akn_view._render_block(original),
+            "original_html": akn_view._render_block(original) if original is not None else "",
             "draft_html": akn_view._render_block(current)}
 
 
@@ -197,20 +198,30 @@ def _change(draft_id: str, body: Change, persist: bool):
         raw = (folder / f"revision-{state['revision']}.xml").read_bytes()
         root = _parse(raw)
         target = _node(root, body.eid)
+        before_document = etree.tostring(root, encoding="unicode", pretty_print=True)
         before = etree.tostring(target, encoding="unicode", pretty_print=True)
         from webui import review_editor
         try:
             description = review_editor.edit(root, target, body.payload)
         except ValueError as exc:
             raise HTTPException(422, str(exc)) from exc
-        after_node = _node(root, body.eid) if root.xpath("//*[@eId=$eid]", eid=body.eid) else None
+        # Structural actions may change the selected eId. Keep the actual
+        # edited node for the diff; Bluebell replacements retain the old eId.
+        after_node = target if target.getparent() is not None else None
+        if after_node is None:
+            found = root.xpath("//*[@eId=$eid]", eid=body.eid)
+            after_node = found[0] if found else None
         after = etree.tostring(after_node, encoding="unicode", pretty_print=True) if after_node is not None else "(removed)"
         report = _report(root)
         if not report["ok"]:
             raise HTTPException(422, {"message": "XML validation failed", "validation": report})
         diff = "\n".join(difflib.unified_diff(before.splitlines(), after.splitlines(), fromfile="before", tofile="after", lineterm=""))
+        if not diff:
+            after_document = etree.tostring(root, encoding="unicode", pretty_print=True)
+            diff = "\n".join(difflib.unified_diff(before_document.splitlines(), after_document.splitlines(), fromfile="before", tofile="after", lineterm=""))
         result = {"description": description, "diff": diff, "validation": report,
-                  "html": akn_view._render_block(after_node) if after_node is not None else ""}
+                  "html": akn_view._render_block(after_node) if after_node is not None else "",
+                  "selected_eid": after_node.get("eId") if after_node is not None else None}
         if persist:
             next_revision = state["revision"] + 1
             _atomic(folder / f"revision-{next_revision}.xml", _xml(root))
