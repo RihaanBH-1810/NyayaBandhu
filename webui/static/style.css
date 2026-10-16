@@ -433,3 +433,8 @@ main:has(.review-grid) { max-width: none; }
 #editor textarea { width:100%; min-height:18rem; font: .9rem/1.5 monospace; padding:.7rem; }
 #review-message { color:#7a351b; min-height:1.5rem; }
 @media(max-width:800px){ .review-grid{display:block}.review-nav{height:12rem;position:static;margin-bottom:1rem} }
+.visual-field { border:1px solid #c8ccd1; padding:.6rem; margin:.5rem 0; line-height:2; }
+.visual-field strong { display:block; font-size:.8rem; color:#54595d; }
+.visual-text { display:inline-block; min-width:1.5rem; padding:.1rem .25rem; background:#fff; border-bottom:1px dotted #36c; white-space:pre-wrap; }
+.visual-text:focus { outline:2px solid #36c; }
+.visual-protected { display:inline-block; padding:.1rem .25rem; background:#fdf2d5; border:1px solid #b9944a; border-radius:.2rem; white-space:pre-wrap; }
