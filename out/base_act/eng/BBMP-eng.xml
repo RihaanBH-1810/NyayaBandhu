@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="/akn/in-ka/act/2020-12-19/53/eng@2020-12-21/!main.xml"/>
           <FRBRuri value="/akn/in-ka/act/2020-12-19/53/eng@2020-12-21.xml"/>
-          <FRBRdate date="2026-09-23" name="generation"/>
+          <FRBRdate date="2026-10-06" name="generation"/>
           <FRBRauthor href="#nyayabandhu"/>
           <FRBRformat value="xml"/>
         </FRBRManifestation>
@@ -902,7 +902,7 @@
             </clause>
             <proviso eId="chp_III__sec_7__subsec_3__proviso_1">
               <content eId="chp_III__sec_7__subsec_3__proviso_1__content">
-                <p eId="chp_III__sec_7__subsec_3__proviso_1__content__p_1">Provided that the number of seats so reserved for the Backward Classes under this sub-section shall be so determined, that the total number of seats reserved for the Scheduled Castes and Schedule Tribes under sub-section(2) and the Backward Classes under this sub-section shall not exceed one third of the total number of seats in the Corporation.</p>
+                <p eId="chp_III__sec_7__subsec_3__proviso_1__content__p_1">Provided that the number of seats so reserved for the Backward Classes under this sub-section shall be so determined, that the total number of seats reserved for the Scheduled Castes and Schedule Tribes under <ref eId="chp_III__sec_7__subsec_3__proviso_1__content__p_1__ref_1" href="#chp_III__sec_7__subsec_2">sub-section(2)</ref> and the Backward Classes under this sub-section shall not exceed one third of the total number of seats in the Corporation.</p>
               </content>
             </proviso>
           </subsection>
@@ -957,22 +957,22 @@
               </subclause>
             </clause>
             <proviso eId="chp_III__sec_8__subsec_1__proviso_1">
-              <intro eId="chp_III__sec_8__subsec_1__proviso_1__intro">
-                <p eId="chp_III__sec_8__subsec_1__proviso_1__intro__p_1">Provided that, the persons referred to in <ref eId="chp_III__sec_8__subsec_1__proviso_1__intro__p_1__ref_1" href="#chp_III__sec_8__subsec_1__cl_b">clause (b)</ref> shall not have right to vote in the meetings of the Corporation.</p>
-              </intro>
-              <clause eId="chp_III__sec_8__subsec_1__proviso_1__cl_c">
-                <num>(c)</num>
-                <content eId="chp_III__sec_8__subsec_1__proviso_1__cl_c__content">
-                  <p eId="chp_III__sec_8__subsec_1__proviso_1__cl_c__content__p_1">The Members of the House of people whose constituencies are within the area of the Corporation and the Members of the Council of States who are registered as voters in the Corporation.</p>
-                </content>
-              </clause>
-              <clause eId="chp_III__sec_8__subsec_1__proviso_1__cl_d">
-                <num>(d)</num>
-                <content eId="chp_III__sec_8__subsec_1__proviso_1__cl_d__content">
-                  <p eId="chp_III__sec_8__subsec_1__proviso_1__cl_d__content__p_1">The Members of Legislative Assembly whose constituencies are within the area of the Corporation and the Members of Legislative Council who are registered as voters in the Corporation.</p>
-                </content>
-              </clause>
+              <content eId="chp_III__sec_8__subsec_1__proviso_1__content">
+                <p eId="chp_III__sec_8__subsec_1__proviso_1__content__p_1">Provided that, the persons referred to in <ref eId="chp_III__sec_8__subsec_1__proviso_1__content__p_1__ref_1" href="#chp_III__sec_8__subsec_1__cl_b">clause (b)</ref> shall not have right to vote in the meetings of the Corporation.</p>
+              </content>
             </proviso>
+            <clause eId="chp_III__sec_8__subsec_1__cl_c">
+              <num>(c)</num>
+              <content eId="chp_III__sec_8__subsec_1__cl_c__content">
+                <p eId="chp_III__sec_8__subsec_1__cl_c__content__p_1">The Members of the House of people whose constituencies are within the area of the Corporation and the Members of the Council of States who are registered as voters in the Corporation.</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_8__subsec_1__cl_d">
+              <num>(d)</num>
+              <content eId="chp_III__sec_8__subsec_1__cl_d__content">
+                <p eId="chp_III__sec_8__subsec_1__cl_d__content__p_1">The Members of Legislative Assembly whose constituencies are within the area of the Corporation and the Members of Legislative Council who are registered as voters in the Corporation.</p>
+              </content>
+            </clause>
           </subsection>
           <subsection eId="chp_III__sec_8__subsec_2">
             <num>(2)</num>
@@ -999,7 +999,7 @@
             </intro>
             <proviso eId="chp_III__sec_8__subsec_3__proviso_1">
               <content eId="chp_III__sec_8__subsec_3__proviso_1__content">
-                <p eId="chp_III__sec_8__subsec_3__proviso_1__content__p_1">Provided that, the number of seats so reserved for the Backward Classes under this sub-section shall be so determined, that the total number of seats reserved for the Scheduled Castes and Schedule Tribes under sub-section(3) and the backward classes under this sub-section shall not exceed one third of the total number of seats in the Corporation.</p>
+                <p eId="chp_III__sec_8__subsec_3__proviso_1__content__p_1">Provided that, the number of seats so reserved for the Backward Classes under this sub-section shall be so determined, that the total number of seats reserved for the Scheduled Castes and Schedule Tribes under <ref eId="chp_III__sec_8__subsec_3__proviso_1__content__p_1__ref_1" href="#chp_III__sec_8__subsec_3">sub-section(3)</ref> and the backward classes under this sub-section shall not exceed one third of the total number of seats in the Corporation.</p>
               </content>
             </proviso>
             <proviso eId="chp_III__sec_8__subsec_3__proviso_2">
@@ -1288,94 +1288,94 @@
               </clause>
               <clause eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii">
                 <num>(ii)</num>
-                <intro eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__intro">
-                  <p eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__intro__p_1">such sentence has not been reversed or quashed or the offence not pardoned; or</p>
-                </intro>
-                <subclause eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_b">
-                  <num>(b)</num>
-                  <content eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_b__content">
-                    <p eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_b__content__p_1">is so disqualified under any provision of the Constitution or by or under any law for the time being in force relating to elections to the State Legislative Assembly; or</p>
-                  </content>
-                </subclause>
-                <subclause eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_c">
-                  <num>(c)</num>
-                  <content eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_c__content">
-                    <p eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_c__content__p_1">if he holds any office of profit under the Government of India or the Government of any State specified in the first schedule to the Constitution of India, or under any local or other authority subject to the control of any of the said Governments other than such offices as are declared by rules made under this Act not to disqualify the holder; or</p>
-                  </content>
-                </subclause>
-                <subclause eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_d">
-                  <num>(d)</num>
-                  <content eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_d__content">
-                    <p eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_d__content__p_1">if he has been dismissed from service under a local authority or from Government service; or</p>
-                  </content>
-                </subclause>
-                <subclause eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_e">
-                  <num>(e)</num>
-                  <content eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_e__content">
-                    <p eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_e__content__p_1">if, having been a legal practitioner, he has been dismissed or suspended from practice by order of a competent authority, the disqualification in the latter case being operative during the period of such suspension; or</p>
-                  </content>
-                </subclause>
-                <subclause eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_f">
-                  <num>(f)</num>
-                  <content eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_f__content">
-                    <p eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_f__content__p_1">if is he is of unsound mind and stands so declared by a competent court; or</p>
-                  </content>
-                </subclause>
-                <subclause eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_g">
-                  <num>(g)</num>
-                  <content eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_g__content">
-                    <p eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_g__content__p_1">if he is an un-discharged insolvent; or</p>
-                  </content>
-                </subclause>
-                <subclause eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_h">
-                  <num>(h)</num>
-                  <content eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_h__content">
-                    <p eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_h__content__p_1">if he is not a citizen of India or has voluntarily acquired the citizenship of a foreign State; or</p>
-                  </content>
-                </subclause>
-                <subclause eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_i">
-                  <num>(i)</num>
-                  <content eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_i__content">
-                    <p eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__subcl_i__content__p_1">if he is so disqualified by any law for the time being in force for the purposes of election to the State Legislature:</p>
-                  </content>
-                </subclause>
+                <content eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__content">
+                  <p eId="chp_IV__sec_19__subsec_1__proviso_1__cl_ii__content__p_1">such sentence has not been reversed or quashed or the offence not pardoned; or</p>
+                </content>
               </clause>
             </proviso>
+            <clause eId="chp_IV__sec_19__subsec_1__cl_b">
+              <num>(b)</num>
+              <content eId="chp_IV__sec_19__subsec_1__cl_b__content">
+                <p eId="chp_IV__sec_19__subsec_1__cl_b__content__p_1">is so disqualified under any provision of the Constitution or by or under any law for the time being in force relating to elections to the State Legislative Assembly; or</p>
+              </content>
+            </clause>
+            <clause eId="chp_IV__sec_19__subsec_1__cl_c">
+              <num>(c)</num>
+              <content eId="chp_IV__sec_19__subsec_1__cl_c__content">
+                <p eId="chp_IV__sec_19__subsec_1__cl_c__content__p_1">if he holds any office of profit under the Government of India or the Government of any State specified in the first schedule to the Constitution of India, or under any local or other authority subject to the control of any of the said Governments other than such offices as are declared by rules made under this Act not to disqualify the holder; or</p>
+              </content>
+            </clause>
+            <clause eId="chp_IV__sec_19__subsec_1__cl_d">
+              <num>(d)</num>
+              <content eId="chp_IV__sec_19__subsec_1__cl_d__content">
+                <p eId="chp_IV__sec_19__subsec_1__cl_d__content__p_1">if he has been dismissed from service under a local authority or from Government service; or</p>
+              </content>
+            </clause>
+            <clause eId="chp_IV__sec_19__subsec_1__cl_e">
+              <num>(e)</num>
+              <content eId="chp_IV__sec_19__subsec_1__cl_e__content">
+                <p eId="chp_IV__sec_19__subsec_1__cl_e__content__p_1">if, having been a legal practitioner, he has been dismissed or suspended from practice by order of a competent authority, the disqualification in the latter case being operative during the period of such suspension; or</p>
+              </content>
+            </clause>
+            <clause eId="chp_IV__sec_19__subsec_1__cl_f">
+              <num>(f)</num>
+              <content eId="chp_IV__sec_19__subsec_1__cl_f__content">
+                <p eId="chp_IV__sec_19__subsec_1__cl_f__content__p_1">if is he is of unsound mind and stands so declared by a competent court; or</p>
+              </content>
+            </clause>
+            <clause eId="chp_IV__sec_19__subsec_1__cl_g">
+              <num>(g)</num>
+              <content eId="chp_IV__sec_19__subsec_1__cl_g__content">
+                <p eId="chp_IV__sec_19__subsec_1__cl_g__content__p_1">if he is an un-discharged insolvent; or</p>
+              </content>
+            </clause>
+            <clause eId="chp_IV__sec_19__subsec_1__cl_h">
+              <num>(h)</num>
+              <content eId="chp_IV__sec_19__subsec_1__cl_h__content">
+                <p eId="chp_IV__sec_19__subsec_1__cl_h__content__p_1">if he is not a citizen of India or has voluntarily acquired the citizenship of a foreign State; or</p>
+              </content>
+            </clause>
+            <clause eId="chp_IV__sec_19__subsec_1__cl_i">
+              <num>(i)</num>
+              <content eId="chp_IV__sec_19__subsec_1__cl_i__content">
+                <p eId="chp_IV__sec_19__subsec_1__cl_i__content__p_1">if he is so disqualified by any law for the time being in force for the purposes of election to the State Legislature:</p>
+              </content>
+            </clause>
             <proviso eId="chp_IV__sec_19__subsec_1__proviso_2">
-              <intro eId="chp_IV__sec_19__subsec_1__proviso_2__intro">
-                <p eId="chp_IV__sec_19__subsec_1__proviso_2__intro__p_1">Provided that, no person shall be disqualified on the ground that he is less than twenty five years if he has attained the age of twenty one years.</p>
-              </intro>
-              <clause eId="chp_IV__sec_19__subsec_1__proviso_2__cl_j">
-                <num>(j)</num>
-                <content eId="chp_IV__sec_19__subsec_1__proviso_2__cl_j__content">
-                  <p eId="chp_IV__sec_19__subsec_1__proviso_2__cl_j__content__p_1">If he has, directly or indirectly, by himself or his partner, any share or interest in any work done by order of the Corporation, or in any contract or employment with or under, or by or on behalf of the Corporation.</p>
-                </content>
-              </clause>
-              <clause eId="chp_IV__sec_19__subsec_1__proviso_2__cl_k">
-                <num>(k)</num>
-                <intro eId="chp_IV__sec_19__subsec_1__proviso_2__cl_k__intro">
-                  <p eId="chp_IV__sec_19__subsec_1__proviso_2__cl_k__intro__p_1">if he has in proceedings questioning the validity or regularity of an election been found to have been guilty of,-</p>
-                </intro>
-                <subclause eId="chp_IV__sec_19__subsec_1__proviso_2__cl_k__subcl_i">
-                  <num>(i)</num>
-                  <content eId="chp_IV__sec_19__subsec_1__proviso_2__cl_k__subcl_i__content">
-                    <p eId="chp_IV__sec_19__subsec_1__proviso_2__cl_k__subcl_i__content__p_1">any corrupt practice, or</p>
-                  </content>
-                </subclause>
-                <subclause eId="chp_IV__sec_19__subsec_1__proviso_2__cl_k__subcl_ii">
-                  <num>(ii)</num>
-                  <content eId="chp_IV__sec_19__subsec_1__proviso_2__cl_k__subcl_ii__content">
-                    <p eId="chp_IV__sec_19__subsec_1__proviso_2__cl_k__subcl_ii__content__p_1">any offence punishable under section 171E or section 171F of the Indian Penal Code 1860, or any offences pertaining to election unless a period of six years has elapsed since the date of the finding or the disqualification has been removed by order by the Government:</p>
-                  </content>
-                </subclause>
-              </clause>
-              <clause eId="chp_IV__sec_19__subsec_1__proviso_2__cl_l">
-                <num>(l)</num>
-                <content eId="chp_IV__sec_19__subsec_1__proviso_2__cl_l__content">
-                  <p eId="chp_IV__sec_19__subsec_1__proviso_2__cl_l__content__p_1">If he fails to file Accounts of election expenses intime.</p>
-                </content>
-              </clause>
+              <content eId="chp_IV__sec_19__subsec_1__proviso_2__content">
+                <p eId="chp_IV__sec_19__subsec_1__proviso_2__content__p_1">Provided that, no person shall be disqualified on the ground that he is less than twenty five years if he has attained the age of twenty one years.</p>
+              </content>
             </proviso>
+            <clause eId="chp_IV__sec_19__subsec_1__cl_j">
+              <num>(j)</num>
+              <content eId="chp_IV__sec_19__subsec_1__cl_j__content">
+                <p eId="chp_IV__sec_19__subsec_1__cl_j__content__p_1">If he has, directly or indirectly, by himself or his partner, any share or interest in any work done by order of the Corporation, or in any contract or employment with or under, or by or on behalf of the Corporation.</p>
+              </content>
+            </clause>
+            <clause eId="chp_IV__sec_19__subsec_1__cl_k">
+              <num>(k)</num>
+              <intro eId="chp_IV__sec_19__subsec_1__cl_k__intro">
+                <p eId="chp_IV__sec_19__subsec_1__cl_k__intro__p_1">if he has in proceedings questioning the validity or regularity of an election been found to have been guilty of,-</p>
+              </intro>
+              <subclause eId="chp_IV__sec_19__subsec_1__cl_k__subcl_i">
+                <num>(i)</num>
+                <content eId="chp_IV__sec_19__subsec_1__cl_k__subcl_i__content">
+                  <p eId="chp_IV__sec_19__subsec_1__cl_k__subcl_i__content__p_1">any corrupt practice, or</p>
+                </content>
+              </subclause>
+              <subclause eId="chp_IV__sec_19__subsec_1__cl_k__subcl_ii">
+                <num>(ii)</num>
+                <content eId="chp_IV__sec_19__subsec_1__cl_k__subcl_ii__content">
+                  <p eId="chp_IV__sec_19__subsec_1__cl_k__subcl_ii__content__p_1">any offence punishable under section 171E or section 171F of the Indian Penal Code 1860, or any offences pertaining to election unless a period of six years has elapsed since the date of the finding or the disqualification has been removed by order by the Government:</p>
+                </content>
+              </subclause>
+            </clause>
+            <clause eId="chp_IV__sec_19__subsec_1__cl_l">
+              <num>(l)</num>
+              <content eId="chp_IV__sec_19__subsec_1__cl_l__content">
+                <p eId="chp_IV__sec_19__subsec_1__cl_l__content__p_1">If he fails to file Accounts of election expenses intime.</p>
+              </content>
+            </clause>
           </subsection>
           <subsection eId="chp_IV__sec_19__subsec_2">
             <num>(2)</num>
@@ -3959,7 +3959,7 @@
             <clause eId="chp_VI__sec_105__subsec_1__cl_b">
               <num>(b)</num>
               <content eId="chp_VI__sec_105__subsec_1__cl_b__content">
-                <p eId="chp_VI__sec_105__subsec_1__cl_b__content__p_1">the procedure to be followed in imposing any penalty under <ref eId="chp_VI__sec_105__subsec_1__cl_b__content__p_1__ref_1" href="#chp_VI__sec_104__subsec_1">sub-section (1) of section 104</ref>, suspension pending departmental inquires before the imposition of such penalty and the authority by whom such suspensions may be ordered; the officer or authority to whom an appeal shall lie under <ref eId="chp_VI__sec_105__subsec_1__cl_b__content__p_1__ref_2" href="#chp_VI__sec_104__subsec_4">sub-section (4)</ref> of that section;</p>
+                <p eId="chp_VI__sec_105__subsec_1__cl_b__content__p_1">the procedure to be followed in imposing any penalty under <ref eId="chp_VI__sec_105__subsec_1__cl_b__content__p_1__ref_1" href="#chp_VI__sec_104__subsec_1">sub-section (1) of section 104</ref>, suspension pending departmental inquires before the imposition of such penalty and the authority by whom such suspensions may be ordered; the officer or authority to whom an appeal shall lie under sub-section (4) of that section;</p>
               </content>
             </clause>
             <clause eId="chp_VI__sec_105__subsec_1__cl_c">
@@ -5752,34 +5752,34 @@
               </content>
             </proviso>
             <proviso eId="chp_XIII__sec_153__subsec_1__proviso_2">
-              <intro eId="chp_XIII__sec_153__subsec_1__proviso_2__intro">
-                <p eId="chp_XIII__sec_153__subsec_1__proviso_2__intro__p_1">Provided further that no property tax shall be payable in respect of premises owned by the Corporation and occupied by any person on payment of rent.</p>
-              </intro>
-              <clause eId="chp_XIII__sec_153__subsec_1__proviso_2__cl_b">
-                <num>(b)</num>
-                <intro eId="chp_XIII__sec_153__subsec_1__proviso_2__cl_b__intro">
-                  <p eId="chp_XIII__sec_153__subsec_1__proviso_2__cl_b__intro__p_1">if the premises are not so held,-</p>
-                </intro>
-                <subclause eId="chp_XIII__sec_153__subsec_1__proviso_2__cl_b__subcl_i">
-                  <num>(i)</num>
-                  <content eId="chp_XIII__sec_153__subsec_1__proviso_2__cl_b__subcl_i__content">
-                    <p eId="chp_XIII__sec_153__subsec_1__proviso_2__cl_b__subcl_i__content__p_1">from the lessor if the premises are let;</p>
-                  </content>
-                </subclause>
-                <subclause eId="chp_XIII__sec_153__subsec_1__proviso_2__cl_b__subcl_ii">
-                  <num>(ii)</num>
-                  <content eId="chp_XIII__sec_153__subsec_1__proviso_2__cl_b__subcl_ii__content">
-                    <p eId="chp_XIII__sec_153__subsec_1__proviso_2__cl_b__subcl_ii__content__p_1">from the superior lessor is the premises are sub-let;</p>
-                  </content>
-                </subclause>
-                <subclause eId="chp_XIII__sec_153__subsec_1__proviso_2__cl_b__subcl_iii">
-                  <num>(iii)</num>
-                  <content eId="chp_XIII__sec_153__subsec_1__proviso_2__cl_b__subcl_iii__content">
-                    <p eId="chp_XIII__sec_153__subsec_1__proviso_2__cl_b__subcl_iii__content__p_1">from the person in whom the right to let the premises vests, if they are unlet.</p>
-                  </content>
-                </subclause>
-              </clause>
+              <content eId="chp_XIII__sec_153__subsec_1__proviso_2__content">
+                <p eId="chp_XIII__sec_153__subsec_1__proviso_2__content__p_1">Provided further that no property tax shall be payable in respect of premises owned by the Corporation and occupied by any person on payment of rent.</p>
+              </content>
             </proviso>
+            <clause eId="chp_XIII__sec_153__subsec_1__cl_b">
+              <num>(b)</num>
+              <intro eId="chp_XIII__sec_153__subsec_1__cl_b__intro">
+                <p eId="chp_XIII__sec_153__subsec_1__cl_b__intro__p_1">if the premises are not so held,-</p>
+              </intro>
+              <subclause eId="chp_XIII__sec_153__subsec_1__cl_b__subcl_i">
+                <num>(i)</num>
+                <content eId="chp_XIII__sec_153__subsec_1__cl_b__subcl_i__content">
+                  <p eId="chp_XIII__sec_153__subsec_1__cl_b__subcl_i__content__p_1">from the lessor if the premises are let;</p>
+                </content>
+              </subclause>
+              <subclause eId="chp_XIII__sec_153__subsec_1__cl_b__subcl_ii">
+                <num>(ii)</num>
+                <content eId="chp_XIII__sec_153__subsec_1__cl_b__subcl_ii__content">
+                  <p eId="chp_XIII__sec_153__subsec_1__cl_b__subcl_ii__content__p_1">from the superior lessor is the premises are sub-let;</p>
+                </content>
+              </subclause>
+              <subclause eId="chp_XIII__sec_153__subsec_1__cl_b__subcl_iii">
+                <num>(iii)</num>
+                <content eId="chp_XIII__sec_153__subsec_1__cl_b__subcl_iii__content">
+                  <p eId="chp_XIII__sec_153__subsec_1__cl_b__subcl_iii__content__p_1">from the person in whom the right to let the premises vests, if they are unlet.</p>
+                </content>
+              </subclause>
+            </clause>
           </subsection>
           <subsection eId="chp_XIII__sec_153__subsec_2">
             <num>(2)</num>
@@ -6773,9 +6773,13 @@
         </section>
         <section eId="chp_XIV__sec_194">
           <num>194.</num>
-          <intro eId="chp_XIV__sec_194__intro">
-            <p eId="chp_XIV__sec_194__intro__p_1">Budget estimates to be prepared by the standing committee for taxation, finance and appeals or as the case may be, standing committee for taxation and finance .- (1) The standing committee for taxation and finance and appeal shall, on or as soon as may be, after the fifteenth day of January consider the estimates and proposals of the chief Commissioner and after having obtained proposals, if any, of other standing committees and such further detailed information, if any, as it shall think fit to require from the chief Commissioner and having regard to all the requirements of this Act, shall prepare there from, subject to such modifications and additions therein or thereto as it shall think fit, a budget estimate of the income and expenditure of the corporation for the next year.</p>
-          </intro>
+          <heading>Budget estimates to be prepared by the standing committee for taxation, finance and appeals or as the case may be, standing committee for taxation and finance</heading>
+          <subsection eId="chp_XIV__sec_194__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_XIV__sec_194__subsec_1__content">
+              <p eId="chp_XIV__sec_194__subsec_1__content__p_1">The standing committee for taxation and finance and appeal shall, on or as soon as may be, after the fifteenth day of January consider the estimates and proposals of the chief Commissioner and after having obtained proposals, if any, of other standing committees and such further detailed information, if any, as it shall think fit to require from the chief Commissioner and having regard to all the requirements of this Act, shall prepare there from, subject to such modifications and additions therein or thereto as it shall think fit, a budget estimate of the income and expenditure of the corporation for the next year.</p>
+            </content>
+          </subsection>
           <subsection eId="chp_XIV__sec_194__subsec_2">
             <num>(2)</num>
             <intro eId="chp_XIV__sec_194__subsec_2__intro">
@@ -7176,9 +7180,13 @@
         </section>
         <section eId="chp_XV__sec_211">
           <num>211.</num>
-          <intro eId="chp_XV__sec_211__intro">
-            <p eId="chp_XV__sec_211__intro__p_1">Powers of the Zonal Commissioner in respect of public streets,- (1)The Zonal Commissioner shall, from time to time, either suo moto or upon the request of the Ward Committee cause all public streets vested in the Corporation to be levelled and repaired; he may also from time to time widen, extend or otherwise improve any such street for the safety of pedestrians.</p>
-          </intro>
+          <heading>Powers of the Zonal Commissioner in respect of public streets</heading>
+          <subsection eId="chp_XV__sec_211__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_XV__sec_211__subsec_1__content">
+              <p eId="chp_XV__sec_211__subsec_1__content__p_1">The Zonal Commissioner shall, from time to time, either suo moto or upon the request of the Ward Committee cause all public streets vested in the Corporation to be levelled and repaired; he may also from time to time widen, extend or otherwise improve any such street for the safety of pedestrians.</p>
+            </content>
+          </subsection>
           <subsection eId="chp_XV__sec_211__subsec_2">
             <num>(2)</num>
             <intro eId="chp_XV__sec_211__subsec_2__intro">
@@ -7554,7 +7562,7 @@
           <subsection eId="chp_XV__sec_223__subsec_4">
             <num>(4)</num>
             <intro eId="chp_XV__sec_223__subsec_4__intro">
-              <p eId="chp_XV__sec_223__subsec_4__intro__p_1">When any building is set back in pursuance of any requisition made under <ref eId="chp_XV__sec_223__subsec_4__intro__p_1__ref_1" href="#chp_XV__sec_223__subsec_1">sub-section (1)</ref>, or when the Chief Commissioner takes possession of any land under sub-section(2), the corporation shall forthwith make full compensation to the owner for any direct damage which he may sustain thereby.</p>
+              <p eId="chp_XV__sec_223__subsec_4__intro__p_1">When any building is set back in pursuance of any requisition made under <ref eId="chp_XV__sec_223__subsec_4__intro__p_1__ref_1" href="#chp_XV__sec_223__subsec_1">sub-section (1)</ref>, or when the Chief Commissioner takes possession of any land under <ref eId="chp_XV__sec_223__subsec_4__intro__p_1__ref_2" href="#chp_XV__sec_223__subsec_2">sub-section(2)</ref>, the corporation shall forthwith make full compensation to the owner for any direct damage which he may sustain thereby.</p>
             </intro>
             <hcontainer eId="chp_XV__sec_223__subsec_4__hcontainer_1" name="explanation">
               <content eId="chp_XV__sec_223__subsec_4__hcontainer_1__content">
@@ -7873,21 +7881,25 @@
         </section>
         <section eId="chp_XV__sec_237">
           <num>237.</num>
-          <intro eId="chp_XV__sec_237__intro">
-            <p eId="chp_XV__sec_237__intro__p_1">Power to allow certain projections and erections;- (1) The Zonal Commissioner may grant a licence subject to such conditions and restrictions as he may think fit to the owner or occupier of any premises,-</p>
-          </intro>
-          <clause eId="chp_XV__sec_237__cl_a">
-            <num>(a)</num>
-            <content eId="chp_XV__sec_237__cl_a__content">
-              <p eId="chp_XV__sec_237__cl_a__content__p_1">to put-up or continue to have verandahs, balconies, sun-shades, weather frames and the like to project over a street; or</p>
-            </content>
-          </clause>
-          <clause eId="chp_XV__sec_237__cl_b">
-            <num>(b)</num>
-            <content eId="chp_XV__sec_237__cl_b__content">
-              <p eId="chp_XV__sec_237__cl_b__content__p_1">in streets in which the constructions of arcades has been sanctioned by the Corporation to put up or continue to have an arcade; or (c) to construct any step or drain-covering necessary for access to the premises.</p>
-            </content>
-          </clause>
+          <heading>Power to allow certain projections and erections</heading>
+          <subsection eId="chp_XV__sec_237__subsec_1">
+            <num>(1)</num>
+            <intro eId="chp_XV__sec_237__subsec_1__intro">
+              <p eId="chp_XV__sec_237__subsec_1__intro__p_1">The Zonal Commissioner may grant a licence subject to such conditions and restrictions as he may think fit to the owner or occupier of any premises,-</p>
+            </intro>
+            <clause eId="chp_XV__sec_237__subsec_1__cl_a">
+              <num>(a)</num>
+              <content eId="chp_XV__sec_237__subsec_1__cl_a__content">
+                <p eId="chp_XV__sec_237__subsec_1__cl_a__content__p_1">to put-up or continue to have verandahs, balconies, sun-shades, weather frames and the like to project over a street; or</p>
+              </content>
+            </clause>
+            <clause eId="chp_XV__sec_237__subsec_1__cl_b">
+              <num>(b)</num>
+              <content eId="chp_XV__sec_237__subsec_1__cl_b__content">
+                <p eId="chp_XV__sec_237__subsec_1__cl_b__content__p_1">in streets in which the constructions of arcades has been sanctioned by the Corporation to put up or continue to have an arcade; or (c) to construct any step or drain-covering necessary for access to the premises.</p>
+              </content>
+            </clause>
+          </subsection>
           <subsection eId="chp_XV__sec_237__subsec_2">
             <num>(2)</num>
             <content eId="chp_XV__sec_237__subsec_2__content">
@@ -7897,13 +7909,13 @@
           <subsection eId="chp_XV__sec_237__subsec_3">
             <num>(3)</num>
             <content eId="chp_XV__sec_237__subsec_3__content">
-              <p eId="chp_XV__sec_237__subsec_3__content__p_1">No licence shall be granted under <ref eId="chp_XV__sec_237__subsec_3__content__p_1__ref_1" href="#chp_XV__sec_210__subsec_1">sub-section (1)</ref> if the projection or construction is likely to be injurious to health or cause public inconvenience or otherwise materially interfere with the use of the road as such.</p>
+              <p eId="chp_XV__sec_237__subsec_3__content__p_1">No licence shall be granted under <ref eId="chp_XV__sec_237__subsec_3__content__p_1__ref_1" href="#chp_XV__sec_237__subsec_1">sub-section (1)</ref> if the projection or construction is likely to be injurious to health or cause public inconvenience or otherwise materially interfere with the use of the road as such.</p>
             </content>
           </subsection>
           <subsection eId="chp_XV__sec_237__subsec_4">
             <num>(4)</num>
             <content eId="chp_XV__sec_237__subsec_4__content">
-              <p eId="chp_XV__sec_237__subsec_4__content__p_1">On the expiry of any period for which a licence has been granted under this section or after due communication of an order of suspension or revocation of such licence the Zonal Commissioner may, without notice, cause any projection or construction put up under subsection <ref eId="chp_XV__sec_237__subsec_4__content__p_1__ref_1" href="#chp_XV__sec_210__subsec_1">(1)</ref> or <ref eId="chp_XV__sec_237__subsec_4__content__p_1__ref_2" href="#chp_XV__sec_237__subsec_2">(2)</ref> to be removed, and the cost of so doing shall be recoverable in the manner from the person to whom the licence was granted.</p>
+              <p eId="chp_XV__sec_237__subsec_4__content__p_1">On the expiry of any period for which a licence has been granted under this section or after due communication of an order of suspension or revocation of such licence the Zonal Commissioner may, without notice, cause any projection or construction put up under subsection <ref eId="chp_XV__sec_237__subsec_4__content__p_1__ref_1" href="#chp_XV__sec_237__subsec_1">(1)</ref> or <ref eId="chp_XV__sec_237__subsec_4__content__p_1__ref_2" href="#chp_XV__sec_237__subsec_2">(2)</ref> to be removed, and the cost of so doing shall be recoverable in the manner from the person to whom the licence was granted.</p>
             </content>
           </subsection>
           <subsection eId="chp_XV__sec_237__subsec_5">
@@ -8692,7 +8704,7 @@
           <subsection eId="chp_XVII__sec_254__subsec_3">
             <num>(3)</num>
             <content eId="chp_XVII__sec_254__subsec_3__content">
-              <p eId="chp_XVII__sec_254__subsec_3__content__p_1">Where the Zonal Commissioner or the officer authorised in this behalf, is of the opinion that immediate, removal of any nuisance as per subsection(1) continuing on any land or building in contravention of the provisions of this Act is necessary, she may, for reasons to be recorded in writing, cause such nuisance to be removed forthwith in accordance, wherever applicable, with the provision of the Karnataka Open Places(Prevention of Disfigurement) Act, 1981.</p>
+              <p eId="chp_XVII__sec_254__subsec_3__content__p_1">Where the Zonal Commissioner or the officer authorised in this behalf, is of the opinion that immediate, removal of any nuisance as per <ref eId="chp_XVII__sec_254__subsec_3__content__p_1__ref_1" href="#chp_XVII__sec_254__subsec_1">subsection(1)</ref> continuing on any land or building in contravention of the provisions of this Act is necessary, she may, for reasons to be recorded in writing, cause such nuisance to be removed forthwith in accordance, wherever applicable, with the provision of the Karnataka Open Places(Prevention of Disfigurement) Act, 1981.</p>
             </content>
           </subsection>
           <subsection eId="chp_XVII__sec_254__subsec_4">
@@ -8979,9 +8991,13 @@
         </section>
         <section eId="chp_XVIII__sec_268">
           <num>268.</num>
-          <intro eId="chp_XVIII__sec_268__intro">
-            <p eId="chp_XVIII__sec_268__intro__p_1">Disinfection of buildings and articles;- (1) If the Zonal Commissioner or health officer is of opinion that the cleansing or disinfecting of a building or of any part thereof, or of any article therein, which is likely to retain infection, will tend to prevent or check the spread of any dangerous disease, he may by notice, require the owner or occupier to cleanse or disinfect the same, in the manner and within the time specified in such notice.</p>
-          </intro>
+          <heading>Disinfection of buildings and articles</heading>
+          <subsection eId="chp_XVIII__sec_268__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_XVIII__sec_268__subsec_1__content">
+              <p eId="chp_XVIII__sec_268__subsec_1__content__p_1">If the Zonal Commissioner or health officer is of opinion that the cleansing or disinfecting of a building or of any part thereof, or of any article therein, which is likely to retain infection, will tend to prevent or check the spread of any dangerous disease, he may by notice, require the owner or occupier to cleanse or disinfect the same, in the manner and within the time specified in such notice.</p>
+            </content>
+          </subsection>
           <subsection eId="chp_XVIII__sec_268__subsec_2">
             <num>(2)</num>
             <content eId="chp_XVIII__sec_268__subsec_2__content">
@@ -11354,40 +11370,40 @@
             </content>
           </clause>
           <proviso eId="chp_XXV__sec_365__proviso_1">
-            <intro eId="chp_XXV__sec_365__proviso_1__intro">
-              <p eId="chp_XXV__sec_365__proviso_1__intro__p_1">Provided that, it shall be competent to the corporation, subject to the previous sanction of the Government to discontinue the services of any officer or servant, who, in its opinion, is not necessary or suitable for the requirements of the service under the corporation after giving such officer or servant such notice as is required to be given by the terms of his employment and every officer or servant whose services are dispensed with shall be entitled to such leave, pension, provident fund and gratuity as he would have been entitled to take or receive on being invalidated out of service, as if the panchayat in the employ of which he was, had not ceased to exit;</p>
-            </intro>
-            <clause eId="chp_XXV__sec_365__proviso_1__cl_g">
-              <num>(g)</num>
-              <content eId="chp_XXV__sec_365__proviso_1__cl_g__content">
-                <p eId="chp_XXV__sec_365__proviso_1__cl_g__content__p_1">all proceedings pending on the said date before the panchayat shall be deemed to be transferred to and shall be continued before the corporation;</p>
-              </content>
-            </clause>
-            <clause eId="chp_XXV__sec_365__proviso_1__cl_h">
-              <num>(h)</num>
-              <content eId="chp_XXV__sec_365__proviso_1__cl_h__content">
-                <p eId="chp_XXV__sec_365__proviso_1__cl_h__content__p_1">all appeals pending before any authority shall, so far as may be practicable, be disposed of as if the said local area had been included in the lager urban area when they were filed;</p>
-              </content>
-            </clause>
-            <clause eId="chp_XXV__sec_365__proviso_1__cl_i">
-              <num>(i)</num>
-              <content eId="chp_XXV__sec_365__proviso_1__cl_i__content">
-                <p eId="chp_XXV__sec_365__proviso_1__cl_i__content__p_1">all prosecutions instituted by or on behalf of the panchayat and all suits or other legal proceedings instituted by or against the panchayat or any officer of the panchayat pending on the said date shall be continued by or against the corporation as if the said local area had been included in the Corporation area when such prosecutions, suits or proceedings were instituted;</p>
-              </content>
-            </clause>
-            <clause eId="chp_XXV__sec_365__proviso_1__cl_j">
-              <num>(j)</num>
-              <content eId="chp_XXV__sec_365__proviso_1__cl_j__content">
-                <p eId="chp_XXV__sec_365__proviso_1__cl_j__content__p_1">all arrears of rates, taxes and fees vesting in the corporation shall, notwithstanding that such rates and fees cannot be levied under this Act, be recoverable in the same manner as a tax recoverable under this Act;</p>
-              </content>
-            </clause>
-            <clause eId="chp_XXV__sec_365__proviso_1__cl_k">
-              <num>(k)</num>
-              <content eId="chp_XXV__sec_365__proviso_1__cl_k__content">
-                <p eId="chp_XXV__sec_365__proviso_1__cl_k__content__p_1">until the reconstitution of the corporation in accordance with the provisions of this Act, notwithstanding anything to the contrary contained in this Act, such number of persons ordinarily resident in the local area included in the Corporation area who are nominated by the Government shall be additional councillors of the corporation.</p>
-              </content>
-            </clause>
+            <content eId="chp_XXV__sec_365__proviso_1__content">
+              <p eId="chp_XXV__sec_365__proviso_1__content__p_1">Provided that, it shall be competent to the corporation, subject to the previous sanction of the Government to discontinue the services of any officer or servant, who, in its opinion, is not necessary or suitable for the requirements of the service under the corporation after giving such officer or servant such notice as is required to be given by the terms of his employment and every officer or servant whose services are dispensed with shall be entitled to such leave, pension, provident fund and gratuity as he would have been entitled to take or receive on being invalidated out of service, as if the panchayat in the employ of which he was, had not ceased to exit;</p>
+            </content>
           </proviso>
+          <clause eId="chp_XXV__sec_365__cl_g">
+            <num>(g)</num>
+            <content eId="chp_XXV__sec_365__cl_g__content">
+              <p eId="chp_XXV__sec_365__cl_g__content__p_1">all proceedings pending on the said date before the panchayat shall be deemed to be transferred to and shall be continued before the corporation;</p>
+            </content>
+          </clause>
+          <clause eId="chp_XXV__sec_365__cl_h">
+            <num>(h)</num>
+            <content eId="chp_XXV__sec_365__cl_h__content">
+              <p eId="chp_XXV__sec_365__cl_h__content__p_1">all appeals pending before any authority shall, so far as may be practicable, be disposed of as if the said local area had been included in the lager urban area when they were filed;</p>
+            </content>
+          </clause>
+          <clause eId="chp_XXV__sec_365__cl_i">
+            <num>(i)</num>
+            <content eId="chp_XXV__sec_365__cl_i__content">
+              <p eId="chp_XXV__sec_365__cl_i__content__p_1">all prosecutions instituted by or on behalf of the panchayat and all suits or other legal proceedings instituted by or against the panchayat or any officer of the panchayat pending on the said date shall be continued by or against the corporation as if the said local area had been included in the Corporation area when such prosecutions, suits or proceedings were instituted;</p>
+            </content>
+          </clause>
+          <clause eId="chp_XXV__sec_365__cl_j">
+            <num>(j)</num>
+            <content eId="chp_XXV__sec_365__cl_j__content">
+              <p eId="chp_XXV__sec_365__cl_j__content__p_1">all arrears of rates, taxes and fees vesting in the corporation shall, notwithstanding that such rates and fees cannot be levied under this Act, be recoverable in the same manner as a tax recoverable under this Act;</p>
+            </content>
+          </clause>
+          <clause eId="chp_XXV__sec_365__cl_k">
+            <num>(k)</num>
+            <content eId="chp_XXV__sec_365__cl_k__content">
+              <p eId="chp_XXV__sec_365__cl_k__content__p_1">until the reconstitution of the corporation in accordance with the provisions of this Act, notwithstanding anything to the contrary contained in this Act, such number of persons ordinarily resident in the local area included in the Corporation area who are nominated by the Government shall be additional councillors of the corporation.</p>
+            </content>
+          </clause>
         </section>
         <section eId="chp_XXV__sec_366">
           <num>366.</num>
@@ -11797,7 +11813,7 @@
           <subsection eId="chp_XXV__sec_372__subsec_2">
             <num>(2)</num>
             <intro eId="chp_XXV__sec_372__subsec_2__intro">
-              <p eId="chp_XXV__sec_372__subsec_2__intro__p_1">Notwithstanding anything contained in <ref eId="chp_XXV__sec_372__subsec_2__intro__p_1__ref_1" href="#chp_XXV__sec_336__subsec_1">sub-section (1)</ref>, the Government may, by order, remove the Grievance Redressal Authority from the office of the Grievance Redressal Authority , if he,-</p>
+              <p eId="chp_XXV__sec_372__subsec_2__intro__p_1">Notwithstanding anything contained in sub-section (1), the Government may, by order, remove the Grievance Redressal Authority from the office of the Grievance Redressal Authority , if he,-</p>
             </intro>
             <clause eId="chp_XXV__sec_372__subsec_2__cl_a">
               <num>(a)</num>
@@ -11987,7 +12003,7 @@
               <FRBRManifestation>
                 <FRBRthis value="/akn/in-ka/act/2020-12-19/53/eng@2020-12-21/!schedule_1.xml"/>
                 <FRBRuri value="/akn/in-ka/act/2020-12-19/53/eng@2020-12-21.xml"/>
-                <FRBRdate date="2026-09-23" name="generation"/>
+                <FRBRdate date="2026-10-06" name="generation"/>
                 <FRBRauthor href="#nyayabandhu"/>
               </FRBRManifestation>
             </identification>
@@ -12369,7 +12385,7 @@
               <FRBRManifestation>
                 <FRBRthis value="/akn/in-ka/act/2020-12-19/53/eng@2020-12-21/!schedule_2.xml"/>
                 <FRBRuri value="/akn/in-ka/act/2020-12-19/53/eng@2020-12-21.xml"/>
-                <FRBRdate date="2026-09-23" name="generation"/>
+                <FRBRdate date="2026-10-06" name="generation"/>
                 <FRBRauthor href="#nyayabandhu"/>
               </FRBRManifestation>
             </identification>

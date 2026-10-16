@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="/akn/in-ka/act/2026-04-09/27/eng@2026-04-10/!main.xml"/>
           <FRBRuri value="/akn/in-ka/act/2026-04-09/27/eng@2026-04-10.xml"/>
-          <FRBRdate date="2026-09-01" name="generation"/>
+          <FRBRdate date="2026-10-06" name="generation"/>
           <FRBRauthor href="#nyayabandhu"/>
           <FRBRformat value="xml"/>
         </FRBRManifestation>
@@ -169,7 +169,7 @@
           <subclause eId="sec_6__cl_i__subcl_a">
             <num>(a)</num>
             <content eId="sec_6__cl_i__subcl_a__content">
-              <p eId="sec_6__cl_i__subcl_a__content__p_1">after <ref eId="sec_6__cl_i__subcl_a__content__p_1__ref_1" href="#sec_2__cl_ii">clause (ii)</ref>, the following shall be inserted, namely:- " (ii-a) pregnant teacher or a female teacher with a child of less than five years:</p>
+              <p eId="sec_6__cl_i__subcl_a__content__p_1">after <ref eId="sec_6__cl_i__subcl_a__content__p_1__ref_1" href="#sec_6__cl_ii">clause (ii)</ref>, the following shall be inserted, namely:- " (ii-a) pregnant teacher or a female teacher with a child of less than five years:</p>
             </content>
           </subclause>
         </clause>
@@ -179,17 +179,17 @@
           </intro>
           <clause eId="sec_6__proviso_1__cl_b">
             <num>(b)</num>
-            <intro eId="sec_6__proviso_1__cl_b__intro">
-              <p eId="sec_6__proviso_1__cl_b__intro__p_1">clause (vii), shall be omitted.</p>
-            </intro>
-            <subclause eId="sec_6__proviso_1__cl_b__subcl_ii">
-              <num>(ii)</num>
-              <content eId="sec_6__proviso_1__cl_b__subcl_ii__content">
-                <p eId="sec_6__proviso_1__cl_b__subcl_ii__content__p_1">in sub-section (4), the word, brackets and figures "and (vii)" shall be omitted.</p>
-              </content>
-            </subclause>
+            <content eId="sec_6__proviso_1__cl_b__content">
+              <p eId="sec_6__proviso_1__cl_b__content__p_1">clause (vii), shall be omitted.</p>
+            </content>
           </clause>
         </proviso>
+        <clause eId="sec_6__cl_ii">
+          <num>(ii)</num>
+          <content eId="sec_6__cl_ii__content">
+            <p eId="sec_6__cl_ii__content__p_1">in sub-section (4), the word, brackets and figures "and (vii)" shall be omitted.</p>
+          </content>
+        </clause>
       </section>
       <section eId="sec_7">
         <num>7.</num>
