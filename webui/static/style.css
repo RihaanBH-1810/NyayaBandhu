@@ -295,15 +295,15 @@ main {
 .akn-hanging > .akn-body { min-width: 0; }
 /* the first line of text must sit on the number's line, not a margin below it */
 .akn-hanging > .akn-body > :first-child,
-.akn-hanging > .akn-body > :first-child > .akn-p:first-child { margin-top: 0; }
+.akn-hanging > .akn-body > :first-child > .akn-p:first-child,
+.akn-hanging > .akn-body > .akn-p:first-child,
+.akn-hanging > .akn-body > .akn-content:first-child > .akn-p:first-child,
+.akn-hanging > .akn-body > .akn-intro:first-child > .akn-p:first-child { margin-top: 0; }
 
-/* inset: provisos and Explanations, first line indented in the parent's text
-   column, with "Provided that" in italics as the gazettes print it */
+/* provisos and Explanations: sit in the parent's text column without extra indent,
+   with "Provided that" in italics as the gazettes print it */
 .akn-inset { margin: var(--spacing-50) 0; }
-.akn-inset > .akn-body > :first-child > .akn-p:first-child { text-indent: var(--akn-gutter); }
-/* a proviso's own list ("Provided that,- (i) ... (ii) ...") starts where the
-   proviso does, so it cannot be mistaken for the list the proviso follows */
-.akn-inset > .akn-body > .akn-hanging { margin-left: var(--akn-gutter); }
+.akn-proviso { margin: var(--spacing-50) 0; }
 .akn-proviso-lead { font-style: italic; }
 .akn-crossHeading {
   font-weight: var(--font-weight-bold); text-transform: uppercase;
