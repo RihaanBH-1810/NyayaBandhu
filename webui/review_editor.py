@@ -6,6 +6,7 @@ from lxml import etree
 from akn_parser.render import AKN_NS
 
 Q = lambda tag: f"{{{AKN_NS}}}{tag}"
+MODE = "visual"
 TYPES = {"section": "sec", "subsection": "subsec", "clause": "cl", "proviso": "proviso"}
 CHILDREN = {"body": {"section"}, "chapter": {"section"},
             "section": {"subsection", "clause", "proviso"},

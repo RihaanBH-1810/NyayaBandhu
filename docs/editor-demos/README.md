@@ -1,6 +1,6 @@
 # Local lawyer review demos
 
-The demos begin at commit `50b96a5` and live on `demo/bluebell-editor` and `demo/visual-editor`. The base XML under `out/base_act/eng/` is read only. Open the viewer's document list and choose **Review** beside the Teachers Transfer Act or BBMP Act. The first visit snapshots that XML in `review-data/`, which is gitignored. A source hash identifies the draft, so converting the Act again starts a separate review without destroying the earlier one.
+The demos begin at commit `50b96a5` and live on `demo/bluebell-editor` and `demo/visual-editor`. The base XML under `out/base_act/eng/` is read only. Open the viewer's document list and choose **Review** beside the Teachers Transfer Act or BBMP Act. The first visit snapshots that XML in `review-data/<editor>/`, which is gitignored. A source hash identifies the draft, so converting the Act again starts a separate review without destroying the earlier one. The two editor branches keep separate local drafts.
 
 ## Architecture and decisions
 

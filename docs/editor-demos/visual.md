@@ -14,4 +14,4 @@ The move control swaps adjacent numbered siblings and their position numbers. Un
 
 ## Test results and handoff
 
-The branch tests run with `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 .venv/bin/pytest -q`. Focused tests cover protected inline text, table cells, all add controls, renumber, move, remove, incoming reference blocks, revision conflicts, approval reset, XML validity and source isolation. The walkthrough uses `tranfer_of_teachers.xml`; `BBMP Act.xml` exercises table editing and the large outline.
+The branch has 145 passing tests with `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 .venv/bin/pytest -q`. Focused tests cover protected inline text, table cells, all add controls, renumber, move, remove, incoming reference blocks, revision conflicts, approval reset, XML validity and source isolation. A direct local walkthrough opened `tranfer_of_teachers.xml`, previewed and saved a wording change, validated, approved and wrote the export artifact. Opening `BBMP Act.xml` loaded 1,932 provision entries in about 0.12 seconds; a table cell edit passed validation. A real browser walkthrough could not be completed here because a local listening socket could not be opened.

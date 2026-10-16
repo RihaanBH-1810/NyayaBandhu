@@ -19,11 +19,12 @@ from pydantic import BaseModel
 from akn_parser.pipeline import DEFAULT_SCHEMA
 from akn_parser.render import AKN_NS
 from webui import akn_view
+from webui import review_editor
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "out"
 DATA = ROOT / "data"
-STORE = Path(os.environ.get("NYAYA_REVIEW_DIR", str(ROOT / "review-data")))
+STORE = Path(os.environ.get("NYAYA_REVIEW_DIR", str(ROOT / "review-data" / review_editor.MODE)))
 TEMPLATES = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
 router = APIRouter(prefix="/review")
 _lock = threading.RLock()
