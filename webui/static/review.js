@@ -42,8 +42,10 @@ async function select(eid) {
     const p = await api(`${base()}/provisions/${encodeURIComponent(eid)}`);
     $('selected-title').textContent = eid;
     $('original-html').innerHTML = p.original_html;
+    $('compare-original-html').innerHTML = p.original_html;
     $('original-xml').textContent = p.original_xml;
     $('draft-html').innerHTML = p.draft_html;
+    $('compare-draft-html').innerHTML = p.draft_html;
     $('draft-xml').textContent = p.draft_xml;
     $('changes-text').textContent = draft.history.filter(h => h.eid === eid).map(h => h.diff || '').join('\n\n') || 'No saved changes to this provision.';
     window.renderReviewEditor(p.editor);
@@ -58,6 +60,7 @@ async function change(save) {
     $('changes-text').textContent = result.diff || 'No XML change';
     $('validation').textContent = result.validation.summary;
     $('draft-html').innerHTML = result.html;
+    $('compare-draft-html').innerHTML = result.html;
     showPanel('changes');
     showMessage(save ? `Saved revision ${result.revision}` : 'Preview is valid. Save to keep it.');
     if (save) { await refresh(); await select(result.selected_eid || draft.outline.find(n => n.tag === 'section')?.eid); }

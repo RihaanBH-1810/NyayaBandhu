@@ -438,3 +438,9 @@ main:has(.review-grid) { max-width: none; }
 .visual-text { display:inline-block; min-width:1.5rem; padding:.1rem .25rem; background:#fff; border-bottom:1px dotted #36c; white-space:pre-wrap; }
 .visual-text:focus { outline:2px solid #36c; }
 .visual-protected { display:inline-block; padding:.1rem .25rem; background:#fdf2d5; border:1px solid #b9944a; border-radius:.2rem; white-space:pre-wrap; }
+.review-compare { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.7rem; padding:.5rem; }
+.review-compare[hidden] { display:none; }
+.review-compare > div { min-width:0; overflow:auto; border-right:1px solid #c8ccd1; padding:.5rem; }
+.review-compare h3 { position:sticky; top:0; background:white; margin:0 0 .5rem; font-size:.85rem; }
+.review-compare iframe { min-height:19rem; }
+@media(max-width:1050px){ .review-compare{grid-template-columns:1fr; height:auto}.review-compare > div{max-height:22rem} }

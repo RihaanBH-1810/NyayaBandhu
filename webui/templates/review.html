@@ -20,12 +20,16 @@
   </aside>
   <section class="review-main">
     <div class="review-tabs">
-      <button data-panel="pdf" class="active">Gazette PDF</button>
+      <button data-panel="compare" class="active">Compare</button>
       <button data-panel="original">Untouched XML</button>
       <button data-panel="draft">Draft view</button>
       <button data-panel="changes">Changes</button>
     </div>
-    <div id="panel-pdf" class="review-panel"><iframe id="pdf-frame" title="Source gazette PDF"></iframe></div>
+    <div id="panel-compare" class="review-panel review-compare">
+      <div><h3>Gazette PDF</h3><iframe id="pdf-frame" title="Source gazette PDF"></iframe></div>
+      <div><h3>Original provision</h3><div id="compare-original-html"></div></div>
+      <div><h3>Draft provision</h3><div id="compare-draft-html"></div></div>
+    </div>
     <div id="panel-original" class="review-panel" hidden><div id="original-html"></div><pre id="original-xml"></pre></div>
     <div id="panel-draft" class="review-panel" hidden><div id="draft-html"></div><pre id="draft-xml"></pre></div>
     <div id="panel-changes" class="review-panel" hidden><pre id="changes-text"></pre></div>
