@@ -132,7 +132,7 @@ from drifting away from the parser:
   `style.css`. Use one of those before adding a new value.
 - The viewer has no automated tests. After changing it, open the Teachers
   Transfer Act and the BBMP Act and check that the Metadata tab agrees with
-  the CLI report for the same files: 415 and 6,300 eIds, 26 and 251 internal
+  the CLI report for the same files: 415 and 6,311 eIds, 26 and 254 internal
   references, none dangling.
 
 ## Determinism
