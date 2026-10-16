@@ -11,6 +11,7 @@ document, including ones this repository did not produce.
 from __future__ import annotations
 
 import html
+import re
 from dataclasses import dataclass, field
 from functools import lru_cache
 
@@ -52,6 +53,14 @@ _CONTAINER_LABELS = {
 #: Direct children that a structural element's own label is built from, and
 #: that must therefore not be rendered again as part of its body.
 _LABEL_TAGS = {"num", "heading", "subheading"}
+
+#: Divisions that group sections. Their ``<num>`` is a bare ordinal (``III``),
+#: so the element name is put back in front of it for display.
+_DIVISION_TAGS = {"chapter", "part", "division", "subdivision"}
+
+#: The words that open a proviso, which Indian statutes print in italics.
+#: Matched against rendered HTML, hence the leading ``>``.
+_PROVISO_LEAD = re.compile(r"(>)(Provided\b[^<,:;.]{0,30}?\bthat)\b")
 
 
 def _q(tag: str) -> str:
@@ -125,39 +134,52 @@ def _render_container(el: etree._Element, tag: str) -> str:
 
 
 def _render_structural(el: etree._Element, tag: str) -> str:
-    """Render a provision: its label line, then everything beneath it.
+    """Render a provision in one of three layouts, the way a gazette prints it.
 
-    ``<num>`` and ``<heading>`` are joined into one label (``7. Transfer by
-    counselling``), which is also what a click in split view uses to find the
-    element in the XML pane. An ``hcontainer`` has no number of its own, so
-    its ``name`` (``explanation``, ``schedule``) stands in for one.
+    * **headed** (chapters, parts, and anything with a ``<heading>``): the
+      heading on a line of its own, and everything inside, intro text
+      included, indented beneath it.
+    * **hanging** (a numbered item with no heading, such as ``(1)``, ``(a)``
+      or ``(i)``): the number in a fixed gutter and the text beside it, so
+      ``(1) This Act may be called ...`` reads as one line and wrapped lines
+      line up under the text rather than under the number.
+    * **inset** (no number and no heading: a proviso or an Explanation): a
+      paragraph in its parent's text column, first line indented.
+
+    The label is also what a click in split view uses to find the element in
+    the XML pane.
     """
     eid = el.get("eId", "")
-    num_el = el.find(_q("num"))
-    heading_el = el.find(_q("heading"))
+    num = (el.findtext(_q("num")) or "").strip()
+    heading = (el.findtext(_q("heading")) or "").strip()
     subheading_el = el.find(_q("subheading"))
-
-    label_bits = []
-    if num_el is not None and (num_el.text or "").strip():
-        label_bits.append(f'<span class="akn-num">{html.escape(num_el.text)}</span>')
-    if heading_el is not None and (heading_el.text or "").strip():
-        label_bits.append(
-            f'<span class="akn-heading-text">{html.escape(heading_el.text)}</span>'
-        )
-    if tag == "hcontainer" and el.get("name"):
-        label_bits.append(f'<span class="akn-name">[{html.escape(el.get("name"))}]</span>')
-    label_html = f'<div class="akn-label">{" ".join(label_bits)}</div>' if label_bits else ""
-
-    subheading_html = ""
-    if subheading_el is not None:
-        subheading_html = f'<div class="akn-subheading">{_inline_html(subheading_el)}</div>'
-
+    subheading_html = (
+        f'<div class="akn-subheading">{_inline_html(subheading_el)}</div>'
+        if subheading_el is not None else ""
+    )
     body_html = "".join(
         _render_block(child) for child in el if _local(child.tag) not in _LABEL_TAGS
     )
-    return (f'<div id="{html.escape(eid)}" class="akn akn-{tag}" '
-            f'data-eid="{html.escape(eid)}" data-kind="{tag}">'
-            f'{label_html}{subheading_html}{body_html}</div>')
+    if tag == "proviso":
+        body_html = _PROVISO_LEAD.sub(r'\1<em class="akn-proviso-lead">\2</em>', body_html, count=1)
+
+    if tag in _DIVISION_TAGS or heading:
+        layout = "akn-headed"
+        num_html = html.escape(f"{tag} {num}" if tag in _DIVISION_TAGS and num else num)
+        bits = [f'<span class="akn-num">{num_html}</span>' if num else "",
+                f'<span class="akn-heading-text">{html.escape(heading)}</span>' if heading else ""]
+        inner = (f'<div class="akn-label">{" ".join(b for b in bits if b)}</div>'
+                 f'{subheading_html}<div class="akn-body">{body_html}</div>')
+    elif num:
+        layout = "akn-hanging"
+        inner = (f'<div class="akn-label"><span class="akn-num">{html.escape(num)}</span></div>'
+                 f'<div class="akn-body">{subheading_html}{body_html}</div>')
+    else:
+        layout = "akn-inset"
+        inner = f'<div class="akn-body">{subheading_html}{body_html}</div>'
+
+    return (f'<div id="{html.escape(eid)}" class="akn akn-{tag} {layout}" '
+            f'data-eid="{html.escape(eid)}" data-kind="{tag}">{inner}</div>')
 
 
 def _render_p(el: etree._Element) -> str:
@@ -322,12 +344,11 @@ def _outline_node(el: etree._Element) -> OutlineNode:
     missed.
     """
     tag = _local(el.tag)
-    num_el = el.find(_q("num"))
-    heading_el = el.find(_q("heading"))
-    label = " ".join(filter(None, [
-        (num_el.text or "").strip() if num_el is not None else "",
-        (heading_el.text or "").strip() if heading_el is not None else "",
-    ])) or tag
+    num = (el.findtext(_q("num")) or "").strip()
+    heading = (el.findtext(_q("heading")) or "").strip()
+    if tag in _DIVISION_TAGS and num:
+        num = f"{tag.capitalize()} {num}" + (":" if heading else "")
+    label = " ".join(filter(None, [num, heading])) or tag
     children = [
         _outline_node(child) for child in el if _local(child.tag) in STRUCTURAL_TAGS
     ]

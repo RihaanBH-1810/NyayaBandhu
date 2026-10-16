@@ -257,30 +257,54 @@ main {
 .akn-preface, .akn-preamble, .akn-conclusions { margin-bottom: var(--spacing-150); }
 .akn-longTitle { font-style: italic; margin: var(--spacing-50) 0 var(--spacing-150); }
 
+/* Provisions come in three layouts, set by akn_view._render_structural:
+   akn-headed, akn-hanging and akn-inset. Each level of nesting indents by
+   one gutter, so a clause always sits where its parent's text begins. */
+.akn-document {
+  --akn-gutter: 2.75em;   /* room for "(viii)" or "(12A)" beside the text */
+  --akn-indent: 1.5em;    /* a section's text, under its heading */
+}
+
+.akn-p { margin: var(--spacing-50) 0; }
+.akn-subheading { color: var(--color-subtle); font-style: italic; margin: var(--spacing-25) 0 var(--spacing-50); }
+.akn-num { font-weight: var(--font-weight-bold); }
+
+/* headed: chapters and parts are centred over their sections, as printed */
 .akn-chapter, .akn-part { margin: var(--spacing-200) 0 var(--spacing-100); }
 .akn-chapter > .akn-label, .akn-part > .akn-label {
-  font-size: var(--font-size-large); font-weight: var(--font-weight-bold); letter-spacing: 0.03em; text-transform: uppercase;
+  text-align: center; font-weight: var(--font-weight-bold);
+  text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: var(--spacing-100);
+}
+.akn-chapter > .akn-label > span, .akn-part > .akn-label > span { display: block; }
+.akn-chapter > .akn-label .akn-num, .akn-part > .akn-label .akn-num { color: var(--color-subtle); }
+.akn-chapter > .akn-label .akn-heading-text, .akn-part > .akn-label .akn-heading-text {
+  font-size: var(--font-size-large);
 }
 
 .akn-section { margin: var(--spacing-150) 0; }
-.akn-section > .akn-label { font-weight: var(--font-weight-bold); }
-.akn-section > .akn-label .akn-num { margin-right: 0.4em; }
+.akn-headed:not(.akn-chapter):not(.akn-part) > .akn-label { font-weight: var(--font-weight-bold); }
+.akn-headed > .akn-label .akn-num { margin-right: 0.4em; }
+.akn-headed:not(.akn-chapter):not(.akn-part) > .akn-body { margin-left: var(--akn-indent); }
 
-.akn-subsection, .akn-clause, .akn-subclause, .akn-point, .akn-indent {
-  margin: var(--spacing-50) 0 var(--spacing-50) var(--spacing-150);
+/* hanging: the number in the gutter, the text on the same line beside it */
+.akn-hanging {
+  display: grid; grid-template-columns: var(--akn-gutter) minmax(0, 1fr);
+  align-items: baseline; margin: var(--spacing-50) 0;
 }
-.akn-proviso {
-  margin: var(--spacing-50) 0 var(--spacing-50) var(--spacing-150);
-  padding-left: var(--spacing-75); border-left: var(--border-width-thick) solid var(--border-color-muted);
-}
-.akn-hcontainer { margin: var(--spacing-50) 0 var(--spacing-50) var(--spacing-150); }
-.akn-hcontainer .akn-name { color: var(--color-subtle); font-style: italic; font-weight: var(--font-weight-normal); margin-left: 0.4em; }
+.akn-hanging > .akn-label { white-space: nowrap; }
+.akn-hanging > .akn-body { min-width: 0; }
+/* the first line of text must sit on the number's line, not a margin below it */
+.akn-hanging > .akn-body > :first-child,
+.akn-hanging > .akn-body > :first-child > .akn-p:first-child { margin-top: 0; }
 
-.akn-label { display: inline; }
-.akn-num { font-weight: var(--font-weight-bold); }
-.akn-subheading { color: var(--color-subtle); font-style: italic; margin: var(--spacing-25) 0 var(--spacing-50); }
-
-.akn-p { margin: var(--spacing-50) 0; }
+/* inset: provisos and Explanations, first line indented in the parent's text
+   column, with "Provided that" in italics as the gazettes print it */
+.akn-inset { margin: var(--spacing-50) 0; }
+.akn-inset > .akn-body > :first-child > .akn-p:first-child { text-indent: var(--akn-gutter); }
+/* a proviso's own list ("Provided that,- (i) ... (ii) ...") starts where the
+   proviso does, so it cannot be mistaken for the list the proviso follows */
+.akn-inset > .akn-body > .akn-hanging { margin-left: var(--akn-gutter); }
+.akn-proviso-lead { font-style: italic; }
 .akn-crossHeading {
   font-weight: var(--font-weight-bold); text-transform: uppercase;
   margin: var(--spacing-150) 0 var(--spacing-50); letter-spacing: 0.04em;
