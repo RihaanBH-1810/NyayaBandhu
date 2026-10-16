@@ -1,0 +1,1741 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <act name="act" contains="originalVersion">
+    <meta>
+      <identification source="#nyayabandhu">
+        <FRBRWork>
+          <FRBRthis value="/akn/in-ka/act/2026-01-07/16/!main"/>
+          <FRBRuri value="/akn/in-ka/act/2026-01-07/16"/>
+          <FRBRalias name="title" value="THE CHANDRAGUTHI SHREE RENUKAMBA KSHETRA DEVELOPMENT AUTHORITY ACT, 2025"/>
+          <FRBRdate date="2026-01-07" name="assent"/>
+          <FRBRauthor href="#karnatakaLegislature"/>
+          <FRBRcountry value="in-ka"/>
+          <FRBRnumber value="16"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in-ka/act/2026-01-07/16/eng@2026-01-08/!main"/>
+          <FRBRuri value="/akn/in-ka/act/2026-01-07/16/eng@2026-01-08"/>
+          <FRBRdate date="2026-01-08" name="publication"/>
+          <FRBRauthor href="#karnatakaLegislature"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in-ka/act/2026-01-07/16/eng@2026-01-08/!main.xml"/>
+          <FRBRuri value="/akn/in-ka/act/2026-01-07/16/eng@2026-01-08.xml"/>
+          <FRBRdate date="2026-10-06" name="generation"/>
+          <FRBRauthor href="#nyayabandhu"/>
+          <FRBRformat value="xml"/>
+        </FRBRManifestation>
+      </identification>
+      <publication date="2026-01-08" name="Karnataka Gazette Extra-ordinary" showAs="Karnataka Gazette Extra-ordinary"/>
+      <lifecycle source="#nyayabandhu">
+        <eventRef eId="eref_1" date="2026-01-07" type="generation" source="#karnatakaLegislature"/>
+      </lifecycle>
+      <references source="#nyayabandhu">
+        <TLCOrganization eId="karnatakaLegislature" href="/akn/ontology/organization/in-ka/legislature" showAs="Karnataka State Legislature"/>
+        <TLCOrganization eId="karnatakaGazette" href="/akn/ontology/organization/in-ka/gazette" showAs="Karnataka Gazette"/>
+        <TLCRole eId="nyayabandhu" href="/akn/ontology/role/editor" showAs="NyayaBandhu automated parser"/>
+        <TLCTerm eId="amenity" href="/akn/ontology/term/amenity" showAs="Amenity"/>
+        <TLCTerm eId="authority" href="/akn/ontology/term/authority" showAs="Authority"/>
+        <TLCTerm eId="chairman" href="/akn/ontology/term/chairman" showAs="Chairman"/>
+        <TLCTerm eId="chandraguthiShreeRenukambaKshetra" href="/akn/ontology/term/chandraguthiShreeRenukambaKshetra" showAs="Chandraguthi Shree Renukamba Kshetra"/>
+        <TLCTerm eId="commissioner" href="/akn/ontology/term/commissioner" showAs="Commissioner"/>
+        <TLCTerm eId="committee" href="/akn/ontology/term/committee" showAs="Committee"/>
+        <TLCTerm eId="fund" href="/akn/ontology/term/fund" showAs="Fund"/>
+        <TLCTerm eId="member" href="/akn/ontology/term/member" showAs="Member"/>
+        <TLCTerm eId="regulations" href="/akn/ontology/term/regulations" showAs="Regulations"/>
+        <TLCTerm eId="rules" href="/akn/ontology/term/rules" showAs="Rules"/>
+        <TLCTerm eId="secretary" href="/akn/ontology/term/secretary" showAs="Secretary"/>
+      </references>
+    </meta>
+    <preface eId="preface">
+      <p eId="preface__p_1">(2) (1)ඡ<span eId="preface__p_1__span_1" xml:lang="kn"> ಉಪಪ</span>౳<span eId="preface__p_1__span_2" xml:lang="kn">ಕರಣದ ಅ</span>ല<span eId="preface__p_1__span_3" xml:lang="kn">ಯ</span>ย౵<span eId="preface__p_1__span_4" xml:lang="kn">ನ </span>෴โඃ<span eId="preface__p_1__span_5" xml:lang="kn"> ಅ</span>ඌ๰<span eId="preface__p_1__span_6" xml:lang="kn">ಚ</span>ච<span eId="preface__p_1__span_7" xml:lang="kn">ಯ </span>෩<span eId="preface__p_1__span_8" xml:lang="kn">ಲಕ </span> ෥<span eId="preface__p_1__span_9" xml:lang="kn">ಡ</span>ม<span eId="preface__p_1__span_10" xml:lang="kn">ದ ಉಪ ಧಗ</span>ำ<span eId="preface__p_1__span_11" xml:lang="kn"> ಈ ಅ</span>ඌඛ<span eId="preface__p_1__span_12" xml:lang="kn">ಯಮದ</span>ย౵<span eId="preface__p_1__span_13" xml:lang="kn"> ಅ</span>ඌඛ<span eId="preface__p_1__span_14" xml:lang="kn">ಯ</span>෦<span eId="preface__p_1__span_15" xml:lang="kn">ತ฿ಜದ</span>౪ฉ <span eId="preface__p_1__span_16" xml:lang="kn">ຂತೕ ๻ಡ ಪ</span>ค൏<span eId="preface__p_1__span_17" xml:lang="kn">ಮ౽ค෴ಜರತಕ</span>ౙൿ౪ <span eId="preface__p_1__span_18" xml:lang="kn">ಮ</span>ൡ౨ <span eId="preface__p_1__span_19" xml:lang="kn">ಅಂಥ </span> ෴โඃ <span eId="preface__p_1__span_20" xml:lang="kn">ಅ</span>ඌ๰<span eId="preface__p_1__span_21" xml:lang="kn">ಚ</span>ච<span eId="preface__p_1__span_22" xml:lang="kn">ಯ</span>ඝ౬, <span eId="preface__p_1__span_23" xml:lang="kn">ತൡ౨ಪ</span>ല<span eId="preface__p_1__span_24" xml:lang="kn">ಸ</span>ม<span eId="preface__p_1__span_25" xml:lang="kn">ದ </span> ൽ<span eId="preface__p_1__span_26" xml:lang="kn">ನ</span>౾ౙ<span eId="preface__p_1__span_27" xml:lang="kn">ಂತ </span> ෨<span eId="preface__p_1__span_28" xml:lang="kn">ಂ೉ನದಲ</span>౵<span eId="preface__p_1__span_29" xml:lang="kn">ದ </span> ෴โඃ ൽක<span eId="preface__p_1__span_30" xml:lang="kn">ಂಕಃౙ</span> ත฿ბ<span eId="preface__p_1__span_31" xml:lang="kn">ನ</span>౷<span eId="preface__p_1__span_32" xml:lang="kn">ಯ฿ಜฆ๋</span> ൤ ෥<span eId="preface__p_1__span_33" xml:lang="kn">ಡಬ</span>๾ൿ. <span eId="preface__p_1__span_34" xml:lang="kn">ಕ</span>කბ<span eId="preface__p_1__span_35" xml:lang="kn">ಟಕ </span>ฃ<span eId="preface__p_1__span_36" xml:lang="kn">ಜ</span>౲ඩ<span eId="preface__p_1__span_37" xml:lang="kn">ಲರ ಆ</span>ඃ๎ ඝ๬<span eId="preface__p_1__span_38" xml:lang="kn">ರ  ಮ</span>ൡ౨<span eId="preface__p_1__span_39" xml:lang="kn"> ಅವರ </span>ກ<span eId="preface__p_1__span_40" xml:lang="kn">ಸ</span>ค<span eId="preface__p_1__span_41" xml:lang="kn">ನ</span>ย౵, <span eId="preface__p_1__span_42" xml:lang="kn">೧</span>. ๏౳<span eId="preface__p_1__span_43" xml:lang="kn">ೕಧ</span>ฑ <span eId="preface__p_1__span_44" xml:lang="kn">ಸ</span>౽ბ<span eId="preface__p_1__span_45" xml:lang="kn">ರದ </span>౽<span eId="preface__p_1__span_46" xml:lang="kn">ಯ</span>ბ<span eId="preface__p_1__span_47" xml:lang="kn">ದ</span>๏ბ, ๸<span eId="preface__p_1__span_48" xml:lang="kn">ಸ</span>ൽ<span eId="preface__p_1__span_49" xml:lang="kn">ೕಯ ವ</span>౲<span eId="preface__p_1__span_50" xml:lang="kn">ವ</span>๻<span eId="preface__p_1__span_51" xml:lang="kn">ರಗ</span>ำ<span eId="preface__p_1__span_52" xml:lang="kn"> ಮ</span>ൡ౨ <span eId="preface__p_1__span_53" xml:lang="kn">ಸನ ರಚ</span>ච<span eId="preface__p_1__span_54" xml:lang="kn"> ಇมಒ</span>.</p>
+      <p eId="preface__p_2">PARLIAMENTARY AFFAIRS AND LEGISLATION SECRETARIAT NOTIFICATION NO.DPAL 85 SHASHANA 2025, BENGALURU, DATED:08.01.2026</p>
+      <p eId="preface__p_3">
+        <span eId="preface__p_3__span_1" xml:lang="kn">ರತ </span>๸เඋ<span eId="preface__p_3__span_2" xml:lang="kn">ನದ ಅඝ೎౟ೕಧ 348ರ ಘಡ (3)ರ ಅ</span>ല<span eId="preface__p_3__span_3" xml:lang="kn">ಯ</span>ย౵ ฃ<span eId="preface__p_3__span_4" xml:lang="kn">ಜ</span>౲ඩ<span eId="preface__p_3__span_5" xml:lang="kn">ಲ</span>ค<span eId="preface__p_3__span_6" xml:lang="kn">ಂದ  ಅඌಂತತั</span> ๭<span eId="preface__p_3__span_7" xml:lang="kn">ದ ೔ದ౳ಞൟ౨</span> ๏౳<span eId="preface__p_3__span_8" xml:lang="kn">ೕ </span>ช൒౽<span eId="preface__p_3__span_9" xml:lang="kn">ಂಬ ಃ౹ೕತ</span>౳<span eId="preface__p_3__span_10" xml:lang="kn"> ಅ</span>෗ไൽ౫ ඩ౳ඌ౽<span eId="preface__p_3__span_11" xml:lang="kn">ರ ಅ</span>ඌඛ<span eId="preface__p_3__span_12" xml:lang="kn">ಯಮ, 2025  (2026ರ ಕ</span>කბ<span eId="preface__p_3__span_13" xml:lang="kn">ಟಕ ಅ</span>ඌඛ<span eId="preface__p_3__span_14" xml:lang="kn">ಯಮ ๸ಒ౲: 16) ರ </span> ๝<span eId="preface__p_3__span_15" xml:lang="kn">ಂತರವ</span>ඝ౬<span eId="preface__p_3__span_16" xml:lang="kn"> ಅඌಂತ ಆಂಗ</span>౵<span eId="preface__p_3__span_17" xml:lang="kn"> ಪಠ</span>౲ๅ<span eId="preface__p_3__span_18" xml:lang="kn">ಂ</span>ൿ <span eId="preface__p_3__span_19" xml:lang="kn">ಕ</span>කბ<span eId="preface__p_3__span_20" xml:lang="kn">ಟಕ </span>ฃ<span eId="preface__p_3__span_21" xml:lang="kn">ಜ</span>౲<span eId="preface__p_3__span_22" xml:lang="kn">ಪತ</span>౳<span eId="preface__p_3__span_23" xml:lang="kn">ದ </span>เ๕<span eId="preface__p_3__span_24" xml:lang="kn">ಷ ๸೉ಃಯ</span>ย౵ ( <span eId="preface__p_3__span_25" xml:lang="kn">ಗ IV) ಪ</span>౳<span eId="preface__p_3__span_26" xml:lang="kn">ಕ</span>ഔ<span eId="preface__p_3__span_27" xml:lang="kn">ಸ෎ಃಂ</span>ൿ<span eId="preface__p_3__span_28" xml:lang="kn"> ಆ</span>ඃ๏<span eId="preface__p_3__span_29" xml:lang="kn">ಸมಜං</span>,-</p>
+      <p eId="preface__p_4">KARNATAKA ACT NO. 16 OF 2026</p>
+      <p eId="preface__p_5">(First Published in the Karnataka Gazette Extra-ordinary on the 8th day of January, 2026</p>
+      <p eId="preface__p_6">THE CHANDRAGUTHI SHREE RENUKAMBA KSHETRA DEVELOPMENT AUTHORITY ACT, 2025</p>
+      <p eId="preface__p_7">(Received the assent of the Governor on the 7th day of January, 2026)</p>
+      <longTitle eId="preface__longTitle_1">
+        <p eId="preface__longTitle_1__p_1">An Act to establish an Authority to develop and maintain the Chandraguthi Shree Renukamba temple, in Sorab taluk, Shivamogga District.</p>
+      </longTitle>
+    </preface>
+    <preamble eId="preamble">
+      <recitals eId="preamble__recitals_1">
+        <recital eId="preamble__recitals_1__rec_1">
+          <p eId="preamble__recitals_1__rec_1__p_1">Whereas it is expedient to establish an Authority to develop and maintain the Chandraguthi Shree Renukamba temple,in Sorab taluk, Shivamogga District into tourist centre and also to maintain it and for the matters connected there with or incidental thereto;</p>
+        </recital>
+      </recitals>
+      <formula eId="preamble__formula_1" name="enactingFormula">
+        <p eId="preamble__formula_1__p_1">Be it enacted by the Karnataka State Legislature in the seventy sixth year of the Republic of India as follows:-</p>
+      </formula>
+    </preamble>
+    <body>
+      <chapter eId="chp_I">
+        <num>I</num>
+        <heading>PRELIMINARY</heading>
+        <section eId="chp_I__sec_1">
+          <num>1.</num>
+          <heading>Short title, extent and commencement</heading>
+          <subsection eId="chp_I__sec_1__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_I__sec_1__subsec_1__content">
+              <p eId="chp_I__sec_1__subsec_1__content__p_1">This Act may be called the Chandraguthi Shree Renukamba Kshetra Development Authority Act, 2025.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_I__sec_1__subsec_2">
+            <num>(2)</num>
+            <content eId="chp_I__sec_1__subsec_2__content">
+              <p eId="chp_I__sec_1__subsec_2__content__p_1">It extends to the area of the Chandraguthi Shree Renukamba Kshetra as defined in <ref eId="chp_I__sec_1__subsec_2__content__p_1__ref_1" href="#chp_I__sec_2__cl_j">clause (j) of section (2)</ref>.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_I__sec_1__subsec_3">
+            <num>(3)</num>
+            <content eId="chp_I__sec_1__subsec_3__content">
+              <p eId="chp_I__sec_1__subsec_3__content__p_1">It shall come into force from such date as the State Government may, by notification in the official Gazzette appoint and different dates may be appointed for different provisions of the Act.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="chp_I__sec_2">
+          <num>2.</num>
+          <heading>Definitions</heading>
+          <intro eId="chp_I__sec_2__intro">
+            <p eId="chp_I__sec_2__intro__p_1">In this Act, unless the context otherwise requires,</p>
+          </intro>
+          <clause eId="chp_I__sec_2__cl_a">
+            <num>(a)</num>
+            <content eId="chp_I__sec_2__cl_a__content">
+              <p eId="chp_I__sec_2__cl_a__content__p_1">
+                <def eId="chp_I__sec_2__cl_a__content__p_1__def_1" refersTo="#amenity">"Amenity"</def>means and includes roads, streets, sub-ways, lighting, drainage, sanitation, electricity and water supply or other convenience, public works, market places, post office, bank, hospitals, dispensary, police station, fair price shop, milk booth, library, recreation centers, service stations of any public utility service authorized by the Authority or other facility, and such other amenity as the State Government may, by notification, specify;</p>
+            </content>
+          </clause>
+          <clause eId="chp_I__sec_2__cl_b">
+            <num>(b)</num>
+            <content eId="chp_I__sec_2__cl_b__content">
+              <p eId="chp_I__sec_2__cl_b__content__p_1">
+                <def eId="chp_I__sec_2__cl_b__content__p_1__def_1" refersTo="#authority">"Authority"</def> means Chandraguthi Shree Renukamba Kshetra Development Authority constituted under <ref eId="chp_I__sec_2__cl_b__content__p_1__ref_2" href="#chp_II__sec_3">section 3</ref>;</p>
+            </content>
+          </clause>
+          <clause eId="chp_I__sec_2__cl_c">
+            <num>(c)</num>
+            <content eId="chp_I__sec_2__cl_c__content">
+              <p eId="chp_I__sec_2__cl_c__content__p_1">
+                <def eId="chp_I__sec_2__cl_c__content__p_1__def_1" refersTo="#chairman">"Chairman"</def> means the Chairman of the Authority;</p>
+            </content>
+          </clause>
+          <clause eId="chp_I__sec_2__cl_d">
+            <num>(d)</num>
+            <content eId="chp_I__sec_2__cl_d__content">
+              <p eId="chp_I__sec_2__cl_d__content__p_1">
+                <def eId="chp_I__sec_2__cl_d__content__p_1__def_1" refersTo="#commissioner">"Commissioner"</def> means the Commissioner of the Hindu Religious Institutions and charitable Endowment Department;</p>
+            </content>
+          </clause>
+          <clause eId="chp_I__sec_2__cl_e">
+            <num>(e)</num>
+            <content eId="chp_I__sec_2__cl_e__content">
+              <p eId="chp_I__sec_2__cl_e__content__p_1">
+                <def eId="chp_I__sec_2__cl_e__content__p_1__def_1" refersTo="#committee">"Committee"</def> means the District Level committee and the State Level Monitoring Committee constituted under <ref eId="chp_I__sec_2__cl_e__content__p_1__ref_2" href="#chp_III__sec_18">section 18</ref>;</p>
+            </content>
+          </clause>
+          <clause eId="chp_I__sec_2__cl_f">
+            <num>(f)</num>
+            <content eId="chp_I__sec_2__cl_f__content">
+              <p eId="chp_I__sec_2__cl_f__content__p_1">
+                <def eId="chp_I__sec_2__cl_f__content__p_1__def_1" refersTo="#fund">"Fund"</def> means fund of the Authority,</p>
+            </content>
+          </clause>
+          <clause eId="chp_I__sec_2__cl_g">
+            <num>(g)</num>
+            <content eId="chp_I__sec_2__cl_g__content">
+              <p eId="chp_I__sec_2__cl_g__content__p_1">
+                <def eId="chp_I__sec_2__cl_g__content__p_1__def_1" refersTo="#member">"Member"</def> means a member of the Authority:</p>
+            </content>
+          </clause>
+          <clause eId="chp_I__sec_2__cl_h">
+            <num>(h)</num>
+            <content eId="chp_I__sec_2__cl_h__content">
+              <p eId="chp_I__sec_2__cl_h__content__p_1">
+                <def eId="chp_I__sec_2__cl_h__content__p_1__def_1" refersTo="#regulations">" Regulations"</def> means regulations of the Authority made under <ref eId="chp_I__sec_2__cl_h__content__p_1__ref_2" href="#chp_V__sec_38">section 38</ref>;</p>
+            </content>
+          </clause>
+          <clause eId="chp_I__sec_2__cl_i">
+            <num>(i)</num>
+            <content eId="chp_I__sec_2__cl_i__content">
+              <p eId="chp_I__sec_2__cl_i__content__p_1">
+                <def eId="chp_I__sec_2__cl_i__content__p_1__def_1" refersTo="#rules">"Rules"</def> means rules made by the State Government under <ref eId="chp_I__sec_2__cl_i__content__p_1__ref_2" href="#chp_V__sec_37">section 37</ref>;</p>
+            </content>
+          </clause>
+          <clause eId="chp_I__sec_2__cl_j">
+            <num>(j)</num>
+            <content eId="chp_I__sec_2__cl_j__content">
+              <p eId="chp_I__sec_2__cl_j__content__p_1">
+                <def eId="chp_I__sec_2__cl_j__content__p_1__def_1" refersTo="#secretary">"Secretary"</def> means the Secretary of the Authority appointed under <ref eId="chp_I__sec_2__cl_j__content__p_1__ref_2" href="#chp_II__sec_10">section 10</ref>; and</p>
+            </content>
+          </clause>
+          <clause eId="chp_I__sec_2__cl_k">
+            <num>(k)</num>
+            <content eId="chp_I__sec_2__cl_k__content">
+              <p eId="chp_I__sec_2__cl_k__content__p_1">
+                <def eId="chp_I__sec_2__cl_k__content__p_1__def_1" refersTo="#chandraguthiShreeRenukambaKshetra">"Chandraguthi Shree Renukamba Kshetra"</def> means and includes Chandraguthi Shree Renukamba temple and all the group temples attached thereto in Chandraguthi, Sorabha Taluk in Shivamogga district,the entire area of Chandraguthi town and lands acquired by the State Government from time to time for development of Chandraguthi Shree Renukamba temple and such other area declared by the State Government, by notification.</p>
+            </content>
+          </clause>
+        </section>
+      </chapter>
+      <chapter eId="chp_II">
+        <num>II</num>
+        <heading>ESTABLISHMENT OF CHANDRAGUTHI SHREE RENUKAMBA KSHETRA DEVELOPMENT AUTHORITY AND ITS EMPLOYEES</heading>
+        <section eId="chp_II__sec_3">
+          <num>3.</num>
+          <heading>Establishment of the Authority</heading>
+          <subsection eId="chp_II__sec_3__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_II__sec_3__subsec_1__content">
+              <p eId="chp_II__sec_3__subsec_1__content__p_1">As soon as may be, after the commencement of this Act, there shall be established for the purposes of this Act, an Authority called Chandraguthi Shree RenukambaKshetra Development Authority.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_3__subsec_2">
+            <num>(2)</num>
+            <content eId="chp_II__sec_3__subsec_2__content">
+              <p eId="chp_II__sec_3__subsec_2__content__p_1">The Authority shall have its headquarters at the Chandraguthi Shree Renukamba Temple in Sorabha taluk, Shivamogga district.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_3__subsec_3">
+            <num>(3)</num>
+            <content eId="chp_II__sec_3__subsec_3__content">
+              <p eId="chp_II__sec_3__subsec_3__content__p_1">The Authority shall be a body corporate by the name aforesaid, having perpetual succession and a common seal with power to acquire, hold and dispose of property, both movable and immovable, and to contract and shall by the said name sue and be sued.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_3__subsec_4">
+            <num>(4)</num>
+            <content eId="chp_II__sec_3__subsec_4__content">
+              <p eId="chp_II__sec_3__subsec_4__content__p_1">The Authority shall consist of the following members namely:-</p>
+              <table eId="chp_II__sec_3__subsec_4__table_1">
+                <tr eId="chp_II__sec_3__subsec_4__table_1__tr_1">
+                  <th eId="chp_II__sec_3__subsec_4__table_1__tr_1__th_1">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_1__th_1__p_1">(a)</p>
+                  </th>
+                  <th eId="chp_II__sec_3__subsec_4__table_1__tr_1__th_2">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_1__th_2__p_1">The Minister in charge of Hindu Religious Institutions and charitable Endowments Department</p>
+                  </th>
+                  <th eId="chp_II__sec_3__subsec_4__table_1__tr_1__th_3">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_1__th_3__p_1">Chairman</p>
+                  </th>
+                </tr>
+                <tr eId="chp_II__sec_3__subsec_4__table_1__tr_2">
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_2__td_1">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_2__td_1__p_1">(b)</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_2__td_2">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_2__td_2__p_1">The Minister in charge of the District</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_2__td_3">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_2__td_3__p_1">Ex-officio Vice Chairman</p>
+                  </td>
+                </tr>
+                <tr eId="chp_II__sec_3__subsec_4__table_1__tr_3">
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_3__td_1">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_3__td_1__p_1">(c)</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_3__td_2">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_3__td_2__p_1">The Minister in charge of Tourism</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_3__td_3">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_3__td_3__p_1">Ex-officio vice Chairman</p>
+                  </td>
+                </tr>
+                <tr eId="chp_II__sec_3__subsec_4__table_1__tr_4">
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_4__td_1">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_4__td_1__p_1">(d)</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_4__td_2">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_4__td_2__p_1">The Members of Parliament and the Members of the State Legislature representing a part or whole of Chandraguthi Shree Renukambakshetra whose electoral constituencies lie within the</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_4__td_3">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_4__td_3__p_1">Ex-officio Members</p>
+                  </td>
+                </tr>
+                <tr eId="chp_II__sec_3__subsec_4__table_1__tr_5">
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_5__td_1">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_5__td_1__p_1">(e)</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_5__td_2">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_5__td_2__p_1">The members of the Karnataka Legislative Council who have selected District or Taluk as Nodal District or Taluk within the jurisdiction of the Authority</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_5__td_3">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_5__td_3__p_1">Ex-officio Members</p>
+                  </td>
+                </tr>
+                <tr eId="chp_II__sec_3__subsec_4__table_1__tr_6">
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_6__td_1">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_6__td_1__p_1">(f)</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_6__td_2">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_6__td_2__p_1">Not more than five members nominated by the State Government from among the leading personalities having wide knowledge about the historical background and mythology of Chandraguthi Shree Renukambakshetra out of whom at least one shall belong to the Scheduled Castes or the Scheduled Tribes and one shall be a woman.</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_6__td_3">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_6__td_3__p_1">Members</p>
+                  </td>
+                </tr>
+                <tr eId="chp_II__sec_3__subsec_4__table_1__tr_7">
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_7__td_1">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_7__td_1__p_1">(g)</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_7__td_2">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_7__td_2__p_1">The Chief Engineer (Communication and Building) Public Works Department or his representative not below the rank of the Deputy Secretary to Government.</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_7__td_3">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_7__td_3__p_1">Ex-officio Member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_II__sec_3__subsec_4__table_1__tr_8">
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_8__td_1">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_8__td_1__p_1">(h)</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_8__td_2">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_8__td_2__p_1">The Principal Secretary to Government, Finance Department or his representative not below the rank of the Deputy Secretary to Government.</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_8__td_3">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_8__td_3__p_1">Ex-officio Member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_II__sec_3__subsec_4__table_1__tr_9">
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_9__td_1">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_9__td_1__p_1">(i)</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_9__td_2">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_9__td_2__p_1">The Principal Secretary to Government, Revenue Department (Endowment) or his representative not below the rank of the Deputy Secretary to Government</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_9__td_3">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_9__td_3__p_1">Ex-officio Member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_II__sec_3__subsec_4__table_1__tr_10">
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_10__td_1">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_10__td_1__p_1">(j)</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_10__td_2">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_10__td_2__p_1">The Principal Secretary to Government Forest and Ecology Department or his representative not below the rank of the Deputy Secretary to Government.</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_10__td_3">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_10__td_3__p_1">Ex-officio Member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_II__sec_3__subsec_4__table_1__tr_11">
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_11__td_1">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_11__td_1__p_1">(k)</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_11__td_2">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_11__td_2__p_1">The Commissioner Hindu Religious Institution and Charitable Endowment</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_11__td_3">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_11__td_3__p_1">Ex-officio Member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_II__sec_3__subsec_4__table_1__tr_12">
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_12__td_1">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_12__td_1__p_1">(l)</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_12__td_2">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_12__td_2__p_1">The Deputy Commissioner, Shivamogga district</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_12__td_3">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_12__td_3__p_1">Ex-officio Member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_II__sec_3__subsec_4__table_1__tr_13">
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_13__td_1">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_13__td_1__p_1">(m)The Chief Executive Officer, Zilla Panchayath,Shivamogga district Ex-officio Member</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_13__td_2">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_13__td_2__p_1"/>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_13__td_3">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_13__td_3__p_1"/>
+                  </td>
+                </tr>
+                <tr eId="chp_II__sec_3__subsec_4__table_1__tr_14">
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_14__td_1">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_14__td_1__p_1">(n)</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_14__td_2">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_14__td_2__p_1">The Regional Director for Archaeology and Museums, Government of India</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_14__td_3">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_14__td_3__p_1">Ex-officio Member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_II__sec_3__subsec_4__table_1__tr_15">
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_15__td_1">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_15__td_1__p_1">(o)</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_15__td_2">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_15__td_2__p_1">The Commissioner for Archaeology and Museums, Government of Karnataka</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_15__td_3">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_15__td_3__p_1">Ex-officio Member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_II__sec_3__subsec_4__table_1__tr_16">
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_16__td_1">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_16__td_1__p_1">(p)</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_16__td_2">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_16__td_2__p_1">The Chief Priest Chandraguthi Shree Renukamba Temple, Shivamogga</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_16__td_3">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_16__td_3__p_1">Ex-officio Member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_II__sec_3__subsec_4__table_1__tr_17">
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_17__td_1">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_17__td_1__p_1">(q)</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_17__td_2">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_17__td_2__p_1">The Secretary of the Authority</p>
+                  </td>
+                  <td eId="chp_II__sec_3__subsec_4__table_1__tr_17__td_3">
+                    <p eId="chp_II__sec_3__subsec_4__table_1__tr_17__td_3__p_1">Ex-officio member Secretary</p>
+                  </td>
+                </tr>
+              </table>
+            </content>
+          </subsection>
+        </section>
+        <section eId="chp_II__sec_4">
+          <num>4.</num>
+          <heading>Term of office and conditions of services</heading>
+          <subsection eId="chp_II__sec_4__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_II__sec_4__subsec_1__content">
+              <p eId="chp_II__sec_4__subsec_1__content__p_1">Subject to the pleasure of the State Government the non-official members nominated by the State Government shall hold office for a period of three years.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_4__subsec_2">
+            <num>(2)</num>
+            <content eId="chp_II__sec_4__subsec_2__content">
+              <p eId="chp_II__sec_4__subsec_2__content__p_1">Any non-official member may resign his office by writing under his hand addressed to the State Government but shall continue in office until his resignation is accepted.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_4__subsec_3">
+            <num>(3)</num>
+            <content eId="chp_II__sec_4__subsec_3__content">
+              <p eId="chp_II__sec_4__subsec_3__content__p_1">The non-official members shall receive such allowances as may be prescribed.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="chp_II__sec_5">
+          <num>5.</num>
+          <heading>Disqualification for membership</heading>
+          <intro eId="chp_II__sec_5__intro">
+            <p eId="chp_II__sec_5__intro__p_1">A person shall be disqualified for being appointed as and for being a member if he,-</p>
+          </intro>
+          <clause eId="chp_II__sec_5__cl_a">
+            <num>(a)</num>
+            <content eId="chp_II__sec_5__cl_a__content">
+              <p eId="chp_II__sec_5__cl_a__content__p_1">has been convicted and sentenced to imprisonment for an offence which in the opinion of the State Government involves moral turpitude; or</p>
+            </content>
+          </clause>
+          <clause eId="chp_II__sec_5__cl_b">
+            <num>(b)</num>
+            <content eId="chp_II__sec_5__cl_b__content">
+              <p eId="chp_II__sec_5__cl_b__content__p_1">is of mental illness and stands so declared by a competent court; or</p>
+            </content>
+          </clause>
+          <clause eId="chp_II__sec_5__cl_c">
+            <num>(c)</num>
+            <content eId="chp_II__sec_5__cl_c__content">
+              <p eId="chp_II__sec_5__cl_c__content__p_1">is an undischarged insolvent; or</p>
+            </content>
+          </clause>
+          <clause eId="chp_II__sec_5__cl_d">
+            <num>(d)</num>
+            <content eId="chp_II__sec_5__cl_d__content">
+              <p eId="chp_II__sec_5__cl_d__content__p_1">has been removed or dismissed from service of the Central Government or a State Government or a body or corporation owned or controlled by the Central Government or a State Government; or</p>
+            </content>
+          </clause>
+          <clause eId="chp_II__sec_5__cl_e">
+            <num>(e)</num>
+            <content eId="chp_II__sec_5__cl_e__content">
+              <p eId="chp_II__sec_5__cl_e__content__p_1">has directly or indirectly by himself or as partner, has any share or interest in any work done by the order of the Authority or in any contract or employment with or under or by or on behalf of the Authority; or</p>
+            </content>
+          </clause>
+          <clause eId="chp_II__sec_5__cl_f">
+            <num>(f)</num>
+            <content eId="chp_II__sec_5__cl_f__content">
+              <p eId="chp_II__sec_5__cl_f__content__p_1">is employed as a paid legal practitioner on behalf of the Authority or accepts employment as legal practitioner against the Authority:</p>
+            </content>
+          </clause>
+          <proviso eId="chp_II__sec_5__proviso_1">
+            <content eId="chp_II__sec_5__proviso_1__content">
+              <p eId="chp_II__sec_5__proviso_1__content__p_1">Provided that, no person shall be disqualified under <ref eId="chp_II__sec_5__proviso_1__content__p_1__ref_1" href="#chp_II__sec_5__cl_e">clause (e)</ref> or be deemed to have any share or interest in any contract or employment within the meaning of the said clause by reason only of his having a share or interest in any newspaper in which any advertisement relating to the affairs of the Authority is inserted.</p>
+            </content>
+          </proviso>
+        </section>
+        <section eId="chp_II__sec_6">
+          <num>6.</num>
+          <heading>Removal of member</heading>
+          <intro eId="chp_II__sec_6__intro">
+            <p eId="chp_II__sec_6__intro__p_1">The State Government shall remove a member if,-</p>
+          </intro>
+          <clause eId="chp_II__sec_6__cl_a">
+            <num>(a)</num>
+            <content eId="chp_II__sec_6__cl_a__content">
+              <p eId="chp_II__sec_6__cl_a__content__p_1">he becomes subject to any of the disqualifications mentioned in <ref eId="chp_II__sec_6__cl_a__content__p_1__ref_1" href="#chp_II__sec_5">section 5</ref>:</p>
+            </content>
+          </clause>
+          <proviso eId="chp_II__sec_6__proviso_1">
+            <content eId="chp_II__sec_6__proviso_1__content">
+              <p eId="chp_II__sec_6__proviso_1__content__p_1">Provided that, no member shall be removed on the ground that he has become subject to the disqualification mentioned in <ref eId="chp_II__sec_6__proviso_1__content__p_1__ref_1" href="#chp_II__sec_5__cl_e">clause (e) of section 5</ref>, unless he has been given an opportunity of making his representation against the proposal; or</p>
+            </content>
+          </proviso>
+          <clause eId="chp_II__sec_6__cl_b">
+            <num>(b)</num>
+            <content eId="chp_II__sec_6__cl_b__content">
+              <p eId="chp_II__sec_6__cl_b__content__p_1">he refuses to act or become incapable of acting; or</p>
+            </content>
+          </clause>
+          <clause eId="chp_II__sec_6__cl_c">
+            <num>(c)</num>
+            <content eId="chp_II__sec_6__cl_c__content">
+              <p eId="chp_II__sec_6__cl_c__content__p_1">he without informing the Authority absents from three consecutive meetings of the Authority; or</p>
+            </content>
+          </clause>
+          <clause eId="chp_II__sec_6__cl_d">
+            <num>(d)</num>
+            <content eId="chp_II__sec_6__cl_d__content">
+              <p eId="chp_II__sec_6__cl_d__content__p_1">in the opinion of the State Government he has so abused his position as to render his continuance in office detrimental to the public interest:</p>
+            </content>
+          </clause>
+          <proviso eId="chp_II__sec_6__proviso_2">
+            <content eId="chp_II__sec_6__proviso_2__content">
+              <p eId="chp_II__sec_6__proviso_2__content__p_1">Provided that, no member shall be removed under this clause unless he has been given an opportunity of making his representation against the proposal.</p>
+            </content>
+          </proviso>
+        </section>
+        <section eId="chp_II__sec_7">
+          <num>7.</num>
+          <heading>Eligibility for reappointment</heading>
+          <content eId="chp_II__sec_7__content">
+            <p eId="chp_II__sec_7__content__p_1">Any person ceasing to be a member shall unless disqualified under <ref eId="chp_II__sec_7__content__p_1__ref_1" href="#chp_II__sec_5">section 5</ref>, be eligible for re-appointment as a member.</p>
+          </content>
+        </section>
+        <section eId="chp_II__sec_8">
+          <num>8.</num>
+          <heading>Powers of the Authority</heading>
+          <subsection eId="chp_II__sec_8__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_II__sec_8__subsec_1__content">
+              <p eId="chp_II__sec_8__subsec_1__content__p_1">The Authority shall have power generally to do anything that in its opinion is necessary to do so in the intent and provisions of this Act, except such acts as are specifically laid in the Act to be performed by other authorities.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_8__subsec_2">
+            <num>(2)</num>
+            <intro eId="chp_II__sec_8__subsec_2__intro">
+              <p eId="chp_II__sec_8__subsec_2__intro__p_1">Without prejudice to the generality of <ref eId="chp_II__sec_8__subsec_2__intro__p_1__ref_1" href="#chp_II__sec_8__subsec_1">sub-section (1)</ref>, the Authority shall have power to enter into and perform all such contracts as it may consider necessary or expedient for carrying out any of the purposes of this Act subject to such rules made under this Act and every contract shall be made on behalf of the Authority by the Secretary:</p>
+            </intro>
+            <proviso eId="chp_II__sec_8__subsec_2__proviso_1">
+              <content eId="chp_II__sec_8__subsec_2__proviso_1__content">
+                <p eId="chp_II__sec_8__subsec_2__proviso_1__content__p_1">Provided that, a copy of every contract involving expenditure of rupees ten lakhs or more shall be sent to the State Government.</p>
+              </content>
+            </proviso>
+          </subsection>
+          <subsection eId="chp_II__sec_8__subsec_3">
+            <num>(3)</num>
+            <content eId="chp_II__sec_8__subsec_3__content">
+              <p eId="chp_II__sec_8__subsec_3__content__p_1">A compliance report shall be submitted by the Authority to the State Government in this behalf.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_8__subsec_4">
+            <num>(4)</num>
+            <content eId="chp_II__sec_8__subsec_4__content">
+              <p eId="chp_II__sec_8__subsec_4__content__p_1">The Authority may approve a scheme for adoption of "C" category temples as notified under the provisions of the Karnataka Hindu Religious Institutions and Charitable Endowments Act, 1997 and may specify necessary provisions for the said adoption.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_8__subsec_5">
+            <num>(5)</num>
+            <content eId="chp_II__sec_8__subsec_5__content">
+              <p eId="chp_II__sec_8__subsec_5__content__p_1">The Authority shall mandatorily comply with the provisions of the Karnataka Hindu Religious Institutions and Charitable Endowments Act, 1997 (Karnataka Act 33 of 2001).</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="chp_II__sec_9">
+          <num>9.</num>
+          <heading>Sub-committee of the Authority</heading>
+          <subsection eId="chp_II__sec_9__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_II__sec_9__subsec_1__content">
+              <p eId="chp_II__sec_9__subsec_1__content__p_1">The Authority may for any specific purpose constitute a sub- committee consisting of the Secretary as Chairman and such other members not exceeding five among the members of the Authority.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_9__subsec_2">
+            <num>(2)</num>
+            <content eId="chp_II__sec_9__subsec_2__content">
+              <p eId="chp_II__sec_9__subsec_2__content__p_1">The sub-committee shall exercise such powers and perform such duties of the Authority as delegated by the Authority.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_9__subsec_3">
+            <num>(3)</num>
+            <content eId="chp_II__sec_9__subsec_3__content">
+              <p eId="chp_II__sec_9__subsec_3__content__p_1">The sub-committee shall meet at-least once in a month and shall observe such rules of procedure into the transaction of business at its meeting as may be provided by regulations.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="chp_II__sec_10">
+          <num>10.</num>
+          <heading>Appointment of Secretary</heading>
+          <subsection eId="chp_II__sec_10__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_II__sec_10__subsec_1__content">
+              <p eId="chp_II__sec_10__subsec_1__content__p_1">The State Government shall appoint a Group 'B' officer of the Department of Endowment, Government of Karnataka, as the Secretary of the Authority.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_10__subsec_2">
+            <num>(2)</num>
+            <content eId="chp_II__sec_10__subsec_2__content">
+              <p eId="chp_II__sec_10__subsec_2__content__p_1">The Secretary and other officers shall receive such salary and other allowances as the State Government may, from time to time, determine.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_10__subsec_3">
+            <num>(3)</num>
+            <content eId="chp_II__sec_10__subsec_3__content">
+              <p eId="chp_II__sec_10__subsec_3__content__p_1">The State Government may, from time to time, grant leave of absence to the Secretary for such period as it thinks fit.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="chp_II__sec_11">
+          <num>11.</num>
+          <heading>Powers and duties of the Secretary</heading>
+          <subsection eId="chp_II__sec_11__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_II__sec_11__subsec_1__content">
+              <p eId="chp_II__sec_11__subsec_1__content__p_1">The Secretary shall be the Chief Executive and Administrative Officer of the Authority.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_11__subsec_2">
+            <num>(2)</num>
+            <intro eId="chp_II__sec_11__subsec_2__intro">
+              <p eId="chp_II__sec_11__subsec_2__intro__p_1">The Secretary shall, in addition to performing such functions as are conferred on him by or under this Act or under any law for the time being in force,-</p>
+            </intro>
+            <clause eId="chp_II__sec_11__subsec_2__cl_a">
+              <num>(a)</num>
+              <content eId="chp_II__sec_11__subsec_2__cl_a__content">
+                <p eId="chp_II__sec_11__subsec_2__cl_a__content__p_1">carry into effect the resolutions of the Authority;</p>
+              </content>
+            </clause>
+            <clause eId="chp_II__sec_11__subsec_2__cl_b">
+              <num>(b)</num>
+              <content eId="chp_II__sec_11__subsec_2__cl_b__content">
+                <p eId="chp_II__sec_11__subsec_2__cl_b__content__p_1">conduct the business of the Authority and keep correspondence;</p>
+              </content>
+            </clause>
+            <clause eId="chp_II__sec_11__subsec_2__cl_c">
+              <num>(c)</num>
+              <content eId="chp_II__sec_11__subsec_2__cl_c__content">
+                <p eId="chp_II__sec_11__subsec_2__cl_c__content__p_1">carry out and execute such schemes and works as the State Government may direct and incur necessary expenditure there for;</p>
+              </content>
+            </clause>
+            <clause eId="chp_II__sec_11__subsec_2__cl_d">
+              <num>(d)</num>
+              <content eId="chp_II__sec_11__subsec_2__cl_d__content">
+                <p eId="chp_II__sec_11__subsec_2__cl_d__content__p_1">implement the schemes of the Authority;</p>
+              </content>
+            </clause>
+            <clause eId="chp_II__sec_11__subsec_2__cl_e">
+              <num>(e)</num>
+              <content eId="chp_II__sec_11__subsec_2__cl_e__content">
+                <p eId="chp_II__sec_11__subsec_2__cl_e__content__p_1">operate the accounts of the Authority and be responsible for the maintenance of the accounts of the Authority;</p>
+              </content>
+            </clause>
+            <clause eId="chp_II__sec_11__subsec_2__cl_f">
+              <num>(f)</num>
+              <content eId="chp_II__sec_11__subsec_2__cl_f__content">
+                <p eId="chp_II__sec_11__subsec_2__cl_f__content__p_1">exercise supervision and control over the officers and employees of the Authority in matters of executive, administration and service conditions of such officers and employees and regulation of their pay and allowances;</p>
+              </content>
+            </clause>
+            <clause eId="chp_II__sec_11__subsec_2__cl_g">
+              <num>(g)</num>
+              <content eId="chp_II__sec_11__subsec_2__cl_g__content">
+                <p eId="chp_II__sec_11__subsec_2__cl_g__content__p_1">furnish to the State Government a copy of the minutes of the proceedings of the Authority and any return, or other information which the State Government may, from time to time, call for; and</p>
+              </content>
+            </clause>
+            <clause eId="chp_II__sec_11__subsec_2__cl_h">
+              <num>(h)</num>
+              <content eId="chp_II__sec_11__subsec_2__cl_h__content">
+                <p eId="chp_II__sec_11__subsec_2__cl_h__content__p_1">discharge such other functions which are conferred on him by or under this Act or any other law for the time being in force.</p>
+              </content>
+            </clause>
+          </subsection>
+        </section>
+        <section eId="chp_II__sec_12">
+          <num>12.</num>
+          <heading>Employees of the Authority</heading>
+          <subsection eId="chp_II__sec_12__subsec_1">
+            <num>(1)</num>
+            <intro eId="chp_II__sec_12__subsec_1__intro">
+              <p eId="chp_II__sec_12__subsec_1__intro__p_1">Subject to such procedure and conditions as may be prescribed, the Authority may appoint such number of employees as it may find necessary for effective implementation of the Act:</p>
+            </intro>
+            <proviso eId="chp_II__sec_12__subsec_1__proviso_1">
+              <content eId="chp_II__sec_12__subsec_1__proviso_1__content">
+                <p eId="chp_II__sec_12__subsec_1__proviso_1__content__p_1">Provided that, until the State Government frame rules, under this Act, the method of recruitment and conditions of service of the employees including Archaks working in Chandraguthi Shree Renukamba Temple of the Authority shall be continued to be governed under the provisions of the Hindu Religious and Charitable Endowments Act, 1997 (Karnataka Act 33 of 2001) and the rules made there under:</p>
+              </content>
+            </proviso>
+            <proviso eId="chp_II__sec_12__subsec_1__proviso_2">
+              <content eId="chp_II__sec_12__subsec_1__proviso_2__content">
+                <p eId="chp_II__sec_12__subsec_1__proviso_2__content__p_1">Provided further that, the State Government shall appoint an Assistant Engineer on deputation from the Public Works Department for maintenance of works taken up by the Authority and the State Government shall also appoint an Advisor of Finance and Accounts not below the rank of Auditor (First Division Assistant) on deputation from the Karnataka State Audit and Accounts Department and other officers from other Departments as may be necessary.</p>
+              </content>
+            </proviso>
+          </subsection>
+          <subsection eId="chp_II__sec_12__subsec_2">
+            <num>(2)</num>
+            <content eId="chp_II__sec_12__subsec_2__content">
+              <p eId="chp_II__sec_12__subsec_2__content__p_1">The Assistant Engineer shall be responsible for the overall monitoring of progress review of repair works, policy decisions, introduction of new technology, Budget allocation, review of budget, co-ordination with all external agencies and random site inspection for quality check and issuances of No Objection Certificate to construction or renovations of the buildings coming under jurisdiction of the Authority and report the same to the Secretary.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_12__subsec_3">
+            <num>(3)</num>
+            <content eId="chp_II__sec_12__subsec_3__content">
+              <p eId="chp_II__sec_12__subsec_3__content__p_1">The Auditor shall work under the control of the Secretary. He shall ensure that financial rules are followed and accounts are kept up to date, presenting a true and fair picture of the financial affairs of the Authority.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_12__subsec_4">
+            <num>(4)</num>
+            <content eId="chp_II__sec_12__subsec_4__content">
+              <p eId="chp_II__sec_12__subsec_4__content__p_1">The salaries, allowances and other conditions of service of the employees referred to in <ref eId="chp_II__sec_12__subsec_4__content__p_1__ref_1" href="#chp_II__sec_12__subsec_1">sub-section (1)</ref>, shall be such as may be prescribed.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_12__subsec_5">
+            <num>(5)</num>
+            <content eId="chp_II__sec_12__subsec_5__content">
+              <p eId="chp_II__sec_12__subsec_5__content__p_1">The Secretary shall be the appointing and disciplinary authority in respect of employees of the Authority and shall exercise general control and supervision over the employees of the Authority.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="chp_II__sec_13">
+          <num>13.</num>
+          <heading>General disqualification for services under the Authority</heading>
+          <content eId="chp_II__sec_13__content">
+            <p eId="chp_II__sec_13__content__p_1">No person who has directly or indirectly by himself or through his partner or through his agent, any share or interest in any contract, by or on behalf of the Authority or in any employment under, by or on behalf of the Authority, otherwise than as an officer or employee thereof, shall become or remain an officer or employee of the Authority.</p>
+          </content>
+        </section>
+        <section eId="chp_II__sec_14">
+          <num>14.</num>
+          <heading>Meetings of the Authority</heading>
+          <subsection eId="chp_II__sec_14__subsec_1">
+            <num>(1)</num>
+            <intro eId="chp_II__sec_14__subsec_1__intro">
+              <p eId="chp_II__sec_14__subsec_1__intro__p_1">Meetings of the Authority shall be convened by the Secretary, with the previous approval of the Chairman at such intervals as the Chairman may deem fit and shall be held at such place, as may be determined by the Chairman:</p>
+            </intro>
+            <proviso eId="chp_II__sec_14__subsec_1__proviso_1">
+              <content eId="chp_II__sec_14__subsec_1__proviso_1__content">
+                <p eId="chp_II__sec_14__subsec_1__proviso_1__content__p_1">Provided that, the Authority shall meet at least four times in a calendar year.</p>
+              </content>
+            </proviso>
+          </subsection>
+          <subsection eId="chp_II__sec_14__subsec_2">
+            <num>(2)</num>
+            <content eId="chp_II__sec_14__subsec_2__content">
+              <p eId="chp_II__sec_14__subsec_2__content__p_1">Every meeting shall be presided over by the Chairman and if for any reason the Chairman is unable to attend any meeting and if such a meeting is attended by the Vice-Chairmen, the District incharge Minister shall preside over the meeting. The quorum for the meeting shall be one third of the total members including the Chairman.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_14__subsec_3">
+            <num>(3)</num>
+            <content eId="chp_II__sec_14__subsec_3__content">
+              <p eId="chp_II__sec_14__subsec_3__content__p_1">Decisions of the Authority shall be, by unanimous affirmative vote of the members present and voting. If there is any difference of opinion on any particular subject coming for decision before the Authority. The Secretary shall refer the matter to the State Government and the decision of the State Government in such matters shall be final and conclusive.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_14__subsec_4">
+            <num>(4)</num>
+            <intro eId="chp_II__sec_14__subsec_4__intro">
+              <p eId="chp_II__sec_14__subsec_4__intro__p_1">The Secretary shall give effect to the decisions of the Authority:</p>
+            </intro>
+            <proviso eId="chp_II__sec_14__subsec_4__proviso_1">
+              <content eId="chp_II__sec_14__subsec_4__proviso_1__content">
+                <p eId="chp_II__sec_14__subsec_4__proviso_1__content__p_1">Provided that, if in the opinion of the Secretary any resolution of the Authority contravenes any provision of this Act or any other law or of any rule, notification or regulation made or issued under this Act or any other law or of any order passed by the State Government or is prejudicial or detrimental to the interests of the Authority or the interests of the development and maintenance of Chandraguthi Shree Renukamba Kshetra, he shall within fifteen days of the passing of the resolution, refer the matter to the State Government for orders thereon and inform the Authority at its next meeting, of the action taken by him and until orders of the State Government on receipt of such reference the Secretary shall not be bound to give effect to such resolution.</p>
+              </content>
+            </proviso>
+          </subsection>
+          <subsection eId="chp_II__sec_14__subsec_5">
+            <num>(5)</num>
+            <content eId="chp_II__sec_14__subsec_5__content">
+              <p eId="chp_II__sec_14__subsec_5__content__p_1">The Authority may by regulations specify the procedure with regard to the transaction of business at its meetings, not inconsistent with the provisions of this Act and the provisions of the Karnataka Hindu Religious Institutions and Charitable Endowments Act, 1997 (Karnataka Act 33 of 2001) and the Karnataka Hindu Religious Institutions and Charitable Endowments Rules, 2002.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="chp_II__sec_15">
+          <num>15.</num>
+          <heading>Proceedings presumed to be good and valid</heading>
+          <content eId="chp_II__sec_15__content">
+            <p eId="chp_II__sec_15__content__p_1">No disqualification of or defect in the appointment of any person acting as member shall be deemed to vitiate any act or proceeding of the Authority if such act or proceeding is otherwise in accordance with the provisions of this Act.</p>
+          </content>
+        </section>
+        <section eId="chp_II__sec_16">
+          <num>16.</num>
+          <heading>Decisions of the Authority by circulation of note</heading>
+          <subsection eId="chp_II__sec_16__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_II__sec_16__subsec_1__content">
+              <p eId="chp_II__sec_16__subsec_1__content__p_1">The Chairman may direct that any case may, instead of being brought up for discussion at a meeting of the Authority, be circulated, amongst the members of the Authority for opinion. If all the members unanimously agree for the proposal contained in the note circulated, it shall be deemed to be affirmative decision of the Authority and further action taken accordingly. If there is any difference of opinion on any particular subject taken up for the decision of the Authority by circulation, the Secretary shall refer the matter to the State Government and the decision of the State Government thereon shall be final.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_16__subsec_2">
+            <num>(2)</num>
+            <content eId="chp_II__sec_16__subsec_2__content">
+              <p eId="chp_II__sec_16__subsec_2__content__p_1">In cases which are circulated for opinion under <ref eId="chp_II__sec_16__subsec_2__content__p_1__ref_1" href="#chp_II__sec_16__subsec_1">sub-section (1)</ref>, if any member fails to communicate his opinion to the Secretary by a date to be specified in the note, it shall be presumed that such member has accepted the proposal contained in the note circulated.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_16__subsec_3">
+            <num>(3)</num>
+            <content eId="chp_II__sec_16__subsec_3__content">
+              <p eId="chp_II__sec_16__subsec_3__content__p_1">The provisions relating to the meeting of the Authority under <ref eId="chp_II__sec_16__subsec_3__content__p_1__ref_1" href="#chp_II__sec_14">section 14</ref> shall mutatis mutandis apply to the decisions of the Authority by circulation under this section.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_16__subsec_4">
+            <num>(4)</num>
+            <content eId="chp_II__sec_16__subsec_4__content">
+              <p eId="chp_II__sec_16__subsec_4__content__p_1">The note for circulation under <ref eId="chp_II__sec_16__subsec_4__content__p_1__ref_1" href="#chp_II__sec_16__subsec_1">sub-section (1)</ref>, shall include such contents as may be prescribed.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="chp_II__sec_17">
+          <num>17.</num>
+          <heading>Power of the Chairman to take decisions of the Authority in certain cases</heading>
+          <subsection eId="chp_II__sec_17__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_II__sec_17__subsec_1__content">
+              <p eId="chp_II__sec_17__subsec_1__content__p_1">Where the Chairman is of the opinion that a matter is so urgent that it cannot wait for the Authority meeting under <ref eId="chp_II__sec_17__subsec_1__content__p_1__ref_1" href="#chp_II__sec_14">section 14</ref> or for a Authority decision, by circulation under <ref eId="chp_II__sec_17__subsec_1__content__p_1__ref_2" href="#chp_II__sec_16">section 16</ref>, he may pass such orders as he may deem fit and it shall be implemented in the manner, the decisions of the Authority are implemented under sections <ref eId="chp_II__sec_17__subsec_1__content__p_1__ref_3" href="#chp_II__sec_14">14</ref> and <ref eId="chp_II__sec_17__subsec_1__content__p_1__ref_4" href="#chp_II__sec_16">16</ref>.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_17__subsec_2">
+            <num>(2)</num>
+            <content eId="chp_II__sec_17__subsec_2__content">
+              <p eId="chp_II__sec_17__subsec_2__content__p_1">Every decision taken by the Chairman under this section shall be reported to the Authority at its next meeting for ratification.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_II__sec_17__subsec_3">
+            <num>(3)</num>
+            <content eId="chp_II__sec_17__subsec_3__content">
+              <p eId="chp_II__sec_17__subsec_3__content__p_1">If the Authority disagrees with the decision of the Chairman the same shall be referred to the Government by the Secretary for suitable order.</p>
+            </content>
+          </subsection>
+        </section>
+      </chapter>
+      <chapter eId="chp_III">
+        <num>III</num>
+        <heading>DEVELOPMENT AND MAINTENANCE OF THE KSHETHRA</heading>
+        <section eId="chp_III__sec_18">
+          <num>18.</num>
+          <heading>District Level and State Level Monitoring Committee</heading>
+          <subsection eId="chp_III__sec_18__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_III__sec_18__subsec_1__content">
+              <p eId="chp_III__sec_18__subsec_1__content__p_1">There shall be constituted a District level committee and a State level Monitoring committee to review and submit the proposal regarding construction and maintenance of buildings, roads and tunnels, electricity supply and maintenance, water supply and sanitation, construction of recreation centre and libraries to provide necessary facilities to pilgrims and to provide safety to pilgrims within the jurisdiction of the Authority.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_III__sec_18__subsec_2">
+            <num>(2)</num>
+            <content eId="chp_III__sec_18__subsec_2__content">
+              <p eId="chp_III__sec_18__subsec_2__content__p_1">The District level committee shall consist of the following members, namely:-</p>
+              <table eId="chp_III__sec_18__subsec_2__table_1">
+                <tr eId="chp_III__sec_18__subsec_2__table_1__tr_1">
+                  <th eId="chp_III__sec_18__subsec_2__table_1__tr_1__th_1">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_1__th_1__p_1">(a)</p>
+                  </th>
+                  <th eId="chp_III__sec_18__subsec_2__table_1__tr_1__th_2">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_1__th_2__p_1">The Deputy Commissioner of Shivamogga</p>
+                  </th>
+                  <th eId="chp_III__sec_18__subsec_2__table_1__tr_1__th_3">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_1__th_3__p_1">Ex-officio Chairperson</p>
+                  </th>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_2__table_1__tr_2">
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_2__td_1">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_2__td_1__p_1">(b)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_2__td_2">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_2__td_2__p_1">The e Superintendent of Police, Shivamogga</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_2__td_3">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_2__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_2__table_1__tr_3">
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_3__td_1">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_3__td_1__p_1">(c)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_3__td_2">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_3__td_2__p_1">The Chief Executive Officers, Zilla Panchayat, Shivamogga</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_3__td_3">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_3__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_2__table_1__tr_4">
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_4__td_1">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_4__td_1__p_1">(d)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_4__td_2">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_4__td_2__p_1">The District Forest Officer, Shivamogga</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_4__td_3">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_4__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_2__table_1__tr_5">
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_5__td_1">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_5__td_1__p_1">(e)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_5__td_2">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_5__td_2__p_1">The Superintending Engineer, Public Works Department, Shivamogga</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_5__td_3">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_5__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_2__table_1__tr_6">
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_6__td_1">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_6__td_1__p_1">(f)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_6__td_2">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_6__td_2__p_1">The Commissioner for Archaeology and Museums, Government of Karnataka, Mysuru</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_6__td_3">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_6__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_2__table_1__tr_7">
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_7__td_1">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_7__td_1__p_1">(g)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_7__td_2">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_7__td_2__p_1">The Superintendent Department for Archaeology and Museums, Shivamogga circle</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_7__td_3">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_7__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_2__table_1__tr_8">
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_8__td_1">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_8__td_1__p_1">(h)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_8__td_2">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_8__td_2__p_1">The jurisdictional Assistant Director of Town and Country planning Department.</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_8__td_3">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_8__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_2__table_1__tr_9">
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_9__td_1">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_9__td_1__p_1">(i)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_9__td_2">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_9__td_2__p_1">The Assistant Commissioner of Sagara sub-division</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_9__td_3">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_9__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_2__table_1__tr_10">
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_10__td_1">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_10__td_1__p_1">(j)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_10__td_2">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_10__td_2__p_1">The Tahsildar of Sorabha Taluk</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_10__td_3">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_10__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_2__table_1__tr_11">
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_11__td_1">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_11__td_1__p_1">(k)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_11__td_2">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_11__td_2__p_1">The Executive Officer of Sorabha Taluk Panchayat</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_11__td_3">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_11__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_2__table_1__tr_12">
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_12__td_1">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_12__td_1__p_1">(l)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_12__td_2">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_12__td_2__p_1">The Assistant Director, Tourism Department</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_12__td_3">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_12__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_2__table_1__tr_13">
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_13__td_1">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_13__td_1__p_1">(m)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_13__td_2">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_13__td_2__p_1">The Chief priest, Chandraguthi Shree Renukamba Temple</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_13__td_3">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_13__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_2__table_1__tr_14">
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_14__td_1">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_14__td_1__p_1">(n) The Secretary of the Authority Ex-officio member Secretary</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_14__td_2">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_14__td_2__p_1"/>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_14__td_3">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_14__td_3__p_1"/>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_2__table_1__tr_15">
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_15__td_1">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_15__td_1__p_1">(o)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_15__td_2">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_15__td_2__p_1">The Panchayath Development officer Gramapanchayath, Chandraguthi</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_2__table_1__tr_15__td_3">
+                    <p eId="chp_III__sec_18__subsec_2__table_1__tr_15__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+              </table>
+            </content>
+          </subsection>
+          <subsection eId="chp_III__sec_18__subsec_3">
+            <num>(3)</num>
+            <content eId="chp_III__sec_18__subsec_3__content">
+              <p eId="chp_III__sec_18__subsec_3__content__p_1">The District Level Committee shall submit suitable proposals to the State Level Monitoring Committee for the works or proposals to be undertaken within the jurisdiction of the Authority.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_III__sec_18__subsec_4">
+            <num>(4)</num>
+            <content eId="chp_III__sec_18__subsec_4__content">
+              <p eId="chp_III__sec_18__subsec_4__content__p_1">The State Level Monitaring Committee shall consist of the following members, namely:-</p>
+              <table eId="chp_III__sec_18__subsec_4__table_1">
+                <tr eId="chp_III__sec_18__subsec_4__table_1__tr_1">
+                  <th eId="chp_III__sec_18__subsec_4__table_1__tr_1__th_1">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_1__th_1__p_1">(a)</p>
+                  </th>
+                  <th eId="chp_III__sec_18__subsec_4__table_1__tr_1__th_2">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_1__th_2__p_1">The Principal Secretary to Government, Revenue Department (Muzrai)</p>
+                  </th>
+                  <th eId="chp_III__sec_18__subsec_4__table_1__tr_1__th_3">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_1__th_3__p_1">Ex-officio Chairperson</p>
+                  </th>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_4__table_1__tr_2">
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_2__td_1">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_2__td_1__p_1">(b)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_2__td_2">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_2__td_2__p_1">The Secretary to Government Forest and Ecology Department or his representative not below the rank of Deputy Secretary.</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_2__td_3">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_2__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_4__table_1__tr_3">
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_3__td_1">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_3__td_1__p_1">(c)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_3__td_2">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_3__td_2__p_1">The Commissioner, Hindu Religious Institutions and Charitable Endowment Department</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_3__td_3">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_3__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_4__table_1__tr_4">
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_4__td_1">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_4__td_1__p_1">(d)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_4__td_2">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_4__td_2__p_1">The Chief Engineer, Public Works Department</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_4__td_3">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_4__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_4__table_1__tr_5">
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_5__td_1">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_5__td_1__p_1">(e)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_5__td_2">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_5__td_2__p_1">The Managing Director, Mangalore Electricity Supply Company</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_5__td_3">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_5__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_4__table_1__tr_6">
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_6__td_1">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_6__td_1__p_1">(f)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_6__td_2">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_6__td_2__p_1">The Chief Engineer, Karnataka Urban Water Supply and Sewerage Board</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_6__td_3">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_6__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_4__table_1__tr_7">
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_7__td_1">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_7__td_1__p_1">(g)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_7__td_2">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_7__td_2__p_1">The Deputy Commissioner, Shivamogga</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_7__td_3">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_7__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_4__table_1__tr_8">
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_8__td_1">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_8__td_1__p_1">(h)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_8__td_2">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_8__td_2__p_1">The Superintendent of Police, Shivamogga</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_8__td_3">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_8__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_4__table_1__tr_9">
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_9__td_1">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_9__td_1__p_1">(i)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_9__td_2">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_9__td_2__p_1">The Chief Executive Officer, Zilla Panchayat Shivamogga</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_9__td_3">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_9__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_4__table_1__tr_10">
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_10__td_1">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_10__td_1__p_1">(j)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_10__td_2">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_10__td_2__p_1">The Regional Director for Archaeology and Museums, Government of India</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_10__td_3">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_10__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_4__table_1__tr_11">
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_11__td_1">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_11__td_1__p_1">(k)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_11__td_2">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_11__td_2__p_1">The Commissioner for Archaeology and Museums, Government of Karnataka, Mysuru</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_11__td_3">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_11__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_4__table_1__tr_12">
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_12__td_1">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_12__td_1__p_1">(l)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_12__td_2">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_12__td_2__p_1">The Deputy Director, Tourism Department</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_12__td_3">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_12__td_3__p_1">Ex-officio member</p>
+                  </td>
+                </tr>
+                <tr eId="chp_III__sec_18__subsec_4__table_1__tr_13">
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_13__td_1">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_13__td_1__p_1">(m)</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_13__td_2">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_13__td_2__p_1">The Secretary of the Authority</p>
+                  </td>
+                  <td eId="chp_III__sec_18__subsec_4__table_1__tr_13__td_3">
+                    <p eId="chp_III__sec_18__subsec_4__table_1__tr_13__td_3__p_1">Ex-officio member Secretary</p>
+                  </td>
+                </tr>
+              </table>
+            </content>
+          </subsection>
+          <subsection eId="chp_III__sec_18__subsec_5">
+            <num>(5)</num>
+            <content eId="chp_III__sec_18__subsec_5__content">
+              <p eId="chp_III__sec_18__subsec_5__content__p_1">The State level Monitoring Committee shall monitor the proposals submitted by the District level Committee and direct the Authority on all matters concerning to development of Chandraguthi Shree Renukamba Kshetra.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_III__sec_18__subsec_6">
+            <num>(6)</num>
+            <content eId="chp_III__sec_18__subsec_6__content">
+              <p eId="chp_III__sec_18__subsec_6__content__p_1">The District level Committee and the State level Monitoring Committee shall meet at least once in six months at such place and at such time and with such procedure as may be prescribed.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="chp_III__sec_19">
+          <num>19.</num>
+          <heading>Provision with regard to the movable and immovable properties of the Temple</heading>
+          <subsection eId="chp_III__sec_19__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_III__sec_19__subsec_1__content">
+              <p eId="chp_III__sec_19__subsec_1__content__p_1">Notwithstanding anything contained in any custom, usage or the provisions of any law for the time being in force under which Shree Chandraguthi Renukamba temple is governed or the provisions of the Karnataka Hindu Religious institutions and Charitable Endowments Act, 1997 (Karnataka Act 33 of 2001), the ownership, administration and complete management of movable and immovable properties including jewellery and liabilities of the temple shall vest with the State Government from the date of commencement of this Act and shall be transferred to the Authority thereafter.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_III__sec_19__subsec_2">
+            <num>(2)</num>
+            <content eId="chp_III__sec_19__subsec_2__content">
+              <p eId="chp_III__sec_19__subsec_2__content__p_1">Subject to the provisions of <ref eId="chp_III__sec_19__subsec_2__content__p_1__ref_1" href="#chp_II__sec_12__subsec_1">sub section(1) of section 12</ref>, on and from the date of commencement of this Act the management of the employees of the temple shall vest in the Authority.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_III__sec_19__subsec_3">
+            <num>(3)</num>
+            <content eId="chp_III__sec_19__subsec_3__content">
+              <p eId="chp_III__sec_19__subsec_3__content__p_1">It shall be competent for the State Government, by order to make transitory provisions, if in the opinion of the State Government, it is expedient so to do.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="chp_III__sec_20">
+          <num>20.</num>
+          <heading>Preparation of developmental plan, its approval and execution</heading>
+          <subsection eId="chp_III__sec_20__subsec_1">
+            <num>(1)</num>
+            <intro eId="chp_III__sec_20__subsec_1__intro">
+              <p eId="chp_III__sec_20__subsec_1__intro__p_1">The Authority shall, as soon as may be, after its constitution prepare a plan for the development of Chandraguthi Shree Renukamba Kshetra into an international pilgrim, cultural and tourist centre and a centre for deliberation and propagation of the tenets of Chandraguthi Shree Renukamba and other subsidiary deities. The Development plan may include,-</p>
+            </intro>
+            <clause eId="chp_III__sec_20__subsec_1__cl_a">
+              <num>(a)</num>
+              <content eId="chp_III__sec_20__subsec_1__cl_a__content">
+                <p eId="chp_III__sec_20__subsec_1__cl_a__content__p_1">the Chandraguthi Shree Renukamba Temple programmes for its maintenance and other temple attached to the presiding deity;</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_20__subsec_1__cl_b">
+              <num>(b)</num>
+              <content eId="chp_III__sec_20__subsec_1__cl_b__content">
+                <p eId="chp_III__sec_20__subsec_1__cl_b__content__p_1">proposals for acquiring land by acquisition or purchase, exchange or otherwise, which in the opinion of the Authority is necessary for execution of the development plan;</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_20__subsec_1__cl_c">
+              <num>(c)</num>
+              <content eId="chp_III__sec_20__subsec_1__cl_c__content">
+                <p eId="chp_III__sec_20__subsec_1__cl_c__content__p_1">putting up public parks, horticultural or zoological gardens, fountain gardens, artificial water falls, game parks, lakes with boating or other water games or such other tourist attractions;</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_20__subsec_1__cl_d">
+              <num>(d)</num>
+              <content eId="chp_III__sec_20__subsec_1__cl_d__content">
+                <p eId="chp_III__sec_20__subsec_1__cl_d__content__p_1">construction of choultries, lodging houses, cottages, hotels, restaurants and boarding houses to cater to different classes of tourists;</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_20__subsec_1__cl_e">
+              <num>(e)</num>
+              <content eId="chp_III__sec_20__subsec_1__cl_e__content">
+                <p eId="chp_III__sec_20__subsec_1__cl_e__content__p_1">construction of necessary chain of shops or shopping complexes;</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_20__subsec_1__cl_f">
+              <num>(f)</num>
+              <content eId="chp_III__sec_20__subsec_1__cl_f__content">
+                <p eId="chp_III__sec_20__subsec_1__cl_f__content__p_1">construction of prayer halls and meditation halls at strategic places;</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_20__subsec_1__cl_g">
+              <num>(g)</num>
+              <content eId="chp_III__sec_20__subsec_1__cl_g__content">
+                <p eId="chp_III__sec_20__subsec_1__cl_g__content__p_1">provision of amenities as defined in <ref eId="chp_III__sec_20__subsec_1__cl_g__content__p_1__ref_1" href="#chp_I__sec_2__cl_a">clause (a) of section 2</ref>;</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_20__subsec_1__cl_h">
+              <num>(h)</num>
+              <content eId="chp_III__sec_20__subsec_1__cl_h__content">
+                <p eId="chp_III__sec_20__subsec_1__cl_h__content__p_1">laying and relaying of all or any land including, construction and reconstruction of buildings;</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_20__subsec_1__cl_i">
+              <num>(i)</num>
+              <content eId="chp_III__sec_20__subsec_1__cl_i__content">
+                <p eId="chp_III__sec_20__subsec_1__cl_i__content__p_1">provision of drainage, electricity and water supply and sanitation;</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_20__subsec_1__cl_j">
+              <num>(j)</num>
+              <content eId="chp_III__sec_20__subsec_1__cl_j__content">
+                <p eId="chp_III__sec_20__subsec_1__cl_j__content__p_1">raising any land which the Authority may consider expedient to raise to facilitate its plan of action in general and better drainage in particular;</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_20__subsec_1__cl_k">
+              <num>(k)</num>
+              <content eId="chp_III__sec_20__subsec_1__cl_k__content">
+                <p eId="chp_III__sec_20__subsec_1__cl_k__content__p_1">forming open spaces for the better ventilation of the area comprised in the Chandraguthi Shree Renukamba Temple or in any adjoining area;</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_20__subsec_1__cl_l">
+              <num>(l)</num>
+              <content eId="chp_III__sec_20__subsec_1__cl_l__content">
+                <p eId="chp_III__sec_20__subsec_1__cl_l__content__p_1">the demolition of all buildings unfit for human habitation and not fitting into the developmental plan;</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_20__subsec_1__cl_m">
+              <num>(m)</num>
+              <content eId="chp_III__sec_20__subsec_1__cl_m__content">
+                <p eId="chp_III__sec_20__subsec_1__cl_m__content__p_1">the demolition of obstructive building or portions of buildings;</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_20__subsec_1__cl_n">
+              <num>(n)</num>
+              <content eId="chp_III__sec_20__subsec_1__cl_n__content">
+                <p eId="chp_III__sec_20__subsec_1__cl_n__content__p_1">the construction and reconstruction of buildings, their maintenance and preservation;</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_20__subsec_1__cl_o">
+              <num>(o)</num>
+              <content eId="chp_III__sec_20__subsec_1__cl_o__content">
+                <p eId="chp_III__sec_20__subsec_1__cl_o__content__p_1">the sale, letting or exchange of any property comprised in the scheme, subject to the provisions of <ref eId="chp_III__sec_20__subsec_1__cl_o__content__p_1__ref_1" href="#chp_IV__sec_29">section 29</ref>;</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_20__subsec_1__cl_p">
+              <num>(p)</num>
+              <content eId="chp_III__sec_20__subsec_1__cl_p__content">
+                <p eId="chp_III__sec_20__subsec_1__cl_p__content__p_1">prohibition of ear buds with plastic sticks, plastic sticks for balloons, plastic flags, candy sticks, ice cream sticks, polystyrene (Thermocol) for decoration, plates, cups, glasses, cutlery such as forks, spoons, knives, straw, trays, wrapping or packing films around sweet boxes, invitation cards and cigarette packets, plastic or PVC banners less than 100 micron, stirrers in the area of the Authority for avoiding the plastic pollution;</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_20__subsec_1__cl_q">
+              <num>(q)</num>
+              <content eId="chp_III__sec_20__subsec_1__cl_q__content">
+                <p eId="chp_III__sec_20__subsec_1__cl_q__content__p_1">ensuring availability of safe and secure water and sanitation facilities for all, throughout the year, in the area of the Authority;</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_20__subsec_1__cl_r">
+              <num>(r)</num>
+              <content eId="chp_III__sec_20__subsec_1__cl_r__content">
+                <p eId="chp_III__sec_20__subsec_1__cl_r__content__p_1">provision of facilities for communication and transport with parking facilities;</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_20__subsec_1__cl_s">
+              <num>(s)</num>
+              <content eId="chp_III__sec_20__subsec_1__cl_s__content">
+                <p eId="chp_III__sec_20__subsec_1__cl_s__content__p_1">such adjustments and agreements with the existing religious institutions in the geographical area of developmental plan which can be allowed to continue so long as they fit into the scheme of the developmental plan; and</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_20__subsec_1__cl_t">
+              <num>(t)</num>
+              <content eId="chp_III__sec_20__subsec_1__cl_t__content">
+                <p eId="chp_III__sec_20__subsec_1__cl_t__content__p_1">any other matter for which in the opinion of the Authority, it is expedient and incidental to make provision with a view to develop and maintain Chandraguthi Shree Renukamba Kshetra as a cultural centre, place of pilgrimage and an international tourist centre and a centre for deliberation and to protect and develop other places of importance connected with Chandraguthi Shree Renukamba Temple.</p>
+              </content>
+            </clause>
+          </subsection>
+          <subsection eId="chp_III__sec_20__subsec_2">
+            <num>(2)</num>
+            <content eId="chp_III__sec_20__subsec_2__content">
+              <p eId="chp_III__sec_20__subsec_2__content__p_1">The development plan prepared under <ref eId="chp_III__sec_20__subsec_2__content__p_1__ref_1" href="#chp_III__sec_20__subsec_1">sub-section (1)</ref>, shall be forwarded by the Secretary to the State Government for information. The State Government may approve the plan with or without any modifications.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_III__sec_20__subsec_3">
+            <num>(3)</num>
+            <content eId="chp_III__sec_20__subsec_3__content">
+              <p eId="chp_III__sec_20__subsec_3__content__p_1">After approval of the development plan under <ref eId="chp_III__sec_20__subsec_3__content__p_1__ref_1" href="#chp_III__sec_20__subsec_2">sub-section (2)</ref>, the State Government may, on the recommendations of the Authority make such modifications to the plan as it deems necessary, from time to time.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_III__sec_20__subsec_4">
+            <num>(4)</num>
+            <content eId="chp_III__sec_20__subsec_4__content">
+              <p eId="chp_III__sec_20__subsec_4__content__p_1">The Authority shall have power to undertake works and incur expenditure for execution of development plans approved by the State Government in accordance with the provisions of the Karnataka Transparency in Public Procurement Act, (Karnataka Act 29 of 2000).</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="chp_III__sec_21">
+          <num>21.</num>
+          <heading>Subsequent development works</heading>
+          <content eId="chp_III__sec_21__content">
+            <p eId="chp_III__sec_21__content__p_1">After execution of the development plan under <ref eId="chp_III__sec_21__content__p_1__ref_1" href="#chp_III__sec_20">section 20</ref>, the Authority may, from time to time, make and take up any new additional development schemes, out of its own or borrowed financial resources or funds from the State Government.</p>
+          </content>
+        </section>
+        <section eId="chp_III__sec_22">
+          <num>22.</num>
+          <heading>Maintenance of Chandraguthi Shree Renukamba Kshetra</heading>
+          <content eId="chp_III__sec_22__content">
+            <p eId="chp_III__sec_22__content__p_1">The State Government may by rules on the recommendation of the Authority or otherwise shall make provision for the maintenance of Chandraguthi Shree Renukamba Kshetra which shall include the manner in which the properties of the Authority including Chandraguthi Shree Renukamba Kshetra can be managed, the rates, fees or other charges that can be collected from the devotees, pilgrims, tourists and other visitors to Chandraguthi Shree RenukambaKshetra for the various facilities that they may make use of in Chandraguthi Shree Renukamba Kshetra and for such other matters as may be expedient like power to levy license fee as may be determined by the Authority from the licensee or persons in possession of the properties of Chandraguthi Shree Renukamba Kshetra.</p>
+          </content>
+        </section>
+        <section eId="chp_III__sec_23">
+          <num>23.</num>
+          <heading>Delegation of powers</heading>
+          <subsection eId="chp_III__sec_23__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_III__sec_23__subsec_1__content">
+              <p eId="chp_III__sec_23__subsec_1__content__p_1">The State Government, may by notification, delegate any of the powers conferred on it by or under this Act, to any other authority, except the power to make rules under <ref eId="chp_III__sec_23__subsec_1__content__p_1__ref_1" href="#chp_V__sec_37">section 37</ref>.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_III__sec_23__subsec_2">
+            <num>(2)</num>
+            <content eId="chp_III__sec_23__subsec_2__content">
+              <p eId="chp_III__sec_23__subsec_2__content__p_1">The Authority may by regulations, delegate any of the powers conferred on it by or under this Act to the Secretary or other officers of the Authority, except the power to make regulations under <ref eId="chp_III__sec_23__subsec_2__content__p_1__ref_1" href="#chp_V__sec_38">section 38</ref>.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="chp_III__sec_24">
+          <num>24.</num>
+          <heading>Application of the Karnataka Public Premises (Eviction of unauthorized occupants) Act, 1974 (Karnataka Act 32 of 1974) to the Authority Premises</heading>
+          <subsection eId="chp_III__sec_24__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_III__sec_24__subsec_1__content">
+              <p eId="chp_III__sec_24__subsec_1__content__p_1">The State Government. may by notification provide from such date as may be specified in such notification that the Karnataka Public Premises (Eviction of Unauthorised Occupants) Act, 1974 shall apply to premises belonging to, vesting in, or leased by, the Authority as that Act applies in relation to public premises but subject to the provisions of <ref eId="chp_III__sec_24__subsec_1__content__p_1__ref_1" href="#chp_III__sec_24__subsec_2">sub-section (2)</ref>.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_III__sec_24__subsec_2">
+            <num>(2)</num>
+            <intro eId="chp_III__sec_24__subsec_2__intro">
+              <p eId="chp_III__sec_24__subsec_2__intro__p_1">On a notification being issued under <ref eId="chp_III__sec_24__subsec_2__intro__p_1__ref_1" href="#chp_III__sec_24__subsec_1">sub-section (1)</ref>, the aforesaid Act, and the rules made thereunder shall apply to the premises of the Authority with the following modifications, namely:-</p>
+            </intro>
+            <clause eId="chp_III__sec_24__subsec_2__cl_a">
+              <num>(a)</num>
+              <content eId="chp_III__sec_24__subsec_2__cl_a__content">
+                <p eId="chp_III__sec_24__subsec_2__cl_a__content__p_1">The State Government may appoint any officer of the State Government or the Authority as it thinks fit, to be the competent officer for the purposes of the aforesaid Acts;</p>
+              </content>
+            </clause>
+            <clause eId="chp_III__sec_24__subsec_2__cl_b">
+              <num>(b)</num>
+              <content eId="chp_III__sec_24__subsec_2__cl_b__content">
+                <p eId="chp_III__sec_24__subsec_2__cl_b__content__p_1">References to "public premises" in that Act and those rules shall be deemed to be references to premises of the Authority, and references to "the State Government in sections 6,8,14,16 and 17 of that Act shall be deemed to be references to the Authority.</p>
+              </content>
+            </clause>
+          </subsection>
+        </section>
+      </chapter>
+      <chapter eId="chp_IV">
+        <num>IV</num>
+        <heading>AUDIT AND ACCOUNTS, BUDGET AND FUND</heading>
+        <section eId="chp_IV__sec_25">
+          <num>25.</num>
+          <heading>Fund of the Authority</heading>
+          <subsection eId="chp_IV__sec_25__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_IV__sec_25__subsec_1__content">
+              <p eId="chp_IV__sec_25__subsec_1__content__p_1">There shall be a Fund called Chandraguthi Shree Renukamba Kshetra Development Authority Fund.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_IV__sec_25__subsec_2">
+            <num>(2)</num>
+            <intro eId="chp_IV__sec_25__subsec_2__intro">
+              <p eId="chp_IV__sec_25__subsec_2__intro__p_1">There shall be credited to the said Fund,-</p>
+            </intro>
+            <clause eId="chp_IV__sec_25__subsec_2__cl_i">
+              <num>(i)</num>
+              <content eId="chp_IV__sec_25__subsec_2__cl_i__content">
+                <p eId="chp_IV__sec_25__subsec_2__cl_i__content__p_1">all grants, subventions, donations and gifts made by the Central Government, State Government, any local authority or anybody, whether incorporated or not or any person; and</p>
+              </content>
+            </clause>
+            <clause eId="chp_IV__sec_25__subsec_2__cl_ii">
+              <num>(ii)</num>
+              <content eId="chp_IV__sec_25__subsec_2__cl_ii__content">
+                <p eId="chp_IV__sec_25__subsec_2__cl_ii__content__p_1">the amount borrowed by the Authority:</p>
+              </content>
+            </clause>
+            <proviso eId="chp_IV__sec_25__subsec_2__proviso_1">
+              <content eId="chp_IV__sec_25__subsec_2__proviso_1__content">
+                <p eId="chp_IV__sec_25__subsec_2__proviso_1__content__p_1">Provided that, the donations, Kanikes, Seva Fees and other offering made to God in Hundi shall be credited to the fund of the Authority and out of which the net income of that temple the authority shall contribute to the common pool fund created under section 17 of the Karnataka Hindu Religious and Charitable Endowments Act, 1997 (Karnataka Act 33 of 2001) at such rate as specified in the said section.</p>
+              </content>
+            </proviso>
+          </subsection>
+          <subsection eId="chp_IV__sec_25__subsec_3">
+            <num>(3)</num>
+            <content eId="chp_IV__sec_25__subsec_3__content">
+              <p eId="chp_IV__sec_25__subsec_3__content__p_1">Except as otherwise directed by the State Government all moneys credited to the Fund shall be invested in any Scheduled Bank or in the State Government Treasury.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_IV__sec_25__subsec_4">
+            <num>(4)</num>
+            <content eId="chp_IV__sec_25__subsec_4__content">
+              <p eId="chp_IV__sec_25__subsec_4__content__p_1">The administrative expenses of the Authority including the salaries, allowances and pension if any payable to the Secretary and other officer and employees of the Authority shall be defrayed out of the fund of the Authority.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="chp_IV__sec_26">
+          <num>26.</num>
+          <heading>Application of the Fund</heading>
+          <content eId="chp_IV__sec_26__content">
+            <p eId="chp_IV__sec_26__content__p_1">The Fund and all property held or vested in the Authority shall be applied for carrying out the purposes of this Act.</p>
+          </content>
+        </section>
+        <section eId="chp_IV__sec_27">
+          <num>27.</num>
+          <heading>Grant by the State Government</heading>
+          <content eId="chp_IV__sec_27__content">
+            <p eId="chp_IV__sec_27__content__p_1">The State Government shall every year make a grant to the Authority of a sum equivalent to the administrative expenses of the Authority, until the Authority reaches self maintenance stage out of its own resources.</p>
+          </content>
+        </section>
+        <section eId="chp_IV__sec_28">
+          <num>28.</num>
+          <heading>Budget of the Authority</heading>
+          <subsection eId="chp_IV__sec_28__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_IV__sec_28__subsec_1__content">
+              <p eId="chp_IV__sec_28__subsec_1__content__p_1">The Authority shall prepare every year, before such date and in such form as may be prescribed, a budget estimate of its income and expenditure for the financial year to commence on the first day of April next following and shall forward it to the State Government for sanction. The Authority may also prepare supplementary Budget Estimates, during the course of any financial year, if necessary.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_IV__sec_28__subsec_2">
+            <num>(2)</num>
+            <content eId="chp_IV__sec_28__subsec_2__content">
+              <p eId="chp_IV__sec_28__subsec_2__content__p_1">The State Government shall approve the Budget Estimates and Supplementary Budget Estimates with or without modifications.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_IV__sec_28__subsec_3">
+            <num>(3)</num>
+            <content eId="chp_IV__sec_28__subsec_3__content">
+              <p eId="chp_IV__sec_28__subsec_3__content__p_1">In cases of extreme urgency, the Secretary shall be competent to incur expenditure not exceeding twenty five lakhs rupees in a financial year, notwithstanding the fact that such expenditure has not been included in the annual or Supplementary Budget Estimate approved by the State Government under <ref eId="chp_IV__sec_28__subsec_3__content__p_1__ref_1" href="#chp_IV__sec_28__subsec_2">sub-section (2)</ref>.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_IV__sec_28__subsec_4">
+            <num>(4)</num>
+            <content eId="chp_IV__sec_28__subsec_4__content">
+              <p eId="chp_IV__sec_28__subsec_4__content__p_1">The Secretary shall also have power to re-appropriate funds from one unit of expenditure to another unit, subject to a maximum of rupees ten lakh at a time.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="chp_IV__sec_29">
+          <num>29.</num>
+          <heading>Accounts and audit</heading>
+          <subsection eId="chp_IV__sec_29__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_IV__sec_29__subsec_1__content">
+              <p eId="chp_IV__sec_29__subsec_1__content__p_1">The Secretary shall cause to be maintained such books of accounts and other registers as may be prescribed and shall prepare in the prescribed manner an annual statement of accounts.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_IV__sec_29__subsec_2">
+            <num>(2)</num>
+            <content eId="chp_IV__sec_29__subsec_2__content">
+              <p eId="chp_IV__sec_29__subsec_2__content__p_1">The financial year of the Authority shall commence on 1st April of each calendar year and shall end on 31st March of the succeeding calendar year.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_IV__sec_29__subsec_3">
+            <num>(3)</num>
+            <content eId="chp_IV__sec_29__subsec_3__content">
+              <p eId="chp_IV__sec_29__subsec_3__content__p_1">The accounts of the Authority shall be audited annually by the Chief Controller, State Audit and Accounts Department. The Authority or the State Government may order concurrent and special audits also.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_IV__sec_29__subsec_4">
+            <num>(4)</num>
+            <content eId="chp_IV__sec_29__subsec_4__content">
+              <p eId="chp_IV__sec_29__subsec_4__content__p_1">The auditor shall, for the purposes of the audit, have access to all the accounts and other records of the Authority.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_IV__sec_29__subsec_5">
+            <num>(5)</num>
+            <content eId="chp_IV__sec_29__subsec_5__content">
+              <p eId="chp_IV__sec_29__subsec_5__content__p_1">As soon as may be after the receipt of the annual statement of accounts and the report of the auditor, the Authority shall consider it in its meeting and send a copy of the annual statement of accounts together with a copy of the report of the auditor to the State Government, along with its explanation on the comments made by the auditor, if any, and a statement of action taken by the Authority to remedy the irregularities or loopholes, if any pointed out by the auditor.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_IV__sec_29__subsec_6">
+            <num>(6)</num>
+            <content eId="chp_IV__sec_29__subsec_6__content">
+              <p eId="chp_IV__sec_29__subsec_6__content__p_1">The State Government may after perusal of the report of the auditor, and other documents submitted to the Authority as in <ref eId="chp_IV__sec_29__subsec_6__content__p_1__ref_1" href="#chp_IV__sec_29__subsec_5">sub-section (5)</ref>, give such directions as it thinks fit to the Authority and the Authority shall comply with such directions.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="chp_IV__sec_30">
+          <num>30.</num>
+          <heading>Reports</heading>
+          <subsection eId="chp_IV__sec_30__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_IV__sec_30__subsec_1__content">
+              <p eId="chp_IV__sec_30__subsec_1__content__p_1">The Authority shall prepare an Annual Report of its working for each financial year and submit it to the State Government along with other reports under <ref eId="chp_IV__sec_30__subsec_1__content__p_1__ref_1" href="#chp_IV__sec_29">section 29</ref>.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_IV__sec_30__subsec_2">
+            <num>(2)</num>
+            <content eId="chp_IV__sec_30__subsec_2__content">
+              <p eId="chp_IV__sec_30__subsec_2__content__p_1">The Authority shall before such date, in such form and at such intervals as may be prescribed, submit such reports to the State Government.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_IV__sec_30__subsec_3">
+            <num>(3)</num>
+            <content eId="chp_IV__sec_30__subsec_3__content">
+              <p eId="chp_IV__sec_30__subsec_3__content__p_1">The audit report and annual report of the authority shall be laid before State Legislature by the State Government.</p>
+            </content>
+          </subsection>
+        </section>
+      </chapter>
+      <chapter eId="chp_V">
+        <num>V</num>
+        <heading>MISCELLANEOUS</heading>
+        <section eId="chp_V__sec_31">
+          <num>31.</num>
+          <heading>Certain persons to be public servants</heading>
+          <content eId="chp_V__sec_31__content">
+            <p eId="chp_V__sec_31__content__p_1">All members, officers and servants of the Authority, shall be deemed, when acting or purporting to act in pursuance of any of the provisions of this Act, to be public servants within the meaning of section 2(28) of Bharatiya Nyaya Sanhita 2023 (Central Act 45 of 2023).</p>
+          </content>
+        </section>
+        <section eId="chp_V__sec_32">
+          <num>32.</num>
+          <heading>Protection of action taken in good faith</heading>
+          <content eId="chp_V__sec_32__content">
+            <p eId="chp_V__sec_32__content__p_1">No suit, prosecution or other legal proceeding shall lie against any person for anything which is in good faith done or purported to be done under this Act.</p>
+          </content>
+        </section>
+        <section eId="chp_V__sec_33">
+          <num>33.</num>
+          <heading>Default in performance of duty</heading>
+          <subsection eId="chp_V__sec_33__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_V__sec_33__subsec_1__content">
+              <p eId="chp_V__sec_33__subsec_1__content__p_1">If the State Government is satisfied that the Authority has made default in performing any duty imposed on it by or under this Act, it may fix a period for the performance of that duty.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_V__sec_33__subsec_2">
+            <num>(2)</num>
+            <content eId="chp_V__sec_33__subsec_2__content">
+              <p eId="chp_V__sec_33__subsec_2__content__p_1">If in the opinion of the State Government, the Authority fails or neglects to perform such duty within the period so fixed for its performance, it shall be lawful for the State Government, notwithstanding anything contained in <ref eId="chp_V__sec_33__subsec_2__content__p_1__ref_1" href="#chp_II__sec_3">section 3</ref> to supersede and reconstitute the Authority in the prescribed manner.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_V__sec_33__subsec_3">
+            <num>(3)</num>
+            <content eId="chp_V__sec_33__subsec_3__content">
+              <p eId="chp_V__sec_33__subsec_3__content__p_1">After the super session of the Authority and until it is reconstituted, the powers, duties and functions of the Authority under this Act shall be carried on by the State Government or by such officer or officers, as the State Government may appoint for this purpose.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="chp_V__sec_34">
+          <num>34.</num>
+          <heading>Dissolution of the Authority</heading>
+          <subsection eId="chp_V__sec_34__subsec_1">
+            <num>(1)</num>
+            <intro eId="chp_V__sec_34__subsec_1__intro">
+              <p eId="chp_V__sec_34__subsec_1__intro__p_1">The State Government may, by notification, declare that with effect from such date as may be specified in the notification, the Authority shall be dissolved:</p>
+            </intro>
+            <proviso eId="chp_V__sec_34__subsec_1__proviso_1">
+              <content eId="chp_V__sec_34__subsec_1__proviso_1__content">
+                <p eId="chp_V__sec_34__subsec_1__proviso_1__content__p_1">Provided that, no such dissolution shall be made by the State Government unless, a resolution to that effect has been moved in and passed by both Houses of the State Legislature,</p>
+              </content>
+            </proviso>
+          </subsection>
+          <subsection eId="chp_V__sec_34__subsec_2">
+            <num>(2)</num>
+            <intro eId="chp_V__sec_34__subsec_2__intro">
+              <p eId="chp_V__sec_34__subsec_2__intro__p_1">With effect from the date specified in the notification under <ref eId="chp_V__sec_34__subsec_2__intro__p_1__ref_1" href="#chp_V__sec_34__subsec_1">sub-section (1)</ref>,-</p>
+            </intro>
+            <clause eId="chp_V__sec_34__subsec_2__cl_a">
+              <num>(a)</num>
+              <content eId="chp_V__sec_34__subsec_2__cl_a__content">
+                <p eId="chp_V__sec_34__subsec_2__cl_a__content__p_1">all properties, funds and dues which are vested in and realisable by the Authority shall vest in and be realisable by the State Government; and</p>
+              </content>
+            </clause>
+            <clause eId="chp_V__sec_34__subsec_2__cl_b">
+              <num>(b)</num>
+              <content eId="chp_V__sec_34__subsec_2__cl_b__content">
+                <p eId="chp_V__sec_34__subsec_2__cl_b__content__p_1">all liabilities endorsable against the Authority shall be endorsable against Chandraguthi Shree Renukamba temple to the extent of the properties, funds and dues vested in and realised by Chandraguthi Shree Renukamba temple.</p>
+              </content>
+            </clause>
+          </subsection>
+        </section>
+        <section eId="chp_V__sec_35">
+          <num>35.</num>
+          <heading>Control by the State Government</heading>
+          <subsection eId="chp_V__sec_35__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_V__sec_35__subsec_1__content">
+              <p eId="chp_V__sec_35__subsec_1__content__p_1">The State Government shall have general administrative control and supervision over all the activities and affairs of the Authority.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_V__sec_35__subsec_2">
+            <num>(2)</num>
+            <intro eId="chp_V__sec_35__subsec_2__intro">
+              <p eId="chp_V__sec_35__subsec_2__intro__p_1">The State Government may call for the records of any proceedings of the Authority, the Secretary or any officer subordinate to the Authority, for the purpose of satisfying itself as to the correctness, legality or propriety of such proceedings and may pass such order with respect thereto in accordance with the provisions of the Act:</p>
+            </intro>
+            <proviso eId="chp_V__sec_35__subsec_2__proviso_1">
+              <content eId="chp_V__sec_35__subsec_2__proviso_1__content">
+                <p eId="chp_V__sec_35__subsec_2__proviso_1__content__p_1">Provided that, no order shall be passed or modified or annulled by the Government unless a reasonable opportunity is afforded to the persons who are affected by the order of the Government.</p>
+              </content>
+            </proviso>
+          </subsection>
+        </section>
+        <section eId="chp_V__sec_36">
+          <num>36.</num>
+          <heading>Power of the State Government to give directions</heading>
+          <content eId="chp_V__sec_36__content">
+            <p eId="chp_V__sec_36__content__p_1">The State Government may give such directions to the Authority as in its opinion are necessary or expedient for carrying out the purpose of this Act and it shall be the duty of the Authority, to comply with such directions</p>
+          </content>
+        </section>
+        <section eId="chp_V__sec_37">
+          <num>37.</num>
+          <heading>Power to make rules</heading>
+          <subsection eId="chp_V__sec_37__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_V__sec_37__subsec_1__content">
+              <p eId="chp_V__sec_37__subsec_1__content__p_1">The State Government may, by notification make rules to carry out the purposes of this Act.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_V__sec_37__subsec_2">
+            <num>(2)</num>
+            <content eId="chp_V__sec_37__subsec_2__content">
+              <p eId="chp_V__sec_37__subsec_2__content__p_1">Every rule made under this Act shall be laid as soon as may be after it is made, before each House of the State Legislature while it is in session, for a total period of thirty days which may be comprised in one session or in two or more successive sessions and if before the expiry of the session immediately following the session or the successive sessions aforesaid, both Houses agree in making any modification in the rule or both Houses agree that the rule should not be made, the rule shall, from the date on which the modification or annulment is notified have effect only in such modified form or be of no effect as the case may be; so, however, that any such modification or annulment shall be without, prejudice to the validity of anything previously done under that rule.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="chp_V__sec_38">
+          <num>38.</num>
+          <heading>Power to make regulations</heading>
+          <content eId="chp_V__sec_38__content">
+            <p eId="chp_V__sec_38__content__p_1">The Authority may subject to the provisions of this Act and the rules made under <ref eId="chp_V__sec_38__content__p_1__ref_1" href="#chp_V__sec_37">section 37</ref> and with the previous sanction of the State Government, by notification make regulations to carry out the purposes of this Act.</p>
+          </content>
+        </section>
+        <section eId="chp_V__sec_39">
+          <num>39.</num>
+          <heading>Over riding effect of the Act</heading>
+          <content eId="chp_V__sec_39__content">
+            <p eId="chp_V__sec_39__content__p_1">Notwithstanding any compromise, agreement scheme, judgment decree or order of the court or other authority or any custom, usage governing Chandraguthi Shree Renukamba temple, the provisions of the Karnataka Hindu Religious Institutions and Charitable Endowments Act, 1997 (Karnataka Act 33 of 2001) and the Karnataka Hindu Religious Institutions and Charitable Endowments Rules 2002, shall prevail in so far as they relate to religious practices of Chandraguthi Shree Renukamba temple, Chandraguthi, which will remain as notified institution under the provisions of the Karnataka Hindu Religious Institutions and Charitable Endowments Act, 1997 (Karnataka Act 33 of 2001) even after the commencement of this Act.</p>
+          </content>
+        </section>
+        <section eId="chp_V__sec_40">
+          <num>40.</num>
+          <heading>Consequences of constitution of the Authority</heading>
+          <content eId="chp_V__sec_40__content">
+            <p eId="chp_V__sec_40__content__p_1">Notwithstanding anything contained in this Act with effect from the date the Authority is constituted under this Act, such authority shall be the local planning authority for the local planning area comprising Chandraguthi Shree RenukambaKshetra and it shall exercise the powers, discharge the functions and perform the duties under this Act as if it were a local planning authority constituted for Chandraguthi Shree RenukambaKshetra.</p>
+          </content>
+        </section>
+        <section eId="chp_V__sec_41">
+          <num>41.</num>
+          <heading>Power to remove difficulty</heading>
+          <subsection eId="chp_V__sec_41__subsec_1">
+            <num>(1)</num>
+            <content eId="chp_V__sec_41__subsec_1__content">
+              <p eId="chp_V__sec_41__subsec_1__content__p_1">If any difficulty arises in giving effect to the provisions of this Act, the State Government may, by notification, make such provisions not inconsistent with the provisions of this Act and the provisions of the Karnataka Hindu Religious Institutions and Charitable Endowments Act of 1997(Karnataka Act 33 of 2001) as appears to it be necessary or expedient for removing the difficulty.</p>
+            </content>
+          </subsection>
+          <subsection eId="chp_V__sec_41__subsec_2">
+            <num>(2)</num>
+            <content eId="chp_V__sec_41__subsec_2__content">
+              <p eId="chp_V__sec_41__subsec_2__content__p_1">The provisions made by any notification under <ref eId="chp_V__sec_41__subsec_2__content__p_1__ref_1" href="#chp_V__sec_41__subsec_1">sub-section (1)</ref> shall have effect as if enacted in this Act and any such notification may be made so as to be retrospective to any date not earlier than the appointed day. The above translation of <span eId="chp_V__sec_41__subsec_2__content__p_1__span_2" xml:lang="kn">೔ದ౳ಞൟ౨</span> ๏౳<span eId="chp_V__sec_41__subsec_2__content__p_1__span_3" xml:lang="kn">ೕ </span>ช൒౽<span eId="chp_V__sec_41__subsec_2__content__p_1__span_4" xml:lang="kn">ಂಬ ಃ౹ೕತ</span>౳<span eId="chp_V__sec_41__subsec_2__content__p_1__span_5" xml:lang="kn"> ಅ</span>෗ไൽ౫ ඩ౳ඌ౽<span eId="chp_V__sec_41__subsec_2__content__p_1__span_6" xml:lang="kn">ರ  ಅ</span>ඌඛ<span eId="chp_V__sec_41__subsec_2__content__p_1__span_7" xml:lang="kn">ಯಮ, 2025 (2026ರ ಕ</span>කბ<span eId="chp_V__sec_41__subsec_2__content__p_1__span_8" xml:lang="kn">ಟಕ ಅ</span>ඌඛ<span eId="chp_V__sec_41__subsec_2__content__p_1__span_9" xml:lang="kn">ಯಮ ๸ಒ౲</span>: 16) be published in the official Gazette under clause (3) of Article 348 of the constitution of India.</p>
+            </content>
+          </subsection>
+        </section>
+      </chapter>
+    </body>
+    <conclusions eId="conclusions">
+      <p eId="conclusions__p_1">THAAWARCHAND GEHLOT GOVERNOR OF KARANATAKA</p>
+      <p eId="conclusions__p_2">By Order and in the name of the Governor of Karnataka,</p>
+      <p eId="conclusions__p_3">G. SRIDHAR</p>
+      <p eId="conclusions__p_4">Secretary to Government Department of Parliamentary Affairs and Legislation <span eId="conclusions__p_4__span_1" xml:lang="kn">ಮುದ</span>
+        <span eId="conclusions__p_4__span_2" xml:lang="kn-Latn-x-nudi">Î</span>
+        <span eId="conclusions__p_4__span_3" xml:lang="kn">ಕರು</span> ²<span eId="conclusions__p_4__span_4" xml:lang="kn">ಾಗೂ ಪ</span>
+        <span eId="conclusions__p_4__span_5" xml:lang="kn-Latn-x-nudi">Î</span>
+        <span eId="conclusions__p_4__span_6" xml:lang="kn">ಾಶಕರು</span>:- <span eId="conclusions__p_4__span_7" xml:lang="kn">ಸಂಕಲ</span>£<span eId="conclusions__p_4__span_8" xml:lang="kn">ಾ</span>
+        <span eId="conclusions__p_4__span_9" xml:lang="kn-Latn-x-nudi">ĩ</span>
+        <span eId="conclusions__p_4__span_10" xml:lang="kn">ಾ</span>
+        <span eId="conclusions__p_4__span_11" xml:lang="kn-Latn-x-nudi">ĸ</span>
+        <span eId="conclusions__p_4__span_12" xml:lang="kn">ಗಳ</span> , <span eId="conclusions__p_4__span_13" xml:lang="kn">ಕ</span>£<span eId="conclusions__p_4__span_14" xml:lang="kn">ಾ</span><span eId="conclusions__p_4__span_15" xml:lang="kn">ಟಕ</span> ª<span eId="conclusions__p_4__span_16" xml:lang="kn">ಾಜ</span>
+        <span eId="conclusions__p_4__span_17" xml:lang="kn-Latn-x-nudi">Í</span>
+        <span eId="conclusions__p_4__span_18" xml:lang="kn">ಪತ</span>
+        <span eId="conclusions__p_4__span_19" xml:lang="kn-Latn-x-nudi">Î</span>, <span eId="conclusions__p_4__span_20" xml:lang="kn">ಸ</span><span eId="conclusions__p_4__span_21" xml:lang="kn">ಾ</span>
+        <span eId="conclusions__p_4__span_22" xml:lang="kn-Latn-x-nudi">ĸ</span> <span eId="conclusions__p_4__span_23" xml:lang="kn">ೇಂದ</span>
+        <span eId="conclusions__p_4__span_24" xml:lang="kn-Latn-x-nudi">Î</span>
+        <span eId="conclusions__p_4__span_25" xml:lang="kn">ಮುದ</span>
+        <span eId="conclusions__p_4__span_26" xml:lang="kn-Latn-x-nudi">Î</span>
+        <span eId="conclusions__p_4__span_27" xml:lang="kn">ಾಲಯ</span>, ¦<span eId="conclusions__p_4__span_28" xml:lang="kn">ೆಂಗಳ</span><span eId="conclusions__p_4__span_29" xml:lang="kn">ರು</span>
+      </p>
+      <p eId="conclusions__p_5">THAMMAIAH</p>
+      <p eId="conclusions__p_6">DN: c=IN, o=Centre for e-Governance, 2.5.4.20=be54f34f4e31eae50203ca7fab5ceb3794f20a8460a2582ef28294d43b8f8b16, ou=department of printing stationery and Publication,CID - 7048443, postalCode=560001, st=Karnataka, serialNumber=4d9b284dcc53d39f1425f50485de07dd86efa302a3fce3729eddea0c1b5098e0, cn=THAMMAIAH</p>
+    </conclusions>
+  </act>
+</akomaNtoso>
