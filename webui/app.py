@@ -196,3 +196,7 @@ def raw(path: str):
     return PlainTextResponse(
         xml_path.read_text(encoding="utf-8"), media_type="application/xml"
     )
+
+# Local lawyer review workspace
+from webui.review import router as review_router  # noqa: E402
+app.include_router(review_router)

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Review {{ name }}{% endblock %}
+{% block content %}
+<div class="review-top">
+  <a href="/view?path={{ path | urlencode }}">← Read-only viewer</a>
+  <h1>{{ name }} · lawyer review</h1>
+  <p id="review-status">Opening local draft…</p>
+  <div class="review-actions">
+    <button id="validate">Validate</button>
+    <label>Reviewer <input id="reviewer" autocomplete="name" placeholder="Your name"></label>
+    <button id="approve">Approve current revision</button>
+    <a id="export" href="#" hidden>Download approved XML</a>
+  </div>
+  <p id="review-message" role="status"></p>
+</div>
+<div class="review-grid">
+  <aside class="review-nav">
+    <input id="filter" type="search" placeholder="Find provision" aria-label="Find provision">
+    <div id="provisions"></div>
+  </aside>
+  <section class="review-main">
+    <div class="review-tabs">
+      <button data-panel="pdf" class="active">Gazette PDF</button>
+      <button data-panel="original">Untouched XML</button>
+      <button data-panel="draft">Draft view</button>
+      <button data-panel="changes">Changes</button>
+    </div>
+    <div id="panel-pdf" class="review-panel"><iframe id="pdf-frame" title="Source gazette PDF"></iframe></div>
+    <div id="panel-original" class="review-panel" hidden><div id="original-html"></div><pre id="original-xml"></pre></div>
+    <div id="panel-draft" class="review-panel" hidden><div id="draft-html"></div><pre id="draft-xml"></pre></div>
+    <div id="panel-changes" class="review-panel" hidden><pre id="changes-text"></pre></div>
+    <h2 id="selected-title">Select a provision</h2>
+    <div id="editor"></div>
+    <div class="review-actions"><button id="preview" disabled>Preview changes</button><button id="save" disabled>Save revision</button></div>
+    <pre id="validation"></pre>
+    <h2>Revision history</h2><ol id="history"></ol>
+  </section>
+</div>
+<script>window.REVIEW_PATH = {{ path | tojson }};</script>
+<script src="/static/review.js"></script>
+<script src="/static/review-editor.js"></script>
+{% endblock %}

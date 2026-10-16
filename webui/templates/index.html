@@ -16,7 +16,7 @@
     <tbody>
       {% for doc in documents %}
       <tr>
-        <td><a href="/view?path={{ doc.rel_path | urlencode }}">{{ doc.name }}</a></td>
+        <td><a href="/view?path={{ doc.rel_path | urlencode }}">{{ doc.name }}</a>{% if doc.rel_path.startswith("base_act/eng/") %} · <a href="/review?path={{ doc.rel_path | urlencode }}">Review</a>{% endif %}</td>
         <td class="doc-path">{{ doc.rel_path }}</td>
         <td class="doc-path col-numeric">{{ doc.size_kb }} KB</td>
         <td class="doc-path">{{ doc.converted }}</td>
