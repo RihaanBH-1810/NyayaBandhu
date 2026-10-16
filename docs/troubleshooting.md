@@ -182,8 +182,14 @@ that is also a gazette keyword. Matching is case sensitive for this reason.
 ### A heading swallowed into the text, or text into the heading
 
 Section headings are split at `.-`. A section whose text contains an early `.-`
-sequence, or whose heading exceeds 20 words, will split in the wrong place. See
+sequence will split in the wrong place, and so will one whose heading exceeds
+20 words, unless subsection `(1)` follows the heading. See
 [akn-mapping.md](akn-mapping.md#section-headings).
+
+A missed heading usually shows as a section with a `subsec_2` but no
+`subsec_1`, and a `sub-section (1)` citation in it reported as unresolved.
+Look at how the heading ends in the `.txt`: anything other than `.-`, `,-`,
+`;-` or `:-` before `(1)` is not recognised.
 
 ### A list nested at the wrong depth
 

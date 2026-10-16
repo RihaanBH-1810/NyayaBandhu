@@ -24,7 +24,12 @@ Three kinds of citation, matched in this order:
 Keywords accepted for a provision chain: `section`, `sub-section`, `clause`,
 `sub-clause`, `paragraph`, `sub-paragraph`, `rule`, `sub-rule`, `article`,
 `item`, `chapter`, `part`, `category`. Both singular and plural, and both
-hyphenated and unhyphenated spellings.
+hyphenated and unhyphenated spellings. The space before a bracketed number is
+optional, since drafting sometimes leaves it out: Chandraguthi Act s.19(2) has
+`sub section(1) of section 12`.
+
+A bare number is never the front of a longer one, so the year in `the …
+Endowments Rules 2002` is not read as `rule 200`.
 
 ## Chains
 
@@ -82,7 +87,30 @@ the provisions of section 6 of the Karnataka General Clauses Act, 1899
                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ```
 
-The test is `of [the] <anything> Act|Code|Rules|Regulations|Ordinance|Constitution|Order|Notification`.
+The test is `of [the] <anything> Act|Code|Sanhita|Adhiniyam|Rules|Regulations|Ordinance|Constitution|Order|Notification`.
+
+`Sanhita` (code) and `Adhiniyam` (act) are there for the 2023 criminal
+statutes, which name themselves that way and which newer Acts cite often:
+
+```
+public servants within the meaning of section 2(28) of Bharatiya Nyaya Sanhita, 2023
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+```
+
+The citation may run on in compact form, as `2(28)` does here, before the
+`of`. Without that, `section 2(3) of the Karnataka Education Act, 1983` was
+linked to section 2 of the Act citing it.
+
+The search for the instrument's name stops at a full stop, so that an Act
+named in the next sentence cannot make a citation external. A full stop in
+`etc.` or inside brackets does not count, because rules are often named at
+length:
+
+```
+sub-rule (5) of rule 2 of The Karnataka Department of School Education
+(Pre-University) (Academic, Registration, Administration and Grant-in-aid
+etc.) Rules, 2024
+```
 
 **Named before the citation:**
 
@@ -109,6 +137,12 @@ appears in. The search widens outwards:
 2. Each ancestor of the context, innermost first
 3. The top level of the document
 4. Any descendant of the enclosing section
+
+The enclosing section is the section itself, never the chapter or part around
+it. For `chp_III__sec_24__subsec_2` it is `chp_III__sec_24`. If step 4 looked
+across the whole chapter instead, a `sub-section (1)` that section 24 lacks
+would resolve to the first `subsec_1` anywhere in Chapter III, which is
+someone else's subsection.
 
 Step 4 is what allows section 10(2)'s `clauses (i) to (iv)` to resolve to the
 clauses of section 10(1):
@@ -190,9 +224,9 @@ A citation that is neither external nor resolvable is left as plain text and
 listed in the report with the provision it appears in:
 
 ```
-    unresolved     : 9 citation(s)
+    unresolved     : 10 citation(s)
         (top level): 'article 243' -- no matching provision in this Act
-        chp_IV__sec_19__subsec_1__proviso_2__cl_k__subcl_ii: 'section 171e'
+        chp_IV__sec_19__subsec_1__cl_k__subcl_ii: 'section 171e'
             -- no matching provision in this Act
 ```
 
@@ -219,3 +253,8 @@ examined at several depths.
   consolidation and is not implemented.
 - External citations are left as plain text rather than being marked up with
   the cited instrument's FRBR URI.
+- A compact internal citation such as `section 12(1)` links only the
+  `section 12` part. The target is right but less precise than it could be.
+- A citation is linked as written. Chandraguthi Act s.1(2) says the Kshetra
+  is "defined in clause (j) of section (2)", but the definition is clause (k);
+  the link goes to clause (j), which is what the text cites.

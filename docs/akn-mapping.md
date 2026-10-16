@@ -67,8 +67,8 @@ analysis, temporalData, references, notes, proprietary, presentation
 
 | Gazette unit | Element | eId prefix |
 | --- | --- | --- |
-| `CHAPTER IV` | `<chapter>` | `chp` |
-| `PART II` | `<part>` | `part` |
+| `CHAPTER IV` or `CHAPTER-IV` | `<chapter>` | `chp` |
+| `PART II` or `PART-II` | `<part>` | `part` |
 | `7. Transfer by counselling.-` | `<section>` | `sec` |
 | `(1)` | `<subsection>` | `subsec` |
 | `(a)` or `(i)`, one level below a section or subsection | `<clause>` | `cl` |
@@ -93,6 +93,11 @@ its enumerator is a letter or a numeral:
 Indian drafting nests further than Akoma Ntoso provides "sub-" names for. BBMP
 s.83(2)(b)(iii) opens a fresh `(a)`–`(d)` list four levels down; `point` and
 `indent` carry those levels.
+
+A gazette does not always join `CHAPTER` and its numeral the same way, even
+within one Act. The Chandraguthi Shree Renukamba Kshetra Act, 2025 has
+`CHAPTER III` beside `CHAPTER-I`, `CHAPTER-II`, `CHAPTER-IV` and `CHAPTER-V`.
+A space, a hyphen or a dash between them all give a `<chapter>`.
 
 ## Content model: `<content>` versus `<intro>`
 
@@ -151,7 +156,18 @@ becomes
 The heading match is non-greedy and stops at the first `.` followed by a dash,
 so hyphenated words inside a heading survive (`Compulsory appointment of a
 teacher to Zone-C`). A candidate heading longer than 20 words is rejected as a
-sentence rather than a heading.
+sentence rather than a heading, unless subsection `(1)` follows the dash.
+Nothing but a heading is followed by `.-(1)`, and headings that name another
+Act run long: Chandraguthi Act s.24 has 21 words.
+
+The full stop is sometimes typed as a comma or semicolon (BBMP s.372
+`Resignation and removal, – (1)`, s.237 `…projections and erections;- (1)`).
+Those are read as headings too, but only when `(1)` follows, because `,-`
+also ends ordinary sentences: `unless the context otherwise requires,-`.
+
+A heading that is missed takes subsection `(1)` with it. The subsection's
+text stays on the section, and a later `sub-section (1)` has nothing to
+resolve to.
 
 ## Provisos
 
@@ -173,6 +189,22 @@ legislative text refers to them ("the fourth proviso").
   </proviso>
   <proviso eId="sec_7__subsec_1__proviso_2">…</proviso>
 </subsection>
+```
+
+A proviso can come in the middle of a list. Chandraguthi Act s.6 runs `(a)`, a
+proviso, then `(b)` to `(d)`. The clauses after the proviso continue the list
+it interrupted, so they stay siblings of `(a)` and the proviso sits between
+them:
+
+```xml
+<section eId="chp_II__sec_6">
+  …
+  <clause eId="chp_II__sec_6__cl_a">…</clause>
+  <proviso eId="chp_II__sec_6__proviso_1">…</proviso>
+  <clause eId="chp_II__sec_6__cl_b">…</clause>
+  <clause eId="chp_II__sec_6__cl_c">…</clause>
+  …
+</section>
 ```
 
 A proviso may itself contain clauses:

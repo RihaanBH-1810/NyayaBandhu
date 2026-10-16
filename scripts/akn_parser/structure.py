@@ -36,10 +36,15 @@ T_TABLE = "table"
 T_HEADING = "heading"
 T_TEXT = "text"
 
+#: What may stand between ``CHAPTER``/``PART`` and its numeral. Gazettes are
+#: not consistent even within one Act: the Chandraguthi Shree Renukamba Kshetra
+#: Act, 2025 has ``CHAPTER III`` beside ``CHAPTER-I``, ``CHAPTER-II``,
+#: ``CHAPTER-IV`` and ``CHAPTER-V``.
+_DIVISION_SEP = r"(?:\s*[-–—]\s*|\s+)"
 #: ``CHAPTER IV.-Miscellaneous`` -> ordinal ``IV``, heading ``Miscellaneous``.
-_RE_CHAPTER = re.compile(r"^CHAPTER\s+([IVXLCDM]+|\d+)\b[.\-–]*\s*(.*)$")
+_RE_CHAPTER = re.compile(rf"^CHAPTER{_DIVISION_SEP}([IVXLCDM]+|\d+)\b[.\-–]*\s*(.*)$")
 #: Same shape as a chapter, one level up the hierarchy.
-_RE_PART = re.compile(r"^PART\s+([IVXLCDM]+|\d+)\b[.\-–]*\s*(.*)$")
+_RE_PART = re.compile(rf"^PART{_DIVISION_SEP}([IVXLCDM]+|\d+)\b[.\-–]*\s*(.*)$")
 #: ``12A. Short title`` -> number ``12A``, rest of the line as heading+body.
 #: Letter suffixes (``12A``) mark a section inserted by amendment after
 #: section 12 without renumbering what follows it.
@@ -67,6 +72,12 @@ _RE_SCHEDULE = re.compile(
 #: ".—"); the non-greedy match stops at the first such marker, so hyphenated
 #: words inside the heading ("Zone-C") survive.
 _RE_SECTION_HEADING = re.compile(r"^(.{2,160}?)\s*\.\s*[-–—]\s*(.*)$", re.S)
+#: The same marker typed with a comma, semicolon or colon in place of the
+#: full stop: BBMP s.237 "...projections and erections;- (1)", s.372
+#: "Resignation and removal, – (1)". Accepted only when subsection (1)
+#: follows directly, because ",-" on its own ends ordinary sentences all
+#: the time ("unless the context otherwise requires,-").
+_RE_SECTION_HEADING_LOOSE = re.compile(r"^(.{2,160}?)\s*[,;:]\s*[-–—]\s*(\(\s*1\s*\).*)$", re.S)
 
 #: The two enumerator sequences a marker can continue, letters and roman
 #: numerals, used by ``_predecessor`` and ``_resolve_ambiguous`` to settle
@@ -541,9 +552,19 @@ class TreeBuilder:
                 if stack[i].list_type == list_type and stack[i].num == predecessor:
                     del stack[i:]
                     return
-            # The sequence continues but its predecessor is closed (an
-            # intervening proviso, say): fall back to the innermost list of
-            # this type.
+            # The predecessor is already closed because a proviso or an
+            # Explanation was placed after it. Chandraguthi Act s.6 runs
+            # (a), proviso, (b), (c), (d): the proviso closes (a), and (b)
+            # must rejoin (a)'s list instead of opening a new one inside
+            # the proviso. Innermost first, so a proviso that carries its
+            # own (a), (b) list keeps it.
+            for i in range(len(stack) - 1, -1, -1):
+                items = [c for c in stack[i].children if c.list_type == list_type]
+                if items and items[-1].num == predecessor:
+                    del stack[i + 1:]
+                    return
+            # Neither open nor a closed sibling: fall back to the innermost
+            # list of this type.
             for i in range(len(stack) - 1, 0, -1):
                 if stack[i].list_type == list_type:
                     del stack[i:]
@@ -552,12 +573,20 @@ class TreeBuilder:
 
     def _split_heading(self, text: str):
         """Separate a section heading from the text that follows it."""
-        m = _RE_SECTION_HEADING.match(text)
-        if not m:
+        # Whichever marker comes first ends the heading, so a ".-" further on
+        # cannot pull an earlier ";- (1)" into the heading.
+        matches = [m for m in (_RE_SECTION_HEADING.match(text),
+                               _RE_SECTION_HEADING_LOOSE.match(text)) if m]
+        if not matches:
             return "", text
+        m = min(matches, key=lambda found: len(found.group(1)))
         heading, rest = m.group(1).strip(), m.group(2).strip()
-        # A "heading" that is really a whole sentence is not a heading.
-        if len(heading.split()) > 20:
+        # A "heading" that is really a whole sentence is not a heading. The
+        # length test does not apply when subsection (1) follows the marker,
+        # since nothing but a heading is followed by ".-(1)": headings that
+        # name another Act run long (Chandraguthi Act s.24 has 21 words), and
+        # rejecting one there loses the whole of subsection (1).
+        if len(heading.split()) > 20 and not _RE_SUBSECTION.match(rest):
             return "", text
         return heading, rest
 

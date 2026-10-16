@@ -56,8 +56,10 @@ _KEYWORD_TARGETS = {
 }
 
 #: One enumerator as it appears in a citation: parenthesised (``(1)``,
-#: ``(iv)``, ``(2a)``) or a bare section-style number (``10``, ``12A``).
-_NUM_TOKEN = r"(?:\(\s*[0-9A-Za-z]{1,4}\s*\)|[0-9]{1,3}[A-Z]{0,2})"
+#: ``(iv)``, ``(2a)``) or a bare section-style number (``10``, ``12A``). A bare
+#: number may not be the front of a longer one, or the year in "the ...
+#: Endowments Rules 2002" reads as "rule 200".
+_NUM_TOKEN = r"(?:\(\s*[0-9A-Za-z]{1,4}\s*\)|[0-9]{1,3}[A-Z]{0,2}(?![0-9]))"
 #: Every way Indian drafting separates items in a citation list.
 _SEP = r"(?:\s*,\s*|\s+and\s+|\s+to\s+|\s*&\s*|\s+or\s+)"
 #: A run of one or more enumerators of the same kind, e.g. ``(a), (b) and (c)``
@@ -68,19 +70,41 @@ _NUM_LIST = rf"{_NUM_TOKEN}(?:{_SEP}{_NUM_TOKEN})*"
 #: section 10``, matched as one unit rather than as separate citations, so
 #: it can be resolved link by link from the outside in. See
 #: :meth:`CitationResolver._parse_chain`.
+#: Between a keyword and its number: a space, or nothing at all before a
+#: bracket, as in "sub section(1) of section 12" (Chandraguthi Act s.19(2)).
+_KEYWORD_GAP = r"(?:\s+|(?=\())"
+
 CITATION_CHAIN = re.compile(
-    rf"\b(?P<chain>{_KEYWORD}\s+{_NUM_LIST}"
-    rf"(?:\s+of\s+(?:the\s+)?{_KEYWORD}\s+{_NUM_LIST})*)",
+    rf"\b(?P<chain>{_KEYWORD}{_KEYWORD_GAP}{_NUM_LIST}"
+    rf"(?:\s+of\s+(?:the\s+)?{_KEYWORD}{_KEYWORD_GAP}{_NUM_LIST})*)",
     re.I,
+)
+
+#: Words that end the name of an instrument. "Sanhita" (code) and
+#: "Adhiniyam" (act) are how the 2023 criminal statutes name themselves, so
+#: "section 2(28) of Bharatiya Nyaya Sanhita, 2023" is another instrument
+#: and not section 2 of this Act.
+_INSTRUMENT = (
+    r"(?:Act|Code|Sanhita|Adhiniyam|Rules?|Regulations?|Ordinance"
+    r"|Constitution|Order|Notification)"
 )
 
 #: What makes a citation point outside this Act: it is followed by the name of
 #: another instrument.  "of this Act" and "of the said Act" are excluded:
-#: they are self-references and their sections do resolve internally.
+#: they are self-references and their sections do resolve internally. The
+#: citation itself may run on in compact form before the "of" ("section
+#: 2(28) of ..."), which the chain pattern does not take in.
+#:
+#: The name of the instrument may not cross a full stop, so that an Act named
+#: in the next sentence is not picked up, except in "etc." and inside
+#: brackets. Rules are often named at length: "sub-rule (5) of rule 2 of The
+#: Karnataka Department of School Education (Pre-University) (Academic,
+#: Registration, Administration and Grant-in-aid etc.) Rules, 2024".
 EXTERNAL_TAIL = re.compile(
-    r"^\s*(?:,\s*\d{4})?\s*of\s+(?!this\b|the\s+said\b|the\s+present\b)"
-    r"(?:the\s+)?[^.;:]{0,90}?"
-    r"\b(?:Act|Code|Rules?|Regulations?|Ordinance|Constitution|Order|Notification)\b",
+    r"^(?:\s*\(\s*[0-9A-Za-z]{1,4}\s*\))*"
+    r"\s*(?:,\s*\d{4})?\s*of\s+(?!this\b|the\s+said\b|the\s+present\b)"
+    r"(?:the\s+)?(?:\([^()]{0,120}\)|\betc\.|[^.;:()]){0,160}?"
+    rf"\b{_INSTRUMENT}\b",
     re.I,
 )
 
@@ -91,7 +115,7 @@ EXTERNAL_TAIL = re.compile(
 #: immediately before the citation, so that a statute mentioned earlier in a
 #: long sentence does not capture the Act's references to itself.
 EXTERNAL_LEAD = re.compile(
-    r"\b(?:Act|Code|Rules?|Regulations?|Ordinance)\b,?\s*\d{4}\s*"
+    r"\b(?:Act|Code|Sanhita|Adhiniyam|Rules?|Regulations?|Ordinance)\b,?\s*\d{4}\s*"
     r"(?:\([^)]{0,80}\))?\s*[,;]?\s*(?:in|of|under)?\s*$",
     re.I,
 )
@@ -153,6 +177,22 @@ def _canonical_keyword(word: str) -> str:
     elif w.endswith("s") and not w.endswith("ss"):
         w = w[:-1]
     return w
+
+
+def _enclosing_unit(eid: str) -> str:
+    """The eId of the section (or attachment) that *eid* sits in.
+
+    Chapters and parts only group sections, so they are skipped: for
+    ``chp_III__sec_24__subsec_2`` this is ``chp_III__sec_24``, not
+    ``chp_III``. Taking the first component instead made a "sub-section (1)"
+    that section 24 lacked resolve to section 18(1), the first match anywhere
+    in Chapter III. Empty when *eid* is not inside any section.
+    """
+    parts = eid.split("__") if eid else []
+    for i, part in enumerate(parts):
+        if not part.startswith(("chp_", "part_")):
+            return "__".join(parts[: i + 1])
+    return ""
 
 
 def _num_key(token: str) -> str:
@@ -395,7 +435,7 @@ class CitationResolver:
             return found
 
         # Widen to anything under the enclosing section.
-        section = context_eid.split("__", 1)[0] if context_eid else ""
+        section = _enclosing_unit(context_eid)
         if section:
             for ref in refs:
                 tail = f"{ref}_{number}"

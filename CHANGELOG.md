@@ -11,7 +11,7 @@ All notable changes to the parser are recorded here. Format follows
   `schemas/akomantoso30.xsd`. Every document is validated before it is written.
 - Checks the schema cannot perform: `eId` uniqueness and naming-convention
   syntax, reference integrity, and detection of text left in the wrong script.
-- Test suite (93 tests) covering language classification and tagging,
+- Test suite (112 tests) covering language classification and tagging,
   identifier construction, citation resolution, line re-flow and hierarchy
   building, plus end-to-end assertions against the Teachers Transfer Act.
 - Table extraction. Schedules are emitted as `<table>`, including tables split
@@ -35,6 +35,8 @@ All notable changes to the parser are recorded here. Format follows
   every legacy run in every document and updates its tag automatically.
 - `--foreign tag` (now the default) alongside `mark`, `omit` and `keep`.
 - `config/documents.json` for per-document metadata overrides.
+- The Chandraguthi Shree Renukamba Kshetra Development Authority Act, 2025
+  (Karnataka Act 16 of 2026) under `data/v0s/kan_eng/`, with its output.
 - CLI options `--foreign`, `--strict`, `--keep-text`, `--no-validate`,
   `--out`, `--schema`, `--overrides`, `--pdf`, `-d/--dir`.
 - Per-document report showing pages used, redactions, schema result,
@@ -122,6 +124,42 @@ All notable changes to the parser are recorded here. Format follows
   serialisation to fail on `BBMP-eng.pdf`.
 - A text block beginning inside a table and continuing past it is no longer
   discarded whole; table filtering operates per line.
+- `CHAPTER-I`, written with a hyphen, is now a chapter. Only `CHAPTER I` with
+  a space was recognised, so four of the Chandraguthi Act's five chapters
+  became stray paragraphs inside other provisions, and every section from 18
+  to 41 was filed under Chapter III. The BBMP Act had lost Chapter XXI the
+  same way.
+- A list item after a proviso rejoins the list the proviso interrupted. It
+  used to open a new list inside the proviso: in Chandraguthi Act s.6 clauses
+  `(b)` to `(d)` were children of the proviso after `(a)`, and in BBMP
+  s.19(1) clauses `(b)` to `(l)` were spread across two provisos. Their eIds
+  change accordingly (`sec_6__proviso_1__cl_b` is now `sec_6__cl_b`).
+- A relative citation that its own section cannot satisfy is no longer
+  resolved somewhere else in the chapter. The search was meant to widen to
+  the enclosing section but took the chapter instead, and linked to the first
+  match in it: Chandraguthi s.24(2)'s "sub-section (1)" pointed at s.18(1),
+  and BBMP ss.105, 237 and 372 had similar wrong links.
+- A heading longer than 20 words, or ended with `,-` or `;-` instead of `.-`,
+  is kept when subsection `(1)` follows. These were rejected, which lost
+  subsection `(1)` with them (Chandraguthi s.24, BBMP ss.237 and 372).
+- A compact citation of another instrument, such as `section 2(3) of the
+  Karnataka Education Act, 1983`, is external. It was linked to section 2 of
+  the Act citing it, because the `(3)` stopped the external test from seeing
+  the `of`. `section 2(28) of Bharatiya Nyaya Sanhita, 2023` had the same
+  problem, and also needed "Sanhita" to be known as the name of an
+  instrument; "Adhiniyam" is recognised as well.
+- An instrument with a long name, or one with "etc." in brackets, is still
+  recognised as external: "sub-rule (5) of rule 2 of The Karnataka
+  Department of School Education (Pre-University) (Academic, ... etc.)
+  Rules, 2024" was reported as unresolved in the Act citing it.
+- `sub section(1) of section 12`, with no space before the bracket, is read
+  as one citation. Only `section 12` was being linked.
+- The year in `... Endowments Rules 2002` is no longer read as `rule 200`.
+- Web viewer: a number such as `(1)` or `(a)` is printed on the same line as
+  its text, with wrapped lines aligned under the text. Every level indents
+  the same way, a section's opening words included. Provisos are indented
+  paragraphs with *Provided that* in italics, in place of a bordered box, and
+  all chapters share one heading style.
 
 ### Research notes
 
@@ -149,8 +187,9 @@ assuming an answer.
 - Amending Acts are converted as standalone documents. Consolidation into a
   base Act is not implemented, and an amendment's citations into the base Act
   are reported as unresolved.
-- Nine citations in the BBMP Act remain unresolved; they are external citations
-  whose phrasing the external test does not recognise. None produces a wrong
-  link.
+- Ten citations in the BBMP Act remain unresolved. Most cite other instruments
+  in a phrasing the external test does not recognise; a few, such as
+  s.105(1)(b)'s "sub-section (4)", name a provision their own section does not
+  have. All are left unlinked.
 - Schedules laid out as ruled tables become `<table>`. Where a schedule is
   really a numbered list, a hierarchy of provisions would carry more meaning.

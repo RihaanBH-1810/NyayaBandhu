@@ -159,7 +159,7 @@ as a two-letter alphabetic marker.
 | Kind | Matches |
 | --- | --- |
 | `table` | A table sentinel line |
-| `chapter`, `part` | `CHAPTER IV`, `PART II` |
+| `chapter`, `part` | `CHAPTER IV`, `CHAPTER-IV`, `PART II` |
 | `schedule` | `SCHEDULE`, `FIRST SCHEDULE` |
 | `proviso` | `Provided that`, `Provided further that`, `Provided also that` |
 | `explanation` | `Explanation.-`, `Explanation 2:` |
@@ -211,6 +211,13 @@ that **starts** one. A continuation becomes the sibling of its predecessor; a
 list opener nests inside whatever is currently open. Without that distinction a
 restarted `(a)` list nested three levels down would rejoin the outer `(a)` list
 and produce duplicate identifiers.
+
+The predecessor need not still be open. A proviso closes the list item before
+it, so after `(a)`, a proviso, then `(b)`, the item `(a)` is no longer on the
+stack. `_pop_to_list()` therefore also looks at the closed children of each
+open element, innermost first, and `(b)` rejoins `(a)`'s list. Before this,
+`(b)` was taken to open a new list inside the proviso: BBMP s.19(1) had
+clauses `(b)` to `(l)` filed under its two provisos.
 
 Each `Node` carries `paragraphs` (blocks added before it had children) and
 `wrap_paragraphs` (blocks added after). Stage 8 uses that split to choose

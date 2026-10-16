@@ -28,7 +28,7 @@ ROMAN = r"(?:x{0,3}(?:ix|iv|v?i{0,3}))"
 #: A line that opens a new structural unit.  Case sensitive.
 STRUCTURAL_START = re.compile(
     r"^(?:"
-    r"(?:CHAPTER|PART|BOOK|TITLE)\s+[IVXLCDM0-9]+\b"
+    r"(?:CHAPTER|PART|BOOK|TITLE)(?:\s*[-–—]\s*|\s+)[IVXLCDM0-9]+\b"  # also CHAPTER-I
     r"|(?:THE\s+)?(?:FIRST|SECOND|THIRD|FOURTH|FIFTH|SIXTH)?\s*SCHEDULE\b"
     r"|\d+[A-Z]?\s*\.\s*[A-Z(]"                   # 1. / 12A. section
     r"|\(\d+[a-z]?\)"                             # (1) subsection

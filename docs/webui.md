@@ -43,10 +43,30 @@ would have printed after `FAILED:`.
 | Raw XML | The file as written, syntax-coloured. Hidden while the split view is on, since the XML is already beside the text. |
 | Metadata & validation | FRBR identity and URIs ([identifiers.md](identifiers.md)), and the schema, eId, reference and language checks from the CLI report ([cli.md](cli.md#output-report)). |
 
-The Outline filter earns its place on long Acts. The BBMP Act's tree has 2,073
+The Outline filter earns its place on long Acts. The BBMP Act's tree has 2,082
 entries; `property tax` brings it down to the four sections about it.
 
 Left and right arrow keys move between tabs.
+
+### Layout
+
+Provisions are laid out the way a gazette prints them:
+
+- A chapter or part is a centred heading over its sections. A section's
+  heading is bold, and everything in the section, its opening words included,
+  is indented beneath it.
+- A numbered item such as `(1)`, `(a)` or `(i)` has its number in a gutter
+  with the text beside it on the same line. Wrapped lines line up under the
+  text, not under the number, and each level of nesting moves in by one
+  gutter.
+- A proviso or an Explanation is a paragraph with its first line indented,
+  with *Provided that* in italics. A proviso's own list (`Provided that,-
+  (i) ... (ii) ...`) is indented under it, so it cannot be mistaken for the
+  list the proviso interrupts.
+
+The layout is chosen in `akn_view._render_structural`, not from the element
+name alone: anything with a heading is laid out as a heading, anything with
+only a number hangs its number, and anything with neither is inset.
 
 ### What the styling means
 
