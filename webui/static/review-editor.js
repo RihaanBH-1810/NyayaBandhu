@@ -1,6 +1,7 @@
 let visualFields = [];
 window.renderReviewEditor = function(editor) {
   const host = document.getElementById('editor'); host.replaceChildren();
+  document.getElementById('compare-draft-html').hidden = true;
   if (!editor.enabled) { host.textContent = editor.reason; return; }
   visualFields = editor.fields;
   const hint = document.createElement('p'); hint.textContent = 'Edit legal wording in the white spans. Shaded references, definitions and language spans are protected.'; host.append(hint);

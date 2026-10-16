@@ -2,7 +2,7 @@
 
 ## Findings and implementation
 
-The visual editor prepares one selected provision at a time. Its `heading` and `p` fields appear as editable text spans. Inline `<ref>`, `<def>`, `<span xml:lang>` and other nested elements appear as shaded protected chips. The client sends the text segments and an operation keyed by the selected `eId`; `webui/review_editor.py` changes only the matching XML text and tails. Paragraphs inside table cells are editable in the same way, while rows and cells stay fixed.
+The visual editor prepares one selected provision at a time. Its `heading` and `p` fields appear as editable text spans in the draft comparison column beside the source PDF and original provision. Inline `<ref>`, `<def>`, `<span xml:lang>` and other nested elements appear as shaded protected chips. The client sends the text segments and an operation keyed by the selected `eId`; `webui/review_editor.py` changes only the matching XML text and tails. Paragraphs inside table cells are editable in the same way, while rows and cells stay fixed.
 
 The structural controls add a section after a selected section or add subsections, clauses and provisos inside a supported parent. They also remove, renumber, or move a selected provision. The server rebuilds descendant `eId` prefixes when numbering changes. It blocks changes to referenced provision IDs and collisions, then the shared review route validates the entire assembled Act. Adding a child to a leaf changes its `content` wrapper to `intro` while keeping its legal text and inline elements.
 
