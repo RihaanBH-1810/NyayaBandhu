@@ -2,13 +2,10 @@
 
 Using the parser as a library rather than through the command line.
 
-The package lives in `scripts/akn_parser/` and is not installed to site-packages,
-so add `scripts/` to the import path:
+Install the package from the repository root with `python -m pip install -e .`
+(see [installation](../README.md#installation)), then import it directly:
 
 ```python
-import sys
-sys.path.insert(0, "scripts")
-
 from akn_parser.pipeline import ActParser
 ```
 
@@ -367,7 +364,7 @@ Derived properties:
 | --- | --- |
 | `main(argv=None) -> int` | Entry point; returns the exit status |
 | `build_parser()` | The `argparse.ArgumentParser` |
-| `collect_pdfs(doc_type, subdir)` | Sorted list of PDF paths |
+| `collect_pdfs(doc_type, subdir)` | Sorted list of PDF paths; raises `NoInputError` if none are available |
 | `DOC_TYPE_DIRS` | Document type to data directory names |
 | `LANG_CHOICES` | Accepted `--lang` values |
 
@@ -382,6 +379,7 @@ raise SystemExit(main(["-t", "base_act", "-l", "eng", "--strict"]))
 
 | Exception | Module | Raised when |
 | --- | --- | --- |
+| `NoInputError` | `cli` | No input data directory or matching PDF files |
 | `UnusableEncodingError` | `extract` | The requested language is legacy-encoded or misencoded |
 | `DuplicateEId` | `eids` | Two elements would receive the same identifier |
 | `ValueError` | `extract` | No page carries the requested language |

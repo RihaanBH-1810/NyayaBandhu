@@ -17,12 +17,9 @@ This file is a thin entry point; the implementation lives in the
 
 Run ``python scripts/akn-parser.py --help`` for usage.
 """
-import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
-from akn_parser.cli import main  # noqa: E402
+from akn_parser.cli import main
 
 if __name__ == "__main__":
     sys.exit(main())

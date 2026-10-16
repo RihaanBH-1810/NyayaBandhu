@@ -1,10 +1,8 @@
 import os
-import sys
 
 import pytest
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(REPO_ROOT, "scripts"))
 
 TEACHERS_PDF = os.path.join(
     REPO_ROOT, "data", "v0s", "kan_eng", "tranfer_of_teachers.pdf"

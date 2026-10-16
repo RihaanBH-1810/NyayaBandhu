@@ -5,6 +5,8 @@ import argparse
 import glob
 import os
 import sys
+import traceback
+from typing import Sequence
 
 from . import language
 from .extract import FOREIGN_POLICIES, FOREIGN_TAG
@@ -22,6 +24,20 @@ DOC_TYPE_DIRS = {
 #: source directory: data/v0s/kan_eng holds bilingual PDFs from which either
 #: language can be extracted.
 LANG_CHOICES = [language.ENGLISH, language.KANNADA]
+
+
+class NoInputError(Exception):
+    pass
+
+
+def non_negative_int(value: str) -> int:
+    try:
+        number = int(value)
+    except ValueError:
+        raise argparse.ArgumentTypeError("must be a non-negative integer") from None
+    if number < 0:
+        raise argparse.ArgumentTypeError("must be a non-negative integer")
+    return number
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -55,7 +71,7 @@ def build_parser() -> argparse.ArgumentParser:
              "(e.g. 'kan_eng'). Default: every subdirectory.",
     )
     p.add_argument(
-        "-n", "--count", type=int, default=0,
+        "-n", "--count", type=non_negative_int, default=0,
         help="Process at most this many PDFs (0 = all).",
     )
     p.add_argument(
@@ -76,17 +92,16 @@ def build_parser() -> argparse.ArgumentParser:
                    help="Exit non-zero if any document fails a check.")
     p.add_argument("--keep-text", action="store_true",
                    help="Also write the normalised intermediate text.")
-    p.add_argument("--quiet", action="store_true")
+    p.add_argument("--quiet", action="store_true",
+                   help="Suppress progress, reports, and concise failure messages.")
+    p.add_argument("--traceback", action="store_true",
+                   help="Print full tracebacks to stderr for document-processing "
+                        "failures, even with --quiet.")
     return p
 
 
-def collect_pdfs(doc_type: str, subdir: str | None) -> list:
+def collect_pdfs(doc_type: str, subdir: str | None) -> list[str]:
     """Find every PDF for *doc_type* under ``data/``, sorted and de-duplicated.
-
-    Exits the process (via ``SystemExit``) rather than returning an empty
-    list when the data directory or a matching PDF is missing, since an empty
-    batch almost always means a path or ``--dir`` typo the caller should see
-    immediately rather than a silent no-op.
     """
     roots = []
     for name in DOC_TYPE_DIRS[doc_type]:
@@ -94,7 +109,7 @@ def collect_pdfs(doc_type: str, subdir: str | None) -> list:
         if os.path.isdir(base):
             roots.append(base)
     if not roots:
-        raise SystemExit(
+        raise NoInputError(
             f"No data directory for type {doc_type!r}; expected one of: "
             + ", ".join(os.path.join("data", n) for n in DOC_TYPE_DIRS[doc_type])
         )
@@ -107,16 +122,12 @@ def collect_pdfs(doc_type: str, subdir: str | None) -> list:
         pdfs.extend(glob.glob(pattern, recursive=not subdir))
     if not pdfs:
         where = os.path.join("data", "*", subdir or "**")
-        raise SystemExit(f"No PDF files found under {where}")
+        raise NoInputError(f"No PDF files found under {where}")
     return sorted(set(pdfs))
 
 
-def main(argv=None) -> int:
+def main(argv: Sequence[str] | None = None) -> int:
     """Parse arguments, convert every selected PDF, and report the outcome.
-
-    Returns 0 unless ``--strict`` was given and at least one document failed
-    a check, so an unattended batch run's exit code reflects data quality
-    rather than merely whether the process crashed.
     """
     args = build_parser().parse_args(argv)
 
@@ -124,7 +135,11 @@ def main(argv=None) -> int:
         pdfs = [args.pdf]
         out_dir = args.out or os.path.join(REPO_ROOT, "out", "single", args.lang)
     else:
-        pdfs = collect_pdfs(args.doc_type, args.subdir)
+        try:
+            pdfs = collect_pdfs(args.doc_type, args.subdir)
+        except NoInputError as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
         out_dir = args.out or os.path.join(REPO_ROOT, "out", args.doc_type, args.lang)
 
     if args.count > 0:
@@ -152,6 +167,8 @@ def main(argv=None) -> int:
         except Exception as exc:                     # noqa: BLE001 - reported
             failures += 1
             say(f"    FAILED: {type(exc).__name__}: {exc}")
+            if args.traceback:
+                traceback.print_exc()
             continue
 
         with open(out_path, "wb") as fh:
@@ -176,7 +193,7 @@ def main(argv=None) -> int:
     return 1 if (failures and args.strict) else 0
 
 
-def _ranges(numbers: list) -> str:
+def _ranges(numbers: list[int]) -> str:
     """Collapse a sorted list of page numbers into spans, e.g. ``[1,2,3,5]``
     -> ``"1-3, 5"``, for a compact "pages kept" report line."""
     if not numbers:

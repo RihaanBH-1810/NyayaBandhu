@@ -8,13 +8,15 @@ python -m venv .venv
 
 ```bash
 .venv/Scripts/python -m pip install -r requirements.txt
+.venv/Scripts/python -m pip install -e .
 ```
 
 On macOS and Linux the interpreter is `.venv/bin/python`.
 
-The parser is not installed as a package. Run it through
-`scripts/akn-parser.py`, which puts `scripts/` on the import path; tests do the
-same through `tests/conftest.py`.
+The editable install exposes `akn_parser` and the `akn-parser` console
+command. You can also run `python -m akn_parser.cli` or the compatibility
+entry point `scripts/akn-parser.py`. Tests use the installed package.
+Keep the checkout available for the schema, metadata overrides, and input PDFs.
 
 ## Tests
 
