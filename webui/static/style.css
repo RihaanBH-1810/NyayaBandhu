@@ -260,7 +260,9 @@ main {
 /* Provisions come in three layouts, set by akn_view._render_structural:
    akn-headed, akn-hanging and akn-inset. Each level of nesting indents by
    one gutter, so a clause always sits where its parent's text begins. */
-.akn-document {
+/* Review comparison panes render individual provisions without an
+   .akn-document wrapper. Keep the layout values on each provision too. */
+.akn-document, .akn {
   --akn-gutter: 2.75em;   /* room for "(viii)" or "(12A)" beside the text */
   --akn-indent: 1.5em;    /* a section's text, under its heading */
 }
