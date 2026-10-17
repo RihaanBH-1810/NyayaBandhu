@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amendment workspace · NyayaBandhu</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='25' x='7' font-size='25' font-family='Georgia,serif' fill='%2336c'>&#167;</text></svg>">
+  <link rel="stylesheet" href="/static/consolidation.css?v=1">
+  <script src="/static/consolidation.js?v=1" defer></script>
+</head>
+<body>
+  <header class="cms-header">
+    <div class="brand"><a href="/">NyayaBandhu</a><span class="brand-divider"></span><strong>Consolidation</strong></div>
+    <div class="header-actions">
+      <label class="compact-field">Work <select id="work-select" aria-label="Choose Act"><option value="">Choose an Act</option></select></label>
+      <button id="refresh-work" class="button subtle" type="button">Refresh</button>
+      <a class="help-link" href="/docs#tag/Amendment-consolidation" target="_blank" rel="noopener">API</a>
+    </div>
+  </header>
+  <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+  <main class="cms-main">
+    <section class="workspace-intro">
+      <div><p class="eyebrow">Legislative review workspace</p><h1>Build a dated version of the Act</h1>
+      <p class="intro-copy">Match each amendment instruction to the principal Act, review the gazette evidence, then approve the validated result.</p></div>
+      <div class="reviewer-fields">
+        <label>Reviewer name<input id="actor" autocomplete="name" placeholder="Name recorded in history"></label>
+        <label>Reason for this action<input id="reason" placeholder="Review note or decision basis"></label>
+      </div>
+    </section>
+
+    <section id="empty-state" class="empty-state card">
+      <div class="empty-symbol">§</div>
+      <h2>Start with an English base Act</h2>
+      <p>Import its generated XML and source gazette PDF. Both files become immutable evidence in the local review store.</p>
+      <button id="empty-import" class="button primary" type="button">Choose source files</button>
+    </section>
+
+    <section id="work-area" hidden>
+      <div class="work-heading card">
+        <div><p class="eyebrow">Principal Act</p><h2 id="work-title"></h2><p id="work-subtitle" class="muted"></p><p id="coverage-summary" class="coverage-summary"></p></div>
+        <div class="work-metrics"><div><strong id="metric-sources">0</strong><span>sources</span></div><div><strong id="metric-instructions">0</strong><span>instructions</span></div><div><strong id="metric-expressions">0</strong><span>versions</span></div></div>
+      </div>
+      <nav class="workflow-nav" aria-label="Consolidation workflow">
+        <button type="button" data-tab="sources" class="active">1 <span>Sources</span></button>
+        <button type="button" data-tab="instructions">2 <span>Instructions</span></button>
+        <button type="button" data-tab="preview">3 <span>Preview & apply</span></button>
+        <button type="button" data-tab="versions">4 <span>Versions</span></button>
+      </nav>
+    </section>
+
+    <section id="tab-sources" class="tab-panel">
+      <div class="section-heading"><div><p class="eyebrow">Evidence register</p><h2>Source documents</h2><p>Open the gazette and the original generated XML while reviewing an instruction.</p></div><button id="show-import" class="button primary" type="button">Add source</button></div>
+      <div id="source-list" class="source-grid"></div>
+      <section id="import-panel" class="card import-panel" hidden>
+        <div class="section-heading tight"><h3>Import source documents</h3><button id="hide-import" class="button subtle" type="button">Close</button></div>
+        <div class="form-grid">
+          <label>Document kind<select id="import-kind"><option value="base">Base Act</option><option value="amendment">Amending Act</option></select></label>
+          <label>Generated English XML<select id="import-xml"></select></label>
+          <label>Source gazette PDF<select id="import-pdf"></select></label>
+        </div>
+        <p class="field-help">Select the matching XML and PDF for the same gazette. Import records their exact hashes.</p>
+        <button id="import-submit" class="button primary" type="button">Import immutable source</button>
+      </section>
+    </section>
+
+    <section id="tab-instructions" class="tab-panel" hidden>
+      <div class="section-heading"><div><p class="eyebrow">Instruction desk</p><h2>Review amendment instructions</h2><p>Each change is tied to a quotation and page in its source gazette.</p></div><label>Instrument<select id="manifest-select"><option value="">Choose an amendment</option></select></label></div>
+      <div id="manifest-empty" class="card empty-note">Import an amending Act and extract its instructions in Sources.</div>
+      <div id="instruction-workspace" class="instruction-layout" hidden>
+        <aside class="instruction-sidebar card"><div class="sidebar-heading"><h3>Instructions</h3><span id="instruction-progress" class="chip"></span></div><div id="operation-list" class="operation-list"></div></aside>
+        <div class="instruction-main">
+          <section class="card manifest-card">
+            <div class="section-heading tight"><div><h3>Instrument decision</h3><p id="manifest-status" class="muted"></p></div><span id="manifest-revision" class="chip"></span></div>
+            <div class="form-grid">
+              <label class="check-field"><input id="identity-confirmed" type="checkbox"> Principal Act identity confirmed</label>
+              <label>Instrument order<input id="instrument-sequence" type="number" min="1"></label>
+              <label>Effective date<input id="effective-date" type="date"></label>
+              <label class="check-field"><input id="date-confirmed" type="checkbox"> Commencement determined</label>
+            </div>
+            <label>Date evidence<textarea id="date-evidence" rows="2" placeholder="Gazette clause, notification, and the basis for this date"></textarea></label>
+            <p id="identity-summary" class="field-help"></p>
+            <button id="save-manifest" class="button primary" type="button">Save review revision</button>
+          </section>
+          <section id="operation-editor" class="card" hidden>
+            <div class="section-heading tight"><div><p id="operation-code" class="eyebrow"></p><h3 id="operation-title">Instruction</h3></div><span id="operation-badge" class="chip"></span></div>
+            <div class="evidence-quote"><span>Gazette instruction · <span id="quote-pages"></span></span><p id="source-quote"></p></div>
+            <div class="form-grid">
+              <label>Interpretation<select id="op-action"></select></label>
+              <label>Review decision<select id="op-status"><option value="pending">Pending</option><option value="accepted">Accepted after comparison</option></select></label>
+              <label>Target eId<input id="target-eid" list="provision-options" placeholder="Choose or enter a provision"></label>
+              <datalist id="provision-options"></datalist>
+              <label>Effective date override<input id="op-date" type="date"></label>
+            </div>
+            <details class="advanced"><summary>Target selector</summary><label>Selector JSON<textarea id="target-json" rows="2" spellcheck="false"></textarea></label><p class="field-help">Use this for long title, preamble, schedule, or a hierarchy path.</p></details>
+            <div id="text-fields" class="form-grid">
+              <label>Exact source words / anchor<textarea id="op-old" rows="3"></textarea></label>
+              <label>Replacement or inserted words<textarea id="op-new" rows="3"></textarea></label>
+              <label>Expected match count<input id="op-count" type="number" min="1"></label>
+              <label class="check-field"><input id="op-whole-word" type="checkbox"> Whole words only</label>
+              <label class="check-field"><input id="op-global" type="checkbox"> Across the Act</label>
+              <label class="check-field"><input id="op-protected" type="checkbox"> I reviewed protected inline text</label>
+            </div>
+            <section id="fragment-panel" class="structured-editor" hidden><div class="section-heading tight"><div><h4>Provision wording</h4><p class="field-help">Review the structure and text recovered from the amending gazette.</p></div><button id="add-fragment" class="button secondary" type="button">Add provision</button></div><div id="fragment-list"></div></section>
+            <section id="table-panel" class="structured-editor" hidden><div class="section-heading tight"><h4>Schedule table rows</h4><button id="add-table-row" class="button secondary" type="button">Add row</button></div><div id="table-rows"></div><label>Insert after schedule group<input id="table-after-group" placeholder="II"></label></section>
+            <div class="form-grid">
+              <label>Provision position<select id="op-position"><option value="after">After target</option><option value="before">Before target</option><option value="last_child">At end of target</option></select></label>
+              <label>New printed number<input id="op-new-number" placeholder="(iv)"></label>
+              <label>Effect classification<input id="op-classification" placeholder="commencement"></label>
+            </div>
+            <label>Reviewer decision note<textarea id="op-note" rows="2" placeholder="Explain wording, scope, references, or commencement choices"></textarea></label>
+            <div class="inspect-actions"><button id="inspect-target" class="button secondary" type="button">Inspect staged target</button><span id="target-binding" class="muted"></span></div>
+            <section id="target-inspection" class="inspection" hidden>
+              <div class="section-heading tight"><h4>Target after earlier accepted instructions</h4><button id="bind-target" class="button secondary" type="button">Bind target hash</button></div>
+              <p id="inspect-error" class="error-text" hidden></p>
+              <p id="target-preview" class="target-preview"></p>
+              <details><summary>Target XML</summary><pre id="target-xml"></pre></details>
+              <div id="matches-panel" hidden><div class="section-heading tight"><h4>Exact occurrences</h4><button id="bind-matches" class="button secondary" type="button">Use this inventory</button></div><div id="match-list"></div></div>
+              <div id="references-panel" hidden><h4>Incoming references</h4><p class="field-help">Choose a new href and label, or name the later instruction that removes this reference.</p><div id="reference-list"></div></div>
+              <div id="inline-panel" hidden><h4>Inline references inside the omission</h4><div id="inline-list"></div></div>
+            </section>
+            <details class="advanced"><summary>Structural payload and advanced decisions</summary><label>Instruction JSON<textarea id="operation-json" rows="13" spellcheck="false"></textarea></label><button id="apply-operation-json" type="button" class="button secondary">Apply JSON to this instruction</button></details>
+          </section>
+        </div>
+        <aside class="evidence-sidebar card"><div class="section-heading tight"><h3>Source gazette</h3><a id="source-pdf-open" target="_blank" rel="noopener">Open PDF</a></div><iframe id="source-pdf" title="Amending gazette PDF" loading="lazy"></iframe><div class="evidence-footer"><button id="source-xml-toggle" type="button" class="button subtle">Show original XML</button><pre id="source-xml" hidden></pre></div></aside>
+      </div>
+    </section>
+
+    <section id="tab-preview" class="tab-panel" hidden>
+      <div class="section-heading"><div><p class="eyebrow">Consolidation batch</p><h2>Preview changes to the Act</h2><p>The whole effective-date batch must pass before it can become a draft.</p></div></div>
+      <div class="card preview-controls"><div class="form-grid"><label>Approved predecessor<select id="preview-parent"></select></label><label>Legal effective date<input id="preview-date" type="date"></label></div><button id="preview-button" class="button primary" type="button">Run preview</button></div>
+      <div id="preview-result" hidden><div id="preview-summary" class="card"></div><div id="preview-changes" class="change-list"></div><details class="card"><summary>Full XML diff</summary><pre id="preview-diff" class="diff-view"></pre></details><button id="apply-preview" class="button primary" type="button" disabled>Save validated draft</button></div>
+    </section>
+
+    <section id="tab-versions" class="tab-panel" hidden>
+      <div class="section-heading"><div><p class="eyebrow">Work history</p><h2>Dated versions and approval</h2><p>Inspect the exact XML hash, legal date, editorial history, and source coverage.</p></div></div>
+      <div class="versions-layout"><div id="version-list" class="version-list"></div><div class="version-detail">
+        <section id="version-empty" class="card empty-note">Choose a version to inspect.</section>
+        <section id="version-selected" class="card" hidden><div class="section-heading tight"><div><p id="version-type" class="eyebrow"></p><h3 id="version-title"></h3></div><span id="version-status" class="chip"></span></div><dl class="metadata-list"><dt>XML SHA-256</dt><dd id="version-hash"></dd><dt>Created</dt><dd id="version-created"></dd><dt>Approved by</dt><dd id="version-approved"></dd><dt>Validation</dt><dd id="version-validation"></dd></dl><div class="button-row"><a id="version-read" class="button secondary" target="_blank" rel="noopener">Read Act</a><a id="version-xml" class="button secondary" target="_blank" rel="noopener">Inspect XML</a><a id="version-export" class="button secondary" hidden>Download evidence ZIP</a><button id="approve-version" class="button primary" type="button" hidden>Approve this exact XML</button></div><div id="version-changes"></div></section>
+        <section class="card"><h3>Compare versions</h3><div class="form-grid"><label>From<select id="diff-left"></select></label><label>To<select id="diff-right"></select></label></div><button id="load-diff" class="button secondary" type="button">Show XML diff</button><pre id="history-diff" class="diff-view" hidden></pre></section>
+        <section class="card"><h3>Law as of a date</h3><div class="form-grid"><label>Legal date<input id="lookup-date" type="date"></label><label>Known at (optional)<input id="lookup-known" type="datetime-local"></label></div><button id="lookup-button" class="button secondary" type="button">Find version</button><p id="lookup-result" class="field-help"></p></section>
+        <details class="card"><summary>Source-backed editorial correction</summary><p class="field-help">Record a correction separately from a statutory amendment. The approved predecessor and its source quotation remain in history.</p><div class="form-grid"><label>Approved version<select id="correction-parent"></select></label><label>Evidence source<select id="correction-source"></select></label><label>Target eId<input id="correction-eid" placeholder="sec_1"></label><label>PDF page<input id="correction-page" type="number" min="1"></label><label>Existing words<input id="correction-old"></label><label>Corrected words<input id="correction-new" placeholder="Leave empty to remove those words"></label></div><label>Source quotation<textarea id="correction-quote" rows="2"></textarea></label><button id="correction-create" class="button secondary" type="button">Create correction draft</button></details>
+      </div></div>
+      <section class="card audit-card"><h3>Recent review activity</h3><div id="audit-list"></div></section>
+    </section>
+  </main>
+</body>
+</html>

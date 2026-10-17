@@ -167,3 +167,10 @@ are listed under "Web UI" in `requirements.txt` and install with everything
 else; see [README.md](../README.md#installation). Nothing under `scripts/`
 imports them, so an installation that only needs the conversion pipeline can
 leave them out.
+
+## Amendment workspace
+
+Open `/consolidation` to review amending Acts against their gazettes, preview
+changes to the principal Act, and approve dated XML versions. The workspace
+uses the local consolidation store and API. See
+[docs/consolidation/README.md](consolidation/README.md) for the workflow.

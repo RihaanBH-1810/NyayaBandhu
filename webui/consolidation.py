@@ -6,14 +6,34 @@ as an authenticated multi-tenant service.
 from __future__ import annotations
 import os
 from pathlib import Path
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import Response
+from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, ConfigDict, Field
-from akn_consolidator.common import Conflict
+from akn_consolidator.common import Conflict, parse
 from akn_consolidator.service import Consolidator
+from webui import akn_view
 
 ROOT = Path(__file__).resolve().parent.parent
 router = APIRouter(prefix='/consolidation/api', tags=['Amendment consolidation'])
+page_router = APIRouter()
+templates = Jinja2Templates(directory=str(ROOT / 'webui' / 'templates'))
+
+
+@page_router.get('/consolidation', include_in_schema=False)
+def workspace(request: Request):
+    return templates.TemplateResponse(request, 'consolidation.html', {})
+
+
+@page_router.get('/consolidation/read/{expression_id}', include_in_schema=False)
+def read_expression(request: Request, expression_id: str):
+    expression = call('expression', expression_id)
+    root = parse(call('expression_xml', expression_id))
+    return templates.TemplateResponse(request, 'consolidation_read.html', {
+        'expression': expression, 'metadata': akn_view.extract_metadata(root),
+        'document_html': akn_view.render_document_html(root),
+        'status': 'Stale' if expression['invalidated_at'] else 'Approved' if expression['approved_at'] else 'Draft',
+    })
 
 
 def service():
@@ -58,6 +78,15 @@ def source_path(value, folder, suffix):
 
 @router.get('/works')
 def works(): return call('works')
+
+
+@router.get('/catalog')
+def catalog():
+    return {
+        'base_xml': sorted(p.relative_to(ROOT / 'out').as_posix() for p in (ROOT / 'out/base_act/eng').glob('*.xml')),
+        'amendment_xml': sorted(p.relative_to(ROOT / 'out').as_posix() for p in (ROOT / 'out/amendment/eng').glob('*.xml')),
+        'pdf': sorted(p.relative_to(ROOT / 'data').as_posix() for p in (ROOT / 'data').rglob('*.pdf')),
+    }
 
 
 @router.post('/sources')
@@ -131,8 +160,23 @@ class Inventory(Input):
 def inventory(expression_id: str, body: Inventory): return call('inventory',expression_id,**body.model_dump())
 
 
+class Inspect(Input):
+    expression_id: str
+    operation_id: str
+    body: dict
+
+
+@router.post('/manifests/{manifest_id}/inspect')
+def inspect(manifest_id: str, body: Inspect):
+    return call('inspect_instruction', manifest_id, body.expression_id, body.body, body.operation_id)
+
+
 @router.get('/works/{work_id}/history')
 def history(work_id: str): return call('history',work_id)
+
+
+@router.get('/works/{work_id}/workspace')
+def cms_workspace(work_id: str): return call('workspace',work_id)
 
 
 @router.get('/works/{work_id}/lookup')
@@ -142,6 +186,10 @@ def lookup(work_id: str, as_of: str, known_at: str | None = None): return call('
 @router.get('/expressions/{expression_id}/xml')
 def xml(expression_id: str):
     return Response(call('expression_xml',expression_id),media_type='application/xml',headers={'X-Nyaya-Use':'inspection; see history for approval status'})
+
+
+@router.get('/expressions/{expression_id}')
+def expression(expression_id: str): return call('expression',expression_id)
 
 
 @router.get('/expressions/{expression_id}/export')

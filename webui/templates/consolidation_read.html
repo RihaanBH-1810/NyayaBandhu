@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ metadata.title or 'Dated Act' }} · Consolidation{% endblock %}
+{% block content %}
+<div class="view-header">
+  <a class="back-link" href="/consolidation?work={{ expression.work_id | urlencode }}">← Amendment workspace</a>
+  <h1>{{ metadata.title or 'Consolidated Act' }}</h1>
+  <p class="doc-path">{{ status }} expression · effective {{ expression.effective_date }} · XML SHA-256 {{ expression.xml_hash }}</p>
+  {% if status != 'Approved' %}<p class="banner banner-warning">{{ status }} version for inspection. Check the workspace history before export.</p>{% endif %}
+</div>
+<div class="akn-document">{{ document_html | safe }}</div>
+{% endblock %}

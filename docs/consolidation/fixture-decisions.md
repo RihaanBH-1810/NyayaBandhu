@@ -39,6 +39,6 @@ Every extracted operation has PDF page evidence and an unchanged source quotatio
 - Direct incoming-reference decisions cover `<ref href>` links. Other semantic relationship types are not automatically reconciled. The existing validator also treats URI fragments conservatively, including external fragments, and may block a legitimate external reference for review.
 - Schedule insertion supports the demonstrated existing-metadata template and final roman-group insertion, not arbitrary table merges or column changes.
 - The base timeline begins at its as-published date. An amendment predating that snapshot requires an earlier registered/constructed predecessor; this phase does not reconstruct missing earlier law.
-- No notification discovery, territorial applicability inference, Kannada conversion, government attestation, accounts, publication, or dedicated CMS editing page. The CMS API and local storage are intended for trusted local use.
+- No notification discovery, territorial applicability inference, Kannada conversion, government attestation, accounts, or publication. The browser CMS, API, and local storage are intended for trusted local use.
 - No automatic cascade rebuild: corrections explicitly stale downstream versions and require preview/application/approval again. This makes the rebuild reviewable.
 - Raw XML inspection can read unapproved versions. Only the ZIP export route asserts the version has a current approval; its provenance still limits coverage to registered sources.

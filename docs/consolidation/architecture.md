@@ -19,7 +19,7 @@ flowchart LR
 - `akn_parser` still converts PDFs. `akn_consolidator` consumes its outputs; no conversion or source replacement is performed during stitching.
 - `extraction.py` recovers a narrow set of English gazette instructions from PDF text. Amendment XML supplies section headings and tables. Unsupported patterns remain blocked. The principal Act number, jurisdiction, and year must match the imported work before a manifest can be ready.
 - `engine.py` performs deterministic `lxml` edits on a copy. It never reads or writes the store. Each operation runs on a trial tree, and the first conflict stops dependent operations. A conflicted preview can contain the successful prefix for diagnosis; it cannot be applied or approved.
-- `service.py` owns review state, legal/editorial dates, ordering, validation gates, source coverage, and approval. Both `cli.py` and `webui/consolidation.py` call it.
+- `service.py` owns review state, legal/editorial dates, ordering, validation gates, source coverage, and approval. Both `cli.py` and the FastAPI routes in `webui/consolidation.py` call it. The browser workspace uses those same routes and a compact timeline read model.
 - `storage.py` coordinates processes using SQLite `BEGIN IMMEDIATE` and optimistic work revisions. Content-addressed artifacts are immutable through the service and verified on every read.
 
 ## Storage

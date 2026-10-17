@@ -9,7 +9,8 @@ import pymupdf
 from .common import Conflict, canonical_hash, digest, encode, iso_date, metadata, now, parse, serialise, validate
 from .storage import Store
 from .extraction import extract
-from .engine import run, seed_identities, update_metadata, locate, occurrences, public_hits
+from .engine import run, apply_one, seed_identities, update_metadata, locate, occurrences, public_hits, _references
+from .common import Q, tag, text
 
 
 class Consolidator:
@@ -161,6 +162,12 @@ class Consolidator:
             if body.get('identity_confirmed') and not matches: raise ValueError('Principal Act identity does not match the imported work')
             if not isinstance(body.get('sequence'),int) or body['sequence']<1: raise ValueError('Explicit positive amendment sequence is required')
             if body.get('effective_date'): iso_date(body['effective_date'])
+            if body.get('date_confirmed') and (
+                not isinstance(body.get('date_evidence'), str)
+                or not body['date_evidence'].strip()
+                or 'requires a recorded date determination' in body['date_evidence'].lower()
+            ):
+                raise ValueError('Record actual commencement evidence before confirming the date')
             ready=(body.get('identity_confirmed') and body.get('date_confirmed') and body.get('date_evidence')
                    and all(op.get('review_status')=='accepted' and op['action']!='blocked' and (op.get('effective_date') or body.get('effective_date')) for op in ops))
             body['status']='ready' if ready else 'needs_review'
@@ -291,6 +298,32 @@ class Consolidator:
                     'expressions':[self.store.load(r) for r in db.execute('SELECT * FROM expressions WHERE work_id=? ORDER BY effective_date,created',(work_id,))],
                     'events':[self.store.load(r) for r in db.execute('SELECT * FROM events WHERE work_id=? ORDER BY id',(work_id,))]}
 
+    def workspace(self, work_id):
+        """Compact CMS read model; avoid sending XML-sized diffs and identity maps."""
+        with self.store.transaction() as db:
+            work = self._work(db, work_id)
+            expressions = []
+            for row in db.execute('SELECT * FROM expressions WHERE work_id=? ORDER BY effective_date,created', (work_id,)):
+                state = self.store.load(row)
+                body = state['body']
+                expressions.append({key: state[key] for key in (
+                    'id','parent_id','effective_date','xml_hash','canonical_hash',
+                    'created','approved_at','approved_by','invalidated_at')}
+                                   | {'kind': body['kind'], 'validation': body.get('validation'),
+                                      'applied_count': len(body.get('applied', [])),
+                                      'change_count': len(body.get('changes', []))})
+            return {
+                'work': work,
+                'sources': [self.store.load(row) for row in db.execute('SELECT * FROM sources WHERE work_id=? ORDER BY created', (work_id,))],
+                'manifests': self._manifests(db, work_id),
+                'expressions': expressions,
+                'events': [self.store.load(row) for row in db.execute('SELECT * FROM events WHERE work_id=? ORDER BY id DESC LIMIT 80', (work_id,))],
+            }
+
+    def expression(self, expression_id):
+        with self.store.transaction() as db:
+            return self._expression(db, expression_id)
+
     def works(self):
         with self.store.transaction() as db:
             return [dict(r) for r in db.execute('SELECT * FROM works ORDER BY uri')]
@@ -336,6 +369,75 @@ class Consolidator:
             node=locate(parse(self.store.read(expression['xml_hash'])),target)
             return {'expected_hash':canonical_hash(node),'target_identity':expression['body']['identities'].get(node.get('eId')),
                     'occurrences':public_hits(occurrences(node,old,whole_word))}
+
+    def inspect_instruction(self, manifest_id, expression_id, proposed_body, operation_id):
+        """Inspect an unsaved instruction after accepted preceding edits.
+
+        This is diagnostic only. Saving the manifest and applying the full batch
+        still reruns every precondition and validation gate.
+        """
+        with self.store.transaction() as db:
+            manifest = self._manifest(db, manifest_id)
+            expression = self._expression(db, expression_id)
+            if expression['work_id'] != manifest['work_id']:
+                raise ValueError('Expression and instrument belong to different works')
+            if proposed_body.get('source_id') != manifest['source_id']:
+                raise ValueError('Instruction source changed')
+            root = parse(self.store.read(expression['xml_hash']))
+            identities = dict(expression['body']['identities'])
+            tombstones = list(expression['body']['tombstones'])
+            operations = proposed_body.get('operations', [])
+            if sum(op.get('id') == operation_id for op in operations) != 1:
+                raise ValueError('Choose one instruction in this manifest')
+            for op in operations:
+                if op['id'] == operation_id:
+                    break
+                if op.get('review_status') != 'accepted':
+                    raise Conflict('Review preceding instruction first: ' + op['id'])
+                # A later accepted instruction may target a provision inserted
+                # here. Use the key that the next saved manifest revision will
+                # use so its stable identity matches the full application.
+                key = f"{manifest_id}:{manifest['revision'] + 1}:{op['id']}"
+                apply_one(root, op, identities, tombstones, key)
+            result = {'provisions': [
+                {'eid': node.get('eId'), 'tag': tag(node),
+                 'num': node.findtext(Q('num')) or '',
+                 'heading': node.findtext(Q('heading')) or '',
+                 'excerpt': text(node)[:150]}
+                for node in root.iter()
+                if tag(node) in {'section', 'subsection', 'clause', 'subclause', 'proviso', 'hcontainer'}
+                and node.get('eId')
+            ]}
+            if not isinstance(op.get('target'), dict):
+                result['target_error'] = 'This instruction has no Act target to inspect.'
+                return result
+            try:
+                selected = locate(root, op['target'])
+            except (ValueError, KeyError, TypeError) as exc:
+                result['target_error'] = str(exc)
+                return result
+            eid = selected.get('eId')
+            target_text = text(selected)
+            target_xml = serialise(selected).decode()
+            result.update(target_eid=eid, expected_hash=canonical_hash(selected),
+                          target_identity=identities.get(eid),
+                          target_text=target_text[:3000], target_xml=target_xml[:100000],
+                          target_truncated=len(target_text)>3000 or len(target_xml)>100000)
+            if op['action'].startswith('text_') and op.get('old'):
+                hits = occurrences(selected, op['old'], op.get('whole_word', False))
+                result['occurrences'] = public_hits(hits)
+                candidate_ids = {el.get('eId') for hit in hits for el, attr, start, end, _ in hit['_slots']
+                                 if tag(el) == 'ref' and attr == 'text' and start == 0 and end == len(el.text or '')}
+                result['inline_candidates'] = [
+                    {'eid': el.get('eId'), 'href': el.get('href'), 'text': el.text}
+                    for el in selected.iter(Q('ref')) if el.get('eId') in candidate_ids
+                ]
+            ids = {el.get('eId') for el in selected.iter() if el.get('eId')}
+            result['incoming_references'] = [
+                {'eid': ref.get('eId'), 'old_href': ref.get('href'), 'old_text': ref.text}
+                for ref in _references(root, ids) if selected not in ref.iterancestors()
+            ]
+            return result
 
     def export(self,expression_id):
         with self.store.transaction() as db:

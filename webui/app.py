@@ -202,5 +202,6 @@ from webui.review import router as review_router  # noqa: E402
 app.include_router(review_router)
 
 # Immutable amendment consolidation API
-from webui.consolidation import router as consolidation_router  # noqa: E402
+from webui.consolidation import router as consolidation_router, page_router as consolidation_page_router  # noqa: E402
 app.include_router(consolidation_router)
+app.include_router(consolidation_page_router)

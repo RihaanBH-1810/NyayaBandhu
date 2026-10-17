@@ -444,3 +444,5 @@ main:has(.review-grid) { max-width: none; }
 .review-compare h3 { position:sticky; top:0; background:white; margin:0 0 .5rem; font-size:.85rem; }
 .review-compare iframe { min-height:19rem; }
 @media(max-width:1050px){ .review-compare{grid-template-columns:1fr; height:auto}.review-compare > div{max-height:22rem} }
+
+.site-workspace-link { margin-left: auto; font-size: 0.875rem; font-weight: 600; }
