@@ -134,3 +134,10 @@ unreliable text; see [docs/languages.md](docs/languages.md#kannada-support).
 
 Amending Acts are converted as standalone documents. Consolidating an
 amendment into a base Act to produce a new expression is not implemented.
+
+## Amendment consolidation
+
+The amendment engine provides reviewed instruction manifests, immutable dated
+versions, approval and export, and a local CMS API. See
+[the consolidation guide](docs/consolidation/README.md) for the Teachers Act
+demonstration and [review assumptions](docs/consolidation/fixture-decisions.md).

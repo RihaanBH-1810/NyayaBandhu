@@ -1,0 +1,368 @@
+"""Transactional application services shared by CLI and FastAPI."""
+from __future__ import annotations
+from copy import deepcopy
+import io
+import json
+import re
+import zipfile
+import pymupdf
+from .common import Conflict, canonical_hash, digest, encode, iso_date, metadata, now, parse, serialise, validate
+from .storage import Store
+from .extraction import extract
+from .engine import run, seed_identities, update_metadata, locate, occurrences, public_hits
+
+
+class Consolidator:
+    def __init__(self, directory): self.store = Store(directory)
+
+    @staticmethod
+    def _actor(actor, reason):
+        if not actor.strip() or not reason.strip(): raise ValueError('Actor and reason are required')
+
+    @staticmethod
+    def _work(db, work_id, revision=None):
+        row = db.execute('SELECT * FROM works WHERE id=?',(work_id,)).fetchone()
+        if row is None: raise ValueError('Work not found')
+        if revision is not None and row['revision'] != revision:
+            raise Conflict(f"Stale work revision: expected {row['revision']}, received {revision}")
+        return dict(row)
+
+    @staticmethod
+    def _bump(db, work_id):
+        db.execute('UPDATE works SET revision=revision+1 WHERE id=?',(work_id,))
+        return db.execute('SELECT revision FROM works WHERE id=?',(work_id,)).fetchone()[0]
+
+    def _expression(self, db, expression_id):
+        return self.store.load(db.execute('SELECT * FROM expressions WHERE id=?',(expression_id,)).fetchone())
+
+    def _manifest(self, db, manifest_id):
+        return self.store.load(db.execute('SELECT * FROM manifests WHERE id=? ORDER BY revision DESC LIMIT 1',(manifest_id,)).fetchone())
+
+    def _manifests(self, db, work_id):
+        return [self.store.load(r) for r in db.execute('SELECT m.* FROM manifests m WHERE work_id=? AND revision=(SELECT MAX(revision) FROM manifests WHERE id=m.id) ORDER BY created,id',(work_id,))]
+
+    def _record_expression(self, db, work_id, parent_id, effective_date, root, body):
+        xml_hash = self.store.put(serialise(root)); manifest_hash = self.store.put(encode(body))
+        expression_id = digest(encode([work_id,parent_id,effective_date,xml_hash,manifest_hash]))[:24]
+        if db.execute('SELECT 1 FROM expressions WHERE id=?',(expression_id,)).fetchone():
+            raise Conflict('This operation set has already been applied')
+        db.execute('INSERT INTO expressions(id,work_id,parent_id,effective_date,xml_hash,canonical_hash,manifest_hash,body,created) VALUES(?,?,?,?,?,?,?,?,?)',
+                   (expression_id,work_id,parent_id,effective_date,xml_hash,canonical_hash(root),manifest_hash,encode(body).decode(),now()))
+        return self._expression(db, expression_id)
+
+    def import_source(self, xml, pdf, kind, actor, reason, work_id=None, revision=None):
+        self._actor(actor,reason)
+        if kind not in {'base','amendment'}: raise ValueError('Source kind must be base or amendment')
+        root = parse(xml); meta = metadata(root)
+        if not meta['work_uri'] or meta['language'] != 'eng': raise ValueError('English AKN Act identity is required')
+        if not re.fullmatch(r'/akn/[a-z]{2}(?:-[a-z0-9]+)*/act/\d{4}-\d{2}-\d{2}/\d+',meta['work_uri']):
+            raise ValueError('Expected a dated jurisdiction/act/number FRBR Work URI')
+        if not pdf.startswith(b'%PDF'): raise ValueError('A source PDF is required')
+        try:
+            with pymupdf.open(stream=pdf,filetype='pdf') as document:
+                if not document.page_count: raise ValueError('Source PDF has no pages')
+                meta['pdf_pages']=document.page_count
+        except Exception as exc:
+            raise ValueError('Cannot read source PDF') from exc
+        with self.store.transaction() as db:
+            if kind == 'base':
+                report = validate(root)
+                if not report['ok']: raise ValueError('Base XML is invalid: '+report['summary'])
+                work_id = digest(meta['work_uri'].encode())[:24]
+                if db.execute('SELECT 1 FROM works WHERE id=?',(work_id,)).fetchone(): raise Conflict('Base work already exists')
+                db.execute('INSERT INTO works VALUES(?,?,?)',(work_id,meta['work_uri'],0))
+            else:
+                if revision is None: raise ValueError('Expected work revision is required')
+                work=self._work(db,work_id,revision)
+                if meta['work_uri']==work['uri']: raise Conflict('An amending instrument must have its own Work URI')
+                for row in db.execute("SELECT metadata FROM sources WHERE work_id=? AND kind='amendment'",(work_id,)):
+                    if json.loads(row['metadata'])['work_uri']==meta['work_uri']:
+                        raise Conflict('This amending instrument is already registered; review its existing instruction manifest')
+            x,p = self.store.put(xml), self.store.put(pdf)
+            source_id = digest(encode([work_id,kind,x,p]))[:24]
+            if db.execute('SELECT 1 FROM sources WHERE id=?',(source_id,)).fetchone(): raise Conflict('Source already imported')
+            db.execute('INSERT INTO sources VALUES(?,?,?,?,?,?,?)',(source_id,work_id,kind,x,p,encode(meta).decode(),now()))
+            result = {'work_id':work_id,'source_id':source_id}
+            if kind=='base':
+                body={'kind':'base','source_id':source_id,'date_basis':'as_published; commencement not determined',
+                      'identities':seed_identities(root,work_id),'tombstones':[],'applied':[], 'manifest_revisions':{}, 'validation':report}
+                result['expression'] = self._record_expression(db,work_id,None,iso_date(meta['publication_date']),root,body)
+            self.store.event(db,work_id,'source_imported',actor,reason,result)
+            result['revision'] = self._bump(db,work_id)
+            return result
+
+    def extract(self, source_id, revision, actor, reason):
+        self._actor(actor,reason)
+        with self.store.transaction() as db:
+            source=self.store.load(db.execute('SELECT * FROM sources WHERE id=?',(source_id,)).fetchone())
+            if source['kind']!='amendment': raise ValueError('Choose an amendment source')
+            work_id=source['work_id']; self._work(db,work_id,revision)
+            manifest_id=digest((source_id+':instructions').encode())[:24]
+            if db.execute('SELECT 1 FROM manifests WHERE id=?',(manifest_id,)).fetchone(): raise Conflict('Instructions already extracted; submit a review revision')
+            body=extract(parse(self.store.read(source['xml_hash'])),self.store.read(source['pdf_hash']))
+            body.update(source_id=source_id,sequence=len(self._manifests(db,work_id))+1)
+            db.execute('INSERT INTO manifests VALUES(?,?,?,?,?,?,?,?)',(manifest_id,1,work_id,source_id,encode(body).decode(),now(),actor,reason))
+            self.store.event(db,work_id,'instructions_extracted',actor,reason,{'manifest_id':manifest_id})
+            return {'manifest':self._manifest(db,manifest_id),'revision':self._bump(db,work_id)}
+
+    @staticmethod
+    def _invalidate(db, work_id, expression_ids):
+        ids=set(expression_ids)
+        rows=list(db.execute('SELECT id,parent_id FROM expressions WHERE work_id=?',(work_id,)))
+        while True:
+            extra={r['id'] for r in rows if r['parent_id'] in ids}
+            if extra <= ids: break
+            ids |= extra
+        stamp=now()
+        for eid in ids:
+            db.execute('UPDATE expressions SET invalidated_at=COALESCE(invalidated_at,?) WHERE id=?',(stamp,eid))
+        return sorted(ids)
+
+    def review(self, manifest_id, body, revision, manifest_revision, actor, reason):
+        self._actor(actor,reason); body=deepcopy(body)
+        with self.store.transaction() as db:
+            previous=self._manifest(db,manifest_id);work=self._work(db,previous['work_id'],revision)
+            if previous['revision']!=manifest_revision: raise Conflict('Stale instruction revision')
+            old=previous['body']
+            for key in ('format_version','source_id','source_work_uri','coverage'):
+                if body.get(key)!=old.get(key): raise ValueError(f'Immutable manifest field: {key}')
+            ops=body.get('operations',[]); old_ops={o['id']:o for o in old['operations']}
+            if not isinstance(ops,list) or not ops or any(not isinstance(o,dict) or not isinstance(o.get('id'),str) for o in ops):
+                raise ValueError('A nonempty list of identified operations is required')
+            if len({o['id'] for o in ops})!=len(ops): raise ValueError('Operation IDs must be unique')
+            if not set(old_ops)<= {o['id'] for o in ops}: raise ValueError('Instructions cannot be silently deleted; classify their effect')
+            coverage={c['source_eid'] for c in body['coverage']}
+            source=self.store.load(db.execute('SELECT * FROM sources WHERE id=?',(previous['source_id'],)).fetchone())
+            max_page=source['metadata'].get('pdf_pages')
+            if max_page is None:
+                with pymupdf.open(stream=self.store.read(source['pdf_hash']),filetype='pdf') as document:
+                    max_page=document.page_count
+            for op in ops:
+                if op.get('action') not in {'effect','blocked','text_replace','text_insert','text_omit','slot_edits','renumber',
+                                          'insert_provision','replace_provision','omit_provision','schedule_add','table_insert'}:
+                    raise ValueError('Unknown instruction action')
+                if op.get('review_status') not in {'pending','accepted'}: raise ValueError('Unknown review status')
+                if op['source']['source_eid'] not in coverage: raise ValueError('Operation lacks source coverage')
+                if op['id'] in old_ops and op['source']!=old_ops[op['id']]['source']: raise ValueError('Original provenance is immutable')
+                if op.get('review_status')=='accepted' and (not op['source'].get('pdf_pages') or not op['source'].get('quote')):
+                    raise ValueError('Accepted operations require PDF page evidence and quotation')
+                pages=op['source'].get('pdf_pages',[])
+                if not isinstance(pages,list) or any(type(p) is not int or not 1<=p<=max_page for p in pages):
+                    raise ValueError('Evidence page is outside the source PDF')
+                if op['action']=='effect' and not op.get('classification'): raise ValueError('Separate legal effect requires classification')
+                if op.get('effective_date'): iso_date(op['effective_date'])
+                if op.get('review_status')=='accepted' and op['action'] not in {'effect','blocked'}:
+                    if not isinstance(op.get('target'),dict): raise ValueError('Accepted edit requires a target')
+                    if op['action'].startswith('text_') and (not op.get('old') or type(op.get('count')) is not int or op['count']<1):
+                        raise ValueError('Accepted text edit requires a nonempty anchor and positive exact match count')
+            expected=body.get('target_identity') or {}
+            parts=work['uri'].split('/')
+            matches=(expected.get('jurisdiction')==parts[2] and str(expected.get('number'))==parts[-1].lstrip('0') and expected.get('year')==parts[-2][:4])
+            if body.get('identity_confirmed') and not matches: raise ValueError('Principal Act identity does not match the imported work')
+            if not isinstance(body.get('sequence'),int) or body['sequence']<1: raise ValueError('Explicit positive amendment sequence is required')
+            if body.get('effective_date'): iso_date(body['effective_date'])
+            ready=(body.get('identity_confirmed') and body.get('date_confirmed') and body.get('date_evidence')
+                   and all(op.get('review_status')=='accepted' and op['action']!='blocked' and (op.get('effective_date') or body.get('effective_date')) for op in ops))
+            body['status']='ready' if ready else 'needs_review'
+            next_revision=previous['revision']+1
+            db.execute('INSERT INTO manifests VALUES(?,?,?,?,?,?,?,?)',(manifest_id,next_revision,work['id'],previous['source_id'],encode(body).decode(),now(),actor,reason))
+            affected=[]
+            dates=[op.get('effective_date') or body.get('effective_date') for op in ops]
+            first_date=min(d for d in dates if d) if any(dates) else None
+            for row in db.execute('SELECT id,body FROM expressions WHERE work_id=?',(work['id'],)):
+                state=json.loads(row['body'])
+                if (manifest_id in state.get('manifest_revisions',{}) or
+                    (ready and state.get('kind')!='base' and first_date and state.get('effective_date','')>=first_date)):
+                    affected.append(row['id'])
+            stale=self._invalidate(db,work['id'],affected)
+            self.store.event(db,work['id'],'instructions_reviewed',actor,reason,{'manifest_id':manifest_id,'manifest_revision':next_revision,'stale':stale})
+            return {'manifest':self._manifest(db,manifest_id),'revision':self._bump(db,work['id']),'stale':stale}
+
+    def _preview(self, db, work_id, parent_id, effective_date):
+        iso_date(effective_date);work=self._work(db,work_id)
+        parent=self._expression(db,parent_id)
+        if parent['work_id']!=work_id: raise ValueError('Parent belongs to another Act')
+        if not parent['approved_at'] or parent['invalidated_at']: raise Conflict('Choose a current approved predecessor')
+        if effective_date < parent['effective_date']: raise Conflict('Effective date precedes the selected predecessor; replay from an earlier expression')
+        root=parse(self.store.read(parent['xml_hash'])); manifests=self._manifests(db,work_id)
+        selected=[]; revisions=dict(parent['body']['manifest_revisions']); applied=list(parent['body']['applied']); applications=[]
+        missing=[r['id'] for r in db.execute("SELECT s.id FROM sources s WHERE work_id=? AND kind='amendment' AND NOT EXISTS(SELECT 1 FROM manifests m WHERE m.source_id=s.id)",(work_id,))]
+        if missing: raise Conflict('Extract all registered amendment sources first: '+', '.join(missing))
+        ordering=set()
+        for manifest in manifests:
+            body=manifest['body']; mid=manifest['id']
+            if mid in revisions and revisions[mid]!=manifest['revision']: raise Conflict('Predecessor uses an obsolete instruction revision')
+            pending=[op for op in body['operations'] if f"{mid}:{manifest['revision']}:{op['id']}" not in applied]
+            relevant=[op for op in pending if not (op.get('effective_date') or body.get('effective_date')) or (op.get('effective_date') or body['effective_date'])<=effective_date]
+            if relevant and body['status']!='ready': raise Conflict(f'Unresolved instructions or commencement: {mid}')
+            for i,op in enumerate(pending):
+                day=op.get('effective_date') or body.get('effective_date')
+                if day is None or day>effective_date: continue
+                if day<effective_date: raise Conflict(f'Apply the earlier effective-date batch {day} first')
+                order=(day,body['sequence'],i)
+                if order in ordering: raise Conflict('Same-date amendment sequence is ambiguous')
+                ordering.add(order)
+                key=f"{mid}:{manifest['revision']}:{op['id']}"
+                selected.append((order,key,op));revisions[mid]=manifest['revision']
+            if any(k.startswith(mid+':') for _,k,_ in selected): applications.append({'date':effective_date,'work_uri':body['source_work_uri']})
+        if not selected: raise Conflict('No unapplied reviewed operations for this effective date')
+        selected.sort(key=lambda x:x[0])
+        root,result=run(root,[(k,o) for _,k,o in selected],parent['body']['identities'],parent['body']['tombstones'])
+        if result['ok']:
+            source_uris={m['id']:m['body']['source_work_uri'] for m in manifests}
+            modifications=[{'operation':op,'change':change,'source_uri':source_uris[key.split(':')[0]]}
+                           for (_,key,op),change in zip(selected,result['changes'])]
+            update_metadata(root,effective_date,applications,modifications)
+            for eid,identity in seed_identities(root,work_id).items():
+                result['identities'].setdefault(eid,identity)
+            result['validation']=validate(root);result['ok']=result['validation']['ok']
+        result.update(work_id=work_id,parent_id=parent_id,effective_date=effective_date,work_revision=work['revision'],
+                      applied=applied+[k for _,k,_ in selected],manifest_revisions=revisions)
+        result['preview_hash']=digest(encode({'xml':canonical_hash(root),'parent':parent_id,'operations':selected,'revision':work['revision']}))
+        return root,result
+
+    def preview(self,work_id,parent_id,effective_date):
+        with self.store.transaction() as db:
+            _,result=self._preview(db,work_id,parent_id,effective_date);return result
+
+    def apply(self,work_id,parent_id,effective_date,revision,preview_hash,actor,reason):
+        self._actor(actor,reason)
+        with self.store.transaction() as db:
+            self._work(db,work_id,revision)
+            root,result=self._preview(db,work_id,parent_id,effective_date)
+            if result['preview_hash']!=preview_hash: raise Conflict('Preview is obsolete; review a fresh preview')
+            if not result['ok']: raise Conflict('Application blocked: '+json.dumps(result['conflicts'] or result['validation']))
+            if db.execute('SELECT 1 FROM expressions WHERE parent_id=? AND effective_date=? AND canonical_hash=? AND invalidated_at IS NULL',
+                          (parent_id,effective_date,canonical_hash(root))).fetchone():
+                raise Conflict('This operation set has already been applied')
+            expression=self._record_expression(db,work_id,parent_id,effective_date,root,{'kind':'consolidated',**result})
+            self.store.event(db,work_id,'applied_draft',actor,reason,{'expression_id':expression['id'],'preview_hash':preview_hash})
+            return {'expression':expression,'revision':self._bump(db,work_id)}
+
+    def correct(self, expression_id, operations, evidence, revision, actor, reason):
+        self._actor(actor,reason)
+        if not operations: raise ValueError('Correction requires at least one operation')
+        if not evidence.get('source_id') or not evidence.get('pdf_pages') or not evidence.get('quote'):
+            raise ValueError('Correction requires source ID, PDF pages and quotation')
+        with self.store.transaction() as db:
+            parent=self._expression(db,expression_id); self._work(db,parent['work_id'],revision)
+            if not parent['approved_at'] or parent['invalidated_at']: raise Conflict('Correction requires a current approved expression')
+            source=db.execute('SELECT * FROM sources WHERE id=? AND work_id=?',(evidence['source_id'],parent['work_id'])).fetchone()
+            if source is None: raise ValueError('Correction evidence belongs to another work')
+            if any(op['action'] not in {'text_replace','slot_edits'} or not op.get('expected_hash') for op in operations):
+                raise ValueError('Editorial corrections require text operations and expected target hashes')
+            root,result=run(parse(self.store.read(parent['xml_hash'])),[(f'correction:{i}',op) for i,op in enumerate(operations)],parent['body']['identities'],parent['body']['tombstones'])
+            if not result['ok']: raise Conflict('Correction blocked: '+json.dumps(result))
+            if canonical_hash(root)==parent['canonical_hash']: raise ValueError('Correction makes no XML change')
+            body={**parent['body'],**result,'kind':'editorial_correction','supersedes':expression_id,'evidence':evidence,'corrections':operations}
+            expression=self._record_expression(db,parent['work_id'],expression_id,parent['effective_date'],root,body)
+            self.store.event(db,parent['work_id'],'correction_drafted',actor,reason,{'expression_id':expression['id']})
+            return {'expression':expression,'revision':self._bump(db,parent['work_id'])}
+
+    def approve(self,expression_id,revision,xml_hash,actor,reason):
+        self._actor(actor,reason)
+        with self.store.transaction() as db:
+            expression=self._expression(db,expression_id);work_id=expression['work_id'];self._work(db,work_id,revision)
+            if expression['approved_at'] or expression['invalidated_at']: raise Conflict('Expression is already approved or stale')
+            if xml_hash!=expression['xml_hash']: raise Conflict('Approval must name the exact XML hash')
+            if expression['parent_id']:
+                parent=self._expression(db,expression['parent_id'])
+                if not parent['approved_at'] or parent['invalidated_at']: raise Conflict('Predecessor is not current and approved')
+            for mid,mrev in expression['body']['manifest_revisions'].items():
+                if self._manifest(db,mid)['revision']!=mrev: raise Conflict('Instructions changed after application')
+            if expression['body']['kind']=='consolidated':
+                replay,report=self._preview(db,work_id,expression['parent_id'],expression['effective_date'])
+                if not report['ok'] or canonical_hash(replay)!=expression['canonical_hash'] or report['applied']!=expression['body']['applied']:
+                    raise Conflict('Instruction coverage changed after application; preview and apply again')
+            if not validate(parse(self.store.read(xml_hash)))['ok']: raise Conflict('XML validation failed')
+            if expression['body'].get('supersedes'):
+                stale=self._invalidate(db,work_id,[expression['body']['supersedes']])
+                db.execute('UPDATE expressions SET invalidated_at=NULL WHERE id=?',(expression_id,))
+            else: stale=[]
+            db.execute('UPDATE expressions SET approved_at=?,approved_by=? WHERE id=?',(now(),actor,expression_id))
+            self.store.event(db,work_id,'approved',actor,reason,{'expression_id':expression_id,'xml_hash':xml_hash,'stale':stale})
+            return {'expression':self._expression(db,expression_id),'revision':self._bump(db,work_id)}
+
+    def history(self,work_id):
+        with self.store.transaction() as db:
+            return {'work':self._work(db,work_id),
+                    'sources':[self.store.load(r) for r in db.execute('SELECT * FROM sources WHERE work_id=? ORDER BY created',(work_id,))],
+                    'manifests':self._manifests(db,work_id),
+                    'expressions':[self.store.load(r) for r in db.execute('SELECT * FROM expressions WHERE work_id=? ORDER BY effective_date,created',(work_id,))],
+                    'events':[self.store.load(r) for r in db.execute('SELECT * FROM events WHERE work_id=? ORDER BY id',(work_id,))]}
+
+    def works(self):
+        with self.store.transaction() as db:
+            return [dict(r) for r in db.execute('SELECT * FROM works ORDER BY uri')]
+
+    def expression_xml(self, expression_id):
+        """Inspect a draft or historical expression; this is not an approved export."""
+        with self.store.transaction() as db:
+            expression=self._expression(db,expression_id)
+            return self.store.read(expression['xml_hash'])
+
+    def source_artifact(self, source_id, kind):
+        if kind not in {'xml','pdf'}: raise ValueError('Choose xml or pdf')
+        with self.store.transaction() as db:
+            source=self.store.load(db.execute('SELECT * FROM sources WHERE id=?',(source_id,)).fetchone())
+            return self.store.read(source[kind+'_hash'])
+
+    def lookup(self,work_id,as_of,known_at=None):
+        iso_date(as_of); cutoff=known_at or now()
+        from datetime import datetime
+        parsed=datetime.fromisoformat(cutoff)
+        if parsed.tzinfo is None: raise ValueError('known_at must include a timezone')
+        from datetime import timezone
+        cutoff=parsed.astimezone(timezone.utc).isoformat()
+        with self.store.transaction() as db:
+            self._work(db,work_id)
+            row=db.execute('SELECT * FROM expressions WHERE work_id=? AND effective_date<=? AND approved_at<=? AND (invalidated_at IS NULL OR invalidated_at>?) ORDER BY effective_date DESC,approved_at DESC LIMIT 1',(work_id,as_of,cutoff,cutoff)).fetchone()
+            expression=self.store.load(row)
+            # History cutoff also applies to source and instruction discovery.
+            registered=[r['id'] for r in db.execute("SELECT id FROM sources WHERE work_id=? AND kind='amendment' AND created<=?",(work_id,cutoff))]
+            covered=[];unresolved=[]
+            for source_id in registered:
+                m=db.execute('SELECT * FROM manifests WHERE source_id=? AND created<=? ORDER BY revision DESC LIMIT 1',(source_id,cutoff)).fetchone()
+                if m is None: unresolved.append(source_id);continue
+                manifest=self.store.load(m);body=manifest['body']
+                pending=[op for op in body['operations'] if not (op.get('effective_date') or body.get('effective_date')) or ((op.get('effective_date') or body['effective_date'])<=as_of and f"{manifest['id']}:{manifest['revision']}:{op['id']}" not in expression['body']['applied'])]
+                (unresolved if pending else covered).append(source_id)
+            return {'expression':expression,'coverage':{'registered_sources':registered,'covered':covered,'unresolved':unresolved,
+                    'complete_for_registered_sources':not unresolved,'external_completeness':'not established'},'known_at':cutoff,'as_of':as_of}
+
+    def inventory(self,expression_id,target,old,whole_word=False):
+        with self.store.transaction() as db:
+            expression=self._expression(db,expression_id)
+            node=locate(parse(self.store.read(expression['xml_hash'])),target)
+            return {'expected_hash':canonical_hash(node),'target_identity':expression['body']['identities'].get(node.get('eId')),
+                    'occurrences':public_hits(occurrences(node,old,whole_word))}
+
+    def export(self,expression_id):
+        with self.store.transaction() as db:
+            expression=self._expression(db,expression_id)
+            if not expression['approved_at'] or expression['invalidated_at']: raise Conflict('Only a current approved expression can be exported')
+            sources=[self.store.load(r) for r in db.execute('SELECT * FROM sources WHERE work_id=?',(expression['work_id'],))]
+            manifests=[self.store.load(r) for r in db.execute('SELECT * FROM manifests WHERE work_id=? ORDER BY id,revision',(expression['work_id'],))]
+            events=[self.store.load(r) for r in db.execute('SELECT * FROM events WHERE work_id=? ORDER BY id',(expression['work_id'],))]
+            history=[self.store.load(r) for r in db.execute('SELECT * FROM expressions WHERE work_id=? ORDER BY created',(expression['work_id'],))]
+            bundle={'expression':expression,'expression_history':history,'sources':sources,'instruction_history':manifests,'events':events,'coverage_claim':'Registered sources only; no attestation'}
+            files={'consolidated.xml':self.store.read(expression['xml_hash']),'manifest.json':encode(bundle)}
+            for version in history:
+                files['expressions/'+version['id']+'.xml']=self.store.read(version['xml_hash'])
+            for source in sources:
+                files['sources/'+source['id']+'.xml']=self.store.read(source['xml_hash'])
+                files['sources/'+source['id']+'.pdf']=self.store.read(source['pdf_hash'])
+            output=io.BytesIO()
+            with zipfile.ZipFile(output,'w',zipfile.ZIP_DEFLATED) as archive:
+                for name,raw in sorted(files.items()):
+                    info=zipfile.ZipInfo(name,date_time=(1980,1,1,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;archive.writestr(info,raw)
+            return output.getvalue()
+
+    def diff(self,left_id,right_id):
+        import difflib
+        from lxml import etree
+        with self.store.transaction() as db:
+            left=self._expression(db,left_id);right=self._expression(db,right_id)
+            if left['work_id']!=right['work_id']: raise ValueError('Expressions belong to different Acts')
+            texts=[etree.tostring(parse(self.store.read(e['xml_hash'])),encoding='unicode',pretty_print=True).splitlines() for e in (left,right)]
+            return '\n'.join(difflib.unified_diff(*texts,fromfile=left_id,tofile=right_id,lineterm=''))

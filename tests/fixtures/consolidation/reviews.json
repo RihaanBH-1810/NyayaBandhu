@@ -1,0 +1,1417 @@
+{
+  "First": {
+    "coverage": [
+      {
+        "heading": "Short title and commencement",
+        "pdf_pages": [
+          3
+        ],
+        "source_eid": "sec_1"
+      },
+      {
+        "heading": "Amendment of section 10",
+        "pdf_pages": [
+          3,
+          4
+        ],
+        "source_eid": "sec_2"
+      },
+      {
+        "heading": "Repeal and savings",
+        "pdf_pages": [
+          4
+        ],
+        "source_eid": "sec_3"
+      }
+    ],
+    "date_confirmed": true,
+    "date_evidence": "FIXTURE ONLY: retrospective date in First sec 1; publication date assumed for at-once Second/Third. A lawyer must determine commencement before real use.",
+    "effective_date": "2021-04-29",
+    "format_version": 1,
+    "identity_confirmed": true,
+    "operations": [
+      {
+        "action": "effect",
+        "classification": "commencement",
+        "details": "1. Short title and commencement.- (1) This Act may be called the Karnataka State Civil Services (Regulation of Transfer of Teachers) (Amendment) Act, 2021. (2) It shall be deemed to have come into force with effect from 29th day of April 2021.",
+        "id": "sec_1_op_1",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            3
+          ],
+          "quote": "1. Short title and commencement.- (1) This Act may be called the Karnataka State Civil Services (Regulation of Transfer of Teachers) (Amendment) Act, 2021. (2) It shall be deemed to have come into force with effect from 29th day of April 2021.",
+          "source_eid": "sec_1"
+        }
+      },
+      {
+        "action": "insert_provision",
+        "fragments": [
+          {
+            "num": "(6)",
+            "tag": "subsection",
+            "text": "In case of a teacher who was transferred on compulsory transfer, zonal transfer or under rationalisation outside the taluk in case of a primary school teacher or district in case of a high school teacher during the year 2019-20 shall also be provided an opportunity to opt a place of transfer within the taluk or district where they were working during the year 2019-20 as a onetime measure ahead of other types of transfers subject to the availability of vacancies so as to give the benefit of posting within the concerned taluk or district in the transfer done immediately after the date of commencement of the Karnataka State Civil Services (Regulation of Transfer of Teachers) (Amendment) Act, 2021 in the manner as may be prescribed."
+          }
+        ],
+        "id": "sec_2_op_1",
+        "position": "after",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            3,
+            4
+          ],
+          "quote": "2. Amendment of section 10.- In the Karnataka State Civil Services (Regulation of Transfer of Teachers) Act, 2020 (Karnataka Act 04 of 2020), in section 10, after sub-section (5), the following shall be inserted, namely:- “(6) In case of a teacher who was transferred on compulsory transfer, zonal transfer or under rationalisation outside the taluk in case of a primary school teacher or district in case of a high school teacher during the year 2019-20 shall also be provided an opportunity to opt a place of transfer within the taluk or district where they were working during the year 2019-20 as a onetime measure ahead of other types of transfers subject to the availability of vacancies so as to give the benefit of posting within the concerned taluk or district in the transfer done immediately after the date of commencement of the Karnataka State Civil Services (Regulation of Transfer of Teachers) (Amendment) Act, 2021 in the manner as may be prescribed.\"",
+          "source_eid": "sec_2"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "10"
+            ],
+            [
+              "subsection",
+              "5"
+            ]
+          ]
+        },
+        "expected_hash": "7e0f194148bb9db1d620a13e1d885bc6f34f216ddbf5cf05ff7847ca5d81e876"
+      },
+      {
+        "action": "effect",
+        "classification": "repeal_and_savings",
+        "details": "3. Repeal and savings.- (1) The Karnataka State Civil Services (Regulation of transfer of Teachers) (Amendment) Ordinance, 2021 (Karnataka Ordinance 04 of 2021) is hereby repealed. (2) Notwithstanding such repeal, anything done or any action taken under the principal Act, as amended by the said Ordinance, shall be deemed to have been done or taken under the principal Act, as amended by this Act.",
+        "id": "sec_3_op_1",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            4
+          ],
+          "quote": "3. Repeal and savings.- (1) The Karnataka State Civil Services (Regulation of transfer of Teachers) (Amendment) Ordinance, 2021 (Karnataka Ordinance 04 of 2021) is hereby repealed. (2) Notwithstanding such repeal, anything done or any action taken under the principal Act, as amended by the said Ordinance, shall be deemed to have been done or taken under the principal Act, as amended by this Act.",
+          "source_eid": "sec_3"
+        }
+      }
+    ],
+    "sequence": 1,
+    "source_id": "a10085cee8b5889b106b983d",
+    "source_work_uri": "/akn/in-ka/act/2021-10-01/27",
+    "status": "needs_review",
+    "target_identity": {
+      "jurisdiction": "in-ka",
+      "number": "4",
+      "year": "2020"
+    }
+  },
+  "Second": {
+    "coverage": [
+      {
+        "heading": "Short title and commencement",
+        "pdf_pages": [
+          5
+        ],
+        "source_eid": "sec_1"
+      },
+      {
+        "heading": "Amendment of long title and preamble",
+        "pdf_pages": [
+          5
+        ],
+        "source_eid": "sec_2"
+      },
+      {
+        "heading": "Substitution of the word \"School\"",
+        "pdf_pages": [
+          5
+        ],
+        "source_eid": "sec_3"
+      },
+      {
+        "heading": "Amendment of section 2",
+        "pdf_pages": [
+          5,
+          6
+        ],
+        "source_eid": "sec_4"
+      },
+      {
+        "heading": "Amendment of section 3",
+        "pdf_pages": [
+          6
+        ],
+        "source_eid": "sec_5"
+      },
+      {
+        "heading": "Amendment of section 4",
+        "pdf_pages": [
+          6
+        ],
+        "source_eid": "sec_6"
+      },
+      {
+        "heading": "Amendment of section 5",
+        "pdf_pages": [
+          6
+        ],
+        "source_eid": "sec_7"
+      },
+      {
+        "heading": "Amendment of section 7",
+        "pdf_pages": [
+          6
+        ],
+        "source_eid": "sec_8"
+      },
+      {
+        "heading": "Amendment of section 8",
+        "pdf_pages": [
+          6
+        ],
+        "source_eid": "sec_9"
+      },
+      {
+        "heading": "Amendment of section 9",
+        "pdf_pages": [
+          6,
+          7
+        ],
+        "source_eid": "sec_10"
+      },
+      {
+        "heading": "Amendment of section 10",
+        "pdf_pages": [
+          7
+        ],
+        "source_eid": "sec_11"
+      },
+      {
+        "heading": "Amendment of Schedule",
+        "pdf_pages": [
+          7
+        ],
+        "source_eid": "sec_12"
+      },
+      {
+        "heading": "Repeal and savings",
+        "pdf_pages": [
+          7,
+          8
+        ],
+        "source_eid": "sec_13"
+      }
+    ],
+    "date_confirmed": true,
+    "date_evidence": "FIXTURE ONLY: retrospective date in First sec 1; publication date assumed for at-once Second/Third. A lawyer must determine commencement before real use.",
+    "effective_date": "2022-01-18",
+    "format_version": 1,
+    "identity_confirmed": true,
+    "operations": [
+      {
+        "action": "effect",
+        "classification": "commencement",
+        "details": "1. Short title and commencement.- (1) This Act may be called the Karnataka State Civil Services (Regulation of Transfer of Teachers) (Second Amendment) Act, 2021. (2) It shall come into force at once.",
+        "id": "sec_1_op_1",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            5
+          ],
+          "quote": "1. Short title and commencement.- (1) This Act may be called the Karnataka State Civil Services (Regulation of Transfer of Teachers) (Second Amendment) Act, 2021. (2) It shall come into force at once.",
+          "source_eid": "sec_1"
+        }
+      },
+      {
+        "action": "text_replace",
+        "count": 1,
+        "id": "sec_2_op_1",
+        "new": "Government Primary Schools, Government High Schools and Pre-University Colleges",
+        "old": "Government Primary school sand Government High schools",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            5
+          ],
+          "quote": "2. Amendment of long title and preamble.-In the Karnataka State Civil Services (Regulation of Transfer of Teachers) Act, 2020 (Karnataka Act 04 of 2020)(hereinafter referred to as the Principal Act), in the long title and preamble, for the words, “Government Primary Schools and Government High Schools”, in two places where they occur the words “Government Primary Schools, Government High Schools and Pre-University Colleges” shall be substituted.",
+          "source_eid": "sec_2"
+        },
+        "target": {
+          "region": "longTitle"
+        },
+        "whole_word": true,
+        "review_note": "Fixture-only explicit target wording decision; source quotation retained unchanged.",
+        "expected_hash": "70612fa3f72c1f35f0828ee96fdeb608bbfe84907a7bc00afbde3feac740cd9e"
+      },
+      {
+        "action": "text_replace",
+        "count": 1,
+        "id": "sec_2_op_2",
+        "new": "Government Primary Schools, Government High Schools and Pre-University Colleges",
+        "old": "Government Primary Schools and Government High schools",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            5
+          ],
+          "quote": "2. Amendment of long title and preamble.-In the Karnataka State Civil Services (Regulation of Transfer of Teachers) Act, 2020 (Karnataka Act 04 of 2020)(hereinafter referred to as the Principal Act), in the long title and preamble, for the words, “Government Primary Schools and Government High Schools”, in two places where they occur the words “Government Primary Schools, Government High Schools and Pre-University Colleges” shall be substituted.",
+          "source_eid": "sec_2"
+        },
+        "target": {
+          "region": "preamble"
+        },
+        "whole_word": true,
+        "review_note": "Fixture-only explicit target wording decision; source quotation retained unchanged.",
+        "expected_hash": "54dc528b55aa036b62f0a245750593e5d4ef3f1ce6313f91fc574dfa4884ed41"
+      },
+      {
+        "action": "text_replace",
+        "count": 5,
+        "global": true,
+        "id": "sec_3_op_1",
+        "new": "School or Pre-university College",
+        "old": "School",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            5
+          ],
+          "quote": "3. Substitution of the word “School”.- In the principal Act, for the word “School”, wherever it occurs the words “School or Pre-university College”, shall be substituted.",
+          "source_eid": "sec_3"
+        },
+        "target": {
+          "region": "act"
+        },
+        "whole_word": true,
+        "expected_hash": "d7d5e557ed4574a188ed953c39a708a261921348bb21677d3f8b98c657117fbc",
+        "occurrences": [
+          {
+            "field": "att_1__hcontainer_1__table_1__tr_4__td_2__p_1",
+            "offset": 79,
+            "text": "School",
+            "protected": false,
+            "cross_inline": false
+          },
+          {
+            "field": "att_1__hcontainer_1__table_1__tr_5__td_2__p_1",
+            "offset": 95,
+            "text": "School",
+            "protected": false,
+            "cross_inline": false
+          },
+          {
+            "field": "att_1__hcontainer_1__table_1__tr_10__td_2__p_1",
+            "offset": 159,
+            "text": "School",
+            "protected": false,
+            "cross_inline": false
+          },
+          {
+            "field": "att_1__hcontainer_1__table_1__tr_10__td_2__p_1",
+            "offset": 215,
+            "text": "School",
+            "protected": false,
+            "cross_inline": false
+          },
+          {
+            "field": "att_1__hcontainer_1__table_1__tr_10__td_2__p_1",
+            "offset": 293,
+            "text": "School",
+            "protected": false,
+            "cross_inline": false
+          }
+        ],
+        "allow_protected": true
+      },
+      {
+        "action": "insert_provision",
+        "fragments": [
+          {
+            "num": "(ca)",
+            "tag": "clause",
+            "text": "\"Lecturer\" means a person appointed to a category of posts of Principal or lecturer in composite junior college or pre-university college as specified in Schedule-II;"
+          }
+        ],
+        "id": "sec_4_op_1",
+        "position": "after",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            5,
+            6
+          ],
+          "quote": "4. Amendment of section 2.- In section 2 of the principal Act,- (i) after clause (c), the following shall be inserted, namely:- “(ca) “Lecturer” means a person appointed to a category of posts of Principal or lecturer in composite junior college or pre-university college as specified in Schedule-II;” (ii) after clause (e), the following shall be inserted, namely:- “(ea) “Pre-University College” means Pre-University Colleges or composite junior colleges belonging to the State Government;” (iii) in clause (i), for the word “Schedule”, the word and figure “Schedule-I”, shall be substituted; and (iv) in clause (k), after the words “Revenue Division”, the words “and Principals or Lecturers working in Pre-university College or Composite Junior College unit of seniority shall be the State”, shall be inserted.",
+          "source_eid": "sec_4"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "2"
+            ],
+            [
+              "clause",
+              "c"
+            ]
+          ]
+        },
+        "expected_hash": "e973143663c120d61650b821dad5f6fac27605a74d96f6327b189adb88125fa8"
+      },
+      {
+        "action": "insert_provision",
+        "fragments": [
+          {
+            "num": "(ea)",
+            "tag": "clause",
+            "text": "\"Pre-University College\" means Pre-University Colleges or composite junior colleges belonging to the State Government;"
+          }
+        ],
+        "id": "sec_4_op_2",
+        "position": "after",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            5,
+            6
+          ],
+          "quote": "4. Amendment of section 2.- In section 2 of the principal Act,- (i) after clause (c), the following shall be inserted, namely:- “(ca) “Lecturer” means a person appointed to a category of posts of Principal or lecturer in composite junior college or pre-university college as specified in Schedule-II;” (ii) after clause (e), the following shall be inserted, namely:- “(ea) “Pre-University College” means Pre-University Colleges or composite junior colleges belonging to the State Government;” (iii) in clause (i), for the word “Schedule”, the word and figure “Schedule-I”, shall be substituted; and (iv) in clause (k), after the words “Revenue Division”, the words “and Principals or Lecturers working in Pre-university College or Composite Junior College unit of seniority shall be the State”, shall be inserted.",
+          "source_eid": "sec_4"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "2"
+            ],
+            [
+              "clause",
+              "e"
+            ]
+          ]
+        },
+        "expected_hash": "6824547145338553d8684c01d8259586a29f96fd448b5d57b88341534b86daea"
+      },
+      {
+        "action": "text_replace",
+        "count": 1,
+        "global": false,
+        "id": "sec_4_op_3",
+        "new": "Schedule-I",
+        "old": "Schedule",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            5,
+            6
+          ],
+          "quote": "4. Amendment of section 2.- In section 2 of the principal Act,- (i) after clause (c), the following shall be inserted, namely:- “(ca) “Lecturer” means a person appointed to a category of posts of Principal or lecturer in composite junior college or pre-university college as specified in Schedule-II;” (ii) after clause (e), the following shall be inserted, namely:- “(ea) “Pre-University College” means Pre-University Colleges or composite junior colleges belonging to the State Government;” (iii) in clause (i), for the word “Schedule”, the word and figure “Schedule-I”, shall be substituted; and (iv) in clause (k), after the words “Revenue Division”, the words “and Principals or Lecturers working in Pre-university College or Composite Junior College unit of seniority shall be the State”, shall be inserted.",
+          "source_eid": "sec_4"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "2"
+            ],
+            [
+              "clause",
+              "i"
+            ]
+          ]
+        },
+        "whole_word": true,
+        "expected_hash": "c5cb6863c6cc7c44f90ce38852b5c034947f80c9e36510f7c83c4ce0d13a4329",
+        "occurrences": [
+          {
+            "field": "sec_2__cl_i__content__p_1",
+            "offset": 254,
+            "text": "Schedule",
+            "protected": true,
+            "cross_inline": false
+          }
+        ],
+        "allow_protected": true
+      },
+      {
+        "action": "text_insert",
+        "count": 1,
+        "id": "sec_4_op_4",
+        "new": " and Principals or Lecturers working in Pre-university College or Composite Junior College unit of seniority shall be the State",
+        "old": "Revenue division",
+        "position": "after",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            5,
+            6
+          ],
+          "quote": "4. Amendment of section 2.- In section 2 of the principal Act,- (i) after clause (c), the following shall be inserted, namely:- “(ca) “Lecturer” means a person appointed to a category of posts of Principal or lecturer in composite junior college or pre-university college as specified in Schedule-II;” (ii) after clause (e), the following shall be inserted, namely:- “(ea) “Pre-University College” means Pre-University Colleges or composite junior colleges belonging to the State Government;” (iii) in clause (i), for the word “Schedule”, the word and figure “Schedule-I”, shall be substituted; and (iv) in clause (k), after the words “Revenue Division”, the words “and Principals or Lecturers working in Pre-university College or Composite Junior College unit of seniority shall be the State”, shall be inserted.",
+          "source_eid": "sec_4"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "2"
+            ],
+            [
+              "clause",
+              "k"
+            ]
+          ]
+        },
+        "whole_word": true,
+        "review_note": "Fixture-only explicit target wording decision; source quotation retained unchanged.",
+        "expected_hash": "82a7ec45b39ed67753d9cef2d0e0c1289f4df76fbbedba181963bacb0a7532cc"
+      },
+      {
+        "action": "insert_provision",
+        "fragments": [
+          {
+            "tag": "proviso",
+            "text": "Provided also that, the initial appointment or promotion of Principal or Lecturer shall be to a Government Pre-University College in Zone-C."
+          }
+        ],
+        "id": "sec_5_op_1",
+        "position": "after",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            6
+          ],
+          "quote": "5. Amendment of section 3.- In section 3 of the Principal Act, in sub-section (2), after third proviso, the following shall be inserted, namely:- “Provided also that, the initial appointment or promotion of Principal or Lecturer shall be to a Government Pre-University College in Zone-C.”",
+          "source_eid": "sec_5"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "3"
+            ],
+            [
+              "subsection",
+              "2"
+            ],
+            [
+              "proviso",
+              "3"
+            ]
+          ]
+        },
+        "expected_hash": "552f394a0dad4bc1074a7ff89d5d4a9d303efde2935ac8dee9cf2844d2c7e4cf"
+      },
+      {
+        "action": "text_insert",
+        "count": 1,
+        "id": "sec_6_op_1",
+        "new": " or lecturers",
+        "old": "the teachers",
+        "position": "after",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            6
+          ],
+          "quote": "6. Amendment of section 4.- In section 4 of the Principal Act,- (i) in sub-section (1),- (a) after the words “the teachers” the words “or lecturers” shall be inserted; and (b) after the word “ratio” the words “or student-lecturer ratio” shall be inserted. (ii) in sub-section (2), after the word “teacher” the words “or lecturers” shall be inserted.",
+          "source_eid": "sec_6"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "4"
+            ],
+            [
+              "subsection",
+              "1"
+            ]
+          ]
+        },
+        "whole_word": true,
+        "expected_hash": "9c6703728cebdc15a4c737a5501835ca1fd4e692001220b84fdd93219d37bf0b"
+      },
+      {
+        "action": "text_insert",
+        "count": 1,
+        "id": "sec_6_op_2",
+        "new": " or student-lecturer ratio",
+        "old": "ratio",
+        "position": "after",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            6
+          ],
+          "quote": "6. Amendment of section 4.- In section 4 of the Principal Act,- (i) in sub-section (1),- (a) after the words “the teachers” the words “or lecturers” shall be inserted; and (b) after the word “ratio” the words “or student-lecturer ratio” shall be inserted. (ii) in sub-section (2), after the word “teacher” the words “or lecturers” shall be inserted.",
+          "source_eid": "sec_6"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "4"
+            ],
+            [
+              "subsection",
+              "1"
+            ]
+          ]
+        },
+        "whole_word": true,
+        "expected_hash": "1155d58ad46dcb8a0fb42f987f19aab020f6b07d4ab54ec370e5d6fac0ff38e4"
+      },
+      {
+        "action": "text_insert",
+        "count": 1,
+        "id": "sec_6_op_3",
+        "new": " or lecturers",
+        "old": "teacher",
+        "position": "after",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            6
+          ],
+          "quote": "6. Amendment of section 4.- In section 4 of the Principal Act,- (i) in sub-section (1),- (a) after the words “the teachers” the words “or lecturers” shall be inserted; and (b) after the word “ratio” the words “or student-lecturer ratio” shall be inserted. (ii) in sub-section (2), after the word “teacher” the words “or lecturers” shall be inserted.",
+          "source_eid": "sec_6"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "4"
+            ],
+            [
+              "subsection",
+              "2"
+            ]
+          ]
+        },
+        "whole_word": true,
+        "expected_hash": "73d6e857d6939009f6c9bff67f643e5ca479241e3057e66333aa385381e70d43"
+      },
+      {
+        "action": "insert_provision",
+        "fragments": [
+          {
+            "num": "(iii)",
+            "tag": "clause",
+            "text": "Since the State is the single unit for Department of Pre-University Education, the zonal transfer is not applicable for Lecturer working in the Government Pre-University College or Composite Junior College."
+          }
+        ],
+        "id": "sec_7_op_1",
+        "position": "after",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            6
+          ],
+          "quote": "7. Amendment of section 5.- In section 5 of the Principal Act, after clause (ii), the following shall be inserted, namely:- “(iii) Since the State is the single unit for Department of Pre-University Education, the zonal transfer is not applicable for Lecturer working in the Government Pre-University College or Composite Junior College.”",
+          "source_eid": "sec_7"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "5"
+            ],
+            [
+              "clause",
+              "ii"
+            ]
+          ]
+        },
+        "expected_hash": "397030b7bd2c174e1a8203a43052ae3224293639c86877cf610f97ff24352eda"
+      },
+      {
+        "action": "insert_provision",
+        "fragments": [
+          {
+            "tag": "proviso",
+            "text": "Provided also that, the total number of transfers made under sections 5 and 6 of this Act in a year, for Lecturers in a unit of seniority shall not exceed ten percent or such lower limit as notified by the State Government."
+          }
+        ],
+        "id": "sec_8_op_1",
+        "position": "after",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            6
+          ],
+          "quote": "8. Amendment of section 7.- In section 7 of the principal Act,- (i) in sub-section (1), after fourth proviso, the following proviso shall be inserted, namely:- “Provided also that, the total number of transfers made under sections 5 and 6 of this Act in a year, for Lecturers in a unit of seniority shall not exceed ten percent or such lower limit as notified by the State Government.” (ii) in sub-section (2), after first proviso, the following shall be inserted, namely:- “Provided further that, in case of Lecturer of Pre-University College or Composite Junior Collage the transfer shall be permitted not more than once in service, subject to condition that Lecturer of Pre-University College or Composite Junior College shall have completed minimum seven years of service or must be otherwise eligible to be transferred to that place and must have minimum five years of left over service.”",
+          "source_eid": "sec_8"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "7"
+            ],
+            [
+              "subsection",
+              "1"
+            ],
+            [
+              "proviso",
+              "4"
+            ]
+          ]
+        },
+        "expected_hash": "56606ce4331c02d2a745003196e765c0af432313865d5fea550ac6c7942fb9a2"
+      },
+      {
+        "action": "insert_provision",
+        "fragments": [
+          {
+            "tag": "proviso",
+            "text": "Provided further that, in case of Lecturer of Pre-University College or Composite Junior Collage the transfer shall be permitted not more than once in service, subject to condition that Lecturer of Pre-University College or Composite Junior College shall have completed minimum seven years of service or must be otherwise eligible to be transferred to that place and must have minimum five years of left over service."
+          }
+        ],
+        "id": "sec_8_op_2",
+        "position": "after",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            6
+          ],
+          "quote": "8. Amendment of section 7.- In section 7 of the principal Act,- (i) in sub-section (1), after fourth proviso, the following proviso shall be inserted, namely:- “Provided also that, the total number of transfers made under sections 5 and 6 of this Act in a year, for Lecturers in a unit of seniority shall not exceed ten percent or such lower limit as notified by the State Government.” (ii) in sub-section (2), after first proviso, the following shall be inserted, namely:- “Provided further that, in case of Lecturer of Pre-University College or Composite Junior Collage the transfer shall be permitted not more than once in service, subject to condition that Lecturer of Pre-University College or Composite Junior College shall have completed minimum seven years of service or must be otherwise eligible to be transferred to that place and must have minimum five years of left over service.”",
+          "source_eid": "sec_8"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "7"
+            ],
+            [
+              "subsection",
+              "2"
+            ],
+            [
+              "proviso",
+              "1"
+            ]
+          ]
+        },
+        "expected_hash": "7fe63c43d5bd6c9135cca2759d80d89e050328467baefa599140dbc0fab4b1d0"
+      },
+      {
+        "action": "insert_provision",
+        "fragments": [
+          {
+            "tag": "proviso",
+            "text": "Provided that, above provision shall not be applicable to the Lecturers working in Pre-University College or Composite Junior College."
+          }
+        ],
+        "id": "sec_9_op_1",
+        "position": "after",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            6
+          ],
+          "quote": "9. Amendment of section 8.- In section 8 of the principal Act, after sub-section (2), the following proviso, shall be inserted, namely:- “Provided that, above provision shall not be applicable to the Lecturers working in Pre-University College or Composite Junior College.”",
+          "source_eid": "sec_9"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "8"
+            ],
+            [
+              "subsection",
+              "2"
+            ]
+          ]
+        },
+        "expected_hash": "be417ecd7e3d6c9c988ab8dac2cc6c56afa58bdf6afe86b65db6dad1864a45f8"
+      },
+      {
+        "action": "text_replace",
+        "count": 1,
+        "global": false,
+        "id": "sec_10_op_1",
+        "new": "In case of teacher working in a Primary School or a High School or Composite High School or Composite Junior College the departmental Officer",
+        "old": "The departmental Officer",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            6,
+            7
+          ],
+          "quote": "10. Amendment of section 9.- In section 9 of the principal Act,- (i) for the words “The departmental Officer”, the words “In case of teacher working in a Primary School or a High School or Composite High School or Composite Junior College the departmental Officer”, shall be substituted; (ii) after the words “Mysuru Division”, the words “and in case of Lecturer working in Pre-University College such grievances for redressal shall be made before the committee consisting of the Director, Joint Director (Administration) and the Deputy Director (Administration) of Department of Pre-University Education”, shall be inserted.”",
+          "source_eid": "sec_10"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "9"
+            ]
+          ]
+        },
+        "whole_word": true,
+        "expected_hash": "a2391b2d72371b482f877216805f053da25ad9a807b464683036bc24aa82c8b3"
+      },
+      {
+        "action": "text_insert",
+        "count": 1,
+        "id": "sec_10_op_2",
+        "new": " and in case of Lecturer working in Pre-University College such grievances for redressal shall be made before the committee consisting of the Director, Joint Director (Administration) and the Deputy Director (Administration) of Department of Pre-University Education",
+        "old": "Mysuru Division",
+        "position": "after",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            6,
+            7
+          ],
+          "quote": "10. Amendment of section 9.- In section 9 of the principal Act,- (i) for the words “The departmental Officer”, the words “In case of teacher working in a Primary School or a High School or Composite High School or Composite Junior College the departmental Officer”, shall be substituted; (ii) after the words “Mysuru Division”, the words “and in case of Lecturer working in Pre-University College such grievances for redressal shall be made before the committee consisting of the Director, Joint Director (Administration) and the Deputy Director (Administration) of Department of Pre-University Education”, shall be inserted.”",
+          "source_eid": "sec_10"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "9"
+            ]
+          ]
+        },
+        "whole_word": true,
+        "expected_hash": "b005e3e8a3e37684b1507d145d4ac307cf7b60ac3e8df67c642c4a7f6294f874"
+      },
+      {
+        "action": "text_insert",
+        "count": 1,
+        "id": "sec_11_op_1",
+        "new": " and ten percent in case of Lecturers working in Pre-University College (working strength of concerned category of Lecturers in the relevant subject) as",
+        "old": "transfer limits",
+        "position": "after",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            7
+          ],
+          "quote": "11. Amendment of section 10.- In section 10 of the principal Act,- (i) in sub-section (3), after the words “transfer limits”, the words “and ten percent in case of Lecturers working in Pre-University College (working strength of concerned category of Lecturers in the relevant subject) as”, shall be inserted. (ii) after sub-section (6), the following shall be inserted, namely:- “(7) In case of a lecturer working in Pre-University College who was transferred on compulsory transfer during the year 2018-19 shall also be provided an opportunity to opt a place of transfer within the unit of seniority as a one time measure ahead of other types of transfers subject to the availability of vacancies so as to give the benefit of posting within the unit of seniority in the transfer done immediately after the date of commencement of the Karnataka State Civil services (Regulation of Transfer to Teachers) (Second Amendment) Act, 2021 in the manner as may be prescribed.”",
+          "source_eid": "sec_11"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "10"
+            ],
+            [
+              "subsection",
+              "3"
+            ]
+          ]
+        },
+        "whole_word": true,
+        "expected_hash": "f4531d8aef692eb648237a2edb868954a8dac94c6c854ab67c7425f0ebc9c947"
+      },
+      {
+        "action": "insert_provision",
+        "fragments": [
+          {
+            "num": "(7)",
+            "tag": "subsection",
+            "text": "In case of a lecturer working in Pre-University College who was transferred on compulsory transfer during the year 2018-19 shall also be provided an opportunity to opt a place of transfer within the unit of seniority as a one time measure ahead of other types of transfers subject to the availability of vacancies so as to give the benefit of posting within the unit of seniority in the transfer done immediately after the date of commencement of the Karnataka State Civil services (Regulation of Transfer to Teachers) (Second Amendment) Act, 2021 in the manner as may be prescribed."
+          }
+        ],
+        "id": "sec_11_op_2",
+        "position": "after",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            7
+          ],
+          "quote": "11. Amendment of section 10.- In section 10 of the principal Act,- (i) in sub-section (3), after the words “transfer limits”, the words “and ten percent in case of Lecturers working in Pre-University College (working strength of concerned category of Lecturers in the relevant subject) as”, shall be inserted. (ii) after sub-section (6), the following shall be inserted, namely:- “(7) In case of a lecturer working in Pre-University College who was transferred on compulsory transfer during the year 2018-19 shall also be provided an opportunity to opt a place of transfer within the unit of seniority as a one time measure ahead of other types of transfers subject to the availability of vacancies so as to give the benefit of posting within the unit of seniority in the transfer done immediately after the date of commencement of the Karnataka State Civil services (Regulation of Transfer to Teachers) (Second Amendment) Act, 2021 in the manner as may be prescribed.”",
+          "source_eid": "sec_11"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "10"
+            ],
+            [
+              "subsection",
+              "6"
+            ]
+          ]
+        },
+        "expected_hash": "b40ec122a8f4d69581904616ceb750e820da484211740200f0f0cb82b0515123"
+      },
+      {
+        "action": "text_replace",
+        "count": 1,
+        "global": false,
+        "id": "sec_12_op_1",
+        "new": "SCHEDULE-I",
+        "old": "SCHEDULE",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            7
+          ],
+          "quote": "12. Amendment of Schedule .- In the schedule to the principal Act,- (i) for the word “SCHEDULE”, the word and figure “SCHEDULE-I”, shall be substituted; and (ii) after “SCHEDULE-I” as so re-numbered, the following SCHEDULE-II shall be inserted, namely:- “SCHEDULE-II (see section 2 and 16) Sl.No. Posts in the Government Pre-University College 1. Principal 2. Lecturer 3. Lecturer in Physical Education ”",
+          "source_eid": "sec_12"
+        },
+        "target": {
+          "region": "schedule"
+        },
+        "whole_word": true,
+        "expected_hash": "800178860710fee990caf94fff79199a48fb1c7c08d2758406332108e2056187"
+      },
+      {
+        "action": "schedule_add",
+        "fragment": {
+          "heading": "SCHEDULE-II",
+          "name": "schedule",
+          "subheading": "(see section 2 and 16)",
+          "table": [
+            [
+              "Sl.No.",
+              "Posts in the Government Pre-University College"
+            ],
+            [
+              "1.",
+              "Principal"
+            ],
+            [
+              "2.",
+              "Lecturer"
+            ],
+            [
+              "3.",
+              "Lecturer in Physical Education"
+            ]
+          ],
+          "tag": "hcontainer"
+        },
+        "id": "sec_12_op_2",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            7
+          ],
+          "quote": "12. Amendment of Schedule .- In the schedule to the principal Act,- (i) for the word “SCHEDULE”, the word and figure “SCHEDULE-I”, shall be substituted; and (ii) after “SCHEDULE-I” as so re-numbered, the following SCHEDULE-II shall be inserted, namely:- “SCHEDULE-II (see section 2 and 16) Sl.No. Posts in the Government Pre-University College 1. Principal 2. Lecturer 3. Lecturer in Physical Education ”",
+          "source_eid": "sec_12"
+        },
+        "target": {
+          "region": "schedule"
+        },
+        "expected_hash": "c04131c041cda057b0b86a5f9bfb25af3bc09b632658950a2754c68bfff489d7"
+      },
+      {
+        "action": "effect",
+        "classification": "repeal_and_savings",
+        "details": "13. Repeal and savings.- The Karnataka State Civil Services (Regulation of transfer of teachers) Act, 2007 (Karnataka Act 29 of 2007) is hereby repealed: Provided that, such repeal shall not affect,- (a) anything done or any action taken under the said Act; or (b) the previous operation of the said Act or anything duly done or suffered thereunder; or (c) any right, privilege, obligation or liability acquired, accrued or incurred under the said Act; or (d) any penalty or punishment incurred in respect of any offence committed under the said Act: Provided further that, the provisions of section 6 of the Karnataka General Clauses Act, 1899 (Karnataka Act III of 1899) shall be applicable in respect of repeal of the said Act.",
+        "id": "sec_13_op_1",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            7,
+            8
+          ],
+          "quote": "13. Repeal and savings.- The Karnataka State Civil Services (Regulation of transfer of teachers) Act, 2007 (Karnataka Act 29 of 2007) is hereby repealed: Provided that, such repeal shall not affect,- (a) anything done or any action taken under the said Act; or (b) the previous operation of the said Act or anything duly done or suffered thereunder; or (c) any right, privilege, obligation or liability acquired, accrued or incurred under the said Act; or (d) any penalty or punishment incurred in respect of any offence committed under the said Act: Provided further that, the provisions of section 6 of the Karnataka General Clauses Act, 1899 (Karnataka Act III of 1899) shall be applicable in respect of repeal of the said Act.",
+          "source_eid": "sec_13"
+        }
+      }
+    ],
+    "sequence": 2,
+    "source_id": "d3e107d800182fd22c7f5590",
+    "source_work_uri": "/akn/in-ka/act/2022-01-17/6",
+    "status": "needs_review",
+    "target_identity": {
+      "jurisdiction": "in-ka",
+      "number": "4",
+      "year": "2020"
+    }
+  },
+  "Third": {
+    "coverage": [
+      {
+        "heading": "Short title and commencement",
+        "pdf_pages": [
+          5
+        ],
+        "source_eid": "sec_1"
+      },
+      {
+        "heading": "Amendment of section 2",
+        "pdf_pages": [
+          5,
+          6
+        ],
+        "source_eid": "sec_2"
+      },
+      {
+        "heading": "Amendment of section 4",
+        "pdf_pages": [
+          6
+        ],
+        "source_eid": "sec_3"
+      },
+      {
+        "heading": "Amendment of section 5",
+        "pdf_pages": [
+          6
+        ],
+        "source_eid": "sec_4"
+      },
+      {
+        "heading": "Substitution of section 6",
+        "pdf_pages": [
+          6,
+          7
+        ],
+        "source_eid": "sec_5"
+      },
+      {
+        "heading": "Amendment of section 10",
+        "pdf_pages": [
+          7
+        ],
+        "source_eid": "sec_6"
+      },
+      {
+        "heading": "Amendment of Schedule",
+        "pdf_pages": [
+          7,
+          8
+        ],
+        "source_eid": "sec_7"
+      }
+    ],
+    "date_confirmed": true,
+    "date_evidence": "FIXTURE ONLY: retrospective date in First sec 1; publication date assumed for at-once Second/Third. A lawyer must determine commencement before real use.",
+    "effective_date": "2026-04-10",
+    "format_version": 1,
+    "identity_confirmed": true,
+    "operations": [
+      {
+        "action": "effect",
+        "classification": "commencement",
+        "details": "1. Short title and commencement.- (1) This Act may be called the Karnataka State Civil Services (Regulation of Transfer of Teachers) (Amendment) Act, 2026. (2) It shall come into force at once.",
+        "id": "sec_1_op_1",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            5
+          ],
+          "quote": "1. Short title and commencement.- (1) This Act may be called the Karnataka State Civil Services (Regulation of Transfer of Teachers) (Amendment) Act, 2026. (2) It shall come into force at once.",
+          "source_eid": "sec_1"
+        }
+      },
+      {
+        "action": "renumber",
+        "id": "sec_2_op_1",
+        "new_number": "(cb)",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            5,
+            6
+          ],
+          "quote": "2. Amendment of section 2.- In the Karnataka State Civil Services (Regulation of Transfer of Teachers) Act, 2020 (Karnataka Act 04 of 2020) (hereinafter referred to as the Principal Act) , in section 2 ,- (i) clause (ca), shall be renumbered as (cb); (ii) before clause (cb), as so renumbered the following shall be inserted, namely:- “(ca) “Critical Posts” means and include all the teaching posts including Lecturers in Government Pre-University Colleges, in the following categories, namely:- (i) Category 1: Karnataka Public Schools, Adarsha Vidyalaya, PM SHRI schools other than Head Master or Vice-Principal; (ii) Category 2: All other schools and Government Pre-University Colleges having an enrolment exceeding 250 students or as per enrolment threshold notified by the Government from time to time other than Head Master or Vice-Principal; and (iii) Category 3: Head Master or Vice-Principal of High School or Principal in Government Pre-University Colleges under Categories 1 and 2.” (iii) in clause (d), the following proviso shall be inserted at the end, namely:- “Provided that in case of transfers to the posts specified in serial number III of Schedule-I shall only be by counselling for which the minimum period of service rendered in the incumbent’s present cadre in schools / colleges shall be twelve continuous years. Provided further that, the maximum period of service in the posts specified in serial number III of Schedule-I shall only be three years. Provided also that, the incumbents of teaching posts specified in Schedule-I and clause (h) of section 2, shall not be transferred to the non-teaching posts in the School Education and Literacy Department and in any other posts in the State Civil Services or Boards or Corporations.”",
+          "source_eid": "sec_2"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "2"
+            ],
+            [
+              "clause",
+              "ca"
+            ]
+          ]
+        },
+        "expected_hash": "eb8d85d0dc3f178cfe15d8d3f4e9fc2d1f6161e7eaaf987b13fdb0b51d03752f"
+      },
+      {
+        "action": "insert_provision",
+        "fragments": [
+          {
+            "children": [
+              {
+                "num": "(i)",
+                "tag": "subclause",
+                "text": "Category 1: Karnataka Public Schools, Adarsha Vidyalaya, PM SHRI schools other than Head Master or Vice-Principal;"
+              },
+              {
+                "num": "(ii)",
+                "tag": "subclause",
+                "text": "Category 2: All other schools and Government Pre-University Colleges having an enrolment exceeding 250 students or as per enrolment threshold notified by the Government from time to time other than Head Master or Vice-Principal; and"
+              },
+              {
+                "num": "(iii)",
+                "tag": "subclause",
+                "text": "Category 3: Head Master or Vice-Principal of High School or Principal in Government Pre-University Colleges under Categories 1 and 2."
+              }
+            ],
+            "num": "(ca)",
+            "tag": "clause",
+            "text": "\"Critical Posts\" means and include all the teaching posts including Lecturers in Government Pre-University Colleges, in the following categories, namely:-"
+          }
+        ],
+        "id": "sec_2_op_2",
+        "position": "before",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            5,
+            6
+          ],
+          "quote": "2. Amendment of section 2.- In the Karnataka State Civil Services (Regulation of Transfer of Teachers) Act, 2020 (Karnataka Act 04 of 2020) (hereinafter referred to as the Principal Act) , in section 2 ,- (i) clause (ca), shall be renumbered as (cb); (ii) before clause (cb), as so renumbered the following shall be inserted, namely:- “(ca) “Critical Posts” means and include all the teaching posts including Lecturers in Government Pre-University Colleges, in the following categories, namely:- (i) Category 1: Karnataka Public Schools, Adarsha Vidyalaya, PM SHRI schools other than Head Master or Vice-Principal; (ii) Category 2: All other schools and Government Pre-University Colleges having an enrolment exceeding 250 students or as per enrolment threshold notified by the Government from time to time other than Head Master or Vice-Principal; and (iii) Category 3: Head Master or Vice-Principal of High School or Principal in Government Pre-University Colleges under Categories 1 and 2.” (iii) in clause (d), the following proviso shall be inserted at the end, namely:- “Provided that in case of transfers to the posts specified in serial number III of Schedule-I shall only be by counselling for which the minimum period of service rendered in the incumbent’s present cadre in schools / colleges shall be twelve continuous years. Provided further that, the maximum period of service in the posts specified in serial number III of Schedule-I shall only be three years. Provided also that, the incumbents of teaching posts specified in Schedule-I and clause (h) of section 2, shall not be transferred to the non-teaching posts in the School Education and Literacy Department and in any other posts in the State Civil Services or Boards or Corporations.”",
+          "source_eid": "sec_2"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "2"
+            ],
+            [
+              "clause",
+              "cb"
+            ]
+          ]
+        },
+        "expected_hash": "e5bfc4446a7cd5eeeb3fd488fb652a317b12e06ad3870676643678da861384e0"
+      },
+      {
+        "action": "insert_provision",
+        "fragments": [
+          {
+            "tag": "proviso",
+            "text": "Provided that in case of transfers to the posts specified in serial number III of Schedule-I shall only be by counselling for which the minimum period of service rendered in the incumbent’s present cadre in schools / colleges shall be twelve continuous years."
+          },
+          {
+            "tag": "proviso",
+            "text": "Provided further that, the maximum period of service in the posts specified in serial number III of Schedule-I shall only be three years."
+          },
+          {
+            "tag": "proviso",
+            "text": "Provided also that, the incumbents of teaching posts specified in Schedule-I and clause (h) of section 2, shall not be transferred to the non-teaching posts in the School Education and Literacy Department and in any other posts in the State Civil Services or Boards or Corporations."
+          }
+        ],
+        "id": "sec_2_op_3",
+        "position": "last_child",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            5,
+            6
+          ],
+          "quote": "2. Amendment of section 2.- In the Karnataka State Civil Services (Regulation of Transfer of Teachers) Act, 2020 (Karnataka Act 04 of 2020) (hereinafter referred to as the Principal Act) , in section 2 ,- (i) clause (ca), shall be renumbered as (cb); (ii) before clause (cb), as so renumbered the following shall be inserted, namely:- “(ca) “Critical Posts” means and include all the teaching posts including Lecturers in Government Pre-University Colleges, in the following categories, namely:- (i) Category 1: Karnataka Public Schools, Adarsha Vidyalaya, PM SHRI schools other than Head Master or Vice-Principal; (ii) Category 2: All other schools and Government Pre-University Colleges having an enrolment exceeding 250 students or as per enrolment threshold notified by the Government from time to time other than Head Master or Vice-Principal; and (iii) Category 3: Head Master or Vice-Principal of High School or Principal in Government Pre-University Colleges under Categories 1 and 2.” (iii) in clause (d), the following proviso shall be inserted at the end, namely:- “Provided that in case of transfers to the posts specified in serial number III of Schedule-I shall only be by counselling for which the minimum period of service rendered in the incumbent’s present cadre in schools / colleges shall be twelve continuous years. Provided further that, the maximum period of service in the posts specified in serial number III of Schedule-I shall only be three years. Provided also that, the incumbents of teaching posts specified in Schedule-I and clause (h) of section 2, shall not be transferred to the non-teaching posts in the School Education and Literacy Department and in any other posts in the State Civil Services or Boards or Corporations.”",
+          "source_eid": "sec_2"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "2"
+            ],
+            [
+              "clause",
+              "d"
+            ]
+          ]
+        },
+        "expected_hash": "5e8f17ded04754e9fa9ae32c759f6e0b78d2dea1caf9db9a6c91a951b17eb66f"
+      },
+      {
+        "action": "insert_provision",
+        "fragments": [
+          {
+            "num": "(3)",
+            "tag": "subsection",
+            "text": "All transfers under this process shall be to the Critical posts categorised under clause (ca) of section 2 and if no critical posts available then to other posts which may be notified by the Government."
+          }
+        ],
+        "id": "sec_3_op_1",
+        "position": "after",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            6
+          ],
+          "quote": "3. Amendment of section 4.- In the Principal Act, in section 4, after sub- section (2), the following shall be inserted, namely:- “(3) All transfers under this process shall be to the Critical posts categorised under clause (ca) of section 2 and if no critical posts available then to other posts which may be notified by the Government.”",
+          "source_eid": "sec_3"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "4"
+            ],
+            [
+              "subsection",
+              "2"
+            ]
+          ]
+        },
+        "expected_hash": "62d37853e8b6b71aa136a20df7b3f53cf6b2a89ea3d97d64d090b9a2b8d01873"
+      },
+      {
+        "action": "replace_provision",
+        "fragment": {
+          "num": "(iii)",
+          "tag": "clause",
+          "text": "All transfers under this process shall be to the Critical posts categorised under clause (ca) of section 2 and if no critical posts available then to other posts which may be notified by the Government."
+        },
+        "id": "sec_4_op_1",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            6
+          ],
+          "quote": "4. Amendment of section 5.- In the Principal Act, in section 5, for clause (iii), the following shall be substituted, namely:- “(iii) All transfers under this process shall be to the Critical posts categorised under clause (ca) of section 2 and if no critical posts available then to other posts which may be notified by the Government.”",
+          "source_eid": "sec_4"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "5"
+            ],
+            [
+              "clause",
+              "iii"
+            ]
+          ]
+        },
+        "expected_hash": "09aa508df000f36412b97e24395948214f52d095b275035bbfd4c4ad1b1cdc43"
+      },
+      {
+        "action": "replace_provision",
+        "fragment": {
+          "children": [
+            {
+              "tag": "proviso",
+              "text": "Provided that, a teacher or Lecturer working in any of the districts of Kalyana Karnataka region, in addition to all other eligibility conditions shall also have completed a minimum of ten years of service in the region, for seeking transfer outside of Kalyana Karnataka region."
+            }
+          ],
+          "heading": "Request transfer",
+          "num": "6.",
+          "tag": "section",
+          "text": "A teacher or Lecturer who has served minimum period of service in a school or Pre-University College shall be offered an option to seek transfer subject to availability of critical post for transfer and such other conditions as may be prescribed:"
+        },
+        "id": "sec_5_op_1",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            6,
+            7
+          ],
+          "quote": "5. Substitution of section 6.- In the Principal Act, for section 6, the following shall be substituted, namely:- “6. Request transfer.- A teacher or Lecturer who has served minimum period of service in a school or Pre-University College shall be offered an option to seek transfer subject to availability of critical post for transfer and such other conditions as may be prescribed: Provided that, a teacher or Lecturer working in any of the districts of Kalyana Karnataka region, in addition to all other eligibility conditions shall also have completed a minimum of ten years of service in the region, for seeking transfer outside of Kalyana Karnataka region.”",
+          "source_eid": "sec_5"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "6"
+            ]
+          ]
+        },
+        "expected_hash": "06c70d329bd06e20a9a278cede0395d86e77ab69ca9a0b6773caf0f8aaa925a0"
+      },
+      {
+        "action": "insert_provision",
+        "fragments": [
+          {
+            "children": [
+              {
+                "tag": "proviso",
+                "text": "Provided that, the said provision shall apply only to the general transfer of teachers undertaken in the year in which the teacher resumes to duty upon return from maternity leave."
+              }
+            ],
+            "num": "(ii-a)",
+            "tag": "clause",
+            "text": "pregnant teacher or a female teacher with a child of less than five years:"
+          }
+        ],
+        "id": "sec_6_op_1",
+        "position": "after",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            7
+          ],
+          "quote": "6. Amendment of section 10.- In the Principal Act, in section 10,- (i) in sub-section (1),- (a) after clause (ii), the following shall be inserted, namely:- “ (ii-a) pregnant teacher or a female teacher with a child of less than five years: Provided that, the said provision shall apply only to the general transfer of teachers undertaken in the year in which the teacher resumes to duty upon return from maternity leave.” (b) clause (vii), shall be omitted. (ii) in sub-section (4), the word, brackets and figures “and (vii)” shall be omitted.",
+          "source_eid": "sec_6"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "10"
+            ],
+            [
+              "subsection",
+              "1"
+            ],
+            [
+              "clause",
+              "ii"
+            ]
+          ]
+        },
+        "expected_hash": "b2778829411df6bf6a18a08f4d2745bca541b4a1501fa308c73ee545cbc9da79"
+      },
+      {
+        "action": "omit_provision",
+        "id": "sec_6_op_2",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            7
+          ],
+          "quote": "6. Amendment of section 10.- In the Principal Act, in section 10,- (i) in sub-section (1),- (a) after clause (ii), the following shall be inserted, namely:- “ (ii-a) pregnant teacher or a female teacher with a child of less than five years: Provided that, the said provision shall apply only to the general transfer of teachers undertaken in the year in which the teacher resumes to duty upon return from maternity leave.” (b) clause (vii), shall be omitted. (ii) in sub-section (4), the word, brackets and figures “and (vii)” shall be omitted.",
+          "source_eid": "sec_6"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "10"
+            ],
+            [
+              "subsection",
+              "1"
+            ],
+            [
+              "clause",
+              "vii"
+            ]
+          ]
+        },
+        "reference_updates": [
+          {
+            "eid": "sec_10__subsec_4__content__p_1__ref_2",
+            "old_href": "#sec_10__subsec_1__cl_vii",
+            "old_text": "(vii)",
+            "resolved_by": "sec_6_op_3"
+          }
+        ],
+        "expected_hash": "13be83320ae922915cf46e86c93cf85af4152783ada53ff5f3e96f640b52edd8"
+      },
+      {
+        "action": "text_omit",
+        "count": 1,
+        "id": "sec_6_op_3",
+        "new": "",
+        "old": "and (vii)",
+        "review_status": "accepted",
+        "source": {
+          "pdf_pages": [
+            7
+          ],
+          "quote": "6. Amendment of section 10.- In the Principal Act, in section 10,- (i) in sub-section (1),- (a) after clause (ii), the following shall be inserted, namely:- “ (ii-a) pregnant teacher or a female teacher with a child of less than five years: Provided that, the said provision shall apply only to the general transfer of teachers undertaken in the year in which the teacher resumes to duty upon return from maternity leave.” (b) clause (vii), shall be omitted. (ii) in sub-section (4), the word, brackets and figures “and (vii)” shall be omitted.",
+          "source_eid": "sec_6"
+        },
+        "target": {
+          "path": [
+            [
+              "section",
+              "10"
+            ],
+            [
+              "subsection",
+              "4"
+            ]
+          ]
+        },
+        "whole_word": true,
+        "inline_removals": [
+          {
+            "eid": "sec_10__subsec_4__content__p_1__ref_2",
+            "href": "#sec_10__subsec_1__cl_vii",
+            "text": "(vii)"
+          }
+        ],
+        "expected_hash": "69f1a9d950802e6fde312730849795adda4affefe3f45352c5161b4a2ce34234",
+        "occurrences": [
+          {
+            "field": "sec_10__subsec_4__content__p_1",
+            "offset": 41,
+            "text": "and (vii)",
+            "protected": true,
+            "cross_inline": true
+          }
+        ],
+        "allow_protected": true
+      },
+      {
+        "action": "table_insert",
+        "after_group": "II",
+        "id": "sec_7_op_1",
+        "review_status": "accepted",
+        "rows": [
+          [
+            "III",
+            "The Teaching posts in District Institute of Education and Training (DIET) / Teacher Training Institutes (TTI) / College of Teacher Education (CTE) / State, Division and District level Administrative Offices viz., Office of the Commissioner of School Education/ Additional Commissioner of School Education / DSERT / KSEAB / SSK / KTBS / DDPI"
+          ],
+          [
+            "1",
+            "Lecturer"
+          ],
+          [
+            "2",
+            "Lecturer (Craft)"
+          ],
+          [
+            "3",
+            "Lecturer (Physical Education)"
+          ],
+          [
+            "4",
+            "Junior Program Officer"
+          ],
+          [
+            "5",
+            "Assistant Director (Teaching)"
+          ],
+          [
+            "6",
+            "Lecturer (Work Experience)"
+          ],
+          [
+            "7",
+            "Special Inspector (Vocational Education)"
+          ],
+          [
+            "8",
+            "Lecturer (Drawing)"
+          ]
+        ],
+        "source": {
+          "pdf_pages": [
+            7,
+            8
+          ],
+          "quote": "7. Amendment of Schedule.- In the Principal Act, in Schedule-I, after serial number II and the entries relating thereto, the following shall be inserted, namely:- “ III The Teaching posts in District Institute of Education and Training (DIET) / Teacher Training Institutes (TTI) / College of Teacher Education (CTE) / State, Division and District level Administrative Offices viz., Office of the Commissioner of School Education/ Additional Commissioner of School Education / DSERT / KSEAB / SSK / KTBS / DDPI Lecturer Lecturer (Craft) Lecturer (Physical Education) Junior Program Officer Assistant Director (Teaching) Lecturer (Work Experience) Special Inspector (Vocational Education) Lecturer (Drawing) ”",
+          "source_eid": "sec_7"
+        },
+        "target": {
+          "label": "SCHEDULE-I",
+          "region": "schedule"
+        },
+        "expected_hash": "19c08dc88d87250fe0830076314dad52e26df461d5d742ed0dd36b98fc798e25"
+      }
+    ],
+    "sequence": 3,
+    "source_id": "aea5883125dfb418832ed9b6",
+    "source_work_uri": "/akn/in-ka/act/2026-04-09/27",
+    "status": "needs_review",
+    "target_identity": {
+      "jurisdiction": "in-ka",
+      "number": "4",
+      "year": "2020"
+    }
+  }
+}

@@ -15,7 +15,8 @@ dependencies = [
 
 [project.scripts]
 akn-parser = "akn_parser.cli:main"
+akn-consolidate = "akn_consolidator.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["scripts"]
-include = ["akn_parser*"]
+include = ["akn_parser*", "akn_consolidator*"]
