@@ -60,7 +60,7 @@ def test_navigation_names_provision_levels_and_parent_context(tmp_path):
     svc=Consolidator(tmp_path);record=base(svc)
     root=parse(svc.expression_xml(record['expression']['id']))
     tree=akn_view.build_outline(root)
-    assert tree[0].label == 'Section 1 — Short title and commencement'
+    assert tree[0].label == 'Section 1: Short title and commencement'
     assert tree[0].children[0].label == 'Subsection (1)'
     flat={row['eid']:row['label'] for row in ui.document(record['expression']['id'])['outline']}
     assert flat['sec_1__subsec_1'] == 'Section 1 › Subsection (1)'

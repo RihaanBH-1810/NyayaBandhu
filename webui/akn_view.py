@@ -298,7 +298,7 @@ class OutlineNode:
     """One entry in the Outline tab: a provision, or a whole schedule.
 
     ``label`` names the provision level and includes its printed number and
-    heading when available, such as ``Section 147 — Payment of property tax``.
+    heading when available, such as ``Section 147: Payment of property tax``.
     """
     eid: str
     tag: str
@@ -359,7 +359,7 @@ def provision_label(el: etree._Element, *, context: bool = False) -> str:
         label = f"{name} {number}".strip()
         title = (node.findtext(_q("heading")) or "").strip()
         if heading and title and title.casefold() not in {name.casefold(), label.casefold()}:
-            label += f" — {title}"
+            label += f": {title}"
         return label
 
     label = own(el, True)

@@ -19,8 +19,8 @@
     return node;
   };
   const clear = el => el.replaceChildren();
-  const niceDate = value => value ? new Date(value).toLocaleString() : '—';
-  const short = value => value ? value.slice(0, 12) : '—';
+  const niceDate = value => value ? new Date(value).toLocaleString() : 'Not recorded';
+  const short = value => value ? value.slice(0, 12) : 'n/a';
   const text = value => value == null ? '' : String(value);
   const makeOption = (value, label) => {
     const option = document.createElement('option');
@@ -443,7 +443,7 @@
       const label = [...parents,labelFor(item)].join(' › ');
       const detail = item.heading?.trim().toLowerCase() === labelFor(item).toLowerCase()
         ? '' : item.heading || item.excerpt.slice(0,60);
-      const option = makeOption(item.eid,`${label}${detail ? ' — ' + detail : ''}`);
+      const option = makeOption(item.eid,`${label}${detail ? ': ' + detail : ''}`);
       options.append(option);
     }
     $('target-inspection').hidden = false;
