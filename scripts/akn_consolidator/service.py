@@ -310,6 +310,8 @@ class Consolidator:
                     'id','parent_id','effective_date','xml_hash','canonical_hash',
                     'created','approved_at','approved_by','invalidated_at')}
                                    | {'kind': body['kind'], 'validation': body.get('validation'),
+                                      'editorial': bool(body.get('visual_edits') or body.get('corrections')),
+                                      'supersedes': body.get('supersedes'),
                                       'applied_count': len(body.get('applied', [])),
                                       'change_count': len(body.get('changes', []))})
             return {

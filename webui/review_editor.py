@@ -8,6 +8,7 @@ from akn_parser.render import AKN_NS
 Q = lambda tag: f"{{{AKN_NS}}}{tag}"
 MODE = "visual"
 TYPES = {"section": "sec", "subsection": "subsec", "clause": "cl", "proviso": "proviso"}
+TEXT_ONLY = {"hcontainer"}
 CHILDREN = {"body": {"section"}, "chapter": {"section"},
             "section": {"subsection", "clause", "proviso"},
             "subsection": {"clause", "proviso"}, "proviso": {"clause"}}
@@ -45,14 +46,14 @@ def _field(owner, el):
 
 
 def prepare(node):
-    if _tag(node) not in TYPES:
+    if _tag(node) not in TYPES.keys() | TEXT_ONLY:
         return {"mode": "visual", "enabled": False, "reason": "Choose a section, subsection, clause or proviso"}
     fields = [_field(node, el) for el in node.iter() if _tag(el) in {"heading", "p"}]
     parent = node.getparent()
     allowed_add = sorted(CHILDREN.get(_tag(node), set()) | ({"section"} if _tag(node) == "section" else set()))
     return {"mode": "visual", "enabled": True, "fields": fields,
             "tag": _tag(node), "eid": node.get("eId"), "number": node.findtext(Q("num")) or "",
-            "actions": ["text", "add", "remove", "renumber", "move"],
+            "actions": ["text"] if _tag(node) in TEXT_ONLY else ["text", "add", "remove", "renumber", "move"],
             "add_types": allowed_add,
             "can_move": parent is not None and _tag(parent) in CHILDREN}
 
@@ -195,6 +196,8 @@ def _add(root, parent, child_type):
 
 def edit(root, node, payload):
     action = payload.get("action")
+    if _tag(node) in TEXT_ONLY and action != "text":
+        raise ValueError("This container supports wording edits only; table structure is fixed")
     if action == "text":
         _update_text(node, payload.get("fields"))
         return f"Edited text in {node.get('eId')}"

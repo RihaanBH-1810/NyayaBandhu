@@ -90,7 +90,7 @@ def _resolve_xml_path(rel_path: str) -> Path | None:
     return candidate if candidate.is_file() else None
 
 
-@app.get("/")
+@app.get("/viewer")
 def index(request: Request, error: str | None = None):
     """The document list and the conversion form.
 
@@ -128,10 +128,10 @@ def convert(
     try:
         pdf_path.relative_to(DATA_DIR.resolve())
     except ValueError:
-        return RedirectResponse(f"/?error=Refusing a path outside data/: {pdf}",
+        return RedirectResponse(f"/viewer?error=Refusing a path outside data/: {pdf}",
                                  status_code=HTTP_303_SEE_OTHER)
     if not pdf_path.is_file():
-        return RedirectResponse(f"/?error=No such file: {pdf}",
+        return RedirectResponse(f"/viewer?error=No such file: {pdf}",
                                  status_code=HTTP_303_SEE_OTHER)
 
     parser = ActParser(
@@ -142,7 +142,7 @@ def convert(
         result = parser.parse(str(pdf_path))
     except Exception as exc:  # noqa: BLE001 - surfaced to the user, not swallowed
         return RedirectResponse(
-            f"/?error={type(exc).__name__}: {exc}", status_code=HTTP_303_SEE_OTHER
+            f"/viewer?error={type(exc).__name__}: {exc}", status_code=HTTP_303_SEE_OTHER
         )
 
     out_dir = OUT_DIR / doc_type / lang
@@ -164,7 +164,7 @@ def view(request: Request, path: str):
     """
     xml_path = _resolve_xml_path(path)
     if xml_path is None:
-        return RedirectResponse(f"/?error=No such document: {path}",
+        return RedirectResponse(f"/viewer?error=No such document: {path}",
                                  status_code=HTTP_303_SEE_OTHER)
 
     root = akn_view.load(xml_path)
@@ -205,3 +205,7 @@ app.include_router(review_router)
 from webui.consolidation import router as consolidation_router, page_router as consolidation_page_router  # noqa: E402
 app.include_router(consolidation_router)
 app.include_router(consolidation_page_router)
+
+from webui.workspace import api as workspace_api, pages as workspace_pages
+app.include_router(workspace_api)
+app.include_router(workspace_pages)

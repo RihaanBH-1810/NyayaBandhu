@@ -141,3 +141,11 @@ The amendment engine provides reviewed instruction manifests, immutable dated
 versions, approval and export, and a local CMS API. See
 [the consolidation guide](docs/consolidation/README.md) for the Teachers Act
 demonstration and [review assumptions](docs/consolidation/fixture-decisions.md).
+
+## Integrated visual review workspace
+
+The `feature/visual-consolidation-workspace` branch combines visual Act editing,
+amendment review, dated version approval and a reader portal. Follow the
+[startup instructions and lawyer walkthrough](docs/visual-workspace.md).
+The admin workspace is at `/admin`, the reader at `/library`, and the previous
+viewer and consolidation desk remain at `/viewer` and `/consolidation`.

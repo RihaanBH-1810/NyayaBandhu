@@ -19,6 +19,11 @@ CREATE TABLE IF NOT EXISTS expressions(id TEXT PRIMARY KEY, work_id TEXT NOT NUL
 CREATE TABLE IF NOT EXISTS events(id INTEGER PRIMARY KEY, work_id TEXT NOT NULL REFERENCES works(id),
  kind TEXT NOT NULL, actor TEXT NOT NULL, reason TEXT NOT NULL, created TEXT NOT NULL, body TEXT NOT NULL);
 CREATE INDEX IF NOT EXISTS expression_timeline ON expressions(work_id,effective_date,created);
+CREATE TABLE IF NOT EXISTS related_documents(id TEXT PRIMARY KEY, work_id TEXT NOT NULL REFERENCES works(id),
+ title TEXT NOT NULL, kind TEXT NOT NULL, category TEXT NOT NULL, document_date TEXT NOT NULL,
+ pdf_hash TEXT NOT NULL, created TEXT NOT NULL, actor TEXT NOT NULL, reason TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS reader_issues(id INTEGER PRIMARY KEY, work_id TEXT NOT NULL REFERENCES works(id),
+ expression_id TEXT NOT NULL, message TEXT NOT NULL, created TEXT NOT NULL);
 PRAGMA user_version=1;
 '''
 

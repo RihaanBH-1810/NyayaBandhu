@@ -24,7 +24,7 @@
 
 {% block content %}
 <div class="view-header">
-  <a href="/" class="back-link">&larr; All documents</a>
+  <a href="/viewer" class="back-link">&larr; All documents</a>
   <h1>{{ metadata.title or name }}</h1>
   {% if metadata.source_title %}
   <p class="source-title {{ 'source-title-legacy' if metadata.source_title_legacy else '' }}"
