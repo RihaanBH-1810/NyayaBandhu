@@ -55,7 +55,7 @@ Without installation, use `PYTHONPATH=scripts .venv/bin/python -m akn_consolidat
 
 ## CMS API
 
-Start the existing viewer with `.venv/bin/python webui/run.py`. Routes are registered in its FastAPI application; visit `/docs` for request schemas. Set `NYAYA_CONSOLIDATION_DIR` to choose the store (default `consolidation-data/`). To inspect the scripted demo through this API, set it to `consolidation-data/teachers-demo`.
+Start the existing viewer with `.venv/bin/python webui/run.py`. Routes are registered in its FastAPI application; visit `/docs` for request schemas. Set `NYAYA_CONSOLIDATION_DIR` to choose the store (default `consolidation-data/visual-workspace` on the combined visual branch). To inspect the scripted demo through this API, set it to `consolidation-data/teachers-demo`.
 
 | Method | `/consolidation/api` path | Use |
 | --- | --- | --- |

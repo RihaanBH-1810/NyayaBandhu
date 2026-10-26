@@ -15,9 +15,12 @@ Run from the repository directory. Stop another server on port 8000 before start
 git switch feature/visual-consolidation-workspace
 source .venv/bin/activate
 export PYTHONPATH="$PWD/scripts"
-export NYAYA_CONSOLIDATION_DIR="$PWD/consolidation-data/teachers-demo"
+export NYAYA_CONSOLIDATION_DIR="$PWD/consolidation-data/visual-workspace"
 python webui/run.py
 ```
+
+This store starts empty so you can add and review the Teachers Act yourself. The
+existing `consolidation-data/teachers-demo` store remains available separately.
 
 | URL | Purpose |
 | --- | --- |
@@ -202,7 +205,7 @@ Workspace endpoints live under `/workspace/api`; the existing
 `/consolidation/api` endpoints handle import, extraction, manifest review,
 inspection, preview, application, approval and evidence export. The OpenAPI page
 lists concrete request schemas. `NYAYA_CONSOLIDATION_DIR` selects the local store;
-the default is `consolidation-data/`. Use separate stores for demonstrations and
+the default is `consolidation-data/visual-workspace`. Use separate stores for demonstrations and
 real review work.
 
 ## Verification and limits

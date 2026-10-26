@@ -37,7 +37,7 @@ def read_expression(request: Request, expression_id: str):
 
 
 def service():
-    return Consolidator(os.environ.get('NYAYA_CONSOLIDATION_DIR', str(ROOT / 'consolidation-data')))
+    return Consolidator(os.environ.get('NYAYA_CONSOLIDATION_DIR', str(ROOT / 'consolidation-data' / 'visual-workspace')))
 
 
 def call(method, *args, **kwargs):
