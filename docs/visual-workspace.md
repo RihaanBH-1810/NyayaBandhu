@@ -30,6 +30,8 @@ python webui/run.py
 
 The root URL now opens the reader landing page. The previous root viewer moved to
 `/viewer`; its conversion, document, raw-XML and review endpoints remain available.
+The admin header's **More** menu contains links to the previous viewer and
+consolidation desk.
 This branch does not need npm, a JavaScript build or Bluebell installed.
 
 To create a **new populated demonstration**, use a fresh store before starting:
