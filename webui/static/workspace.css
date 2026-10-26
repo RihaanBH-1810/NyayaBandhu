@@ -58,6 +58,10 @@
 .workspace .wording-substituted{background:#fef9c3;color:#854d0e}
 .workspace .wording-deleted{background:#fee2e2;color:#991b1b;text-decoration:line-through}
 
+.workspace #reason-dialog{width:min(500px,calc(100vw - 32px))}
+.workspace #reason-dialog .reason-content{padding:24px}
+.workspace #reason-dialog .actions{justify-content:flex-end;margin-top:20px}
+
 /* Less frequently used workspaces are accessible through the admin menu. */
 .utility-menu{position:relative}
 .utility-menu summary{display:inline-flex;align-items:center;gap:8px;padding:.55rem .85rem;border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink);font-size:.88rem;font-weight:550;cursor:pointer;list-style:none;white-space:nowrap}

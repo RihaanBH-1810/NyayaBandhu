@@ -82,6 +82,9 @@ python webui/run.py
    creates an immutable version and returns to the version list. Reopen that
    draft to continue editing. No wording change is needed just to approve a base
    that already matches the gazette.
+
+If the reason field is empty when you submit a review action, a dialog asks for
+it and then continues the action. Canceling the dialog leaves the action unsaved.
 5. Choose **Inspect & approve**, read the exact version, then **Approve exact
    version**. Approval records the reviewer and exact XML hash. The base becomes
    available in the reader and as an amendment predecessor.
