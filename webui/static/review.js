@@ -20,9 +20,9 @@ function draw() {
   const filter = $('filter').value.toLowerCase();
   const list = $('provisions'); list.replaceChildren();
   const fragment = document.createDocumentFragment();
-  draft.outline.filter(n => `${n.num} ${n.heading} ${n.eid}`.toLowerCase().includes(filter)).forEach(n => {
+  draft.outline.filter(n => `${n.label} ${n.eid}`.toLowerCase().includes(filter)).forEach(n => {
     const button = document.createElement('button'); button.type = 'button';
-    button.textContent = `${n.tag} ${n.num} ${n.heading}`.trim();
+    button.textContent = n.label;
     button.title = n.eid; button.className = n.eid === selected ? 'active' : '';
     button.onclick = () => select(n.eid); fragment.append(button);
   }); list.append(fragment);
@@ -40,7 +40,7 @@ async function select(eid) {
   try {
     selected = eid; draw();
     const p = await api(`${base()}/provisions/${encodeURIComponent(eid)}`);
-    $('selected-title').textContent = eid;
+    $('selected-title').textContent = draft.outline.find(n => n.eid === eid)?.label || eid;
     $('original-html').innerHTML = p.original_html;
     $('compare-original-html').innerHTML = p.original_html;
     $('original-xml').textContent = p.original_xml;

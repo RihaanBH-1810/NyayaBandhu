@@ -165,7 +165,7 @@ def make_canvas(svc, manifest_id, request):
         def index_provisions(tree):
             for node in tree.iter():
                 if tag(node) in {'section','subsection','clause','subclause','proviso','hcontainer'} and node.get('eId'):
-                    provision_index[node.get('eId')] = {'eid':node.get('eId'), 'label':' '.join(filter(None,[node.findtext(Q('num')),node.findtext(Q('heading'))])) or tag(node)}
+                    provision_index[node.get('eId')] = {'eid':node.get('eId'), 'label':akn_view.provision_label(node, context=True)}
         index_provisions(root)
         for op in request.body.get('operations', []):
             row = {'id': op['id'], 'action': op['action'], 'source': op['source'],
@@ -176,7 +176,7 @@ def make_canvas(svc, manifest_id, request):
             trial = deepcopy(root)
             try:
                 before = scope_node(trial, op)
-                row['label'] = ((' '.join(filter(None, [before.findtext(Q('num')), before.findtext(Q('heading'))])))
+                row['label'] = (akn_view.provision_label(before, context=True)
                                 if before is not None else op.get('classification', 'Separate legal effect'))
                 row['before_html'] = akn_view._render_block(before) if before is not None else ''
                 before_text = text(before) if before is not None else ''
@@ -223,7 +223,7 @@ def readable(svc, expression_id, public=False):
     if public and (not expr['approved_at'] or expr['invalidated_at'] or expr['effective_date'] > date.today().isoformat()):
         raise ValueError('Only current approved versions are available in the reader')
     root = parse(svc.expression_xml(expression_id))
-    outline = [{'eid': n.get('eId'), 'tag': tag(n), 'label': ' '.join(filter(None, [n.findtext(Q('num')), n.findtext(Q('heading'))])) or tag(n)}
+    outline = [{'eid': n.get('eId'), 'tag': tag(n), 'label': akn_view.provision_label(n, context=True)}
                for n in root.iter() if tag(n) in review_editor.TYPES.keys() | review_editor.TEXT_ONLY and n.get('eId')]
     return expr, root, outline
 

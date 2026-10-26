@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0,str(ROOT));sys.path.insert(0,str(ROOT/'scripts'))
 from akn_consolidator.common import Conflict, parse
 from akn_consolidator.service import Consolidator
-from webui import workspace as ui, review_editor
+from webui import workspace as ui, review_editor, akn_view, review
 from webui.consolidation import router as consolidation_api
 from test_consolidation_cms import AUTH, REVIEWS, setup_first, asgi_request
 
@@ -54,6 +54,20 @@ def test_visual_base_revision_preview_approval_and_stale_writes(tmp_path):
     assert approved['expression']['approved_at']
     assert b'Editorial test.' in svc.expression_xml(saved['expression']['id'])
     assert svc.export(saved['expression']['id']).startswith(b'PK')
+
+
+def test_navigation_names_provision_levels_and_parent_context(tmp_path):
+    svc=Consolidator(tmp_path);record=base(svc)
+    root=parse(svc.expression_xml(record['expression']['id']))
+    tree=akn_view.build_outline(root)
+    assert tree[0].label == 'Section 1 — Short title and commencement'
+    assert tree[0].children[0].label == 'Subsection (1)'
+    flat={row['eid']:row['label'] for row in ui.document(record['expression']['id'])['outline']}
+    assert flat['sec_1__subsec_1'] == 'Section 1 › Subsection (1)'
+    assert flat['sec_2__cl_a'] == 'Section 2 › Clause (a)'
+    assert flat['sec_3__subsec_2__proviso_1'] == 'Section 3 › Subsection (2) › Proviso'
+    assert flat['att_1__hcontainer_1'] == 'Schedule 1'
+    assert {row['eid']:row['label'] for row in review._outline(root)}['sec_1__subsec_1'] == flat['sec_1__subsec_1']
 
 
 def test_visual_edit_preserves_inline_nodes_and_reference_attributes(tmp_path):
@@ -105,6 +119,7 @@ def test_canvas_replays_first_amendment_without_persisting_and_rejection_blocks_
     original=svc.expression_xml(parent['id'])
     canvas=ui.make_canvas(svc,manifest['id'],ui.Canvas(expression_id=parent['id'],manifest_revision=manifest['revision'],body=body))
     insert=next(r for r in canvas['rows'] if r['action']=='insert_provision')
+    assert any(p['label'].startswith('Section 10 › Subsection (5)') for p in canvas['provisions'])
     assert 'sec_10__subsec_6' in insert['after_html'] and 'sec_10__subsec_6' not in insert['before_html']
     assert '<ins>' in insert['after_diff']
     assert 'wording-inserted' in insert['after_html']

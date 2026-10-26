@@ -425,8 +425,25 @@
     });
     state.inspected = result;
     const options = $('provision-options'); clear(options);
-    for (const item of result.provisions || []) {
-      const option = makeOption(item.eid,`${item.tag} ${item.num} ${item.heading || item.excerpt.slice(0,60)}`);
+    const provisions = result.provisions || [];
+    const byEid = new Map(provisions.map(item => [item.eid, item]));
+    const labelFor = item => {
+      const name = item.tag === 'hcontainer' ? (item.name || 'Container') : item.tag;
+      const number = (item.num || '').trim().replace(/\.$/, '') ||
+        (item.tag === 'hcontainer' && item.name === 'schedule' ? item.eid.match(/^att_(\d+)/)?.[1] || '' : '');
+      return `${name[0].toUpperCase()}${name.slice(1)}${number ? ' ' + number : ''}`;
+    };
+    for (const item of provisions) {
+      let prefix = item.eid;
+      const parents = [];
+      while (prefix.includes('__')) {
+        prefix = prefix.slice(0,prefix.lastIndexOf('__'));
+        if (byEid.has(prefix)) parents.unshift(labelFor(byEid.get(prefix)));
+      }
+      const label = [...parents,labelFor(item)].join(' › ');
+      const detail = item.heading?.trim().toLowerCase() === labelFor(item).toLowerCase()
+        ? '' : item.heading || item.excerpt.slice(0,60);
+      const option = makeOption(item.eid,`${label}${detail ? ' — ' + detail : ''}`);
       options.append(option);
     }
     $('target-inspection').hidden = false;

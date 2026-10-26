@@ -297,9 +297,8 @@ def _render_ref(el: etree._Element) -> str:
 class OutlineNode:
     """One entry in the Outline tab: a provision, or a whole schedule.
 
-    ``label`` is the number and heading as the reader sees them
-    (``147. Payment of property tax``), falling back to the element name for
-    a provision that has neither.
+    ``label`` names the provision level and includes its printed number and
+    heading when available, such as ``Section 147 — Payment of property tax``.
     """
     eid: str
     tag: str
@@ -335,6 +334,42 @@ def build_outline(root: etree._Element) -> list[OutlineNode]:
     return nodes
 
 
+_NAVIGATION_NAMES = {
+    "subsection": "Subsection", "subclause": "Subclause",
+    "subparagraph": "Subparagraph", "hcontainer": "Container",
+}
+
+
+def provision_label(el: etree._Element, *, context: bool = False) -> str:
+    """A legal provision name for navigation, without changing printed text."""
+    def own(node: etree._Element, heading: bool) -> str:
+        kind = _local(node.tag)
+        name = (_NAVIGATION_NAMES.get(kind) or kind.capitalize())
+        if kind == "hcontainer" and node.get("name"):
+            name = node.get("name").replace("_", " ").title()
+        number = (node.findtext(_q("num")) or "").strip()
+        if context and kind == "hcontainer" and node.get("name") == "schedule" and not number:
+            attachment = next((parent for parent in node.iterancestors()
+                               if _local(parent.tag) == "attachment"), None)
+            match = re.fullmatch(r"att_(\d+)", attachment.get("eId", "")) if attachment is not None else None
+            if match:
+                number = match.group(1)
+        if kind in {"section", "article", "chapter", "part", "division", "subdivision"}:
+            number = number.removesuffix(".")
+        label = f"{name} {number}".strip()
+        title = (node.findtext(_q("heading")) or "").strip()
+        if heading and title and title.casefold() not in {name.casefold(), label.casefold()}:
+            label += f" — {title}"
+        return label
+
+    label = own(el, True)
+    if not context:
+        return label
+    parents = [ancestor for ancestor in reversed(list(el.iterancestors()))
+               if _local(ancestor.tag) in STRUCTURAL_TAGS and ancestor.get("eId")]
+    return " › ".join([*(own(parent, False) for parent in parents), label])
+
+
 def _outline_node(el: etree._Element) -> OutlineNode:
     """Build the outline entry for *el* and, recursively, its child provisions.
 
@@ -344,11 +379,7 @@ def _outline_node(el: etree._Element) -> OutlineNode:
     missed.
     """
     tag = _local(el.tag)
-    num = (el.findtext(_q("num")) or "").strip()
-    heading = (el.findtext(_q("heading")) or "").strip()
-    if tag in _DIVISION_TAGS and num:
-        num = f"{tag.capitalize()} {num}" + (":" if heading else "")
-    label = " ".join(filter(None, [num, heading])) or tag
+    label = provision_label(el)
     children = [
         _outline_node(child) for child in el if _local(child.tag) in STRUCTURAL_TAGS
     ]

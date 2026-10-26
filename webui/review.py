@@ -101,7 +101,8 @@ def _node(root, eid: str):
 
 def _outline(root):
     return [{"eid": e.get("eId"), "num": e.findtext(Q("num")) or "",
-             "heading": e.findtext(Q("heading")) or "", "tag": etree.QName(e).localname}
+             "heading": e.findtext(Q("heading")) or "", "tag": etree.QName(e).localname,
+             "label": akn_view.provision_label(e, context=True)}
             for e in root.iter() if etree.QName(e).localname in {"section", "subsection", "clause", "proviso"} and e.get("eId")]
 
 

@@ -405,6 +405,7 @@ class Consolidator:
                 {'eid': node.get('eId'), 'tag': tag(node),
                  'num': node.findtext(Q('num')) or '',
                  'heading': node.findtext(Q('heading')) or '',
+                 'name': node.get('name'),
                  'excerpt': text(node)[:150]}
                 for node in root.iter()
                 if tag(node) in {'section', 'subsection', 'clause', 'subclause', 'proviso', 'hcontainer'}
