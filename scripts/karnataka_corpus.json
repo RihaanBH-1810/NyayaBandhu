@@ -1,0 +1,32 @@
+[
+  {
+    "id": "renuka_yellamma_2023_base",
+    "kind": "base",
+    "title": "Shree Renuka Yellamma Kshetra Tourism Development Board Act, 2023",
+    "must_contain": "Renuka Yellamma Kshetra Tourism Development Board",
+    "url": "https://www.indiacode.nic.in/bitstream/123456789/20169/1/05of2024renukayellamma%28e%29.pdf"
+  },
+  {
+    "id": "motor_transport_workers_2024_base",
+    "kind": "base",
+    "title": "Karnataka Motor Transport and Other Allied Workers' Social Security and Welfare Act, 2024",
+    "must_contain": "Motor Transport and Other Allied Workers",
+    "url": "https://www.indiacode.nic.in/bitstream/123456789/20133/1/13of2024%28e%29motortransportworkers.pdf"
+  },
+  {
+    "id": "bbmp_2024_amendment",
+    "kind": "amendment",
+    "title": "Bruhat Bengaluru Mahanagara Palike (Amendment) Act, 2024",
+    "must_contain": "Bruhat Bengaluru Mahanagara Palike Amendment Act",
+    "url": "https://site.bbmp.gov.in/PDF/BBMP%20Amendment%20Act%202024%20-%20Notification.pdf",
+    "base_xml": "out/base_act/eng/BBMP Act.xml",
+    "base_pdf": "data/v0s/kan_eng/BBMP Act.pdf"
+  },
+  {
+    "id": "panchayat_2023_amendment",
+    "kind": "amendment",
+    "title": "Karnataka Gram Swaraj and Panchayat Raj (Amendment) Act, 2023",
+    "must_contain": "Karnataka Gram Swaraj and Panchayat Raj Amendment Act",
+    "url": "https://kla.kar.nic.in/council/house/bills/151/g_11.pdf"
+  }
+]

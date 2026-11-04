@@ -7,6 +7,9 @@ approval and a reader portal. It uses the existing consolidation engine and stor
 The Bluebell, standalone visual-editor and original consolidation branches remain
 available. Nothing in this workflow overwrites `out/` or the source PDFs.
 
+For additional Karnataka source PDFs and the current evaluation status, see
+[Karnataka corpus evaluation](karnataka-corpus-evaluation.md).
+
 ## Start here
 
 Run from the repository directory. Stop another server on port 8000 before starting.
