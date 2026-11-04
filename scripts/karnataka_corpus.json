@@ -5,7 +5,8 @@
     "title": "Shree Renuka Yellamma Kshetra Tourism Development Board Act, 2023",
     "must_contain": "Renuka Yellamma Kshetra Tourism Development Board",
     "max_pages": 40,
-    "url": "https://www.indiacode.nic.in/bitstream/123456789/20169/1/05of2024renukayellamma%28e%29.pdf"
+    "url": "https://karnatakatourism.org/department/wp-content/uploads/2025/01/Sri-Renuka-Yellamma-Tourism-Development-Board-Act-2023.pdf",
+    "fallback_urls": ["https://www.indiacode.nic.in/bitstream/123456789/20169/1/05of2024renukayellamma%28e%29.pdf"]
   },
   {
     "id": "motor_transport_workers_2024_base",
@@ -37,7 +38,8 @@
     "title": "Karnataka Tourism Ropeways Act, 2024",
     "must_contain": "KARNATAKA ACT NO. 08 OF 2025",
     "max_pages": 40,
-    "url": "https://www.indiacode.nic.in/bitstream/123456789/21667/1/08of2025%28e%29tourismropeway.pdf"
+    "url": "https://karnatakatourism.org/department/wp-content/uploads/2025/01/karnataka-tourism-ropeway-act-2025.pdf",
+    "fallback_urls": ["https://www.indiacode.nic.in/bitstream/123456789/21667/1/08of2025%28e%29tourismropeway.pdf"]
   },
   {
     "id": "lakkundi_heritage_2020_base",

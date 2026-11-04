@@ -47,32 +47,55 @@ def fetch_pdf(url: str, destination: Path) -> None:
         partial.unlink(missing_ok=True)
 
 
+def inspect_pdf(source: Path, case: dict) -> tuple[int, int | None]:
+    with pymupdf.open(source) as pdf:
+        if not pdf.page_count:
+            raise ValueError("PDF has no pages")
+        if case.get("max_pages") and pdf.page_count > case["max_pages"]:
+            raise ValueError(f"PDF has {pdf.page_count} pages, above this case's "
+                             f"{case['max_pages']}-page limit")
+        title_page = None
+        if case.get("must_contain"):
+            title = words(case["must_contain"])
+            title_page = next((index + 1 for index in range(pdf.page_count)
+                               if title in words(pdf[index].get_text())), None)
+            if title_page is None:
+                raise ValueError("PDF text does not match the expected Act title")
+        return pdf.page_count, title_page
+
+
 def evaluate(case: dict, workdir: Path, parser: ActParser, offline: bool) -> dict:
     source = workdir / "sources" / (case["id"] + ".pdf")
     source.parent.mkdir(parents=True, exist_ok=True)
-    record = {"id": case["id"], "kind": case["kind"], "source": case["url"]}
+    source_urls = [case["url"], *case.get("fallback_urls", [])]
+    source_note = source.with_suffix(".source.txt")
+    record = {"id": case["id"], "kind": case["kind"], "source_urls": source_urls}
     try:
         if not source.exists():
             if offline:
                 raise FileNotFoundError(f"PDF not cached: {source}")
-            fetch_pdf(case["url"], source)
+            failures = []
+            for url in source_urls:
+                try:
+                    fetch_pdf(url, source)
+                    inspect_pdf(source, case)
+                    record["source"] = url
+                    source_note.write_text(url + "\n", encoding="utf-8")
+                    break
+                except Exception as exc:
+                    source.unlink(missing_ok=True)
+                    failures.append(f"{url}: {type(exc).__name__}: {exc}")
+            else:
+                raise RuntimeError("All sources failed: " + "; ".join(failures))
+        else:
+            record["source"] = (source_note.read_text(encoding="utf-8").strip()
+                                if source_note.exists() else "locally supplied PDF")
         raw = source.read_bytes()
         if not raw.startswith(b"%PDF"):
             raise ValueError("Cached file is not a PDF")
-        with pymupdf.open(stream=raw, filetype="pdf") as pdf:
-            record["pdf_pages"] = pdf.page_count
-            if not pdf.page_count:
-                raise ValueError("PDF has no pages")
-            if case.get("max_pages") and pdf.page_count > case["max_pages"]:
-                raise ValueError(f"PDF has {pdf.page_count} pages, above this case's "
-                                 f"{case['max_pages']}-page limit")
-            if case.get("must_contain"):
-                title = words(case["must_contain"])
-                title_page = next((index + 1 for index in range(pdf.page_count)
-                                   if title in words(pdf[index].get_text())), None)
-                if title_page is None:
-                    raise ValueError("PDF text does not match the expected Act title")
-                record["title_page"] = title_page
+        record["pdf_pages"], title_page = inspect_pdf(source, case)
+        if title_page is not None:
+            record["title_page"] = title_page
         record["sha256"] = hashlib.sha256(raw).hexdigest()
         started = time.monotonic()
         result = parser.parse(str(source))
