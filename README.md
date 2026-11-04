@@ -30,6 +30,10 @@ gazette PDFs into validated Akoma Ntoso 3.0 XML.
 
 ## Installation
 
+For Windows, double-click `install.bat`, then use the desktop shortcut or
+`start.bat` for the persistent review workspace. Use `start-fresh.bat` for an
+empty recording workspace. See [Windows installation](docs/installation-windows.md).
+
 ```bash
 python -m venv .venv
 ```

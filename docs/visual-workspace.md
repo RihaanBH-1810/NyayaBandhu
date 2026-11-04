@@ -11,6 +11,12 @@ available. Nothing in this workflow overwrites `out/` or the source PDFs.
 
 Run from the repository directory. Stop another server on port 8000 before starting.
 
+Use `./run-normal-demo.sh` to reopen the persistent workspace, or
+`./run-fresh-demo.sh` to start a separate empty workspace for a recording.
+Both scripts activate `.venv` and start the server.
+On Windows, run `install.bat` once, then use `start.bat` or `start-fresh.bat`.
+See [Windows installation](installation-windows.md).
+
 ```bash
 git switch feature/visual-consolidation-workspace
 source .venv/bin/activate
