@@ -9,11 +9,21 @@ approved by this script.
 
 ## Candidate documents
 
-| Document | Official source | Why it was selected |
+| Base Act | Official source | Reason for inclusion |
 | --- | --- | --- |
 | Shree Renuka Yellamma Kshetra Tourism Development Board Act, 2023 | [India Code PDF](https://www.indiacode.nic.in/bitstream/123456789/20169/1/05of2024renukayellamma%28e%29.pdf) | Short base Act with provisions and definitions |
 | Karnataka Motor Transport and Other Allied Workers' Social Security and Welfare Act, 2024 | [India Code PDF](https://www.indiacode.nic.in/bitstream/123456789/20133/1/13of2024%28e%29motortransportworkers.pdf) | Short base Act with a different gazette layout |
 | Karnataka Scheduled Castes Sub-Allocation and Tribal Sub-Allocation Act, 2013, compiled through 2017 | [India Code PDF](https://upload.indiacode.nic.in/showfile?actid=AC_KA_71_598_00008_65_1552031496775&filename=65of2013%28e%29.pdf&type=actfile) | About 28 sections; small base for an intake check with the 2023 amendment |
+| Karnataka Religious Structures (Protection) Act, 2021 | [India Code PDF](https://www.indiacode.nic.in/bitstream/123456789/17227/1/42_of_2021%28e%29.pdf) | Compact Act with definitions and an overriding provision |
+| Karnataka Tourism Ropeways Act, 2024 | [India Code PDF](https://www.indiacode.nic.in/bitstream/123456789/21667/1/08of2025%28e%29tourismropeway.pdf) | Tests a different subject and nested definitions |
+| Lakkundi Heritage Area Development Authority Act, 2020 | [India Code PDF](https://www.indiacode.nic.in/bitstream/123456789/17226/1/50_of_2020_%28e%29.pdf) | Authority Act with schedules and nested provisions |
+| Basavanabagewadi Development Authority Act, 2024 | [India Code PDF](https://www.indiacode.nic.in/bitstream/123456789/21662/1/04of2025%28e%29basavanabagewadi.pdf) | Authority Act with a schedule and provisos |
+| Karnataka Border Area Development Authority Act, 2010 | [India Code PDF](https://www.indiacode.nic.in/bitstream/123456789/7522/1/12of2010%28e%29.pdf) | Older gazette layout and schedule |
+| Sarvajna Kshetra Development Authority Act, 2020 | [India Code PDF](https://www.indiacode.nic.in/bitstream/123456789/17242/1/38_of_2020_%28e%29.pdf) | Authority Act with heritage provisions |
+| Karnataka State Public Records Act, 2010 | [India Code PDF](https://www.indiacode.nic.in/bitstream/123456789/7525/1/9of2011%28e%29.pdf) | Records subject matter and older layout |
+
+| Amendment | Official source | Reason for inclusion |
+| --- | --- | --- |
 | Karnataka Scheduled Castes Sub-Allocation and Tribal Sub-Allocation (Amendment) Act, 2023, Act 6 of 2024 | [Karnataka Legislative Council Gazette PDF](https://kla.kar.nic.in/council/house/bills/151/g_9.pdf) | Short amendment affecting sections 3, 5 and 7 |
 | Karnataka Gram Swaraj and Panchayat Raj (Amendment) Act, 2023, Act 1 of 2024 | [Karnataka Legislative Council Gazette PDF](https://kla.kar.nic.in/council/house/bills/151/g_11.pdf) | Short amendment with a text insertion and repeal/savings |
 
@@ -49,11 +59,14 @@ and the command exits nonzero.
 
 ## Results in this workspace
 
-On 4 November 2026, all five new PDF downloads failed with DNS resolution
+On 4 November 2026, all twelve candidate PDF downloads failed with DNS resolution
 errors. Neither `curl` nor Python could resolve the government/India Code hosts
 from this container. The saved report is at
 `consolidation-data/karnataka-corpus-evaluation/report.json`. **There is no
-parsing or stitching verdict for the five new documents yet.**
+parsing or stitching verdict for the twelve candidate documents yet.** The
+ten base Acts have been identified from official sources, but their PDF page
+counts and parser performance remain unverified. The 40-page limit will reject
+any candidate that turns out to be too long.
 
 The evaluator was exercised against two existing local gazettes in a separate
 temporary directory:
@@ -64,7 +77,7 @@ temporary directory:
 | First Teachers amendment | 4 PDF pages; 3 sections; XSD valid; 119 eIds; 0.12 seconds | Base and amendment imported; 3 instruction candidates extracted |
 
 These checks show that the evaluation path works with local files; they do not
-measure accuracy on the five new documents. The earlier 264-page BBMP control
+measure accuracy on the twelve candidate documents. The earlier 264-page BBMP control
 was removed from this corpus following the request for smaller sources.
 
 ## Review required after downloads succeed

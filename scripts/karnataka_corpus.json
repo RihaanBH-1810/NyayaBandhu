@@ -24,6 +24,62 @@
     "url": "https://upload.indiacode.nic.in/showfile?actid=AC_KA_71_598_00008_65_1552031496775&filename=65of2013%28e%29.pdf&type=actfile"
   },
   {
+    "id": "religious_structures_2021_base",
+    "kind": "base",
+    "title": "Karnataka Religious Structures (Protection) Act, 2021",
+    "must_contain": "KARNATAKA ACT NO. 42 OF 2021",
+    "max_pages": 40,
+    "url": "https://www.indiacode.nic.in/bitstream/123456789/17227/1/42_of_2021%28e%29.pdf"
+  },
+  {
+    "id": "tourism_ropeways_2024_base",
+    "kind": "base",
+    "title": "Karnataka Tourism Ropeways Act, 2024",
+    "must_contain": "KARNATAKA ACT NO. 08 OF 2025",
+    "max_pages": 40,
+    "url": "https://www.indiacode.nic.in/bitstream/123456789/21667/1/08of2025%28e%29tourismropeway.pdf"
+  },
+  {
+    "id": "lakkundi_heritage_2020_base",
+    "kind": "base",
+    "title": "Lakkundi Heritage Area Development Authority Act, 2020",
+    "must_contain": "KARNATAKA ACT NO. 50 OF 2020",
+    "max_pages": 40,
+    "url": "https://www.indiacode.nic.in/bitstream/123456789/17226/1/50_of_2020_%28e%29.pdf"
+  },
+  {
+    "id": "basavanabagewadi_2024_base",
+    "kind": "base",
+    "title": "Basavanabagewadi Development Authority Act, 2024",
+    "must_contain": "KARNATAKA ACT NO. 04 OF 2025",
+    "max_pages": 40,
+    "url": "https://www.indiacode.nic.in/bitstream/123456789/21662/1/04of2025%28e%29basavanabagewadi.pdf"
+  },
+  {
+    "id": "border_area_2010_base",
+    "kind": "base",
+    "title": "Karnataka Border Area Development Authority Act, 2010",
+    "must_contain": "KARNATAKA ACT NO 12 OF 2010",
+    "max_pages": 40,
+    "url": "https://www.indiacode.nic.in/bitstream/123456789/7522/1/12of2010%28e%29.pdf"
+  },
+  {
+    "id": "sarvajna_kshetra_2020_base",
+    "kind": "base",
+    "title": "Sarvajna Kshetra Development Authority Act, 2020",
+    "must_contain": "KARNATAKA ACT NO. 38 OF 2020",
+    "max_pages": 40,
+    "url": "https://www.indiacode.nic.in/bitstream/123456789/17242/1/38_of_2020_%28e%29.pdf"
+  },
+  {
+    "id": "public_records_2010_base",
+    "kind": "base",
+    "title": "Karnataka State Public Records Act, 2010",
+    "must_contain": "KARNATAKA ACT NO. 9 OF 2011",
+    "max_pages": 40,
+    "url": "https://www.indiacode.nic.in/bitstream/123456789/7525/1/9of2011%28e%29.pdf"
+  },
+  {
     "id": "scst_allocation_2023_amendment",
     "kind": "amendment",
     "title": "Karnataka Scheduled Castes Sub-Allocation and Tribal Sub-Allocation (Amendment) Act, 2023 (Act 6 of 2024)",
