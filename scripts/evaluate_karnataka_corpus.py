@@ -63,6 +63,9 @@ def evaluate(case: dict, workdir: Path, parser: ActParser, offline: bool) -> dic
             record["pdf_pages"] = pdf.page_count
             if not pdf.page_count:
                 raise ValueError("PDF has no pages")
+            if case.get("max_pages") and pdf.page_count > case["max_pages"]:
+                raise ValueError(f"PDF has {pdf.page_count} pages, above this case's "
+                                 f"{case['max_pages']}-page limit")
             if case.get("must_contain"):
                 title = words(case["must_contain"])
                 title_page = next((index + 1 for index in range(pdf.page_count)
@@ -122,6 +125,37 @@ def evaluate(case: dict, workdir: Path, parser: ActParser, offline: bool) -> dic
     return record
 
 
+def evaluate_pair(base: dict, amendment: dict, workdir: Path) -> None:
+    if base["status"] != "parsed" or amendment["status"] != "parsed":
+        amendment["cms_smoke"] = {"status": "skipped", "reason": "Both PDFs must parse first"}
+        return
+    try:
+        with tempfile.TemporaryDirectory(prefix="cms-pair-", dir=workdir) as store_path:
+            service = Consolidator(store_path)
+            imported_base = service.import_source(
+                Path(base["xml_path"]).read_bytes(),
+                (workdir / "sources" / (base["id"] + ".pdf")).read_bytes(),
+                "base", "Corpus evaluation", "Check small Act intake",
+            )
+            imported_amendment = service.import_source(
+                Path(amendment["xml_path"]).read_bytes(),
+                (workdir / "sources" / (amendment["id"] + ".pdf")).read_bytes(),
+                "amendment", "Corpus evaluation", "Check short amendment intake",
+                imported_base["work_id"], imported_base["revision"],
+            )
+            extracted = service.extract(
+                imported_amendment["source_id"], imported_amendment["revision"],
+                "Corpus evaluation", "Check candidate instructions",
+            )
+            amendment["cms_smoke"] = {
+                "status": "extracted",
+                "candidates": len(extracted["manifest"]["body"]["operations"]),
+            }
+    except Exception as exc:
+        amendment["status"] = "cms_failed"
+        amendment["cms_smoke"] = {"status": "error", "error": f"{type(exc).__name__}: {exc}"}
+
+
 def main() -> int:
     cli = argparse.ArgumentParser(description=__doc__)
     cli.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
@@ -143,6 +177,12 @@ def main() -> int:
             print(f"  {record['pdf_pages']} PDF pages, {record['sections']} sections, "
                   f"schema={record['validation']['schema_valid']}, "
                   f"{record['parse_seconds']}s")
+    by_id = {record["id"]: record for record in records}
+    for case in cases:
+        if case.get("paired_base_id"):
+            amendment = by_id[case["id"]]
+            evaluate_pair(by_id[case["paired_base_id"]], amendment, workdir)
+            print(f"{case['id']} CMS intake: {amendment['cms_smoke']['status']}")
     report = workdir / "report.json"
     report.write_text(json.dumps(records, indent=2, ensure_ascii=False, default=str) + "\n",
                       encoding="utf-8")

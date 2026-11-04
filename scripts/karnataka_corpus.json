@@ -4,6 +4,7 @@
     "kind": "base",
     "title": "Shree Renuka Yellamma Kshetra Tourism Development Board Act, 2023",
     "must_contain": "Renuka Yellamma Kshetra Tourism Development Board",
+    "max_pages": 40,
     "url": "https://www.indiacode.nic.in/bitstream/123456789/20169/1/05of2024renukayellamma%28e%29.pdf"
   },
   {
@@ -11,22 +12,32 @@
     "kind": "base",
     "title": "Karnataka Motor Transport and Other Allied Workers' Social Security and Welfare Act, 2024",
     "must_contain": "Motor Transport and Other Allied Workers",
+    "max_pages": 40,
     "url": "https://www.indiacode.nic.in/bitstream/123456789/20133/1/13of2024%28e%29motortransportworkers.pdf"
   },
   {
-    "id": "bbmp_2024_amendment",
+    "id": "scst_allocation_2013_base",
+    "kind": "base",
+    "title": "Karnataka Scheduled Castes Sub-Allocation and Tribal Sub-Allocation Act, 2013 (compiled through 2017)",
+    "must_contain": "KARNATAKA ACT NO. 65 OF 2013",
+    "max_pages": 40,
+    "url": "https://upload.indiacode.nic.in/showfile?actid=AC_KA_71_598_00008_65_1552031496775&filename=65of2013%28e%29.pdf&type=actfile"
+  },
+  {
+    "id": "scst_allocation_2023_amendment",
     "kind": "amendment",
-    "title": "Bruhat Bengaluru Mahanagara Palike (Amendment) Act, 2024",
-    "must_contain": "Bruhat Bengaluru Mahanagara Palike Amendment Act",
-    "url": "https://site.bbmp.gov.in/PDF/BBMP%20Amendment%20Act%202024%20-%20Notification.pdf",
-    "base_xml": "out/base_act/eng/BBMP Act.xml",
-    "base_pdf": "data/v0s/kan_eng/BBMP Act.pdf"
+    "title": "Karnataka Scheduled Castes Sub-Allocation and Tribal Sub-Allocation (Amendment) Act, 2023 (Act 6 of 2024)",
+    "must_contain": "KARNATAKA ACT NO.06 OF 2024",
+    "max_pages": 12,
+    "paired_base_id": "scst_allocation_2013_base",
+    "url": "https://kla.kar.nic.in/council/house/bills/151/g_9.pdf"
   },
   {
     "id": "panchayat_2023_amendment",
     "kind": "amendment",
-    "title": "Karnataka Gram Swaraj and Panchayat Raj (Amendment) Act, 2023",
-    "must_contain": "Karnataka Gram Swaraj and Panchayat Raj Amendment Act",
+    "title": "Karnataka Gram Swaraj and Panchayat Raj (Amendment) Act, 2023 (Act 1 of 2024)",
+    "must_contain": "KARNATAKA ACT NO. 01 OF 2024",
+    "max_pages": 12,
     "url": "https://kla.kar.nic.in/council/house/bills/151/g_11.pdf"
   }
 ]
