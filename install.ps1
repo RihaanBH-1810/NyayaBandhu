@@ -33,8 +33,8 @@ function Find-Python {
     foreach ($candidate in $candidates) {
         try {
             $candidateArgs = $candidate.Args
-            $result = & $candidate.File @candidateArgs -c 'import sys; print("OK" if sys.version_info >= (3, 9) and sys.maxsize > 2**32 else "NO")' 2>$null
-            if ($LASTEXITCODE -eq 0 -and $result -eq 'OK') {
+            & $candidate.File @candidateArgs -c 'import sys; sys.exit(0 if sys.version_info >= (3, 9) and sys.maxsize > 2**32 else 1)' 2>$null
+            if ($LASTEXITCODE -eq 0) {
                 return $candidate
             }
         } catch {
@@ -96,8 +96,9 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Dependency installation failed.' }
     & $venvPython -m pip install -e .
     if ($LASTEXITCODE -ne 0) { throw 'Application installation failed.' }
-    & $venvPython -c 'import fastapi, uvicorn, akn_consolidator, webui.workspace; print("Application imports verified")'
+    & $venvPython -c 'import fastapi, uvicorn, akn_consolidator, webui.workspace'
     if ($LASTEXITCODE -ne 0) { throw 'The installed application could not be imported.' }
+    Write-Host 'Application imports verified.'
 
     try {
         $shell = New-Object -ComObject WScript.Shell

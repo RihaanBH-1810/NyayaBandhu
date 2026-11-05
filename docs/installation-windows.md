@@ -58,3 +58,7 @@ No Act is imported into a new workspace automatically.
 
 The installer has been checked for script structure and application imports on
 Linux. Windows execution still needs verification on a Windows machine.
+On 5 November 2026, a Windows test completed package installation but failed
+at the final Python import check because PowerShell removed nested quotes in
+the `-c` argument. The version and import checks now use commands without
+nested quotes. The corrected installer still needs a Windows rerun.
