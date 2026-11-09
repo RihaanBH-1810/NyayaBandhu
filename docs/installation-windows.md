@@ -13,8 +13,9 @@ packages that are not already installed.
 
 The installer copies the application, finds a 64-bit Python 3.9 or later, and
 creates `.venv`. If Python is missing, it downloads the signed Python 3.12.4
-installer from python.org and installs it for the current user in the chosen
-folder. It installs `requirements.txt` and the local package, checks that the
+installer from python.org and installs it in the current user's standard Python
+directory under `%LOCALAPPDATA%\Programs\Python`. It installs `requirements.txt`
+and the local package, checks that the
 review application imports, and creates a desktop shortcut.
 
 The copy includes `data/` and `out/`, so the source PDFs and generated XML are
@@ -62,3 +63,7 @@ On 5 November 2026, a Windows test completed package installation but failed
 at the final Python import check because PowerShell removed nested quotes in
 the `-c` argument. The version and import checks now use commands without
 nested quotes. The corrected installer still needs a Windows rerun.
+On 9 November 2026, another Windows test showed that Python's installer exited
+successfully but its executable was not in the custom application folder. The
+installer now uses Python's documented per-user default location and searches
+for the interpreter after installation. This change also needs a Windows rerun.

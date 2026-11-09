@@ -25,8 +25,24 @@ function Select-InstallDir {
 function Find-Python {
     param([string]$LocalPython)
 
+    $perUserPython = Join-Path $env:LOCALAPPDATA 'Programs\Python\Python312\python.exe'
+    $perUserPython64 = Join-Path $env:LOCALAPPDATA 'Programs\Python\Python312-64\python.exe'
+    $registeredPython = $null
+    $installKey = [Microsoft.Win32.Registry]::CurrentUser.OpenSubKey('Software\Python\PythonCore\3.12\InstallPath')
+    if ($installKey) {
+        $registeredPython = $installKey.GetValue('ExecutablePath')
+        $registeredRoot = $installKey.GetValue('')
+        if (-not $registeredPython -and $registeredRoot) {
+            $registeredPython = Join-Path $registeredRoot 'python.exe'
+        }
+        $installKey.Close()
+    }
     $candidates = @(
         @{ File = $LocalPython; Args = @() },
+        @{ File = $registeredPython; Args = @() },
+        @{ File = $perUserPython; Args = @() },
+        @{ File = $perUserPython64; Args = @() },
+        @{ File = 'py.exe'; Args = @('-3.12') },
         @{ File = 'py.exe'; Args = @('-3') },
         @{ File = 'python.exe'; Args = @() }
     )
@@ -74,13 +90,15 @@ try {
         if ($signature.Status -ne 'Valid' -or $signature.SignerCertificate.Subject -notmatch 'Python Software Foundation') {
             throw 'The downloaded Python installer did not have a valid Python Software Foundation signature.'
         }
-        $targetArg = 'TargetDir="{0}"' -f (Join-Path $InstallDir 'python')
-        $process = Start-Process -FilePath $download -ArgumentList @('/quiet', 'InstallAllUsers=0', $targetArg, 'Include_pip=1', 'Include_launcher=0', 'PrependPath=0', 'Include_test=0') -Wait -PassThru
-        if ($process.ExitCode -ne 0 -or -not (Test-Path $localPython)) {
-            throw "Python installation failed (exit code $($process.ExitCode))."
+        $process = Start-Process -FilePath $download -ArgumentList '/quiet InstallAllUsers=0 Include_pip=1 Include_launcher=0 PrependPath=0 Include_test=0' -Wait -PassThru
+        if ($process.ExitCode -ne 0) {
+            throw "Python installer exited with code $($process.ExitCode)."
         }
         Remove-Item $download -ErrorAction SilentlyContinue
-        $python = @{ File = $localPython; Args = @() }
+        $python = Find-Python $localPython
+        if (-not $python) {
+            throw "Python installer finished, but 64-bit Python 3.9 or later was not found. Check $env:LOCALAPPDATA\Programs\Python and rerun the installer."
+        }
     }
 
     $venvPython = Join-Path $InstallDir '.venv\Scripts\python.exe'
