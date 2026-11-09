@@ -5,6 +5,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $sourceDir = [System.IO.Path]::GetFullPath($PSScriptRoot).TrimEnd('\')
 $defaultDir = Join-Path $env:LOCALAPPDATA 'NyayaBandhu'
+$tempDir = [System.IO.Path]::GetFullPath($env:TEMP).TrimEnd('\')
 
 function Select-InstallDir {
     try {
@@ -61,6 +62,10 @@ function Find-Python {
 }
 
 try {
+    if ($sourceDir.StartsWith($tempDir + '\', [System.StringComparison]::OrdinalIgnoreCase) -and
+        $sourceDir -match '\.zip[.\\]') {
+        throw 'Extract the entire ZIP to a normal folder before running install.bat. Do not run it from the ZIP preview.'
+    }
     if (-not $InstallDir) { $InstallDir = Select-InstallDir }
     $InstallDir = [System.IO.Path]::GetFullPath($InstallDir).TrimEnd('\')
     if (-not $InstallDir) { throw 'Choose an installation folder.' }

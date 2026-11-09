@@ -6,7 +6,9 @@ packages that are not already installed.
 
 ## Install
 
-1. Download and extract this branch's repository, or clone it on Windows.
+1. Download and **extract the entire ZIP** to a normal folder, or clone the
+   repository on Windows. Do not double-click `install.bat` inside the ZIP
+   preview, which runs it from a temporary folder.
 2. Double-click `install.bat` at the repository root.
 3. Choose a folder in the picker. Closing the picker uses
    `%LOCALAPPDATA%\NyayaBandhu`.
@@ -52,6 +54,7 @@ No Act is imported into a new workspace automatically.
 | Problem | Action |
 | --- | --- |
 | `install.bat` says PowerShell is missing | Run the installer on Windows 10 or later with Windows PowerShell available. |
+| Installer says to extract the ZIP | In File Explorer, right-click the ZIP, choose **Extract All**, open the extracted `NyayaBandhu` folder, then run `install.bat`. |
 | Python download or package installation fails | Check the internet connection and rerun `install.bat`. |
 | `start.bat` says NyayaBandhu is not installed | Run `install.bat` in this folder first. |
 | Port 8000 is already in use | Close the other NyayaBandhu console window, then start again. |
