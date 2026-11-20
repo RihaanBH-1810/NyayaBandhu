@@ -21,9 +21,10 @@ class Consolidator:
         if not actor.strip() or not reason.strip(): raise ValueError('Actor and reason are required')
 
     @staticmethod
-    def _work(db, work_id, revision=None):
+    def _work(db, work_id, revision=None, allow_archived=False):
         row = db.execute('SELECT * FROM works WHERE id=?',(work_id,)).fetchone()
         if row is None: raise ValueError('Work not found')
+        if row['archived_at'] and not allow_archived: raise ValueError('Act is in Deleted Acts; restore it before editing')
         if revision is not None and row['revision'] != revision:
             raise Conflict(f"Stale work revision: expected {row['revision']}, received {revision}")
         return dict(row)
@@ -40,7 +41,7 @@ class Consolidator:
         return self.store.load(db.execute('SELECT * FROM manifests WHERE id=? ORDER BY revision DESC LIMIT 1',(manifest_id,)).fetchone())
 
     def _manifests(self, db, work_id):
-        return [self.store.load(r) for r in db.execute('SELECT m.* FROM manifests m WHERE work_id=? AND revision=(SELECT MAX(revision) FROM manifests WHERE id=m.id) ORDER BY created,id',(work_id,))]
+        return [self.store.load(r) for r in db.execute('SELECT m.* FROM manifests m JOIN sources s ON s.id=m.source_id WHERE m.work_id=? AND s.archived_at IS NULL AND m.revision=(SELECT MAX(revision) FROM manifests WHERE id=m.id) ORDER BY m.created,m.id',(work_id,))]
 
     def _record_expression(self, db, work_id, parent_id, effective_date, root, body):
         xml_hash = self.store.put(serialise(root)); manifest_hash = self.store.put(encode(body))
@@ -71,7 +72,7 @@ class Consolidator:
                 if not report['ok']: raise ValueError('Base XML is invalid: '+report['summary'])
                 work_id = digest(meta['work_uri'].encode())[:24]
                 if db.execute('SELECT 1 FROM works WHERE id=?',(work_id,)).fetchone(): raise Conflict('Base work already exists')
-                db.execute('INSERT INTO works VALUES(?,?,?)',(work_id,meta['work_uri'],0))
+                db.execute('INSERT INTO works(id,uri,revision) VALUES(?,?,?)',(work_id,meta['work_uri'],0))
             else:
                 if revision is None: raise ValueError('Expected work revision is required')
                 work=self._work(db,work_id,revision)
@@ -82,7 +83,7 @@ class Consolidator:
             x,p = self.store.put(xml), self.store.put(pdf)
             source_id = digest(encode([work_id,kind,x,p]))[:24]
             if db.execute('SELECT 1 FROM sources WHERE id=?',(source_id,)).fetchone(): raise Conflict('Source already imported')
-            db.execute('INSERT INTO sources VALUES(?,?,?,?,?,?,?)',(source_id,work_id,kind,x,p,encode(meta).decode(),now()))
+            db.execute('INSERT INTO sources(id,work_id,kind,xml_hash,pdf_hash,metadata,created) VALUES(?,?,?,?,?,?,?)',(source_id,work_id,kind,x,p,encode(meta).decode(),now()))
             result = {'work_id':work_id,'source_id':source_id}
             if kind=='base':
                 body={'kind':'base','source_id':source_id,'date_basis':'as_published; commencement not determined',
@@ -97,6 +98,7 @@ class Consolidator:
         with self.store.transaction() as db:
             source=self.store.load(db.execute('SELECT * FROM sources WHERE id=?',(source_id,)).fetchone())
             if source['kind']!='amendment': raise ValueError('Choose an amendment source')
+            if source['archived_at']: raise Conflict('Amendment is deleted; restore it before processing')
             work_id=source['work_id']; self._work(db,work_id,revision)
             manifest_id=digest((source_id+':instructions').encode())[:24]
             if db.execute('SELECT 1 FROM manifests WHERE id=?',(manifest_id,)).fetchone(): raise Conflict('Instructions already extracted; submit a review revision')
@@ -134,6 +136,7 @@ class Consolidator:
             if not set(old_ops)<= {o['id'] for o in ops}: raise ValueError('Instructions cannot be silently deleted; classify their effect')
             coverage={c['source_eid'] for c in body['coverage']}
             source=self.store.load(db.execute('SELECT * FROM sources WHERE id=?',(previous['source_id'],)).fetchone())
+            if source['archived_at']: raise Conflict('Amendment is deleted; restore it before reviewing')
             max_page=source['metadata'].get('pdf_pages')
             if max_page is None:
                 with pymupdf.open(stream=self.store.read(source['pdf_hash']),filetype='pdf') as document:
@@ -193,7 +196,7 @@ class Consolidator:
         if effective_date < parent['effective_date']: raise Conflict('Effective date precedes the selected predecessor; replay from an earlier expression')
         root=parse(self.store.read(parent['xml_hash'])); manifests=self._manifests(db,work_id)
         selected=[]; revisions=dict(parent['body']['manifest_revisions']); applied=list(parent['body']['applied']); applications=[]
-        missing=[r['id'] for r in db.execute("SELECT s.id FROM sources s WHERE work_id=? AND kind='amendment' AND NOT EXISTS(SELECT 1 FROM manifests m WHERE m.source_id=s.id)",(work_id,))]
+        missing=[r['id'] for r in db.execute("SELECT s.id FROM sources s WHERE work_id=? AND kind='amendment' AND archived_at IS NULL AND NOT EXISTS(SELECT 1 FROM manifests m WHERE m.source_id=s.id)",(work_id,))]
         if missing: raise Conflict('Extract all registered amendment sources first: '+', '.join(missing))
         ordering=set()
         for manifest in manifests:
@@ -255,7 +258,7 @@ class Consolidator:
             parent=self._expression(db,expression_id); self._work(db,parent['work_id'],revision)
             if not parent['approved_at'] or parent['invalidated_at']: raise Conflict('Correction requires a current approved expression')
             source=db.execute('SELECT * FROM sources WHERE id=? AND work_id=?',(evidence['source_id'],parent['work_id'])).fetchone()
-            if source is None: raise ValueError('Correction evidence belongs to another work')
+            if source is None or source['archived_at']: raise ValueError('Correction evidence must belong to an active source in this work')
             if any(op['action'] not in {'text_replace','slot_edits'} or not op.get('expected_hash') for op in operations):
                 raise ValueError('Editorial corrections require text operations and expected target hashes')
             root,result=run(parse(self.store.read(parent['xml_hash'])),[(f'correction:{i}',op) for i,op in enumerate(operations)],parent['body']['identities'],parent['body']['tombstones'])
@@ -298,10 +301,10 @@ class Consolidator:
                     'expressions':[self.store.load(r) for r in db.execute('SELECT * FROM expressions WHERE work_id=? ORDER BY effective_date,created',(work_id,))],
                     'events':[self.store.load(r) for r in db.execute('SELECT * FROM events WHERE work_id=? ORDER BY id',(work_id,))]}
 
-    def workspace(self, work_id):
+    def workspace(self, work_id, include_archived=False):
         """Compact CMS read model; avoid sending XML-sized diffs and identity maps."""
         with self.store.transaction() as db:
-            work = self._work(db, work_id)
+            work = self._work(db, work_id, allow_archived=include_archived)
             expressions = []
             for row in db.execute('SELECT * FROM expressions WHERE work_id=? ORDER BY effective_date,created', (work_id,)):
                 state = self.store.load(row)
@@ -316,7 +319,8 @@ class Consolidator:
                                       'change_count': len(body.get('changes', []))})
             return {
                 'work': work,
-                'sources': [self.store.load(row) for row in db.execute('SELECT * FROM sources WHERE work_id=? ORDER BY created', (work_id,))],
+                'sources': [self.store.load(row) for row in db.execute('SELECT * FROM sources WHERE work_id=? AND archived_at IS NULL ORDER BY created', (work_id,))],
+                'archived_sources': [self.store.load(row) for row in db.execute("SELECT * FROM sources WHERE work_id=? AND kind='amendment' AND archived_at IS NOT NULL ORDER BY created", (work_id,))],
                 'manifests': self._manifests(db, work_id),
                 'expressions': expressions,
                 'events': [self.store.load(row) for row in db.execute('SELECT * FROM events WHERE work_id=? ORDER BY id DESC LIMIT 80', (work_id,))],
@@ -326,9 +330,53 @@ class Consolidator:
         with self.store.transaction() as db:
             return self._expression(db, expression_id)
 
-    def works(self):
+    def works(self, archived=False):
         with self.store.transaction() as db:
-            return [dict(r) for r in db.execute('SELECT * FROM works ORDER BY uri')]
+            return [dict(r) for r in db.execute('SELECT * FROM works WHERE archived_at IS '+('NOT NULL' if archived else 'NULL')+' ORDER BY uri')]
+
+    def archive_work(self, work_id, revision, actor, reason):
+        self._actor(actor, reason)
+        with self.store.transaction() as db:
+            self._work(db, work_id, revision)
+            self.store.event(db, work_id, 'act_deleted', actor, reason, {})
+            db.execute('UPDATE works SET archived_at=? WHERE id=?', (now(), work_id))
+            return {'work_id': work_id, 'revision': self._bump(db, work_id)}
+
+    def restore_work(self, work_id, revision, actor, reason):
+        self._actor(actor, reason)
+        with self.store.transaction() as db:
+            work = self._work(db, work_id, revision, allow_archived=True)
+            if not work['archived_at']: raise Conflict('Act is already active')
+            db.execute('UPDATE works SET archived_at=NULL WHERE id=?', (work_id,))
+            self.store.event(db, work_id, 'act_restored', actor, reason, {})
+            return {'work_id': work_id, 'revision': self._bump(db, work_id)}
+
+    def archive_amendment(self, work_id, source_id, revision, actor, reason):
+        self._actor(actor, reason)
+        with self.store.transaction() as db:
+            self._work(db, work_id, revision)
+            source = db.execute('SELECT * FROM sources WHERE id=? AND work_id=? AND kind=?', (source_id, work_id, 'amendment')).fetchone()
+            if source is None: raise ValueError('Amendment not found in this Act')
+            if source['archived_at']: raise Conflict('Amendment is already deleted')
+            manifest_ids = {row['id'] for row in db.execute('SELECT id FROM manifests WHERE source_id=?', (source_id,))}
+            for row in db.execute('SELECT body FROM expressions WHERE work_id=?', (work_id,)):
+                body = json.loads(row['body'])
+                if source_id in row['body'] or manifest_ids.intersection(body.get('manifest_revisions', {})):
+                    raise Conflict('This amendment is used by a saved version. Its version history must be resolved before deletion.')
+            db.execute('UPDATE sources SET archived_at=? WHERE id=?', (now(), source_id))
+            self.store.event(db, work_id, 'amendment_deleted', actor, reason, {'source_id': source_id})
+            return {'source_id': source_id, 'revision': self._bump(db, work_id)}
+
+    def restore_amendment(self, work_id, source_id, revision, actor, reason):
+        self._actor(actor, reason)
+        with self.store.transaction() as db:
+            self._work(db, work_id, revision)
+            source = db.execute('SELECT * FROM sources WHERE id=? AND work_id=? AND kind=?', (source_id, work_id, 'amendment')).fetchone()
+            if source is None: raise ValueError('Amendment not found in this Act')
+            if not source['archived_at']: raise Conflict('Amendment is already active')
+            db.execute('UPDATE sources SET archived_at=NULL WHERE id=?', (source_id,))
+            self.store.event(db, work_id, 'amendment_restored', actor, reason, {'source_id': source_id})
+            return {'source_id': source_id, 'revision': self._bump(db, work_id)}
 
     def expression_xml(self, expression_id):
         """Inspect a draft or historical expression; this is not an approved export."""
@@ -354,7 +402,7 @@ class Consolidator:
             row=db.execute('SELECT * FROM expressions WHERE work_id=? AND effective_date<=? AND approved_at<=? AND (invalidated_at IS NULL OR invalidated_at>?) ORDER BY effective_date DESC,approved_at DESC LIMIT 1',(work_id,as_of,cutoff,cutoff)).fetchone()
             expression=self.store.load(row)
             # History cutoff also applies to source and instruction discovery.
-            registered=[r['id'] for r in db.execute("SELECT id FROM sources WHERE work_id=? AND kind='amendment' AND created<=?",(work_id,cutoff))]
+            registered=[r['id'] for r in db.execute("SELECT id FROM sources WHERE work_id=? AND kind='amendment' AND archived_at IS NULL AND created<=?",(work_id,cutoff))]
             covered=[];unresolved=[]
             for source_id in registered:
                 m=db.execute('SELECT * FROM manifests WHERE source_id=? AND created<=? ORDER BY revision DESC LIMIT 1',(source_id,cutoff)).fetchone()
@@ -446,8 +494,8 @@ class Consolidator:
         with self.store.transaction() as db:
             expression=self._expression(db,expression_id)
             if not expression['approved_at'] or expression['invalidated_at']: raise Conflict('Only a current approved expression can be exported')
-            sources=[self.store.load(r) for r in db.execute('SELECT * FROM sources WHERE work_id=?',(expression['work_id'],))]
-            manifests=[self.store.load(r) for r in db.execute('SELECT * FROM manifests WHERE work_id=? ORDER BY id,revision',(expression['work_id'],))]
+            sources=[self.store.load(r) for r in db.execute('SELECT * FROM sources WHERE work_id=? AND archived_at IS NULL',(expression['work_id'],))]
+            manifests=[self.store.load(r) for r in db.execute('SELECT m.* FROM manifests m JOIN sources s ON s.id=m.source_id WHERE m.work_id=? AND s.archived_at IS NULL ORDER BY m.id,m.revision',(expression['work_id'],))]
             events=[self.store.load(r) for r in db.execute('SELECT * FROM events WHERE work_id=? ORDER BY id',(expression['work_id'],))]
             history=[self.store.load(r) for r in db.execute('SELECT * FROM expressions WHERE work_id=? ORDER BY created',(expression['work_id'],))]
             bundle={'expression':expression,'expression_history':history,'sources':sources,'instruction_history':manifests,'events':events,'coverage_claim':'Registered sources only; no attestation'}

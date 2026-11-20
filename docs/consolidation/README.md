@@ -2,6 +2,8 @@
 
 This engine extends NyayaBandhu with deterministic amendment instructions, human review gates, immutable dated XML expressions, and a local CMS API. It operates separately from PDF conversion and the visual editor. `out/` and `data/` are never edited.
 
+The newly supplied Teachers 2022 and Kannada 2022/2024 sources, their PDF page separation, intake checks, and remaining reviewer decisions are documented in [new-sources.md](new-sources.md).
+
 The local review workspace is at `/consolidation` in the existing viewer. It uses the engine and CMS API below. Accounts and publication remain future work. Indigo supplied the conceptual distinction between a work, its dated expressions, and editorial work; no Indigo code or Django application is incorporated.
 
 ## Browser review workflow

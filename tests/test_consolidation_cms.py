@@ -3,6 +3,7 @@ import asyncio
 from copy import deepcopy
 import json
 from pathlib import Path
+import sqlite3
 import sys
 
 import pytest
@@ -13,10 +14,71 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 sys.path.insert(0, str(ROOT))
 from akn_consolidator.common import Conflict, digest
 from akn_consolidator.service import Consolidator
-from webui.consolidation import router, page_router
+from akn_consolidator.storage import Store
+from webui.consolidation import catalog, router, page_router
 
 REVIEWS = json.loads((ROOT / 'tests/fixtures/consolidation/reviews.json').read_text())
 AUTH = {'actor':'CMS regression reviewer','reason':'Review workspace test'}
+
+
+def test_prepared_amendments_are_grouped_by_principal_act():
+    items = {Path(item['xml_path']).stem: item for item in catalog()['prepared_amendments']}
+    teachers = '/akn/in-ka/act/2020-03-26/4'
+    kannada = '/akn/in-ka/act/2023-03-10/13'
+    assert {name for name, item in items.items() if item['target_work_uri'] == teachers} == {
+        'First_ammendment', 'Second_ammendment', 'Teachers_2022', 'Third_ammendment'}
+    assert {name for name, item in items.items() if item['target_work_uri'] == kannada} == {'Kannada_2024'}
+    assert all(item['pdf_path'] for item in items.values())
+
+
+def test_existing_workspace_database_migrates_without_losing_acts(tmp_path):
+    database = tmp_path / 'history.sqlite3'
+    with sqlite3.connect(database) as db:
+        db.execute('CREATE TABLE works(id TEXT PRIMARY KEY, uri TEXT UNIQUE NOT NULL, revision INTEGER NOT NULL)')
+        db.execute('CREATE TABLE sources(id TEXT PRIMARY KEY, work_id TEXT NOT NULL, kind TEXT NOT NULL, xml_hash TEXT NOT NULL, pdf_hash TEXT NOT NULL, metadata TEXT NOT NULL, created TEXT NOT NULL)')
+        db.execute("INSERT INTO works VALUES('saved', '/akn/in-ka/act/2020-03-26/4', 7)")
+        db.execute('PRAGMA user_version=1')
+    store = Store(tmp_path)
+    with store.connect() as db:
+        assert db.execute('PRAGMA user_version').fetchone()[0] == 2
+        assert tuple(db.execute("SELECT revision,archived_at FROM works WHERE id='saved'").fetchone()) == (7, None)
+
+
+def test_delete_and_restore_act_and_unapplied_amendment(tmp_path):
+    service, work_id, base, extracted = setup_first(tmp_path)
+    source_id = extracted['manifest']['source_id']
+    revision = extracted['revision']
+    deleted = service.archive_amendment(work_id, source_id, revision, **AUTH)
+    assert all(s['id'] != source_id for s in service.workspace(work_id)['sources'])
+    assert service.workspace(work_id)['archived_sources'][0]['id'] == source_id
+    assert not service.workspace(work_id)['manifests']
+    with pytest.raises(Conflict, match='Stale work revision'):
+        service.restore_amendment(work_id, source_id, revision, **AUTH)
+    restored = service.restore_amendment(work_id, source_id, deleted['revision'], **AUTH)
+    assert service.workspace(work_id)['manifests'][0]['source_id'] == source_id
+    service.archive_work(work_id, restored['revision'], **AUTH)
+    assert not service.works()
+    service = Consolidator(tmp_path)
+    archived = service.works(archived=True)[0]
+    with pytest.raises(ValueError, match='Deleted Acts'):
+        service.workspace(work_id)
+    service.restore_work(work_id, archived['revision'], **AUTH)
+    assert service.works()[0]['id'] == work_id
+    assert service.expression(base['id'])['id'] == base['id']
+
+
+def test_amendment_used_by_saved_version_cannot_be_deleted(tmp_path):
+    service, work_id, base, extracted = setup_first(tmp_path)
+    manifest = extracted['manifest']
+    reviewed = service.review(manifest['id'], deepcopy(REVIEWS['First']), extracted['revision'],
+                              manifest['revision'], **AUTH)
+    preview = service.preview(work_id, base['id'], REVIEWS['First']['effective_date'])
+    assert preview['ok']
+    saved = service.apply(work_id, base['id'], REVIEWS['First']['effective_date'],
+                          reviewed['revision'], preview['preview_hash'], **AUTH)
+    with pytest.raises(Conflict, match='used by a saved version'):
+        service.archive_amendment(work_id, manifest['source_id'], saved['revision'], **AUTH)
+    assert service.workspace(work_id)['sources'][-1]['id'] == manifest['source_id']
 
 
 def setup_first(tmp_path):

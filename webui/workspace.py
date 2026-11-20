@@ -70,11 +70,11 @@ def work_summary(svc, view):
 
 
 @api.get('/works')
-def catalogue(public: bool = False):
+def catalogue(public: bool = False, archived: bool = False):
     svc = service()
     result = []
-    for work in svc.works():
-        view = svc.workspace(work['id'])
+    for work in svc.works(archived=archived and not public):
+        view = svc.workspace(work['id'], include_archived=archived and not public)
         row = work_summary(svc, view)
         if not public or row['latest']:
             result.append(row)
@@ -93,6 +93,11 @@ def detail(work_id: str, public: bool = False):
         meta = akn_view.extract_metadata(parse(svc.source_artifact(source['id'], 'xml')))
         sources.append({**source, 'title': meta.get('title') or source['kind'].title(),
                         'date': source['metadata']['publication_date']})
+    archived_sources = []
+    if not public:
+        for source in view['archived_sources']:
+            meta = akn_view.extract_metadata(parse(svc.source_artifact(source['id'], 'xml')))
+            archived_sources.append({**source, 'title': meta.get('title') or 'Amendment'})
     with svc.store.transaction() as db:
         related = [dict(row) for row in db.execute('SELECT * FROM related_documents WHERE work_id=? ORDER BY document_date DESC', (work_id,))]
         issues = [] if public else [dict(row) for row in db.execute('SELECT * FROM reader_issues WHERE work_id=? ORDER BY id DESC', (work_id,))]
@@ -107,7 +112,28 @@ def detail(work_id: str, public: bool = False):
         sources = [s for s in sources if s['id'] in allowed_sources]
         return {'summary': summary, 'expressions': versions, 'sources': sources,
                 'related': [{k: r[k] for k in ('id','title','kind','category','document_date')} for r in related]}
-    return {**view, 'summary': summary, 'sources': sources, 'related': related, 'issues': issues}
+    return {**view, 'summary': summary, 'sources': sources, 'archived_sources': archived_sources,
+            'related': related, 'issues': issues}
+
+
+@api.delete('/works/{work_id}')
+def delete_work(work_id: str, body: Mutation):
+    return call('archive_work', work_id, **body.model_dump())
+
+
+@api.post('/works/{work_id}/restore')
+def restore_work(work_id: str, body: Mutation):
+    return call('restore_work', work_id, **body.model_dump())
+
+
+@api.delete('/works/{work_id}/amendments/{source_id}')
+def delete_amendment(work_id: str, source_id: str, body: Mutation):
+    return call('archive_amendment', work_id, source_id, **body.model_dump())
+
+
+@api.post('/works/{work_id}/amendments/{source_id}/restore')
+def restore_amendment(work_id: str, source_id: str, body: Mutation):
+    return call('restore_amendment', work_id, source_id, **body.model_dump())
 
 
 class Canvas(Input):

@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <act name="act" contains="originalVersion">
+    <meta>
+      <identification source="#nyayabandhu">
+        <FRBRWork>
+          <FRBRthis value="/akn/in-ka/act/2024-02-25/7/!main"/>
+          <FRBRuri value="/akn/in-ka/act/2024-02-25/7"/>
+          <FRBRalias name="title" value="THE KANNADA LANGUAGE COMPREHENSIVE DEVELOPMENT (AMENDMENT) ACT, 2024"/>
+          <FRBRdate date="2024-02-25" name="assent"/>
+          <FRBRauthor href="#karnatakaLegislature"/>
+          <FRBRcountry value="in-ka"/>
+          <FRBRnumber value="7"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in-ka/act/2024-02-25/7/eng@2024-02-26/!main"/>
+          <FRBRuri value="/akn/in-ka/act/2024-02-25/7/eng@2024-02-26"/>
+          <FRBRdate date="2024-02-26" name="publication"/>
+          <FRBRauthor href="#karnatakaLegislature"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in-ka/act/2024-02-25/7/eng@2024-02-26/!main.xml"/>
+          <FRBRuri value="/akn/in-ka/act/2024-02-25/7/eng@2024-02-26.xml"/>
+          <FRBRdate date="2026-11-10" name="generation"/>
+          <FRBRauthor href="#nyayabandhu"/>
+          <FRBRformat value="xml"/>
+        </FRBRManifestation>
+      </identification>
+      <publication date="2024-02-26" name="Karnataka Gazette Extra-ordinary" showAs="Karnataka Gazette Extra-ordinary"/>
+      <lifecycle source="#nyayabandhu">
+        <eventRef eId="eref_1" date="2024-02-25" type="generation" source="#karnatakaLegislature"/>
+      </lifecycle>
+      <references source="#nyayabandhu">
+        <TLCOrganization eId="karnatakaLegislature" href="/akn/ontology/organization/in-ka/legislature" showAs="Karnataka State Legislature"/>
+        <TLCOrganization eId="karnatakaGazette" href="/akn/ontology/organization/in-ka/gazette" showAs="Karnataka Gazette"/>
+        <TLCRole eId="nyayabandhu" href="/akn/ontology/role/editor" showAs="NyayaBandhu automated parser"/>
+      </references>
+    </meta>
+    <preface eId="preface">
+      <p eId="preface__p_1">DEPARTMENT OF PARLIAMENTARY AFFAIRS AND LEGISLATION SECRETARIAT NOTIFICATION NO: DPAL 01 SHASANA 2024, DATED:26.02.2024</p>
+      <p eId="preface__p_2">
+        <span eId="preface__p_2__span_1" xml:lang="kn">ರತ </span>๸เඋ<span eId="preface__p_2__span_2" xml:lang="kn">ನದ ಅඝ೎౟ೕದ 348 ರ ಘಡ (1)ರ</span>ല<span eId="preface__p_2__span_3" xml:lang="kn">ಯ</span>ย౵ ฃ<span eId="preface__p_2__span_4" xml:lang="kn">ಜ</span>౲ඩ<span eId="preface__p_2__span_5" xml:lang="kn">ಲ</span>ค<span eId="preface__p_2__span_6" xml:lang="kn">ಂದ  ಅඌಂತತั</span> ๭<span eId="preface__p_2__span_7" xml:lang="kn">ದ ಕನ</span>౬<span eId="preface__p_2__span_8" xml:lang="kn">ಡ </span> ๝<span eId="preface__p_2__span_9" xml:lang="kn"> ಅ</span>෗ไൽ౫ (ൟൿ౪<span eId="preface__p_2__span_10" xml:lang="kn">ಪ</span>ല<span eId="preface__p_2__span_11" xml:lang="kn">) ಅ</span>ඌඛ<span eId="preface__p_2__span_12" xml:lang="kn">ಯಮ, 2024 (2024ರ ಕ</span>කბ<span eId="preface__p_2__span_13" xml:lang="kn">ಟಕ  ಅ</span>ඌඛ<span eId="preface__p_2__span_14" xml:lang="kn">ಯಮ ๸ಒ౲: 07)ರ </span> ๝<span eId="preface__p_2__span_15" xml:lang="kn">ಂತರವ</span>ඝ౬<span eId="preface__p_2__span_16" xml:lang="kn"> ಅඌಂತ ಆಂಗ</span>౵<span eId="preface__p_2__span_17" xml:lang="kn"> ಪಠ</span>౲ๅ<span eId="preface__p_2__span_18" xml:lang="kn">ಂ</span>ൿ<span eId="preface__p_2__span_19" xml:lang="kn"> ಕ</span>කბ<span eId="preface__p_2__span_20" xml:lang="kn">ಟಕ </span> ฃ<span eId="preface__p_2__span_21" xml:lang="kn">ಜ</span>౲<span eId="preface__p_2__span_22" xml:lang="kn">ಪತ</span>౳<span eId="preface__p_2__span_23" xml:lang="kn">ದ</span>ย౵ ( <span eId="preface__p_2__span_24" xml:lang="kn">ಗ IV-A) ಪ</span>౳<span eId="preface__p_2__span_25" xml:lang="kn">ಕ</span>ഔ<span eId="preface__p_2__span_26" xml:lang="kn">ಸ෎ಃಂ</span>ൿ<span eId="preface__p_2__span_27" xml:lang="kn"> ಆ</span>ඃ๏<span eId="preface__p_2__span_28" xml:lang="kn">ಸมಜං</span>,-</p>
+      <p eId="preface__p_3">KARNATAKA ACT NO. 07 OF 2024</p>
+      <p eId="preface__p_4">(First Published in the Karnataka Gazette Extra-ordinary on the 26th day of February, 2024)</p>
+      <p eId="preface__p_5">THE KANNADA LANGUAGE COMPREHENSIVE DEVELOPMENT (AMENDMENT) ACT, 2024</p>
+      <p eId="preface__p_6">(Received the assent of the Governor on the 25th day of February, 2024)</p>
+      <longTitle eId="preface__longTitle_1">
+        <p eId="preface__longTitle_1__p_1">An Act to amend the Kannada Language Comprehensive Development Act, 2022 (Karnataka Act 13 of 2023).</p>
+      </longTitle>
+    </preface>
+    <preamble eId="preamble">
+      <recitals eId="preamble__recitals_1">
+        <recital eId="preamble__recitals_1__rec_1">
+          <p eId="preamble__recitals_1__rec_1__p_1">Whereas it is expedient to amend the Kannada Language Comprehensive Development Act, 2022 (Karnataka Act 13 of 2023), for the purposes hereinafter appearing;</p>
+        </recital>
+      </recitals>
+      <formula eId="preamble__formula_1" name="enactingFormula">
+        <p eId="preamble__formula_1__p_1">Be it enacted by the Karnataka State Legislature in the seventy fifth year of the Republic of India, as follows:-</p>
+      </formula>
+    </preamble>
+    <body>
+      <section eId="sec_1">
+        <num>1.</num>
+        <heading>Short title and commencement</heading>
+        <subsection eId="sec_1__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_1__subsec_1__content">
+            <p eId="sec_1__subsec_1__content__p_1">This Act may be called the Kannada Language Comprehensive Development (Amendment) Act, 2024.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_1__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_1__subsec_2__content">
+            <p eId="sec_1__subsec_2__content__p_1">It shall come into force on such date as the State Government may by notification in the Official Gazette appoint.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_2">
+        <num>2.</num>
+        <heading>Amendment of section 7</heading>
+        <content eId="sec_2__content">
+          <p eId="sec_2__content__p_1">In the Kannada Language Comprehensive Development Act, 2022 (Karnataka Act 13 of 2023), (herein after referred to as the Principal Act) in section 7, in <ref eId="sec_2__content__p_1__ref_1" href="#sec_1__subsec_2">sub-section (2)</ref>, in clause (a), for item (vii), the following shall be substituted , namely:- "(vii) The Director, Directorate of Kannada and Culture - Member (vii-a) The Secretary, Kannada Development Authority shall be the convener of the Committee."</p>
+        </content>
+      </section>
+      <section eId="sec_3">
+        <num>3.</num>
+        <heading>Amendment of section 17</heading>
+        <content eId="sec_3__content">
+          <p eId="sec_3__content__p_1">In section 17 of the Principal Act, for sub-section (6), the following shall be substituted , namely:- "(6) The name boards of Commercial, Industrial and Business Undertakings, Trusts, Counseling Centre's, Hospitals, Laboratories, Amusement Centers and Hotels etc., functioning with the approval and sanction of the Government or Local Authorities, shall ensure that their name board displays 60% in Kannada language and Kannada shall be displayed in the upper half of the name board".</p>
+        </content>
+      </section>
+    </body>
+    <conclusions eId="conclusions">
+      <p eId="conclusions__p_1">The above translation of <span eId="conclusions__p_1__span_1" xml:lang="kn">ಕನ</span>౬<span eId="conclusions__p_1__span_2" xml:lang="kn">ಡ </span> ๝<span eId="conclusions__p_1__span_3" xml:lang="kn"> ಸಮಗ</span>౳<span eId="conclusions__p_1__span_4" xml:lang="kn"> ಅ</span>෗ไൽ౫ (ൟൿ౪<span eId="conclusions__p_1__span_5" xml:lang="kn">ಪ</span>ല) <span eId="conclusions__p_1__span_6" xml:lang="kn">ಅ</span>ඌඛ<span eId="conclusions__p_1__span_7" xml:lang="kn">ಯಮ, 2024   (2024ರ ಕ</span>කბ<span eId="conclusions__p_1__span_8" xml:lang="kn">ಟಕ ಅ</span>ඌඛ<span eId="conclusions__p_1__span_9" xml:lang="kn">ಯಮ ๸ಒ౲</span>: 07) into English language be published in the official Gazette under clause (3) of Article 348 of the Constitution of India.</p>
+      <p eId="conclusions__p_2">THAAWARCHAND GEHLOT GOVERNOR OF KARANATAKA</p>
+      <p eId="conclusions__p_3">By Order and in the name of the Governor of Karnataka,</p>
+      <p eId="conclusions__p_4">G.SRIDHAR</p>
+      <p eId="conclusions__p_5">Secretary to Government Department of Parliamentary Affairs and Legislation [ <span eId="conclusions__p_5__span_1" xml:lang="kn">ಮುದ</span>
+        <span eId="conclusions__p_5__span_2" xml:lang="kn-Latn-x-nudi">Î</span>
+        <span eId="conclusions__p_5__span_3" xml:lang="kn">ಕರು</span> ²<span eId="conclusions__p_5__span_4" xml:lang="kn">ಾಗೂ ಪ</span>
+        <span eId="conclusions__p_5__span_5" xml:lang="kn-Latn-x-nudi">Î</span>
+        <span eId="conclusions__p_5__span_6" xml:lang="kn">ಾಶಕರು</span>:- <span eId="conclusions__p_5__span_7" xml:lang="kn">ಸಂಕಲ</span>£<span eId="conclusions__p_5__span_8" xml:lang="kn">ಾ</span>
+        <span eId="conclusions__p_5__span_9" xml:lang="kn-Latn-x-nudi">ĩ</span>
+        <span eId="conclusions__p_5__span_10" xml:lang="kn">ಾ</span>
+        <span eId="conclusions__p_5__span_11" xml:lang="kn-Latn-x-nudi">ĸ</span>
+        <span eId="conclusions__p_5__span_12" xml:lang="kn">ಗಳ</span> , <span eId="conclusions__p_5__span_13" xml:lang="kn">ಕ</span>£<span eId="conclusions__p_5__span_14" xml:lang="kn">ಾ</span><span eId="conclusions__p_5__span_15" xml:lang="kn">ಟಕ</span> ª<span eId="conclusions__p_5__span_16" xml:lang="kn">ಾಜ</span>
+        <span eId="conclusions__p_5__span_17" xml:lang="kn-Latn-x-nudi">Í</span>
+        <span eId="conclusions__p_5__span_18" xml:lang="kn">ಪತ</span>
+        <span eId="conclusions__p_5__span_19" xml:lang="kn-Latn-x-nudi">Î</span>, <span eId="conclusions__p_5__span_20" xml:lang="kn">ಸ</span><span eId="conclusions__p_5__span_21" xml:lang="kn">ಾ</span>
+        <span eId="conclusions__p_5__span_22" xml:lang="kn-Latn-x-nudi">ĸ</span> <span eId="conclusions__p_5__span_23" xml:lang="kn">ೇಂದ</span>
+        <span eId="conclusions__p_5__span_24" xml:lang="kn-Latn-x-nudi">Î</span>
+        <span eId="conclusions__p_5__span_25" xml:lang="kn">ಮುದ</span>
+        <span eId="conclusions__p_5__span_26" xml:lang="kn-Latn-x-nudi">Î</span>
+        <span eId="conclusions__p_5__span_27" xml:lang="kn">ಾಲಯ</span>, ¦<span eId="conclusions__p_5__span_28" xml:lang="kn">ೆಂಗಳ</span><span eId="conclusions__p_5__span_29" xml:lang="kn">ರು</span>
+      </p>
+      <p eId="conclusions__p_6">THAMMAIAH</p>
+      <p eId="conclusions__p_7">DN: c=IN, st=Karnataka, 2.5.4.20=be54f34f4e31eae50203ca7fab5ceb3794f20a8460a2582ef28294d43b8f8b16, postalCode=560059, street=BANGALORE, pseudonym=ca58c76cf7e2445d7a4f3f51407e025e, serialNumber=4d9b284dcc53d39f1425f50485de07dd86efa302a3fce3729eddea0c1b5098e0, ou=GOVERNMENT OF KARNATAKA, o=GOVERNMENT OF KARNATAKA, cn=THAMMAIAH</p>
+    </conclusions>
+  </act>
+</akomaNtoso>

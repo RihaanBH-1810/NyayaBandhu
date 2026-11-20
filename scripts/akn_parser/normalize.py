@@ -40,6 +40,7 @@ STRUCTURAL_START = re.compile(
     r"|WHEREAS\b"
     r"|Be\s+it\s+enacted\b"
     r"|An\s+Act\s+to\b"
+    r"|The\s+above\s+translation\b"             # Gazette closing formula
     r"|\([Ss]ee\s+(?:section|sections|rule)"
     r")"
 )
@@ -60,6 +61,16 @@ _CITATION_TAIL = re.compile(
 _CITATION_HEAD = re.compile(
     rf"^\((?:\d+[a-z]?|[a-z]{{1,2}}|{ROMAN})\)\s+(?:of|to|and|or|read)\b"
 )
+
+# A page break can split a reference list after its conjunction: "sub-section
+# (1) and" / "(2). Annual Report ...". The latter is sentence text, not a
+# second subsection (2). Keep this narrow so ordinary numbered provisions
+# remain separate.
+_CITATION_SERIES_TAIL = re.compile(
+    r"\b(?:sub[-\s]?sections?|sub[-\s]?clauses?|sections?|clauses?|items?)"
+    r"\s+\(\d+[a-z]?\)\s+(?:and|or|to)\s*$", re.I,
+)
+_CITATION_SERIES_HEAD = re.compile(r"^\(\d+[a-z]?\)\s*[.,;:]\s+")
 
 #: Punctuation that genuinely closes a provision.
 _TERMINAL = re.compile(r"[.;:\-]\s*$")
@@ -208,6 +219,8 @@ class TextNormalizer:
         """True when *line*'s leading enumerator belongs to a citation that
         began on *prev* rather than opening a new provision."""
         if _CITATION_TAIL.search(prev):
+            return True
+        if _CITATION_SERIES_TAIL.search(prev) and _CITATION_SERIES_HEAD.match(line):
             return True
         return bool(_CITATION_HEAD.match(line)) and not _TERMINAL.search(prev)
 

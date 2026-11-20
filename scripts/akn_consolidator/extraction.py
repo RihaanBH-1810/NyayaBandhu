@@ -9,12 +9,21 @@ from datetime import datetime
 import pymupdf
 from .common import Q, NS, text, metadata
 
-ORDINALS = {'first':'1', 'second':'2', 'third':'3', 'fourth':'4', 'fifth':'5'}
+ORDINALS = {'first':'1', 'second':'2', 'third':'3', 'fourth':'4', 'fifth':'5', 'sixth':'6'}
 KINDS = {'section':'section', 'sub-section':'subsection', 'subsection':'subsection', 'clause':'clause', 'proviso':'proviso'}
 
 
 def compact(value):
     return re.sub(r'\s+', ' ', value).strip()
+
+
+def replacement_payload(instruction):
+    payload = instruction.split('namely', 1)[1].lstrip(',:- \t').strip()
+    if payload.startswith('"'):
+        closing = payload.rfind('"')
+        if closing > 0 and re.fullmatch(r'\s*[.;,]?\s*', payload[closing + 1:]):
+            return payload[1:closing].strip()
+    return payload.strip('"').strip()
 
 
 def quoted_fragment(payload, kind):
@@ -96,7 +105,24 @@ def interpret(segment, path, section, heading):
     if omitted:
         return [{'action':'omit_provision','target':_target(path + [['clause',omitted[1]]])}],path
     if re.search(r'shall be (?:inserted|substituted)',s) and 'namely' in s:
-        payload = s.split('namely',1)[1].lstrip(':- ').strip().strip('"').strip()
+        # Gazette formulas also use "namely,-" and "namely:-". Keep
+        # punctuation outside the closing quotation out of the new law text.
+        payload = replacement_payload(s)
+        item = re.search(r'for\s+item\s*\(([^)]+)\)', s, re.I)
+        if item and 'substituted' in s:
+            # An item inside a clause is a subclause in AKN. A replacement may
+            # print an additional item immediately after the old one.
+            markers = list(re.finditer(r'\(([ivxlcdm]+(?:-[a-z])?)\)\s+(?=[A-Z])', payload, re.I))
+            if not markers or markers[0][1].casefold() != item[1].casefold() or markers[0].start() != 0:
+                raise ValueError('Replacement item numbering needs review')
+            fragments = [quoted_fragment(payload[m.start():markers[i+1].start() if i+1<len(markers) else len(payload)], 'subclause')
+                         for i,m in enumerate(markers)]
+            target = _target(path + [['subclause', item[1]]])
+            operations = [{'action':'replace_provision','target':target,'fragment':fragments[0]}]
+            if len(fragments) > 1:
+                operations.append({'action':'insert_provision','target':target,
+                                   'position':'after','fragments':fragments[1:]})
+            return operations,path
         if 'schedule' in heading.lower():
             tables = _tables(section)
             if not tables: raise ValueError('Schedule table could not be recovered')
@@ -105,6 +131,20 @@ def interpret(segment, path, section, heading):
             anchor = re.search(r'after serial number\s+([IVX]+)',s)
             if not anchor: raise ValueError('Schedule insertion anchor needs review')
             return [{'action':'table_insert','target':{'region':'schedule','label':'SCHEDULE-I'},'after_group':anchor[1],'rows':tables[-1]}],path
+        pair = re.search(r'for\s+(first|second|third|fourth|fifth|sixth)\s+and\s+'
+                         r'(first|second|third|fourth|fifth|sixth)\s+provisos?\b', s, re.I)
+        if pair:
+            first, second = int(ORDINALS[pair[1].lower()]), int(ORDINALS[pair[2].lower()])
+            if first < 2 or second != first + 1 or not re.match(r'Provided\b', payload):
+                raise ValueError('Multiple proviso substitution needs review')
+            # Remove the later provision first: proviso selectors use document
+            # order, so removing the earlier one would shift the later target.
+            return [
+                {'action':'omit_provision','target':_target(path + [['proviso',str(second)]])},
+                {'action':'omit_provision','target':_target(path + [['proviso',str(first)]])},
+                {'action':'insert_provision','target':_target(path + [['proviso',str(first - 1)]]),
+                 'position':'after','fragments':[quoted_fragment(payload,'proviso')]},
+            ],[part for part in path if part[0] == 'section']
         replacement = re.search(r'for\s+(section|sub-section|subsection|clause)\s*\(?([\da-z-]+)\)?',s,re.I)
         if replacement:
             kind = KINDS[replacement[1].lower()]; label = replacement[2]

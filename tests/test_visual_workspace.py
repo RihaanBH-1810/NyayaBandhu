@@ -56,7 +56,8 @@ def test_visual_base_revision_preview_approval_and_stale_writes(tmp_path):
     assert svc.export(saved['expression']['id']).startswith(b'PK')
 
 
-def test_navigation_names_provision_levels_and_parent_context(tmp_path):
+def test_navigation_names_provision_levels_and_parent_context(tmp_path, monkeypatch):
+    monkeypatch.setenv('NYAYA_CONSOLIDATION_DIR', str(tmp_path))
     svc=Consolidator(tmp_path);record=base(svc)
     root=parse(svc.expression_xml(record['expression']['id']))
     tree=akn_view.build_outline(root)

@@ -7,9 +7,11 @@ from pathlib import Path
 from .common import digest, encode, now
 
 SCHEMA = '''
-CREATE TABLE IF NOT EXISTS works(id TEXT PRIMARY KEY, uri TEXT UNIQUE NOT NULL, revision INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS works(id TEXT PRIMARY KEY, uri TEXT UNIQUE NOT NULL, revision INTEGER NOT NULL,
+ archived_at TEXT);
 CREATE TABLE IF NOT EXISTS sources(id TEXT PRIMARY KEY, work_id TEXT NOT NULL REFERENCES works(id),
- kind TEXT NOT NULL, xml_hash TEXT NOT NULL, pdf_hash TEXT NOT NULL, metadata TEXT NOT NULL, created TEXT NOT NULL);
+ kind TEXT NOT NULL, xml_hash TEXT NOT NULL, pdf_hash TEXT NOT NULL, metadata TEXT NOT NULL, created TEXT NOT NULL,
+ archived_at TEXT);
 CREATE TABLE IF NOT EXISTS manifests(id TEXT NOT NULL, revision INTEGER NOT NULL, work_id TEXT NOT NULL REFERENCES works(id),
  source_id TEXT NOT NULL REFERENCES sources(id), body TEXT NOT NULL, created TEXT NOT NULL, actor TEXT NOT NULL,
  reason TEXT NOT NULL, PRIMARY KEY(id,revision));
@@ -24,7 +26,6 @@ CREATE TABLE IF NOT EXISTS related_documents(id TEXT PRIMARY KEY, work_id TEXT N
  pdf_hash TEXT NOT NULL, created TEXT NOT NULL, actor TEXT NOT NULL, reason TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS reader_issues(id INTEGER PRIMARY KEY, work_id TEXT NOT NULL REFERENCES works(id),
  expression_id TEXT NOT NULL, message TEXT NOT NULL, created TEXT NOT NULL);
-PRAGMA user_version=1;
 '''
 
 
@@ -36,9 +37,14 @@ class Store:
         self.artifacts.mkdir(exist_ok=True)
         with closing(self.connect()) as db:
             version = db.execute('PRAGMA user_version').fetchone()[0]
-            if version not in (0, 1):
+            if version not in (0, 1, 2):
                 raise ValueError(f'Unsupported consolidation database version {version}')
             db.executescript(SCHEMA)
+            if version == 1:
+                db.execute('ALTER TABLE works ADD COLUMN archived_at TEXT')
+                db.execute('ALTER TABLE sources ADD COLUMN archived_at TEXT')
+            db.execute('PRAGMA user_version=2')
+            db.commit()
 
     def connect(self):
         db = sqlite3.connect(self.directory / 'history.sqlite3', timeout=30)

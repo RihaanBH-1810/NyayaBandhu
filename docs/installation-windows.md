@@ -36,6 +36,9 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1 -InstallDi
   persistent workspace in `consolidation-data\visual-workspace`.
 - Double-click `start-fresh.bat` to create a separate empty recording workspace.
   Its path is printed in the console. Each run creates another workspace.
+- `start.bat` reopens the same review workspace, so imported Acts, drafts,
+  approvals and amendments remain available after restarting. Re-running
+  `install.bat` updates the app while preserving the installed review store.
 - The review workspace opens at `http://127.0.0.1:8000/admin`. The reader is at
   `http://127.0.0.1:8000/library`.
 
@@ -48,6 +51,12 @@ In the review workspace, choose **Add Act**, select a base XML document from
 `out/base_act/eng/` and its matching source PDF from `data/`, then enter the
 reviewer name and reason. The source files remain available for comparison.
 No Act is imported into a new workspace automatically.
+
+The Upload amendment menu lists prepared amendments for the Act currently open.
+The Acts page and each Act timeline have Delete controls. Deleted Acts and
+amendments can be restored from their respective Deleted sections. An amendment
+used by a saved version cannot be deleted until that version's dependency is
+resolved. The reviewer name and reason are recorded for each delete or restore.
 
 ## Troubleshooting
 

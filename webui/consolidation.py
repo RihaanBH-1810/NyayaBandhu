@@ -5,12 +5,13 @@ as an authenticated multi-tenant service.
 """
 from __future__ import annotations
 import os
+import re
 from pathlib import Path
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import Response
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, ConfigDict, Field
-from akn_consolidator.common import Conflict, parse
+from akn_consolidator.common import Conflict, NS, parse
 from akn_consolidator.service import Consolidator
 from webui import akn_view
 
@@ -82,10 +83,37 @@ def works(): return call('works')
 
 @router.get('/catalog')
 def catalog():
+    base_files = sorted((ROOT / 'out/base_act/eng').glob('*.xml'))
+    amendment_files = sorted((ROOT / 'out/amendment/eng').glob('*.xml'))
+    pdf_files = sorted((ROOT / 'data').rglob('*.pdf'))
+    base_by_citation = {}
+    for path in base_files:
+        root = parse(path.read_bytes())
+        meta = akn_view.extract_metadata(root)
+        if meta['number'] and meta['assent_date'] and meta['work_uri']:
+            base_by_citation[(int(meta['number']), int(meta['assent_date'][:4]))] = meta['work_uri']
+    pdf_by_stem = {path.stem.lower(): path.relative_to(ROOT / 'data').as_posix() for path in pdf_files}
+    prepared_amendments = []
+    for path in amendment_files:
+        root = parse(path.read_bytes())
+        meta = akn_view.extract_metadata(root)
+        # The long title or recital identifies the principal Act. The amendment's
+        # own FRBR number identifies the amending Act and cannot be used here.
+        passages = root.xpath('./a:act/a:preface/a:longTitle//text() | ./a:act/a:preamble//text()', namespaces=NS)
+        citations = re.findall(r'Karnataka\s+Act\s+(?:No\.?\s*)?0*(\d+)\s+of\s+(\d{4})', ' '.join(passages), re.I)
+        targets = {base_by_citation[(int(number), int(year))] for number, year in citations
+                   if (int(number), int(year)) in base_by_citation}
+        prepared_amendments.append({
+            'xml_path': path.relative_to(ROOT / 'out').as_posix(),
+            'pdf_path': pdf_by_stem.get(path.stem.lower()),
+            'title': meta['title'] or path.stem.replace('_', ' '),
+            'target_work_uri': next(iter(targets)) if len(targets) == 1 else None,
+        })
     return {
-        'base_xml': sorted(p.relative_to(ROOT / 'out').as_posix() for p in (ROOT / 'out/base_act/eng').glob('*.xml')),
-        'amendment_xml': sorted(p.relative_to(ROOT / 'out').as_posix() for p in (ROOT / 'out/amendment/eng').glob('*.xml')),
-        'pdf': sorted(p.relative_to(ROOT / 'data').as_posix() for p in (ROOT / 'data').rglob('*.pdf')),
+        'base_xml': [p.relative_to(ROOT / 'out').as_posix() for p in base_files],
+        'amendment_xml': [p.relative_to(ROOT / 'out').as_posix() for p in amendment_files],
+        'prepared_amendments': prepared_amendments,
+        'pdf': [p.relative_to(ROOT / 'data').as_posix() for p in pdf_files],
     }
 
 

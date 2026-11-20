@@ -1,0 +1,953 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <act name="act" contains="originalVersion">
+    <meta>
+      <identification source="#nyayabandhu">
+        <FRBRWork>
+          <FRBRthis value="/akn/in-ka/act/2023-03-10/13/!main"/>
+          <FRBRuri value="/akn/in-ka/act/2023-03-10/13"/>
+          <FRBRalias name="title" value="THE KANNADA LANGUAGE COMPREHENSIVE DEVELOPMENT ACT, 2022"/>
+          <FRBRdate date="2023-03-10" name="assent"/>
+          <FRBRauthor href="#karnatakaLegislature"/>
+          <FRBRcountry value="in-ka"/>
+          <FRBRnumber value="13"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in-ka/act/2023-03-10/13/eng@2023-03-10/!main"/>
+          <FRBRuri value="/akn/in-ka/act/2023-03-10/13/eng@2023-03-10"/>
+          <FRBRdate date="2023-03-10" name="publication"/>
+          <FRBRauthor href="#karnatakaLegislature"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in-ka/act/2023-03-10/13/eng@2023-03-10/!main.xml"/>
+          <FRBRuri value="/akn/in-ka/act/2023-03-10/13/eng@2023-03-10.xml"/>
+          <FRBRdate date="2026-11-10" name="generation"/>
+          <FRBRauthor href="#nyayabandhu"/>
+          <FRBRformat value="xml"/>
+        </FRBRManifestation>
+      </identification>
+      <publication date="2023-03-10" name="Karnataka Gazette Extra-ordinary" showAs="Karnataka Gazette Extra-ordinary"/>
+      <lifecycle source="#nyayabandhu">
+        <eventRef eId="eref_1" date="2023-03-10" type="generation" source="#karnatakaLegislature"/>
+      </lifecycle>
+      <references source="#nyayabandhu">
+        <TLCOrganization eId="karnatakaLegislature" href="/akn/ontology/organization/in-ka/legislature" showAs="Karnataka State Legislature"/>
+        <TLCOrganization eId="karnatakaGazette" href="/akn/ontology/organization/in-ka/gazette" showAs="Karnataka Gazette"/>
+        <TLCRole eId="nyayabandhu" href="/akn/ontology/role/editor" showAs="NyayaBandhu automated parser"/>
+        <TLCTerm eId="disciplinaryAuthority" href="/akn/ontology/term/disciplinaryAuthority" showAs="Disciplinary Authority"/>
+        <TLCTerm eId="enforcementAuthority" href="/akn/ontology/term/enforcementAuthority" showAs="Enforcement Authority"/>
+        <TLCTerm eId="enforcementOfficer" href="/akn/ontology/term/enforcementOfficer" showAs="Enforcement Officer"/>
+        <TLCTerm eId="government" href="/akn/ontology/term/government" showAs="Government"/>
+        <TLCTerm eId="kannadiga" href="/akn/ontology/term/kannadiga" showAs="Kannadiga"/>
+        <TLCTerm eId="localAuthority" href="/akn/ontology/term/localAuthority" showAs="Local Authority"/>
+        <TLCTerm eId="officialLanguage" href="/akn/ontology/term/officialLanguage" showAs="Official Language"/>
+        <TLCTerm eId="state" href="/akn/ontology/term/state" showAs="State"/>
+      </references>
+    </meta>
+    <preface eId="preface">
+      <p eId="preface__p_1">KARNATAKA ACT NO. 13 OF 2023</p>
+      <p eId="preface__p_2">(First Published in the Karnataka Gazette Extra-ordinary on the 10th day of March 2023)</p>
+      <p eId="preface__p_3">THE KANNADA LANGUAGE COMPREHENSIVE DEVELOPMENT ACT, 2022</p>
+      <p eId="preface__p_4">(Received the assent of the Governor on the 10th day of March 2023)</p>
+      <longTitle eId="preface__longTitle_1">
+        <p eId="preface__longTitle_1__p_1">An Act to provide for Comprehensive Development of Kannada Language and to provide better opportunities in Education and Employment of Kannadigas.</p>
+      </longTitle>
+    </preface>
+    <preamble eId="preamble">
+      <recitals eId="preamble__recitals_1">
+        <recital eId="preamble__recitals_1__rec_1">
+          <p eId="preamble__recitals_1__rec_1__p_1">Whereas it is expedient to provide for comprehensive development of Kannada language to provide better opportunities and also welfare measures in all walks of life of kannadigas and for matters connected therewith or incidental thereto;</p>
+        </recital>
+      </recitals>
+      <formula eId="preamble__formula_1" name="enactingFormula">
+        <p eId="preamble__formula_1__p_1">Be it enacted by the Karnataka Legislature in the Seventy Third Year of the Republic of India as follows:-</p>
+      </formula>
+    </preamble>
+    <body>
+      <section eId="sec_1">
+        <num>1.</num>
+        <heading>Short title and commencement</heading>
+        <subsection eId="sec_1__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_1__subsec_1__content">
+            <p eId="sec_1__subsec_1__content__p_1">This Act may be called the Kannada Language Comprehensive Development Act, 2022.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_1__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_1__subsec_2__content">
+            <p eId="sec_1__subsec_2__content__p_1">It shall come into force on such date as the State Government may, by notification in the Official Gazette appoint and different dates may be appointed for different provisions of this Act.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_2">
+        <num>2.</num>
+        <heading>Definitions</heading>
+        <intro eId="sec_2__intro">
+          <p eId="sec_2__intro__p_1">In this Act unless the context otherwise requires,-</p>
+        </intro>
+        <clause eId="sec_2__cl_a">
+          <num>(a)</num>
+          <content eId="sec_2__cl_a__content">
+            <p eId="sec_2__cl_a__content__p_1">
+              <def eId="sec_2__cl_a__content__p_1__def_1" refersTo="#disciplinaryAuthority">"Disciplinary Authority"</def> means the officer designated as Disciplinary Authority in the relevant Service Rules;</p>
+          </content>
+        </clause>
+        <clause eId="sec_2__cl_b">
+          <num>(b)</num>
+          <content eId="sec_2__cl_b__content">
+            <p eId="sec_2__cl_b__content__p_1">
+              <def eId="sec_2__cl_b__content__p_1__def_1" refersTo="#enforcementAuthority">"Enforcement Authority"</def> means the Committees designated as per section 7 of the Act;</p>
+          </content>
+        </clause>
+        <clause eId="sec_2__cl_c">
+          <num>(c)</num>
+          <content eId="sec_2__cl_c__content">
+            <p eId="sec_2__cl_c__content__p_1">
+              <def eId="sec_2__cl_c__content__p_1__def_1" refersTo="#enforcementOfficer">"Enforcement Officer"</def> means an officer designated under section 9 of the Act;</p>
+          </content>
+        </clause>
+        <clause eId="sec_2__cl_d">
+          <num>(d)</num>
+          <content eId="sec_2__cl_d__content">
+            <p eId="sec_2__cl_d__content__p_1">
+              <def eId="sec_2__cl_d__content__p_1__def_1" refersTo="#government">"Government"</def> means the Government of Karnataka;</p>
+          </content>
+        </clause>
+        <clause eId="sec_2__cl_e">
+          <num>(e)</num>
+          <content eId="sec_2__cl_e__content">
+            <p eId="sec_2__cl_e__content__p_1">
+              <def eId="sec_2__cl_e__content__p_1__def_1" refersTo="#kannadiga">"Kannadiga"</def> means a person or his parents or in their absence legal guardian who is/are ordinarily resident of Karnataka for not less than fifteen years and having knowledge of reading and writing Kannada and possessing such documents in this regard as may be prescribed;</p>
+          </content>
+        </clause>
+        <clause eId="sec_2__cl_f">
+          <num>(f)</num>
+          <content eId="sec_2__cl_f__content">
+            <p eId="sec_2__cl_f__content__p_1">
+              <def eId="sec_2__cl_f__content__p_1__def_1" refersTo="#localAuthority">"Local Authority"</def> means such of the local self Governments created by the law and includes any other statutory or non-statutory bodies, Trusts, co-operative and other societies established by the State Government and other bodies as may be notified by the State Government;</p>
+          </content>
+        </clause>
+        <clause eId="sec_2__cl_g">
+          <num>(g)</num>
+          <content eId="sec_2__cl_g__content">
+            <p eId="sec_2__cl_g__content__p_1">
+              <def eId="sec_2__cl_g__content__p_1__def_1" refersTo="#officialLanguage">"Official Language"</def> means Kannada language declared as per Section 3 of the Act;</p>
+          </content>
+        </clause>
+        <clause eId="sec_2__cl_h">
+          <num>(h)</num>
+          <content eId="sec_2__cl_h__content">
+            <p eId="sec_2__cl_h__content__p_1">
+              <def eId="sec_2__cl_h__content__p_1__def_1" refersTo="#state">"State"</def> means State of Karnataka.</p>
+          </content>
+        </clause>
+      </section>
+      <section eId="sec_3">
+        <num>3.</num>
+        <heading>Kannada to be the official language</heading>
+        <content eId="sec_3__content">
+          <p eId="sec_3__content__p_1">The Kannada Language shall be the Official Language of the State and Local Authorities.</p>
+        </content>
+      </section>
+      <section eId="sec_4">
+        <num>4.</num>
+        <heading>Use of the Official Language</heading>
+        <subsection eId="sec_4__subsec_1">
+          <num>(1)</num>
+          <intro eId="sec_4__subsec_1__intro">
+            <p eId="sec_4__subsec_1__intro__p_1">Kannada shall be used:-</p>
+          </intro>
+          <clause eId="sec_4__subsec_1__cl_i">
+            <num>(i)</num>
+            <intro eId="sec_4__subsec_1__cl_i__intro">
+              <p eId="sec_4__subsec_1__cl_i__intro__p_1">In all Bills to be introduced and all Acts to be passed by the State Legislature; and</p>
+            </intro>
+            <subclause eId="sec_4__subsec_1__cl_i__subcl_ii">
+              <num>(ii)</num>
+              <content eId="sec_4__subsec_1__cl_i__subcl_ii__content">
+                <p eId="sec_4__subsec_1__cl_i__subcl_ii__content__p_1">In all Orders, Rules, Regulations or Bye-laws issued by the Government, all Local Bodies, Boards, Corporations, Statutory and Non-Statutory Bodies or undertakings and registered Co-Operative Societies.</p>
+              </content>
+            </subclause>
+          </clause>
+        </subsection>
+        <subsection eId="sec_4__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_4__subsec_2__content">
+            <p eId="sec_4__subsec_2__content__p_1">All existing Legislations in English language enacted by the State Legislature before the commencement of this Act shall be translated and published in Kannada Language.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_4__subsec_3">
+          <num>(3)</num>
+          <content eId="sec_4__subsec_3__content">
+            <p eId="sec_4__subsec_3__content__p_1">All the important Central Acts with Karnataka Amendments shall also be translated into Kannada.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_4__subsec_4">
+          <num>(4)</num>
+          <intro eId="sec_4__subsec_4__intro">
+            <p eId="sec_4__subsec_4__intro__p_1">Kannada language shall be used for all the official and administrative purposes and correspondences in the State and by the Local Authorities.</p>
+          </intro>
+          <proviso eId="sec_4__subsec_4__proviso_1">
+            <intro eId="sec_4__subsec_4__proviso_1__intro">
+              <p eId="sec_4__subsec_4__proviso_1__intro__p_1">Provided that:</p>
+            </intro>
+            <clause eId="sec_4__subsec_4__proviso_1__cl_a">
+              <num>(a)</num>
+              <content eId="sec_4__subsec_4__proviso_1__cl_a__content">
+                <p eId="sec_4__subsec_4__proviso_1__cl_a__content__p_1">English language may be used for correspondence with The Government of India, Foreign Countries, Other States, High Courts, Supreme Court and in any other circumstances where English language has to be used as provided by law;</p>
+              </content>
+            </clause>
+            <clause eId="sec_4__subsec_4__proviso_1__cl_b">
+              <num>(b)</num>
+              <content eId="sec_4__subsec_4__proviso_1__cl_b__content">
+                <p eId="sec_4__subsec_4__proviso_1__cl_b__content__p_1">Linguistic minorities as far as possible use Kannada language or English for correspondence with Government, Head of Departments and other Government offices. In such cases, the replies may be in Kannada or in English; and</p>
+              </content>
+            </clause>
+            <clause eId="sec_4__subsec_4__proviso_1__cl_c">
+              <num>(c)</num>
+              <content eId="sec_4__subsec_4__proviso_1__cl_c__content">
+                <p eId="sec_4__subsec_4__proviso_1__cl_c__content__p_1">Where the English language cannot be dispensed with due to administrative reasons or where such communications are purely technical and scientific in nature, English language can be used.</p>
+              </content>
+            </clause>
+          </proviso>
+        </subsection>
+      </section>
+      <section eId="sec_5">
+        <num>5.</num>
+        <heading>Official Language Commission</heading>
+        <subsection eId="sec_5__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_5__subsec_1__content">
+            <p eId="sec_5__subsec_1__content__p_1">The State Government shall constitute the Official Language Commission under the Department of Parliamentary Affairs and Legislation consisting of the following members, namely:-</p>
+            <table eId="sec_5__subsec_1__table_1">
+              <tr eId="sec_5__subsec_1__table_1__tr_1">
+                <th eId="sec_5__subsec_1__table_1__tr_1__th_1">
+                  <p eId="sec_5__subsec_1__table_1__tr_1__th_1__p_1">(a) Retired Secretary to the Government, Department of Parliamentary Affairs and Legislation.</p>
+                </th>
+                <th eId="sec_5__subsec_1__table_1__tr_1__th_2">
+                  <p eId="sec_5__subsec_1__table_1__tr_1__th_2__p_1">Chairman</p>
+                </th>
+              </tr>
+              <tr eId="sec_5__subsec_1__table_1__tr_2">
+                <td eId="sec_5__subsec_1__table_1__tr_2__td_1">
+                  <p eId="sec_5__subsec_1__table_1__tr_2__td_1__p_1">(b) One retired officer of the Department of Translation not below the rank of Deputy Director.</p>
+                </td>
+                <td eId="sec_5__subsec_1__table_1__tr_2__td_2">
+                  <p eId="sec_5__subsec_1__table_1__tr_2__td_2__p_1">Member</p>
+                </td>
+              </tr>
+              <tr eId="sec_5__subsec_1__table_1__tr_3">
+                <td eId="sec_5__subsec_1__table_1__tr_3__td_1">
+                  <p eId="sec_5__subsec_1__table_1__tr_3__td_1__p_1">(c) One retired Officer or a retired professor conversant with translation and a graduate of law.</p>
+                </td>
+                <td eId="sec_5__subsec_1__table_1__tr_3__td_2">
+                  <p eId="sec_5__subsec_1__table_1__tr_3__td_2__p_1">Member</p>
+                </td>
+              </tr>
+              <tr eId="sec_5__subsec_1__table_1__tr_4">
+                <td eId="sec_5__subsec_1__table_1__tr_4__td_1">
+                  <p eId="sec_5__subsec_1__table_1__tr_4__td_1__p_1">(d) Additional Director of Department of Translation.</p>
+                </td>
+                <td eId="sec_5__subsec_1__table_1__tr_4__td_2">
+                  <p eId="sec_5__subsec_1__table_1__tr_4__td_2__p_1">Member Secretary</p>
+                </td>
+              </tr>
+            </table>
+          </content>
+        </subsection>
+        <subsection eId="sec_5__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_5__subsec_2__content">
+            <p eId="sec_5__subsec_2__content__p_1">The Chairman and Members of the Commission nominated by the Government shall hold office for a term of five years.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_5__subsec_3">
+          <num>(3)</num>
+          <content eId="sec_5__subsec_3__content">
+            <p eId="sec_5__subsec_3__content__p_1">The nominated Chairman and Members shall be whole time members of the Commission and shall be eligible for such pay and allowances as specified in the Karnataka Civil Service Rules.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_6">
+        <num>6.</num>
+        <heading>Authorised Kannada translation of Central and State Acts, Rules, Regulations, etc</heading>
+        <subsection eId="sec_6__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_6__subsec_1__content">
+            <p eId="sec_6__subsec_1__content__p_1">Translation of any Central Acts with respect to any of the subject enumerated in List III of the seventh Schedule to the Constitution of India or of any State Acts in Kannada language published under the Authority of the Governor, in any Official Gazette shall be deemed to be authoritative text.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_6__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_6__subsec_2__content">
+            <p eId="sec_6__subsec_2__content__p_1">Translation in Kannada language of any Rules, Regulations, Bye-Laws, Schemes, Orders, Notifications, etc., made under any State or Central Act by the State Government and published in Official Gazette shall be deemed to be the authoritative text.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_7">
+        <num>7.</num>
+        <heading>Enforcement mechanism for implementing official language</heading>
+        <subsection eId="sec_7__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_7__subsec_1__content">
+            <p eId="sec_7__subsec_1__content__p_1">Every office of the State Government, including officers subordinate and under administrative control of each Department of Secretariat, shall make suitable provisions in its policies pertaining to public interface and public interest for use of Kannada for effective implementation of the provisions of this Act.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_7__subsec_2">
+          <num>(2)</num>
+          <intro eId="sec_7__subsec_2__intro">
+            <p eId="sec_7__subsec_2__intro__p_1">The following Committees shall function as enforcement authorities in the State namely:-</p>
+          </intro>
+          <clause eId="sec_7__subsec_2__cl_a">
+            <num>(a)</num>
+            <intro eId="sec_7__subsec_2__cl_a__intro">
+              <p eId="sec_7__subsec_2__cl_a__intro__p_1">State Level Committee.- There shall be a State Level Committee consisting of,-</p>
+            </intro>
+            <subclause eId="sec_7__subsec_2__cl_a__subcl_i">
+              <num>(i)</num>
+              <content eId="sec_7__subsec_2__cl_a__subcl_i__content">
+                <p eId="sec_7__subsec_2__cl_a__subcl_i__content__p_1">The Minister incharge of the Kannada and Culture Department as the Chairperson;</p>
+              </content>
+            </subclause>
+            <subclause eId="sec_7__subsec_2__cl_a__subcl_ii">
+              <num>(ii)</num>
+              <content eId="sec_7__subsec_2__cl_a__subcl_ii__content">
+                <p eId="sec_7__subsec_2__cl_a__subcl_ii__content__p_1">The Chief Secretary to Government as the Vice-Chairperson;</p>
+              </content>
+            </subclause>
+            <subclause eId="sec_7__subsec_2__cl_a__subcl_iii">
+              <num>(iii)</num>
+              <content eId="sec_7__subsec_2__cl_a__subcl_iii__content">
+                <p eId="sec_7__subsec_2__cl_a__subcl_iii__content__p_1">The Chairman of the Kannada Development Authority - Member</p>
+              </content>
+            </subclause>
+            <subclause eId="sec_7__subsec_2__cl_a__subcl_iv">
+              <num>(iv)</num>
+              <content eId="sec_7__subsec_2__cl_a__subcl_iv__content">
+                <p eId="sec_7__subsec_2__cl_a__subcl_iv__content__p_1">The Additional Chief Secretary to Government, Department of Personnel and Administrative Reforms (DPAR) - Member;</p>
+              </content>
+            </subclause>
+            <subclause eId="sec_7__subsec_2__cl_a__subcl_v">
+              <num>(v)</num>
+              <content eId="sec_7__subsec_2__cl_a__subcl_v__content">
+                <p eId="sec_7__subsec_2__cl_a__subcl_v__content__p_1">The Additional Chief Secretary to Government, Department of Commerce and Industries - Member;</p>
+              </content>
+            </subclause>
+            <subclause eId="sec_7__subsec_2__cl_a__subcl_vi">
+              <num>(vi)</num>
+              <content eId="sec_7__subsec_2__cl_a__subcl_vi__content">
+                <p eId="sec_7__subsec_2__cl_a__subcl_vi__content__p_1">The Secretary to Government, Department of Kannada and Culture - Member;</p>
+              </content>
+            </subclause>
+            <subclause eId="sec_7__subsec_2__cl_a__subcl_vii">
+              <num>(vii)</num>
+              <content eId="sec_7__subsec_2__cl_a__subcl_vii__content">
+                <p eId="sec_7__subsec_2__cl_a__subcl_vii__content__p_1">The Director, Directorate of Kannada and Culture, shall be the convener of the committee ; and</p>
+              </content>
+            </subclause>
+            <subclause eId="sec_7__subsec_2__cl_a__subcl_viii">
+              <num>(viii)</num>
+              <content eId="sec_7__subsec_2__cl_a__subcl_viii__content">
+                <p eId="sec_7__subsec_2__cl_a__subcl_viii__content__p_1">A Representative of the State Kannada Sahitya Parishat – Invitee.</p>
+              </content>
+            </subclause>
+          </clause>
+          <proviso eId="sec_7__subsec_2__proviso_1">
+            <content eId="sec_7__subsec_2__proviso_1__content">
+              <p eId="sec_7__subsec_2__proviso_1__content__p_1">Provided that, in the absence of the Chairperson the Vice-Chairperson shall preside over the meeting of the State level Committee.</p>
+            </content>
+          </proviso>
+          <clause eId="sec_7__subsec_2__cl_b">
+            <num>(b)</num>
+            <intro eId="sec_7__subsec_2__cl_b__intro">
+              <p eId="sec_7__subsec_2__cl_b__intro__p_1">District Level Committee.- There shall be a District Level Committee under the Chairmanship of the Deputy Commissioner consisting of following members:</p>
+            </intro>
+            <subclause eId="sec_7__subsec_2__cl_b__subcl_i">
+              <num>(i)</num>
+              <content eId="sec_7__subsec_2__cl_b__subcl_i__content">
+                <p eId="sec_7__subsec_2__cl_b__subcl_i__content__p_1">The Chief Executive Officer of Zilla Panchayat;</p>
+              </content>
+            </subclause>
+            <subclause eId="sec_7__subsec_2__cl_b__subcl_ii">
+              <num>(ii)</num>
+              <content eId="sec_7__subsec_2__cl_b__subcl_ii__content">
+                <p eId="sec_7__subsec_2__cl_b__subcl_ii__content__p_1">The Commissioner of the City Corporation if there is a City Corporation in the District. In other Districts where there is no City Corporation, the Municipal Commissioner or Chief Officer of City Municipal Council, as the case may be;</p>
+              </content>
+            </subclause>
+            <subclause eId="sec_7__subsec_2__cl_b__subcl_iii">
+              <num>(iii)</num>
+              <content eId="sec_7__subsec_2__cl_b__subcl_iii__content">
+                <p eId="sec_7__subsec_2__cl_b__subcl_iii__content__p_1">The Deputy Director of Public Instructions of the District;</p>
+              </content>
+            </subclause>
+            <subclause eId="sec_7__subsec_2__cl_b__subcl_iv">
+              <num>(iv)</num>
+              <content eId="sec_7__subsec_2__cl_b__subcl_iv__content">
+                <p eId="sec_7__subsec_2__cl_b__subcl_iv__content__p_1">The Joint Director, Department of Commerce and Industries of each District;</p>
+              </content>
+            </subclause>
+            <subclause eId="sec_7__subsec_2__cl_b__subcl_v">
+              <num>(v)</num>
+              <content eId="sec_7__subsec_2__cl_b__subcl_v__content">
+                <p eId="sec_7__subsec_2__cl_b__subcl_v__content__p_1">Project Director, District Urban Development Cell; and</p>
+              </content>
+            </subclause>
+            <subclause eId="sec_7__subsec_2__cl_b__subcl_vi">
+              <num>(vi)</num>
+              <content eId="sec_7__subsec_2__cl_b__subcl_vi__content">
+                <p eId="sec_7__subsec_2__cl_b__subcl_vi__content__p_1">The Assistant Director, Directorate of Kannada and Culture, shall be the convener-Member Secretary.</p>
+              </content>
+            </subclause>
+          </clause>
+          <clause eId="sec_7__subsec_2__cl_c">
+            <num>(c)</num>
+            <intro eId="sec_7__subsec_2__cl_c__intro">
+              <p eId="sec_7__subsec_2__cl_c__intro__p_1">Taluka Level Committee.- There shall be a Taluka Level Committee of,-</p>
+            </intro>
+            <subclause eId="sec_7__subsec_2__cl_c__subcl_i">
+              <num>(i)</num>
+              <content eId="sec_7__subsec_2__cl_c__subcl_i__content">
+                <p eId="sec_7__subsec_2__cl_c__subcl_i__content__p_1">The Assistant Commissioner as the Chairperson;</p>
+              </content>
+            </subclause>
+            <subclause eId="sec_7__subsec_2__cl_c__subcl_ii">
+              <num>(ii)</num>
+              <content eId="sec_7__subsec_2__cl_c__subcl_ii__content">
+                <p eId="sec_7__subsec_2__cl_c__subcl_ii__content__p_1">The Executive Officer of the Taluka Panchayath -Member;</p>
+              </content>
+            </subclause>
+            <subclause eId="sec_7__subsec_2__cl_c__subcl_iii">
+              <num>(iii)</num>
+              <content eId="sec_7__subsec_2__cl_c__subcl_iii__content">
+                <p eId="sec_7__subsec_2__cl_c__subcl_iii__content__p_1">The Tahasildar of the Taluka shall be the convener of the Committee.</p>
+              </content>
+            </subclause>
+            <subclause eId="sec_7__subsec_2__cl_c__subcl_iv">
+              <num>(iv)</num>
+              <content eId="sec_7__subsec_2__cl_c__subcl_iv__content">
+                <p eId="sec_7__subsec_2__cl_c__subcl_iv__content__p_1">The Block Education Officer of the Taluka – member;</p>
+              </content>
+            </subclause>
+            <subclause eId="sec_7__subsec_2__cl_c__subcl_v">
+              <num>(v)</num>
+              <content eId="sec_7__subsec_2__cl_c__subcl_v__content">
+                <p eId="sec_7__subsec_2__cl_c__subcl_v__content__p_1">The Commissioner or the Chief Officer of the City Muncipal Council or Town Municipal Council or Town Panchayath – member ; and</p>
+              </content>
+            </subclause>
+            <subclause eId="sec_7__subsec_2__cl_c__subcl_vi">
+              <num>(vi)</num>
+              <content eId="sec_7__subsec_2__cl_c__subcl_vi__content">
+                <p eId="sec_7__subsec_2__cl_c__subcl_vi__content__p_1">The Panchayat Development Officers in the Taluka – member.</p>
+              </content>
+            </subclause>
+          </clause>
+        </subsection>
+      </section>
+      <section eId="sec_8">
+        <num>8.</num>
+        <heading>Functions of the Enforcement Authorities</heading>
+        <subsection eId="sec_8__subsec_1">
+          <num>(1)</num>
+          <intro eId="sec_8__subsec_1__intro">
+            <p eId="sec_8__subsec_1__intro__p_1">(a) The Taluka Committee shall hold a meeting every three months and submit its report regarding steps taken for the enforcement of Kannada Language to the District Level Committee within fifteen days from the date of the meeting.</p>
+          </intro>
+          <clause eId="sec_8__subsec_1__cl_b">
+            <num>(b)</num>
+            <content eId="sec_8__subsec_1__cl_b__content">
+              <p eId="sec_8__subsec_1__cl_b__content__p_1">The District Committee shall hold a meeting once in three months and submit its report to the State Level Committee within fifteen days from the date of the meeting.</p>
+            </content>
+          </clause>
+          <clause eId="sec_8__subsec_1__cl_c">
+            <num>(c)</num>
+            <content eId="sec_8__subsec_1__cl_c__content">
+              <p eId="sec_8__subsec_1__cl_c__content__p_1">The State Committee shall hold a meeting once in three months and submit its report to the Government within fifteen days thereof.</p>
+            </content>
+          </clause>
+          <clause eId="sec_8__subsec_1__cl_d">
+            <num>(d)</num>
+            <content eId="sec_8__subsec_1__cl_d__content">
+              <p eId="sec_8__subsec_1__cl_d__content__p_1">The District and Taluka Level Committees shall take necessary action on the report submitted by the Enforcement Officer.</p>
+            </content>
+          </clause>
+        </subsection>
+        <subsection eId="sec_8__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_8__subsec_2__content">
+            <p eId="sec_8__subsec_2__content__p_1">The Assistant Director of Kannada and Culture being the convener of the District Level Committee shall co-ordinate with the Taluka and District Committees to ensure that the meetings as specified above are conducted and the reports are submitted in time to the State Level Committee.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_9">
+        <num>9.</num>
+        <heading>Designation of Enforcement Officer</heading>
+        <intro eId="sec_9__intro">
+          <p eId="sec_9__intro__p_1">(a) An officer not below the rank of Group „A‟ officer of the State Government, shall be designated as an Enforcement Officer. However Group „B‟ officer belonging to the Department of Kannada and Culture shall be preferably designated as an Enforcement Officer.</p>
+        </intro>
+        <clause eId="sec_9__cl_b">
+          <num>(b)</num>
+          <intro eId="sec_9__cl_b__intro">
+            <p eId="sec_9__cl_b__intro__p_1">The Enforcement Officer shall be appointed by,-</p>
+          </intro>
+          <subclause eId="sec_9__cl_b__subcl_i">
+            <num>(i)</num>
+            <content eId="sec_9__cl_b__subcl_i__content">
+              <p eId="sec_9__cl_b__subcl_i__content__p_1">The Deputy Commissioner for the District in respect of Government Departments, Statutory Boards and Corporations other than Local Bodies or</p>
+            </content>
+          </subclause>
+          <subclause eId="sec_9__cl_b__subcl_ii">
+            <num>(ii)</num>
+            <content eId="sec_9__cl_b__subcl_ii__content">
+              <p eId="sec_9__cl_b__subcl_ii__content__p_1">The Commissioner of the Corporation for the Corporation area in respect of Local Bodies or (iia) In respect of the Grama Panchayat, Taluk Panchayat and Zilla Panchayat the Chief Executive Officer of Zilla Panchayat ; or</p>
+            </content>
+          </subclause>
+          <subclause eId="sec_9__cl_b__subcl_iii">
+            <num>(iii)</num>
+            <content eId="sec_9__cl_b__subcl_iii__content">
+              <p eId="sec_9__cl_b__subcl_iii__content__p_1">The Joint Director, Department of Industries and Commerce in respect of industries, shops and commercial establishments as the case may be.</p>
+            </content>
+          </subclause>
+        </clause>
+        <proviso eId="sec_9__proviso_1">
+          <content eId="sec_9__proviso_1__content">
+            <p eId="sec_9__proviso_1__content__p_1">Provided that, in respect of Bruhat Bengaluru Mahanagara Palike (BBMP) area, the Chief Commissioner of BBMP may appoint any number of Enforcement Officers as required.</p>
+          </content>
+        </proviso>
+      </section>
+      <section eId="sec_10">
+        <num>10.</num>
+        <heading>Duties of Enforcement Officer</heading>
+        <intro eId="sec_10__intro">
+          <p eId="sec_10__intro__p_1">The Enforcement Officer in order to ensure the compliance of general measures prescribed under the provisions of this Act shall perform following duties:-</p>
+        </intro>
+        <clause eId="sec_10__cl_i">
+          <num>(i)</num>
+          <content eId="sec_10__cl_i__content">
+            <p eId="sec_10__cl_i__content__p_1">conduct periodical inspection in the Government Departments and the Local Authorities under sub-section <ref eId="sec_10__cl_i__content__p_1__ref_1" href="#sec_17__subsec_1">(1)</ref> and <ref eId="sec_10__cl_i__content__p_1__ref_2" href="#sec_17__subsec_5">(5)</ref> of section 17;</p>
+          </content>
+        </clause>
+        <clause eId="sec_10__cl_ii">
+          <num>(ii)</num>
+          <content eId="sec_10__cl_ii__content">
+            <p eId="sec_10__cl_ii__content__p_1">conduct periodical inspection to ensure compliance of sub-section <ref eId="sec_10__cl_ii__content__p_1__ref_1" href="#sec_17__subsec_6">(6)</ref> to <ref eId="sec_10__cl_ii__content__p_1__ref_2" href="#sec_17__subsec_10">(10)</ref> of section 17;</p>
+          </content>
+        </clause>
+        <clause eId="sec_10__cl_iii">
+          <num>(iii)</num>
+          <content eId="sec_10__cl_iii__content">
+            <p eId="sec_10__cl_iii__content__p_1">The inspection reports shall be submitted to the Committees concerned in such manner as may be prescribed.</p>
+          </content>
+        </clause>
+      </section>
+      <section eId="sec_11">
+        <num>11.</num>
+        <heading>The Directorate of Enforcement of Official Language</heading>
+        <content eId="sec_11__content">
+          <p eId="sec_11__content__p_1">The Directorate of Kannada and Culture shall also be the Directorate of Enforcement of the Official Language.</p>
+        </content>
+      </section>
+      <section eId="sec_12">
+        <num>12.</num>
+        <heading>Kannada Language in Education</heading>
+        <content eId="sec_12__content">
+          <p eId="sec_12__content__p_1">In so far as Education in all schools in the State are concerned, the provisions of Kannada Language Learning Act, 2015 (Karnataka Act 22 of 2015) shall continue to apply.</p>
+        </content>
+      </section>
+      <section eId="sec_13">
+        <num>13.</num>
+        <heading>Kannada Language in Higher Education, Technical Education and Professional Education</heading>
+        <subsection eId="sec_13__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_13__subsec_1__content">
+            <p eId="sec_13__subsec_1__content__p_1">As per the New Education Policy, in Higher, Technical and Professional Education course, practical and functional knowledge of Kannada language pertaining to concerned professional course shall be taught to the students as prescribed by the respective Universities.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_13__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_13__subsec_2__content">
+            <p eId="sec_13__subsec_2__content__p_1">In so far as students who have not studied Kannada as one of the languages at the SSLC level shall also be taught basic Kannada Language as a subject prescribed in the University syllabus.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_14">
+        <num>14.</num>
+        <heading>Reservation in Higher, Technical and Professional Education</heading>
+        <content eId="sec_14__content">
+          <p eId="sec_14__content__p_1">Students who have studied in Kannada medium from 1st Standard to 10th Standard in Karnataka or in Kannada Medium Schools in any other States shall be provided such percentage of reservation in Higher, Technical and Professional Education as may be notified by the State Government.</p>
+        </content>
+      </section>
+      <section eId="sec_15">
+        <num>15.</num>
+        <intro eId="sec_15__intro">
+          <p eId="sec_15__intro__p_1">Knowledge of Kannada Language to be essential for employments in the State Government, Local Authorities, Boards, Corporations and in Statutory or Non-Statutory Bodies, Co-Operative Societies and Societies of the State Government.- In addition to other qualifications or conditions prescribed, every person seeking State Government employment or employment in any Local Authorities, Boards, Corporations, Statutory or Non-Statutory Bodies or registered Co-Operative Societies and other Societies of the State Government, must pass Kannada language examination conducted by the Karnataka Public Service Commission or any other Authority notified by the Government in this behalf which is equivalent to first or second language of 10th Standard or SSLC.</p>
+        </intro>
+        <proviso eId="sec_15__proviso_1">
+          <content eId="sec_15__proviso_1__content">
+            <p eId="sec_15__proviso_1__content__p_1">Provided that, a person who has passed SSLC or equivalent examination in Kannada as first or second language is exempted from such Kannada Language examination.</p>
+          </content>
+        </proviso>
+      </section>
+      <section eId="sec_16">
+        <num>16.</num>
+        <heading>Language in the Courts</heading>
+        <subsection eId="sec_16__subsec_1">
+          <num>(1)</num>
+          <intro eId="sec_16__subsec_1__intro">
+            <p eId="sec_16__subsec_1__intro__p_1">The District Courts or Trial Courts as the case may be and Tribunals shall conduct proceedings in Kannada and pronounce the orders and judgments in Kannada Language;</p>
+          </intro>
+          <proviso eId="sec_16__subsec_1__proviso_1">
+            <content eId="sec_16__subsec_1__proviso_1__content">
+              <p eId="sec_16__subsec_1__proviso_1__content__p_1">Provided that, the Presiding Officer of any such Court or Tribunal may while recording evidence in Kannada, make use of English words and phrases wherever necessary;</p>
+            </content>
+          </proviso>
+          <proviso eId="sec_16__subsec_1__proviso_2">
+            <content eId="sec_16__subsec_1__proviso_2__content">
+              <p eId="sec_16__subsec_1__proviso_2__content__p_1">Provided further that, the High Court may by general or special order permit the Presiding Officer to record evidence in English.</p>
+            </content>
+          </proviso>
+        </subsection>
+        <subsection eId="sec_16__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_16__subsec_2__content">
+            <p eId="sec_16__subsec_2__content__p_1">Notwithstanding anything contained in any other Act, all the Orders of all quasi-judicial functionaries of the State Government shall be in Kannada.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_17">
+        <num>17.</num>
+        <heading>General measures to be taken for extensive use and propagation of Kannada Language</heading>
+        <subsection eId="sec_17__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_17__subsec_1__content">
+            <p eId="sec_17__subsec_1__content__p_1">The board displaying the name of the State Government Departments, Undertakings or Autonomous Bodies, Co-Operative and Public Undertakings, Educational Institutions, Banks, other Financial Institutions, Private Industries and Universities, of the officers and designations shall be primarily in Kannada.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_17__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_17__subsec_2__content">
+            <p eId="sec_17__subsec_2__content__p_1">The particulars displayed on the boards erected under the supervision of various Government Departments and local authorities of the State including names of roads and extension areas, shall be primarily in Kannada.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_17__subsec_3">
+          <num>(3)</num>
+          <content eId="sec_17__subsec_3__content">
+            <p eId="sec_17__subsec_3__content__p_1">All Tender Notifications, Advertisements, Application forms, Digital Forms, Certificates and Notifications issued by the Government or Local Authorities for publication in Karnataka shall be primarily in Kannada.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_17__subsec_4">
+          <num>(4)</num>
+          <content eId="sec_17__subsec_4__content">
+            <p eId="sec_17__subsec_4__content__p_1">The pamphlets, banners, flex, electronic display boards, informations, notices, etc., of programmes conducted by Government, Local Authorities, Institutions whether Aided or Un-Aided, shall be primarily in Kannada.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_17__subsec_5">
+          <num>(5)</num>
+          <content eId="sec_17__subsec_5__content">
+            <p eId="sec_17__subsec_5__content__p_1">The Boards, Advertisements, Receipts, Bills, Notices, etc., in connection with any project undertaken by the Government or implemented with any kind of consideration, grant concession from Government or allied Institutions or Local Authorities shall be primarily in Kannada.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_17__subsec_6">
+          <num>(6)</num>
+          <content eId="sec_17__subsec_6__content">
+            <p eId="sec_17__subsec_6__content__p_1">The upper half portion of boards displaying the names of Commercial, Industrial and Business Undertakings, Trusts, Counseling Centre‟s, Hospitals, Laboratories, Amusement Centers and Hotels etc., functioning with the approval and sanction of Government or Local Authorities, shall be in Kannada and lower half can be in any other language.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_17__subsec_7">
+          <num>(7)</num>
+          <content eId="sec_17__subsec_7__content">
+            <p eId="sec_17__subsec_7__content__p_1">As far as possible all the Industrial and other consumer products manufactured within and sold in the State shall bear the product name and direction for use, if any, in Kannada apart from any other language.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_17__subsec_8">
+          <num>(8)</num>
+          <content eId="sec_17__subsec_8__content">
+            <p eId="sec_17__subsec_8__content__p_1">In all the boards displaying advertisements and notices published for the information of general public in the State, a fixed percentage of the content shall be in Kannada. The classification of advertisements or percentage of Kannada portions of advertisements to be displayed shall be as prescribed by the State.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_17__subsec_9">
+          <num>(9)</num>
+          <intro eId="sec_17__subsec_9__intro">
+            <p eId="sec_17__subsec_9__intro__p_1">Every industrial establishment in the State owned by the State and Central Government, Public Sector Undertakings, Banks and Private Industries having more than one hundred employees shall establish,-</p>
+          </intro>
+          <clause eId="sec_17__subsec_9__cl_a">
+            <num>(a)</num>
+            <content eId="sec_17__subsec_9__cl_a__content">
+              <p eId="sec_17__subsec_9__cl_a__content__p_1">„Kannada Cell‟ headed by senior employee of the organization having knowledge of Kannada for the purpose of usage of Kannada Language in day-to-day work functions of the organization and to carry out such other functions as may be prescribed.</p>
+            </content>
+          </clause>
+          <clause eId="sec_17__subsec_9__cl_b">
+            <num>(b)</num>
+            <content eId="sec_17__subsec_9__cl_b__content">
+              <p eId="sec_17__subsec_9__cl_b__content__p_1">„Kannada Kalika Ghataka‟ (basic Kannada Teaching Unit) for non- Kannada speaking employees. The Government at the request of such establishments shall provide necessary teaching staff and study materials at their cost.</p>
+            </content>
+          </clause>
+        </subsection>
+        <subsection eId="sec_17__subsec_10">
+          <num>(10)</num>
+          <content eId="sec_17__subsec_10__content">
+            <p eId="sec_17__subsec_10__content__p_1">Every person employed in Banks and other Financial Institutions situated within the State of Karnataka shall use Kannada language also in all its communication and correspondence with the public.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_18">
+        <num>18.</num>
+        <heading>Measures to be taken for the use of Kannada language in Information Technology</heading>
+        <subsection eId="sec_18__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_18__subsec_1__content">
+            <p eId="sec_18__subsec_1__content__p_1">E-Governance Department shall develop open source software and accessories for the efficient use of Kannada language in the field of Information Technology.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_18__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_18__subsec_2__content">
+            <p eId="sec_18__subsec_2__content__p_1">The information in the websites of various Departments of Government, Local Authorities, Quasi-Governmental Institutions, Public Sector Undertakings, Autonomous Bodies, Co-operative Societies, etc., shall be made available in Kannada in Unicode or available technology from time to time and website shall be modified for selecting any language to be used therein.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_18__subsec_3">
+          <num>(3)</num>
+          <content eId="sec_18__subsec_3__content">
+            <p eId="sec_18__subsec_3__content__p_1">The facility shall also be made available for the use of Kannada in the etenders and e-Governance projects being implemented in the Government Departments.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_18__subsec_4">
+          <num>(4)</num>
+          <content eId="sec_18__subsec_4__content">
+            <p eId="sec_18__subsec_4__content__p_1">All electronic applications developed by Government and Local Authorities shall also be in Kannada. All electronic application forms, messages, letters, etc., shall also be in Kannada.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_19">
+        <num>19.</num>
+        <heading>Incentives for the development of Kannada Language</heading>
+        <content eId="sec_19__content">
+          <p eId="sec_19__content__p_1">Scheme shall be formulated by E-Governance Department for awarding incentives to persons who provide creative suggestions to the Government for the effective development of Kannada language in the field of Information Technology.</p>
+        </content>
+      </section>
+      <section eId="sec_20">
+        <num>20.</num>
+        <heading>Entitlement of Concessions and Tax rebates or deferment</heading>
+        <subsection eId="sec_20__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_20__subsec_1__content">
+            <p eId="sec_20__subsec_1__content__p_1">No private industry, establishment or institution shall be eligible for concession of land or any other concession of tax rebate or deferment of tax or any kind of grant-in aid unless such industry, establishment or institution provides not less than such percentage of reservation to Kannadigas as per the industrial policy notified by the State.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_20__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_20__subsec_2__content">
+            <p eId="sec_20__subsec_2__content__p_1">If any industry which has undertaken to comply with the industrial policies of the State prescribed for reservation in employment for Kannadigas, fails to fulfill the obligation, shall be liable for disentitlement of continuation of benefits namely concessions and tax rebates or deferment or any kind of grant-in aid in future and shall also be liable for recovery of the same. Such disentitlement shall be invoked only after giving an opportunity of hearing to the said industry.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_20__subsec_3">
+          <num>(3)</num>
+          <content eId="sec_20__subsec_3__content">
+            <p eId="sec_20__subsec_3__content__p_1">The Finance Department and Commerce and Industries Department of the Government shall ensure the compliance of the provision of sub-section <ref eId="sec_20__subsec_3__content__p_1__ref_1" href="#sec_20__subsec_1">(1)</ref> and <ref eId="sec_20__subsec_3__content__p_1__ref_2" href="#sec_20__subsec_2">(2)</ref>. Annual Report in this regard shall be laid before both Houses of State Legislature and upload in the Departmental website.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_20__subsec_4">
+          <num>(4)</num>
+          <content eId="sec_20__subsec_4__content">
+            <p eId="sec_20__subsec_4__content__p_1">The Commerce and Industries Department shall send report to the State Government and upload in the Departmental Website, the details of establishments who have availed incentives or concessions from the State and also the details of employment provided to the Kannadigas as per the industrial policy.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_20__subsec_5">
+          <num>(5)</num>
+          <content eId="sec_20__subsec_5__content">
+            <p eId="sec_20__subsec_5__content__p_1">All the industries governed by the Apprentice Act, 1961(Central Act 52 of 1961) shall give preference to Kannadigas in providing apprentice training.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_20__subsec_6">
+          <num>(6)</num>
+          <content eId="sec_20__subsec_6__content">
+            <p eId="sec_20__subsec_6__content__p_1">In all industries having more than one hundred employees which have received concession or incentives as per the industrial policy, the Enforcement Officer designated under <ref eId="sec_20__subsec_6__content__p_1__ref_1" href="#sec_9__cl_b__subcl_iii">sub-clause (iii) of clause (b) of section 9</ref> shall also function as the Nodal Officer, who shall be submit a quarterly report to the District Level Committee regarding measures taken for implementation or compliance as required under the Act.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_21">
+        <num>21.</num>
+        <heading>Employment Portal</heading>
+        <content eId="sec_21__content">
+          <p eId="sec_21__content__p_1">The State Government shall establish employment portal for Government Offices, Institutions, Local Authorities, Public Enterprises, Private Industries, Establishments and their appointing agencies in Karnataka. Such portal shall notify the vacancies and posts to be filled-up along with the prescribed knowledge of Kannada for such employment.</p>
+        </content>
+      </section>
+      <section eId="sec_22">
+        <num>22.</num>
+        <heading>Punishment for failure to comply with the provisions of the Act by the Government Officer</heading>
+        <subsection eId="sec_22__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_22__subsec_1__content">
+            <p eId="sec_22__subsec_1__content__p_1">The Government Officer entrusted with the duty of enforcing Official Language if fails to comply with the provisions of this Act, such conduct shall be deemed to be dereliction of duty and shall be liable for such disciplinary action as may be determined by the Disciplinary Authority.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_22__subsec_2">
+          <num>(2)</num>
+          <intro eId="sec_22__subsec_2__intro">
+            <p eId="sec_22__subsec_2__intro__p_1">Any failure on the part of the Government officials in using Kannada language in official and administrative transactions shall be deemed to be dereliction of duty and the same shall be reported by the respective Committees to the State Level Committee for needful disciplinary action:</p>
+          </intro>
+          <proviso eId="sec_22__subsec_2__proviso_1">
+            <content eId="sec_22__subsec_2__proviso_1__content">
+              <p eId="sec_22__subsec_2__proviso_1__content__p_1">Provided that, before taking such disciplinary action, the concerned officer or official, shall be given an opportunity of being heard.</p>
+            </content>
+          </proviso>
+        </subsection>
+      </section>
+      <section eId="sec_23">
+        <num>23.</num>
+        <heading>Penalty for violations of the provisions of the Act by private individuals</heading>
+        <intro eId="sec_23__intro">
+          <p eId="sec_23__intro__p_1">Whoever being the owner or person in-charge of any industry, shop, firm and commercial establishment, fails to comply with the provision of subsection <ref eId="sec_23__intro__p_1__ref_1" href="#sec_17__subsec_6">(6)</ref> to <ref eId="sec_23__intro__p_1__ref_2" href="#sec_17__subsec_10">(10)</ref> of section 17 of this Act shall be liable for fine as noted below:</p>
+        </intro>
+        <clause eId="sec_23__cl_i">
+          <num>(i)</num>
+          <content eId="sec_23__cl_i__content">
+            <p eId="sec_23__cl_i__content__p_1">fine which may extend to Rs.5,000/- for the first offence.</p>
+          </content>
+        </clause>
+        <clause eId="sec_23__cl_ii">
+          <num>(ii)</num>
+          <content eId="sec_23__cl_ii__content">
+            <p eId="sec_23__cl_ii__content__p_1">fine which may extend to Rs.10,000/- for the second offence and</p>
+          </content>
+        </clause>
+        <clause eId="sec_23__cl_iii">
+          <num>(iii)</num>
+          <content eId="sec_23__cl_iii__content">
+            <p eId="sec_23__cl_iii__content__p_1">fine which may extend to Rs.20,000/- for every subsequent offence and shall also be liable for cancellation of the license.</p>
+          </content>
+        </clause>
+        <hcontainer eId="sec_23__hcontainer_1" name="explanation">
+          <content eId="sec_23__hcontainer_1__content">
+            <p eId="sec_23__hcontainer_1__content__p_1">Explanation:- For this purpose before initiating any action, the Enforcement Officer shall issue a show-cause notice indicating the violation of the Act and provide opportunity for compliance of the provisions of this Act within fifteen days from the date of notice. Failure to comply with show cause notice will attract the aforesaid offence and penalty.</p>
+          </content>
+        </hcontainer>
+      </section>
+      <section eId="sec_24">
+        <num>24.</num>
+        <heading>Compounding of Offence</heading>
+        <subsection eId="sec_24__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_24__subsec_1__content">
+            <p eId="sec_24__subsec_1__content__p_1">Any offence whether committed before or after the commencement of this Act punishable under <ref eId="sec_24__subsec_1__content__p_1__ref_1" href="#sec_23">section 23</ref>, may either before or after the institution of the prosecution, can be compounded by such officers or authorities and for such amount as the State Government may, by notification in the Official Gazette, specify in this behalf.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_24__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_24__subsec_2__content">
+            <p eId="sec_24__subsec_2__content__p_1">Where an offence has been compounded against the offender under <ref eId="sec_24__subsec_2__content__p_1__ref_1" href="#sec_24__subsec_1">subsection (1)</ref>, no further prosecution shall be taken against him.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_25">
+        <num>25.</num>
+        <heading>Supervision by the State Level Committee</heading>
+        <subsection eId="sec_25__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_25__subsec_1__content">
+            <p eId="sec_25__subsec_1__content__p_1">The State Level Committee shall supervise the implementation of provisions of this Act.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_25__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_25__subsec_2__content">
+            <p eId="sec_25__subsec_2__content__p_1">It shall be the duty of the said Committee to inform the Appointing Authority or Disciplinary Authority to take suitable action against the officers responsible for violation of the provisions of this Act.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_25__subsec_3">
+          <num>(3)</num>
+          <content eId="sec_25__subsec_3__content">
+            <p eId="sec_25__subsec_3__content__p_1">It shall be mandatory for every Appointing Authority or Disciplinary Authority to take appropriate action on the recommendation of the State Level Committee within a reasonable time not exceeding one year from the date of communication of the report.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_25__subsec_4">
+          <num>(4)</num>
+          <content eId="sec_25__subsec_4__content">
+            <p eId="sec_25__subsec_4__content__p_1">The State Level Committee may also recommend for suitable action in respect of violation of other provisions of the Act to the Appropriate Authorities.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_26">
+        <num>26.</num>
+        <heading>Power to make rules</heading>
+        <subsection eId="sec_26__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_26__subsec_1__content">
+            <p eId="sec_26__subsec_1__content__p_1">The Government may, by notification in the Official Gazette make rules for carrying out the purposes of this Act.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_26__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_26__subsec_2__content">
+            <p eId="sec_26__subsec_2__content__p_1">Every rule made under this Act shall be laid as soon as may be before each House of the State Legislature while it is in Session for a total period of thirty days, which may be comprised in one Session or in two or more successive Sessions and if, before the expiry of the Session in which it is so laid or the Session immediately following both Houses agree in making any modification in the rule or decide that any rule should not be made, the rule shall thereafter have effect only in such modified form or be of no effect, as the case may be, so, however, that any such modification or annulment shall be without prejudice to the validity of anything previously done under that rule.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_27">
+        <num>27.</num>
+        <heading>Power of Government to give directions</heading>
+        <content eId="sec_27__content">
+          <p eId="sec_27__content__p_1">The State Government may issue such directions or instructions to all officers of the State Government as may be necessary for effective implementation of the provisions of this Act and the rules made thereunder.</p>
+        </content>
+      </section>
+      <section eId="sec_28">
+        <num>28.</num>
+        <heading>Protection of action taken in good faith</heading>
+        <content eId="sec_28__content">
+          <p eId="sec_28__content__p_1">No suit, prosecution or other legal proceedings shall lie against the State Government or the Local Authority or any Officer of the Government in respect of anything which is done in good faith or intended to be done in pursuance of this Act and any Rules or Orders made there under.</p>
+        </content>
+      </section>
+      <section eId="sec_29">
+        <num>29.</num>
+        <heading>Power to remove difficulties</heading>
+        <subsection eId="sec_29__subsec_1">
+          <num>(1)</num>
+          <intro eId="sec_29__subsec_1__intro">
+            <p eId="sec_29__subsec_1__intro__p_1">If any difficulty arises in giving effect to the provisions of this Act, the Government may, by order published in the Gazette, make provisions not inconsistent with the provisions of this Act which appear to be necessary or expedient, for removing the difficulty:</p>
+          </intro>
+          <proviso eId="sec_29__subsec_1__proviso_1">
+            <content eId="sec_29__subsec_1__proviso_1__content">
+              <p eId="sec_29__subsec_1__proviso_1__content__p_1">Provided that, no such order shall be made after the expiry of period of two years from the date of commencement of this Act.</p>
+            </content>
+          </proviso>
+        </subsection>
+        <subsection eId="sec_29__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_29__subsec_2__content">
+            <p eId="sec_29__subsec_2__content__p_1">Every order made under this Section shall, as soon as may be after it is made, be laid before the Karnataka State Legislature.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_30">
+        <num>30.</num>
+        <heading>Transitory provisions</heading>
+        <content eId="sec_30__content">
+          <p eId="sec_30__content__p_1">All rules, orders, notifications issued on the matters specified in this Act by the State Government before the commencement of this Act shall be valid and deemed to have been done or issued under the provisions of this Act and they shall continue until it is modified or withdrawn under this Act.</p>
+        </content>
+      </section>
+      <section eId="sec_31">
+        <num>31.</num>
+        <heading>Repeal and Savings</heading>
+        <subsection eId="sec_31__subsec_1">
+          <num>(1)</num>
+          <content eId="sec_31__subsec_1__content">
+            <p eId="sec_31__subsec_1__content__p_1">The Karnataka Official Language Act 1963 (Karnataka Act 26 of 1963) and the Karnataka Local Authorities (Official Language) Act, 1981 (Karnataka Act 30 of 1981) are hereby repealed.</p>
+          </content>
+        </subsection>
+        <subsection eId="sec_31__subsec_2">
+          <num>(2)</num>
+          <content eId="sec_31__subsec_2__content">
+            <p eId="sec_31__subsec_2__content__p_1">Notwithstanding such repeal, anything done or any action taken under the said Act shall be deemed to have been done or taken under this Act.</p>
+          </content>
+        </subsection>
+      </section>
+    </body>
+    <conclusions eId="conclusions">
+      <p eId="conclusions__p_1">The above translation of , 2022 <span eId="conclusions__p_1__span_1" xml:lang="kn">(2023ರ                : 13)</span> be published in the official Gazette under clause (3) of Article 348 of the constitution of India.</p>
+      <p eId="conclusions__p_2">THAAWARCHAND GEHLOT GOVERNOR OF KARANATAKA</p>
+      <p eId="conclusions__p_3">By Order and in the name of the Governor of Karnataka,</p>
+      <p eId="conclusions__p_4">G.SRIDHAR</p>
+      <p eId="conclusions__p_5">Secretary to Government Department of Parliamentary Affairs and Legislation</p>
+    </conclusions>
+  </act>
+</akomaNtoso>

@@ -43,6 +43,34 @@ def test_a_wrapped_citation_does_not_start_a_new_subsection():
     assert "sub-section (1) of section 8" in lines[0]
 
 
+def test_reference_list_split_after_and_does_not_duplicate_subsection():
+    text = (
+        "An Act to regulate language.\n"
+        "Be it enacted as follows:-\n"
+        "20. Entitlement.- (1) The Act applies.\n"
+        "(2) An industry shall comply.\n"
+        "(3) Departments shall ensure compliance with sub-section (1) and\n"
+        "(2). Annual reports shall be laid before the Legislature.\n"
+        "(4) The Department shall report.\n"
+    )
+    section = build(text).body[0]
+    assert [child.num for child in section.children] == ["1", "2", "3", "4"]
+    assert "sub-section (1) and (2). Annual reports" in section.children[2].paragraphs[0]
+
+
+def test_gazette_closing_formula_does_not_hide_final_section():
+    text = (
+        "An Act to amend an Act.\n"
+        "Be it enacted as follows:-\n"
+        "1. Short title.- This Act may be called the Amendment Act.\n"
+        "2. Amendment of section 7.- The following shall be substituted.\n"
+        "The above translation of the Amendment Act, 2024 shall be published.\n"
+    )
+    doc = build(text)
+    assert [section.num for section in doc.body] == ["1", "2"]
+    assert "The above translation" not in " ".join(doc.body[-1].paragraphs)
+
+
 def test_an_inline_first_subsection_becomes_a_real_subsection():
     text = (
         "An Act to do things.\n"
