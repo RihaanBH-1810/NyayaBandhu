@@ -2,14 +2,15 @@
 
 ## Unattended technical preparation
 
-The Teachers Act overview has **Prepare four Teachers amendments**. It verifies
-the bundled base and all four distinct source pairs by SHA-256, registers any
-missing amendments as pending proposals, and leaves existing source records
-unchanged when run again. **Download unapproved drafts** creates a ZIP with the
-four dated candidate XML files, immutable source files, the pinned technical
-decision profile, and a validation report. The same ZIP can be built from a
-shell with `source .venv/bin/activate` and
+Technical preparation verifies the bundled base and all four distinct source
+pairs by SHA-256, registers any missing amendments as pending proposals, and
+leaves existing source records unchanged when run again. The candidate ZIP
+contains four dated XML drafts, immutable source files, the pinned technical
+decision profile, and a validation report. Build it from a shell with
+`source .venv/bin/activate` and
 `python -m akn_consolidator.teachers_candidates --output teachers-unapproved-candidates.zip`.
+The preparation API remains available for technical intake, but the Act
+overview uses the ordinary Upload amendment workflow.
 
 The profile contains the earlier regression decisions for the 2021, second
 2021, and 2026 instruments. The 2022 instrument uses extracted candidates.
