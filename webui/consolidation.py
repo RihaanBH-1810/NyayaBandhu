@@ -13,6 +13,7 @@ from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, ConfigDict, Field
 from akn_consolidator.common import Conflict, NS, parse
 from akn_consolidator.service import Consolidator
+from akn_consolidator.teachers_candidates import build_candidate_package
 from webui import akn_view
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -58,6 +59,21 @@ class Mutation(Input):
     revision: int = Field(ge=0)
     actor: str = Field(min_length=1)
     reason: str = Field(min_length=1)
+
+
+@router.post('/works/{work_id}/prepare-teachers')
+def prepare_teachers(work_id: str, body: Mutation):
+    return call('prepare_teachers_sources',work_id,body.revision,body.actor,body.reason)
+
+
+@router.get('/teachers/candidate-package')
+def teachers_candidate_package():
+    try:
+        raw,_ = build_candidate_package()
+    except (ValueError, KeyError, OSError) as exc:
+        raise HTTPException(409,str(exc)) from exc
+    return Response(raw,media_type='application/zip',headers={
+        'Content-Disposition':'attachment; filename="teachers-unapproved-candidates.zip"'})
 
 
 class Source(Input):

@@ -1,5 +1,24 @@
 # Teachers and Kannada Act source intake
 
+## Unattended technical preparation
+
+The Teachers Act overview has **Prepare four Teachers amendments**. It verifies
+the bundled base and all four distinct source pairs by SHA-256, registers any
+missing amendments as pending proposals, and leaves existing source records
+unchanged when run again. **Download unapproved drafts** creates a ZIP with the
+four dated candidate XML files, immutable source files, the pinned technical
+decision profile, and a validation report. The same ZIP can be built from a
+shell with `source .venv/bin/activate` and
+`python -m akn_consolidator.teachers_candidates --output teachers-unapproved-candidates.zip`.
+
+The profile contains the earlier regression decisions for the 2021, second
+2021, and 2026 instruments. The 2022 instrument uses extracted candidates.
+The 2026 candidate is rebound to the predecessor that includes Act 32 of
+2022. All four XML candidates pass the existing validator in isolation. These
+files are **technical drafts**, not CMS approvals or legally determined
+commencement dates. The normal amendment review and version approval gates
+remain required before the public reader or approved export can use them.
+
 Seven requested English instruments are available in the local source catalog. The three newly supplied downloads were separated where needed so each platform PDF represents one instrument. The unmodified downloaded files are retained under `sources/original-downloads/`.
 
 | Instrument | Platform PDF | Generated XML | PDF pages | Parsed sections | CMS extraction |

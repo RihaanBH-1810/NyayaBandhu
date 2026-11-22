@@ -139,6 +139,46 @@ class Consolidator:
             work_id=row['work_id']
         return self.import_source(xml,pdf,'amendment',actor,reason,work_id,revision,check_id)
 
+    def prepare_teachers_sources(self,work_id,revision,actor,reason):
+        """Register the pinned four-source set as pending proposals, never approvals."""
+        from .teachers_candidates import BASE, SOURCES, checked, build_candidate_package
+        self._actor(actor,reason)
+        build_candidate_package()  # Check the complete source set before any write.
+        with self.store.transaction() as db:
+            work=self._work(db,work_id,revision)
+            if work['uri']!=metadata(parse(checked(BASE[0])))['work_uri']:
+                raise Conflict('Choose the bundled Teachers base Act')
+            base=db.execute("SELECT * FROM sources WHERE work_id=? AND kind='base'",(work_id,)).fetchone()
+            if not base or base['xml_hash']!=digest(checked(BASE[0])) or base['pdf_hash']!=digest(checked(BASE[1])):
+                raise Conflict('The imported base source differs from the pinned Teachers source')
+        registered=[]
+        for name,stem,_day in SOURCES:
+            xml,pdf=(checked(f'{folder}/{stem}.{suffix}') for folder,suffix in
+                     (('out/amendment/eng','xml'),('data/ammendments','pdf')))
+            uri=metadata(parse(xml))['work_uri']
+            with self.store.transaction() as db:
+                self._work(db,work_id)
+                existing=next((dict(row) for row in db.execute(
+                    "SELECT * FROM sources WHERE work_id=? AND kind='amendment'",(work_id,))
+                    if json.loads(row['metadata'])['work_uri']==uri),None)
+                current=self._work(db,work_id)['revision']
+            if existing:
+                if existing['archived_at'] or existing['xml_hash']!=digest(xml) or existing['pdf_hash']!=digest(pdf):
+                    raise Conflict(f'Existing {name} source differs or is archived; resolve it before preparing drafts')
+                source_id=existing['id']
+            else:
+                imported=self.import_source(xml,pdf,'amendment',actor,reason,work_id,current)
+                if imported.get('status'): raise Conflict(f'{name} identity requires review')
+                source_id=imported['source_id']
+            with self.store.transaction() as db:
+                manifest=db.execute('SELECT 1 FROM manifests WHERE source_id=?',(source_id,)).fetchone()
+                current=self._work(db,work_id)['revision']
+            if not manifest: self.extract(source_id,current,actor,reason)
+            registered.append({'instrument':name,'source_id':source_id})
+        with self.store.transaction() as db:
+            return {'work_id':work_id,'revision':self._work(db,work_id)['revision'],
+                    'status':'pending_legal_review','sources':registered}
+
     def extract(self, source_id, revision, actor, reason):
         self._actor(actor,reason)
         with self.store.transaction() as db:
