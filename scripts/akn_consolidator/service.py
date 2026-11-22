@@ -286,15 +286,30 @@ class Consolidator:
         if effective_date < parent['effective_date']: raise Conflict('Effective date precedes the selected predecessor; replay from an earlier expression')
         root=parse(self.store.read(parent['xml_hash'])); manifests=self._manifests(db,work_id)
         selected=[]; revisions=dict(parent['body']['manifest_revisions']); applied=list(parent['body']['applied']); applications=[]
-        missing=[r['id'] for r in db.execute("SELECT s.id FROM sources s WHERE work_id=? AND kind='amendment' AND archived_at IS NULL AND NOT EXISTS(SELECT 1 FROM manifests m WHERE m.source_id=s.id)",(work_id,))]
+        missing=[r['id'] for r in db.execute("SELECT s.id,s.metadata FROM sources s WHERE work_id=? AND kind='amendment' AND archived_at IS NULL AND NOT EXISTS(SELECT 1 FROM manifests m WHERE m.source_id=s.id)",(work_id,))
+                 if not (json.loads(r['metadata']).get('publication_date') or '')>effective_date]
         if missing: raise Conflict('Extract all registered amendment sources first: '+', '.join(missing))
         ordering=set()
         for manifest in manifests:
             body=manifest['body']; mid=manifest['id']
             if mid in revisions and revisions[mid]!=manifest['revision']: raise Conflict('Predecessor uses an obsolete instruction revision')
             pending=[op for op in body['operations'] if f"{mid}:{manifest['revision']}:{op['id']}" not in applied]
-            relevant=[op for op in pending if not (op.get('effective_date') or body.get('effective_date')) or (op.get('effective_date') or body['effective_date'])<=effective_date]
-            if relevant and body['status']!='ready': raise Conflict(f'Unresolved instructions or commencement: {mid}')
+            source=self.store.load(db.execute('SELECT * FROM sources WHERE id=?',(manifest['source_id'],)).fetchone())
+            published=source['metadata'].get('publication_date')
+            # An undated, later-published instrument cannot block an earlier
+            # historical version. Once its publication date is reached, its
+            # commencement and every instruction still need review.
+            relevant=[op for op in pending if (
+                (op.get('effective_date') or body.get('effective_date') or published or '')<=effective_date)]
+            if relevant and body['status']!='ready':
+                problems=[]
+                if not body.get('identity_confirmed'): problems.append('principal Act identity unconfirmed')
+                if not body.get('effective_date') and any(not op.get('effective_date') for op in relevant):
+                    problems.append('commencement date unset')
+                elif not body.get('date_confirmed'): problems.append('commencement evidence unconfirmed')
+                count=sum(op.get('review_status')!='accepted' or op.get('action')=='blocked' for op in relevant)
+                if count: problems.append(f'{count} instructions pending')
+                raise Conflict('Unresolved amendment review for '+body['source_work_uri']+': '+', '.join(problems or ['review status unresolved']))
             for i,op in enumerate(pending):
                 day=op.get('effective_date') or body.get('effective_date')
                 if day is None or day>effective_date: continue
@@ -492,16 +507,26 @@ class Consolidator:
             row=db.execute('SELECT * FROM expressions WHERE work_id=? AND effective_date<=? AND approved_at<=? AND (invalidated_at IS NULL OR invalidated_at>?) ORDER BY effective_date DESC,approved_at DESC LIMIT 1',(work_id,as_of,cutoff,cutoff)).fetchone()
             expression=self.store.load(row)
             # History cutoff also applies to source and instruction discovery.
-            registered=[r['id'] for r in db.execute("SELECT id FROM sources WHERE work_id=? AND kind='amendment' AND archived_at IS NULL AND created<=?",(work_id,cutoff))]
-            covered=[];unresolved=[]
-            for source_id in registered:
+            sources=list(db.execute("SELECT id,metadata FROM sources WHERE work_id=? AND kind='amendment' AND archived_at IS NULL AND created<=?",(work_id,cutoff)))
+            registered=[r['id'] for r in sources]
+            covered=[];unresolved=[];future=[]
+            for source in sources:
+                source_id=source['id']
+                published=json.loads(source['metadata']).get('publication_date')
                 m=db.execute('SELECT * FROM manifests WHERE source_id=? AND created<=? ORDER BY revision DESC LIMIT 1',(source_id,cutoff)).fetchone()
-                if m is None: unresolved.append(source_id);continue
+                if m is None:
+                    (future if published and published>as_of else unresolved).append(source_id)
+                    continue
                 manifest=self.store.load(m);body=manifest['body']
-                pending=[op for op in body['operations'] if not (op.get('effective_date') or body.get('effective_date')) or ((op.get('effective_date') or body['effective_date'])<=as_of and f"{manifest['id']}:{manifest['revision']}:{op['id']}" not in expression['body']['applied'])]
+                applicable=[op for op in body['operations'] if (op.get('effective_date') or body.get('effective_date') or published or '')<=as_of]
+                if not applicable:
+                    future.append(source_id)
+                    continue
+                pending=[op for op in applicable if f"{manifest['id']}:{manifest['revision']}:{op['id']}" not in expression['body']['applied']]
                 (unresolved if pending else covered).append(source_id)
             return {'expression':expression,'coverage':{'registered_sources':registered,'covered':covered,'unresolved':unresolved,
-                    'complete_for_registered_sources':not unresolved,'external_completeness':'not established'},'known_at':cutoff,'as_of':as_of}
+                    'future_sources':future,'complete_for_registered_sources':not unresolved,
+                    'external_completeness':'not established'},'known_at':cutoff,'as_of':as_of}
 
     def inventory(self,expression_id,target,old,whole_word=False):
         with self.store.transaction() as db:

@@ -176,13 +176,15 @@ def test_instruction_revision_invalidates_descendants_and_keeps_known_history(tm
     assert c.preview(work,base['id'],'2021-04-29')['ok']
 
 
-def test_approval_rechecks_new_source_coverage(tmp_path):
+def test_approval_of_earlier_version_allows_later_pending_source(tmp_path):
     c, work, result=start(tmp_path);base=result['expression']
     reviewed=register(c,work,result['revision'],'First')
     draft=apply(c,work,reviewed,base,'First')
     registered=register(c,work,draft['revision'],'Second',ready=False)
+    approved=c.approve(draft['expression']['id'],registered['revision'],draft['expression']['xml_hash'],**AUTH)
+    assert approved['expression']['approved_at']
     with pytest.raises(Conflict,match='Unresolved'):
-        c.approve(draft['expression']['id'],registered['revision'],draft['expression']['xml_hash'],**AUTH)
+        c.preview(work,approved['expression']['id'],'2022-01-18')
 
 
 def test_atomic_conflict_leaves_parent_and_history_unchanged(tmp_path):

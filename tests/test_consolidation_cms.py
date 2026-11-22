@@ -94,6 +94,27 @@ def setup_first(tmp_path):
     return service,base['work_id'],approved['expression'],extracted
 
 
+def test_future_undated_amendment_does_not_block_earlier_version(tmp_path):
+    service,work,base,first=setup_first(tmp_path)
+    reviewed=service.review(first['manifest']['id'],deepcopy(REVIEWS['First']),
+                            first['revision'],first['manifest']['revision'],**AUTH)
+    second=service.import_source((ROOT/'out/amendment/eng/Second_ammendment.xml').read_bytes(),
+                                 (ROOT/'data/ammendments/Second_ammendment.pdf').read_bytes(),
+                                 'amendment',work_id=work,revision=reviewed['revision'],**AUTH)
+    assert service.preview(work,base['id'],'2021-04-29')['ok']
+    extracted=service.extract(second['source_id'],second['revision'],**AUTH)
+    assert extracted['manifest']['body']['effective_date'] is None
+    preview=service.preview(work,base['id'],'2021-04-29')
+    assert preview['ok']
+    applied=service.apply(work,base['id'],'2021-04-29',extracted['revision'],preview['preview_hash'],**AUTH)
+    approved=service.approve(applied['expression']['id'],applied['revision'],applied['expression']['xml_hash'],**AUTH)
+    coverage=service.lookup(work,'2021-04-29')['coverage']
+    assert coverage['complete_for_registered_sources']
+    assert second['source_id'] in coverage['future_sources']
+    with pytest.raises(Conflict,match='commencement date unset.*23 instructions pending'):
+        service.preview(work,approved['expression']['id'],'2022-01-18')
+
+
 def test_staged_inspector_shows_inserted_target_and_stable_identity(tmp_path):
     service,work,base,extracted=setup_first(tmp_path)
     manifest=extracted['manifest'];body=deepcopy(REVIEWS['First'])
