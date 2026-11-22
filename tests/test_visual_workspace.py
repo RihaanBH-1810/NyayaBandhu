@@ -173,6 +173,12 @@ def test_canvas_replays_first_amendment_without_persisting_and_rejection_blocks_
     assert 'wording-inserted' in insert['after_html']
     assert svc.expression_xml(parent['id'])==original
     assert svc.workspace(work)['work']['revision']==extracted['revision']
+    effect=next(r for r in canvas['rows'] if r['id']=='sec_3_op_1')
+    assert effect['label']=='Repeal and savings'
+    assert effect['before_effect']['status']=='documented'
+    assert effect['before_effect']['citation']=='Karnataka Ordinance 4 of 2021'
+    assert 'section 10(5)' in effect['before_effect']['summary']
+    assert '04_of_2021_ord.pdf' in effect['before_effect']['source_url']
     body['operations'][1].update(review_status='pending',review_decision='rejected',review_note='Check wording')
     reviewed=svc.review(manifest['id'],body,extracted['revision'],manifest['revision'],**AUTH)
     assert reviewed['manifest']['body']['status']=='needs_review'
@@ -181,6 +187,12 @@ def test_canvas_replays_first_amendment_without_persisting_and_rejection_blocks_
         svc.preview(work,parent['id'],body['effective_date'])
     with pytest.raises(Conflict,match='review changed'):
         ui.make_canvas(svc,manifest['id'],ui.Canvas(expression_id=parent['id'],manifest_revision=1,body=body))
+
+
+def test_effect_context_without_verified_source_does_not_invent_prior_law():
+    result=ui.previous_effect_context({'source':{'quote':'Karnataka Ordinance 99 of 2025 is repealed.'}})
+    assert result=={'status':'unverified','citation':'Karnataka Ordinance 99 of 2025'}
+    assert ui.previous_effect_context({'source':{'quote':'This Act comes into force at once.'}})=={'status':'unverified'}
 
 
 @pytest.mark.parametrize('action', ['renumber','insert_provision'])

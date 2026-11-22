@@ -76,6 +76,10 @@
 .workspace .group-decisions{border-top:1px solid var(--line);margin-top:24px}
 .workspace .group-operation{border-left:3px solid #cbd5e1;padding:12px 16px;margin:16px 0;cursor:pointer;background:#fff}
 .workspace .group-operation.active-change{border-left-color:#2563eb;background:#eff6ff}
+.workspace .effect-context{max-width:66ch;line-height:1.6;font-size:.9rem}
+.workspace .effect-context-heading{font-size:.78rem;font-weight:700;color:#475467;text-transform:uppercase;letter-spacing:.04em;margin:0 0 12px}
+.workspace .effect-context p{margin:10px 0}
+.workspace .effect-context a{display:inline-block;margin-top:4px}
 .workspace .section-group [data-eid].active-change{background:#fef3c7;outline:2px solid #ca8a04}
 .workspace #modal [data-action="expand-modal"] svg{display:block;width:18px;height:18px}
 

@@ -5,6 +5,7 @@ import difflib
 import html
 import io
 import json
+import re
 from pathlib import Path
 import tempfile
 
@@ -176,6 +177,20 @@ def highlight_comparison(before, after):
             for tree, raw in zip(trees, (before, after))]
 
 
+def previous_effect_context(op):
+    """Return source-backed context, without inferring the prior legal position."""
+    quote = op.get('source', {}).get('quote', '')
+    citation = re.search(r'Karnataka Ordinance\s+(?:No\.?\s*)?0*(\d+)\s+of\s+(\d{4})',
+                         quote, re.IGNORECASE)
+    if citation:
+        key = f'Karnataka Ordinance {int(citation.group(1))} of {citation.group(2)}'
+        records = json.loads((ROOT / 'data/legal_effect_context.json').read_text(encoding='utf-8'))
+        if key in records:
+            return {'status': 'documented', 'citation': key, **records[key]}
+        return {'status': 'unverified', 'citation': key}
+    return {'status': 'unverified'}
+
+
 def make_canvas(svc, manifest_id, request):
     with svc.store.transaction() as db:
         manifest = svc._manifest(db, manifest_id)
@@ -203,7 +218,7 @@ def make_canvas(svc, manifest_id, request):
             try:
                 before = scope_node(trial, op)
                 row['label'] = (akn_view.provision_label(before, context=True)
-                                if before is not None else op.get('classification', 'Separate legal effect'))
+                                if before is not None else op.get('classification', 'Separate legal effect').replace('_', ' ').capitalize())
                 row['before_html'] = akn_view._render_block(before) if before is not None else ''
                 before_text = text(before) if before is not None else ''
                 scope_eid = before.get('eId') if before is not None else None
@@ -249,6 +264,7 @@ def make_canvas(svc, manifest_id, request):
                     row['before_diff'], row['after_diff'] = word_diff(before_text, ' '.join(text(n) for n in after_nodes))
                 if op['action'] == 'effect':
                     row['effect'] = op.get('classification')
+                    row['before_effect'] = previous_effect_context(op)
                 row['changes'] = result
                 row['affected_eid'] = result.get('target_eid') or scope_eid
                 # This is explicitly a proposal, including pending operations.
