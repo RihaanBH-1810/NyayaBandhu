@@ -69,7 +69,11 @@ def test_full_teachers_chain_and_source_integrity(chain):
     assert [len(REVIEWS[n]['operations']) for n in REVIEWS] == [3, 23, 11]
     for name, version in zip(REVIEWS, versions[1:]):
         raw = c.expression_xml(version['id'])
-        assert canonical_hash(parse(raw)) == canonical_hash(parse((FIXTURES / (name + '.xml')).read_bytes()))
+        compared = parse(raw)
+        for proprietary in compared.findall('.//' + Q('proprietary')):
+            if len(proprietary) and all(child.tag.endswith('}legalEffect') for child in proprietary):
+                proprietary.getparent().remove(proprietary)
+        assert canonical_hash(compared) == canonical_hash(parse((FIXTURES / (name + '.xml')).read_bytes()))
         assert validate(parse(raw))['ok']
     root = parse(c.expression_xml(versions[-1]['id']))
     assert 'In case of a teacher who was transferred' in text(locate(root, {'eid':'sec_10__subsec_6'}))

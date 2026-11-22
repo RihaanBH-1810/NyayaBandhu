@@ -42,7 +42,10 @@ def _field(owner, el):
     return {"owner_eid": owner.get("eId"), "eid": el.get("eId"),
             "path": _path(owner, el), "tag": _tag(el),
             "segments": [el.text or ""] + [child.tail or "" for child in el],
-            "protected": [f"{_tag(child)}: {''.join(child.itertext())}" for child in el]}
+            "protected": [f"{_tag(child)}: {''.join(child.itertext())}" for child in el],
+            "protected_info": [{"type":_tag(child),"target":child.get('href'),
+                                "language":child.get('{http://www.w3.org/XML/1998/namespace}lang')}
+                               for child in el]}
 
 
 def prepare(node):

@@ -26,6 +26,10 @@ CREATE TABLE IF NOT EXISTS related_documents(id TEXT PRIMARY KEY, work_id TEXT N
  pdf_hash TEXT NOT NULL, created TEXT NOT NULL, actor TEXT NOT NULL, reason TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS reader_issues(id INTEGER PRIMARY KEY, work_id TEXT NOT NULL REFERENCES works(id),
  expression_id TEXT NOT NULL, message TEXT NOT NULL, created TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS upload_checks(id TEXT PRIMARY KEY, work_id TEXT NOT NULL REFERENCES works(id),
+ xml_hash TEXT NOT NULL, pdf_hash TEXT NOT NULL, status TEXT NOT NULL, result TEXT NOT NULL,
+ actor TEXT NOT NULL, reason TEXT NOT NULL, created TEXT NOT NULL, resolved_at TEXT, resolved_by TEXT,
+ resolution TEXT);
 '''
 
 

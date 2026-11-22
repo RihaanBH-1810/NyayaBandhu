@@ -11,6 +11,7 @@ from .storage import Store
 from .extraction import extract
 from .engine import run, apply_one, seed_identities, update_metadata, locate, occurrences, public_hits, _references
 from .common import Q, tag, text
+from .identity import check as check_identity
 
 
 class Consolidator:
@@ -52,7 +53,7 @@ class Consolidator:
                    (expression_id,work_id,parent_id,effective_date,xml_hash,canonical_hash(root),manifest_hash,encode(body).decode(),now()))
         return self._expression(db, expression_id)
 
-    def import_source(self, xml, pdf, kind, actor, reason, work_id=None, revision=None):
+    def import_source(self, xml, pdf, kind, actor, reason, work_id=None, revision=None, identity_check_id=None):
         self._actor(actor,reason)
         if kind not in {'base','amendment'}: raise ValueError('Source kind must be base or amendment')
         root = parse(xml); meta = metadata(root)
@@ -77,6 +78,22 @@ class Consolidator:
                 if revision is None: raise ValueError('Expected work revision is required')
                 work=self._work(db,work_id,revision)
                 if meta['work_uri']==work['uri']: raise Conflict('An amending instrument must have its own Work URI')
+                if identity_check_id:
+                    pending=db.execute('SELECT * FROM upload_checks WHERE id=? AND work_id=?',(identity_check_id,work_id)).fetchone()
+                    if not pending or pending['status']!='confirmed' or pending['xml_hash']!=digest(xml) or pending['pdf_hash']!=digest(pdf):
+                        raise Conflict('Identity review does not match these files')
+                else:
+                    base=db.execute("SELECT xml_hash FROM sources WHERE work_id=? AND kind='base'",(work_id,)).fetchone()
+                    base_root=parse(self.store.read(base['xml_hash']))
+                    title_node=base_root.find('./'+Q('act')+'/'+Q('longTitle'))
+                    title=text(title_node) if title_node is not None else ''
+                    finding=check_identity(root,pdf,work['uri'],title)
+                    if finding['status']!='match':
+                        check_id=digest(encode([work_id,digest(xml),digest(pdf)]))[:24]
+                        self.store.put(xml); self.store.put(pdf)
+                        db.execute('INSERT OR IGNORE INTO upload_checks(id,work_id,xml_hash,pdf_hash,status,result,actor,reason,created) VALUES(?,?,?,?,?,?,?,?,?)',
+                                   (check_id,work_id,digest(xml),digest(pdf),finding['status'],encode(finding).decode(),actor,reason,now()))
+                        return {'status':finding['status'],'check_id':check_id,'identity':finding,'revision':work['revision']}
                 for row in db.execute("SELECT metadata FROM sources WHERE work_id=? AND kind='amendment'",(work_id,)):
                     if json.loads(row['metadata'])['work_uri']==meta['work_uri']:
                         raise Conflict('This amending instrument is already registered; review its existing instruction manifest')
@@ -84,6 +101,8 @@ class Consolidator:
             source_id = digest(encode([work_id,kind,x,p]))[:24]
             if db.execute('SELECT 1 FROM sources WHERE id=?',(source_id,)).fetchone(): raise Conflict('Source already imported')
             db.execute('INSERT INTO sources(id,work_id,kind,xml_hash,pdf_hash,metadata,created) VALUES(?,?,?,?,?,?,?)',(source_id,work_id,kind,x,p,encode(meta).decode(),now()))
+            if identity_check_id:
+                db.execute('UPDATE upload_checks SET status=? WHERE id=?',('imported',identity_check_id))
             result = {'work_id':work_id,'source_id':source_id}
             if kind=='base':
                 body={'kind':'base','source_id':source_id,'date_basis':'as_published; commencement not determined',
@@ -92,6 +111,33 @@ class Consolidator:
             self.store.event(db,work_id,'source_imported',actor,reason,result)
             result['revision'] = self._bump(db,work_id)
             return result
+
+    def upload_checks(self,work_id):
+        with self.store.transaction() as db:
+            self._work(db,work_id)
+            return [dict(row) | {'result':json.loads(row['result'])} for row in db.execute(
+                "SELECT * FROM upload_checks WHERE work_id=? AND status!='imported' ORDER BY created DESC",(work_id,))]
+
+    def confirm_upload(self,check_id,revision,actor,reason,page,quote):
+        self._actor(actor,reason)
+        if not isinstance(page,int) or page<1 or not quote.strip(): raise ValueError('Gazette page and quotation are required')
+        with self.store.transaction() as db:
+            row=db.execute('SELECT * FROM upload_checks WHERE id=?',(check_id,)).fetchone()
+            if not row or row['status']!='unclear': raise Conflict('Only an unclear identity can be confirmed')
+            work=self._work(db,row['work_id'],revision)
+            with pymupdf.open(stream=self.store.read(row['pdf_hash']),filetype='pdf') as doc:
+                if page>len(doc): raise ValueError('Evidence page is outside the PDF')
+            db.execute('UPDATE upload_checks SET status=?,resolved_at=?,resolved_by=?,resolution=? WHERE id=?',
+                       ('confirmed',now(),actor,encode({'page':page,'quote':quote,'reason':reason,'work_uri':work['uri']}).decode(),check_id))
+            return {'check_id':check_id,'status':'confirmed'}
+
+    def complete_upload(self,check_id,revision,actor,reason):
+        with self.store.transaction() as db:
+            row=db.execute('SELECT * FROM upload_checks WHERE id=?',(check_id,)).fetchone()
+            if not row or row['status']!='confirmed': raise Conflict('Confirm the amendment identity first')
+            xml,pdf=self.store.read(row['xml_hash']),self.store.read(row['pdf_hash'])
+            work_id=row['work_id']
+        return self.import_source(xml,pdf,'amendment',actor,reason,work_id,revision,check_id)
 
     def extract(self, source_id, revision, actor, reason):
         self._actor(actor,reason)
@@ -153,7 +199,11 @@ class Consolidator:
                 pages=op['source'].get('pdf_pages',[])
                 if not isinstance(pages,list) or any(type(p) is not int or not 1<=p<=max_page for p in pages):
                     raise ValueError('Evidence page is outside the source PDF')
-                if op['action']=='effect' and not op.get('classification'): raise ValueError('Separate legal effect requires classification')
+                if op['action']=='effect':
+                    if op.get('classification') not in {'commencement','name_change','repeal_and_savings','ordinance_replacement','other'}:
+                        raise ValueError('Choose a supported legal effect classification')
+                    if op.get('review_status')=='accepted' and not op.get('details'):
+                        raise ValueError('Accepted legal effect requires a summary')
                 if op.get('effective_date'): iso_date(op['effective_date'])
                 if op.get('review_status')=='accepted' and op['action'] not in {'effect','blocked'}:
                     if not isinstance(op.get('target'),dict): raise ValueError('Accepted edit requires a target')

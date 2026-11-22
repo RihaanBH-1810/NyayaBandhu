@@ -190,6 +190,24 @@ split, shared comparison canvas, Gazette drawer, and blue public reader.
 The specification's suggested React stack was adapted to the repository's
 FastAPI/Jinja and native JavaScript stack. This keeps one server and uses the
 existing review/consolidation engine, with no second database or frontend build.
+
+### Amendment identity, effects and provenance
+
+Amendment import now checks explicit principal-Act citations in the generated
+XML and source PDF against the selected Work URI. A clear mismatch is recorded
+in the local identity-check queue without registering a source. An unclear match
+is held there until a reviewer records a gazette page and quotation, then
+completes registration. Direct service and API imports use the same gate.
+
+The amendment workbench has a Legal effects filter. Accepted effects retain
+their evidence in the manifest and receive a source-linked entry in the
+consolidated XML's `proprietary` metadata. They do not change statutory wording.
+The public reader's Sources and changes action shows a provision's base source,
+applicable reviewed changes and PDF pages, with copyable source descriptions.
+The reader omits a `conclusions` block only when it starts with a recognised
+gazette certification or signature formula, while keeping schedules. Ambiguous
+material remains visible for legal review. Source XML and approved expression
+XML remain immutable, including their original closing material.
 The native dialog, shared grid, IntersectionObserver and browser history provide
 the requested interactions. The root viewer's existing AKN typography is reused.
 

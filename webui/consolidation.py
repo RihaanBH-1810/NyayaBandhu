@@ -124,6 +124,28 @@ def import_source(body: Source):
     return call('import_source',xml,pdf,body.kind,body.actor,body.reason,body.work_id,body.revision)
 
 
+class IdentityDecision(Input):
+    revision: int
+    actor: str
+    reason: str
+    page: int
+    quote: str
+
+
+@router.get('/works/{work_id}/upload-checks')
+def upload_checks(work_id: str): return call('upload_checks',work_id)
+
+
+@router.post('/upload-checks/{check_id}/confirm')
+def confirm_upload(check_id: str, body: IdentityDecision):
+    return call('confirm_upload',check_id,body.revision,body.actor,body.reason,body.page,body.quote)
+
+
+@router.post('/upload-checks/{check_id}/complete')
+def complete_upload(check_id: str, body: Mutation):
+    return call('complete_upload',check_id,body.revision,body.actor,body.reason)
+
+
 @router.get('/sources/{source_id}/{kind}')
 def source(source_id: str, kind: str):
     return Response(call('source_artifact',source_id,kind),media_type='application/pdf' if kind=='pdf' else 'application/xml')

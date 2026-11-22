@@ -89,7 +89,11 @@ def render_document_html(root: etree._Element) -> str:
     if act is None:
         return ""
     return "".join(
-        _render_block(child) for child in act if _local(child.tag) != "meta"
+        _render_block(child) for child in act
+        if _local(child.tag) != "meta" and not (
+            _local(child.tag) == "conclusions" and re.match(
+                r"\s*(?:The above translation|By Order and in the name|[A-Z .]+GOVERNOR\b)",
+                "".join(child.itertext()), re.I))
     )
 
 

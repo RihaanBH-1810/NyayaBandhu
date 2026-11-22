@@ -280,7 +280,14 @@ def apply_one(root, op, identities, tombstones, operation_key):
     node = locate(root, op['target'])
     before_id = node.get('eId')
     if op.get('expected_hash') and canonical_hash(node) != op['expected_hash']:
-        raise Conflict('Target content hash changed')
+        # Legal-effect metadata added by this version does not change the
+        # statutory target used by older reviewed whole-Act instructions.
+        trial = deepcopy(node)
+        for child in trial.iter():
+            if tag(child) == 'proprietary' and len(child) and all(tag(x)=='legalEffect' for x in child):
+                child.getparent().remove(child)
+        if canonical_hash(trial) != op['expected_hash']:
+            raise Conflict('Target content hash changed')
     if op.get('target_identity') and identities.get(before_id) != op['target_identity']:
         raise Conflict('Target provision identity changed')
     before = text(node)
@@ -415,7 +422,19 @@ def update_metadata(root, effective_date, applications, modifications=()):
                              type='amendment', source='#nyayabandhu', refersTo='#'+instrument_id)
     for item in modifications:
         op, change = item['operation'], item['change']
-        if op['action'] == 'effect': continue
+        if op['action'] == 'effect':
+            # A separate legal effect belongs to provenance, not the Act body.
+            proprietary = container(meta, 'proprietary', meta_order, source='#nyayabandhu')
+            namespace = 'https://nyayabandhu.org/ns/legal-effects'
+            eid = 'effect_' + digest(change['operation'].encode())[:16]
+            if not any(child.get('eId') == eid for child in proprietary):
+                effect = etree.SubElement(proprietary, '{'+namespace+'}legalEffect',
+                                          eId=eid, classification=op.get('classification','other'),
+                                          effectiveDate=op.get('effective_date') or effective_date,
+                                          source=item['source_uri']+'#'+op['source']['source_eid'])
+                effect.set('affectedWork', op.get('affected_work_uri') or work_uri)
+                effect.set('evidencePages', ','.join(map(str,op['source'].get('pdf_pages',[]))))
+            continue
         analysis = container(meta, 'analysis', meta_order, source='#nyayabandhu')
         passive = container(analysis, 'passiveModifications', ['activeModifications','passiveModifications','restrictions','judicial','parliamentary','mappings','otherReferences','otherAnalysis'])
         types = {'text_omit':'repeal','omit_provision':'repeal','text_insert':'insertion','insert_provision':'insertion',

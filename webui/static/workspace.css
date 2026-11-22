@@ -61,6 +61,17 @@
 .workspace #reason-dialog{width:min(500px,calc(100vw - 32px))}
 .workspace #reason-dialog .reason-content{padding:24px}
 .workspace #reason-dialog .actions{justify-content:flex-end;margin-top:20px}
+.workspace #modal{display:none;flex-direction:column;max-height:94vh;width:min(1100px,calc(100vw - 32px))}
+.workspace #modal[open]{display:flex}
+.workspace #modal.expanded{width:100vw;height:100vh;max-height:100vh;max-width:none;margin:0;border-radius:0}
+.workspace #modal .modal-header,.workspace #gazette .modal-header{position:sticky;top:0;z-index:3;background:white;flex:none}
+.workspace #modal-body{overflow:auto;min-height:0;flex:1}
+.workspace #modal-body .akn-document{max-height:none!important;overflow:visible!important}
+.workspace #modal-body pre{max-height:none}
+.workspace .protected{cursor:help;position:relative}
+.workspace .protected-popover{position:fixed;z-index:50;max-width:280px;padding:10px 32px 10px 12px;background:#182338;color:white;border-radius:7px;box-shadow:0 7px 24px #0003;font-size:.78rem;line-height:1.35}
+.workspace .protected-popover:after{content:"";position:absolute;left:20px;bottom:-7px;border:7px solid transparent;border-bottom:0;border-top-color:#182338}
+.workspace .protected-popover button{position:absolute;top:3px;right:3px;padding:0 5px;border:0;background:transparent;color:white;font-size:1.1rem}
 
 /* Less frequently used workspaces are accessible through the admin menu. */
 .utility-menu{position:relative}

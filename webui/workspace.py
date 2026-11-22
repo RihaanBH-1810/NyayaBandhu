@@ -260,7 +260,61 @@ def document(expression_id: str, public: bool = False):
     return {'id': expr['id'], 'work_id': expr['work_id'], 'effective_date': expr['effective_date'],
             'xml_hash': expr['xml_hash'], 'approved_at': expr['approved_at'], 'invalidated_at': expr['invalidated_at'],
             'html': akn_view.render_document_html(root), 'outline': outline,
+            'legal_effects': [{'classification':e.get('classification'),'effective_date':e.get('effectiveDate'),
+                               'source':e.get('source'),'affected_work':e.get('affectedWork')}
+                              for e in root.xpath('//*[local-name()="legalEffect"]')],
             'metadata': akn_view.extract_metadata(root)}
+
+
+@api.get('/expressions/{expression_id}/citations')
+def citations(expression_id: str, eid: str):
+    svc = service()
+    expr, root, _ = guarded(readable, svc, expression_id, False)
+    if not root.xpath('//*[@eId=$eid]', eid=eid): raise HTTPException(404, 'Provision not found')
+    with svc.store.transaction() as db:
+        base = db.execute("SELECT * FROM sources WHERE work_id=? AND kind='base'",(expr['work_id'],)).fetchone()
+        sources = {s['id']:s for s in db.execute('SELECT * FROM sources WHERE work_id=?',(expr['work_id'],))}
+        original=parse(svc.store.read(base['xml_hash']))
+        items = ([{'type':'base','label':'Base Act as published','source_id':base['id'],
+                   'source_eid':eid,'pages':[],'date':json.loads(base['metadata'])['publication_date']}]
+                 if original.xpath('//*[@eId=$eid]',eid=eid) else [])
+        change_by_key = {c['operation']:c for c in expr['body'].get('changes',[])}
+        for key in expr['body'].get('applied',[]):
+            parts=key.split(':',2)
+            if len(parts)!=3: continue
+            mid,revision,opid=parts
+            row=db.execute('SELECT * FROM manifests WHERE id=? AND revision=?',(mid,int(revision))).fetchone()
+            if not row: continue
+            manifest=json.loads(row['body']); op=next((o for o in manifest['operations'] if o['id']==opid),None)
+            if not op or op['action']=='effect': continue
+            change=change_by_key.get(key,{})
+            target=change.get('target_eid') or op.get('target',{}).get('eid','')
+            path=op.get('target',{}).get('path') or []
+            if not target and path:
+                prefixes={'section':'sec','subsection':'subsec','clause':'cl','subclause':'subcl','proviso':'proviso'}
+                target='__'.join(prefixes.get(kind,kind)+'_'+str(number).strip('().') for kind,number in path)
+            identity=expr['body'].get('identities',{}).get(eid,'')
+            inserted=identity==digest((key+':'+eid).encode())[:24]
+            occurrence=any((field:=hit.get('field','')) and (field==eid or field.startswith(eid+'__'))
+                           for hit in op.get('occurrences',[]))
+            if not (inserted or occurrence or target==eid or (target and eid.startswith(target+'__'))): continue
+            source=sources.get(manifest['source_id'])
+            if not source: continue
+            meta=json.loads(source['metadata']); source_eid=op['source']['source_eid']
+            title=akn_view.extract_metadata(parse(svc.store.read(source['xml_hash']))).get('title') or meta['work_uri']
+            pages=op['source'].get('pdf_pages',[])
+            label=f"{op['action'].replace('_',' ').capitalize()} by {source_eid} of {title}"
+            if pages: label+=f", Gazette page {', '.join(map(str,pages))}"
+            items.append({'type':op['action'],'label':label,'source_id':source['id'],
+                          'source_eid':source_eid,'pages':pages,'date':op.get('effective_date') or manifest.get('effective_date')})
+        for edit in expr['body'].get('visual_edits',[]):
+            if edit['eid']==eid or eid.startswith(edit['eid']+'__'):
+                ev=edit['evidence']; source=sources.get(ev['source_id'])
+                if source:
+                    items.append({'type':'editorial','label':'Editorial correction supported by source gazette',
+                                  'source_id':source['id'],'source_eid':edit['eid'],
+                                  'pages':ev['pdf_pages'],'date':expr['effective_date']})
+    return {'expression_id':expression_id,'eid':eid,'citations':items}
 
 
 @api.get('/works/{work_id}/coverage')
