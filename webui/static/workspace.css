@@ -72,6 +72,11 @@
 .workspace .protected-popover{position:fixed;z-index:50;max-width:280px;padding:10px 32px 10px 12px;background:#182338;color:white;border-radius:7px;box-shadow:0 7px 24px #0003;font-size:.78rem;line-height:1.35}
 .workspace .protected-popover:after{content:"";position:absolute;left:20px;bottom:-7px;border:7px solid transparent;border-bottom:0;border-top-color:#182338}
 .workspace .protected-popover button{position:absolute;top:3px;right:3px;padding:0 5px;border:0;background:transparent;color:white;font-size:1.1rem}
+.workspace .structure-selected{outline:2px solid #2563eb;outline-offset:3px;border-radius:3px}
+.workspace .group-decisions{border-top:1px solid var(--line);margin-top:24px}
+.workspace .group-operation{border-left:3px solid #cbd5e1;padding:12px 16px;margin:16px 0;cursor:pointer;background:#fff}
+.workspace .group-operation.active-change{border-left-color:#2563eb;background:#eff6ff}
+.workspace .section-group [data-eid].active-change{background:#fef3c7;outline:2px solid #ca8a04}
 
 /* Less frequently used workspaces are accessible through the admin menu. */
 .utility-menu{position:relative}

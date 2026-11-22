@@ -339,7 +339,7 @@ def build_outline(root: etree._Element) -> list[OutlineNode]:
 
 
 _NAVIGATION_NAMES = {
-    "subsection": "Subsection", "subclause": "Subclause",
+    "subsection": "Sub-section", "subclause": "Sub-clause",
     "subparagraph": "Subparagraph", "hcontainer": "Container",
 }
 
@@ -371,7 +371,11 @@ def provision_label(el: etree._Element, *, context: bool = False) -> str:
         return label
     parents = [ancestor for ancestor in reversed(list(el.iterancestors()))
                if _local(ancestor.tag) in STRUCTURAL_TAGS and ancestor.get("eId")]
-    return " › ".join([*(own(parent, False) for parent in parents), label])
+    if not parents:
+        return label
+    parts = [own(parent, False) for parent in parents]
+    return ", ".join([parts[0], *(part[0].lower() + part[1:] for part in parts[1:]),
+                      label[0].lower() + label[1:]])
 
 
 def _outline_node(el: etree._Element) -> OutlineNode:

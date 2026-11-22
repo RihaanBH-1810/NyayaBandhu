@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0,str(ROOT));sys.path.insert(0,str(ROOT/'scripts'))
 from akn_consolidator.common import Conflict, parse
 from akn_consolidator.service import Consolidator
+from akn_consolidator.engine import occurrences, public_hits
 from webui import workspace as ui, review_editor, akn_view, review
 from webui.consolidation import router as consolidation_api
 from test_consolidation_cms import AUTH, REVIEWS, setup_first, asgi_request
@@ -62,13 +63,59 @@ def test_navigation_names_provision_levels_and_parent_context(tmp_path, monkeypa
     root=parse(svc.expression_xml(record['expression']['id']))
     tree=akn_view.build_outline(root)
     assert tree[0].label == 'Section 1: Short title and commencement'
-    assert tree[0].children[0].label == 'Subsection (1)'
+    assert tree[0].children[0].label == 'Sub-section (1)'
     flat={row['eid']:row['label'] for row in ui.document(record['expression']['id'])['outline']}
-    assert flat['sec_1__subsec_1'] == 'Section 1 › Subsection (1)'
-    assert flat['sec_2__cl_a'] == 'Section 2 › Clause (a)'
-    assert flat['sec_3__subsec_2__proviso_1'] == 'Section 3 › Subsection (2) › Proviso'
+    assert flat['sec_1__subsec_1'] == 'Section 1, sub-section (1)'
+    assert flat['sec_2__cl_a'] == 'Section 2, clause (a)'
+    assert flat['sec_3__subsec_2__proviso_1'] == 'Section 3, sub-section (2), proviso'
     assert flat['att_1__hcontainer_1'] == 'Schedule 1'
     assert {row['eid']:row['label'] for row in review._outline(root)}['sec_1__subsec_1'] == flat['sec_1__subsec_1']
+
+
+def test_section_editor_contains_children_without_separate_loads(tmp_path, monkeypatch):
+    monkeypatch.setenv('NYAYA_CONSOLIDATION_DIR', str(tmp_path))
+    svc=Consolidator(tmp_path);record=base(svc)
+    response=ui.visual_provision(record['expression']['id'],'sec_1')
+    targets={item['eid'] for item in response['editor']['targets']}
+    assert {'sec_1','sec_1__subsec_1','sec_1__subsec_2'} <= targets
+    assert 'sec_1__subsec_1' in response['html']
+    assert any((field['eid'] or '').startswith('sec_1__subsec_2') for field in response['editor']['fields'])
+
+
+def test_child_structure_preview_keeps_complete_section(tmp_path):
+    svc=Consolidator(tmp_path);record=base(svc)
+    request=edit_request(svc,record,eid='sec_1__subsec_1',section_eid='sec_1',
+                         payload={'action':'add','child_type':'clause'},preview=True)
+    preview=ui.edit_expression(svc,record['expression']['id'],request)
+    assert 'sec_1__subsec_1__cl_a' in preview['section_after_html']
+    assert 'sec_1__subsec_2' in preview['section_after_html']
+
+
+def test_canvas_identifies_repeated_changes_to_one_section(tmp_path):
+    svc,work,parent,extracted=setup_first(tmp_path)
+    body=deepcopy(REVIEWS['First'])
+    source=body['operations'][0]['source']
+    body['operations']=[{'id':f'edit_{i}','action':'text_replace','target':{'eid':'sec_1'},
+                         'old':old,'new':new,'count':1,'review_status':'pending','source':source}
+                        for i,(old,new) in enumerate((('This Act','This statute'),('may be called','is named')),1)]
+    result=ui.make_canvas(svc,extracted['manifest']['id'],ui.Canvas(
+        expression_id=parent['id'],manifest_revision=extracted['manifest']['revision'],body=body))
+    assert [row['scope_eid'] for row in result['rows']]==['sec_1','sec_1']
+    assert all('conflict' not in row for row in result['rows'])
+
+
+def test_whole_act_change_has_section_views(tmp_path):
+    svc,work,parent,extracted=setup_first(tmp_path)
+    body=deepcopy(REVIEWS['First'])
+    hits=public_hits(occurrences(parse(svc.expression_xml(parent['id'])),'State Government',True))
+    body['operations']=[{'id':'global_1','action':'text_replace','target':{'region':'act'},
+                         'old':'State Government','new':'Government of Karnataka','count':len(hits),
+                         'global':True,'whole_word':True,'occurrences':hits,'review_status':'pending',
+                         'source':body['operations'][0]['source']}]
+    result=ui.make_canvas(svc,extracted['manifest']['id'],ui.Canvas(
+        expression_id=parent['id'],manifest_revision=extracted['manifest']['revision'],body=body))
+    assert len(result['rows'][0]['views']) > 1
+    assert len({view['scope_eid'] for view in result['rows'][0]['views']}) == len(result['rows'][0]['views'])
 
 
 def test_visual_edit_preserves_inline_nodes_and_reference_attributes(tmp_path):
@@ -120,7 +167,7 @@ def test_canvas_replays_first_amendment_without_persisting_and_rejection_blocks_
     original=svc.expression_xml(parent['id'])
     canvas=ui.make_canvas(svc,manifest['id'],ui.Canvas(expression_id=parent['id'],manifest_revision=manifest['revision'],body=body))
     insert=next(r for r in canvas['rows'] if r['action']=='insert_provision')
-    assert any(p['label'].startswith('Section 10 › Subsection (5)') for p in canvas['provisions'])
+    assert any(p['label'].startswith('Section 10, sub-section (5)') for p in canvas['provisions'])
     assert 'sec_10__subsec_6' in insert['after_html'] and 'sec_10__subsec_6' not in insert['before_html']
     assert '<ins>' in insert['after_diff']
     assert 'wording-inserted' in insert['after_html']

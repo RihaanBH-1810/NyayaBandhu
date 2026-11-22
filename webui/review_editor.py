@@ -54,7 +54,13 @@ def prepare(node):
     fields = [_field(node, el) for el in node.iter() if _tag(el) in {"heading", "p"}]
     parent = node.getparent()
     allowed_add = sorted(CHILDREN.get(_tag(node), set()) | ({"section"} if _tag(node) == "section" else set()))
-    return {"mode": "visual", "enabled": True, "fields": fields,
+    targets = []
+    for child in node.iter():
+        if _tag(child) in TYPES and child.get('eId'):
+            targets.append({'eid':child.get('eId'), 'tag':_tag(child),
+                            'add_types':sorted(CHILDREN.get(_tag(child),set()) |
+                                               ({'section'} if _tag(child)=='section' else set()))})
+    return {"mode": "visual", "enabled": True, "fields": fields, "targets": targets,
             "tag": _tag(node), "eid": node.get("eId"), "number": node.findtext(Q("num")) or "",
             "actions": ["text"] if _tag(node) in TEXT_ONLY else ["text", "add", "remove", "renumber", "move"],
             "add_types": allowed_add,

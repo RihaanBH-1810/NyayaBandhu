@@ -207,7 +207,16 @@ def make_canvas(svc, manifest_id, request):
                 row['before_html'] = akn_view._render_block(before) if before is not None else ''
                 before_text = text(before) if before is not None else ''
                 scope_eid = before.get('eId') if before is not None else None
+                row['scope_eid'] = scope_eid or op['id']
                 target = locate(trial, op['target']) if op.get('target') else None
+                global_sections = {}
+                if op.get('target',{}).get('region') == 'act':
+                    for hit in op.get('occurrences',[]):
+                        fields=trial.xpath('//*[@eId=$eid]',eid=hit.get('field',''))
+                        if fields:
+                            section=next((a for a in [fields[0],*fields[0].iterancestors()] if tag(a)=='section'),None)
+                            if section is not None:
+                                global_sections[section.get('eId')] = (akn_view.provision_label(section,context=True),akn_view._render_block(section))
                 row['expected_hash'] = canonical_hash(target) if target is not None else None
                 old_siblings = set(target.getparent()) if target is not None and target.getparent() is not None else set()
                 ids, tombs = dict(identities), list(tombstones)
@@ -224,11 +233,24 @@ def make_canvas(svc, manifest_id, request):
                     # A new sibling section lies outside the old section's subtree.
                     after_nodes = [n for n in target.getparent() if n is target or n not in old_siblings]
                 row['after_html'] = ''.join(akn_view._render_block(n) for n in after_nodes)
-                row['before_html'], row['after_html'] = highlight_comparison(row['before_html'], row['after_html'])
-                row['before_diff'], row['after_diff'] = word_diff(before_text, ' '.join(text(n) for n in after_nodes))
+                if global_sections:
+                    row['views'] = []
+                    for eid,(label,original_html) in global_sections.items():
+                        matches=trial.xpath('//*[@eId=$eid]',eid=eid)
+                        proposed_html=akn_view._render_block(matches[0]) if matches else ''
+                        original_html,proposed_html=highlight_comparison(original_html,proposed_html)
+                        row['views'].append({'scope_eid':eid,'label':label,'before_html':original_html,
+                                             'after_html':proposed_html,'affected_eid':eid})
+                if row.get('views'):
+                    row['before_html'] = row['after_html'] = ''
+                    row['before_diff'] = row['after_diff'] = ''
+                else:
+                    row['before_html'], row['after_html'] = highlight_comparison(row['before_html'], row['after_html'])
+                    row['before_diff'], row['after_diff'] = word_diff(before_text, ' '.join(text(n) for n in after_nodes))
                 if op['action'] == 'effect':
                     row['effect'] = op.get('classification')
                 row['changes'] = result
+                row['affected_eid'] = result.get('target_eid') or scope_eid
                 # This is explicitly a proposal, including pending operations.
                 root, identities, tombstones = trial, ids, tombs
                 index_provisions(root)
@@ -357,6 +379,7 @@ def visual_provision(expression_id: str, eid: str):
 class VisualChange(Mutation):
     xml_hash: str
     eid: str
+    section_eid: str | None = None
     payload: dict
     evidence: dict
     preview: bool = True
@@ -385,6 +408,9 @@ def edit_expression(svc, expression_id, request):
         before_xml = serialise(root).decode()
         nodes = {n: n.get('eId') for n in root.iter() if n.get('eId')}
         node = locate(root, {'eid': request.eid})
+        section = locate(root, {'eid': request.section_eid}) if request.section_eid else node
+        if node is not section and section not in node.iterancestors():
+            raise ValueError('Structural target is outside the displayed section')
         before_html = akn_view._render_block(node)
         description = review_editor.edit(root, node, request.payload)
         report = validate(root)
@@ -401,6 +427,7 @@ def edit_expression(svc, expression_id, request):
             if eid and eid not in ids: ids[eid] = digest((old['id'] + ':' + str(request.revision) + ':' + eid).encode())[:24]
         after_html = akn_view._render_block(node) if node in current else '<p>Provision removed.</p>'
         result = {'validation':report, 'description':description, 'before_html':before_html, 'after_html':after_html,
+                  'section_after_html':akn_view._render_block(section) if section in current else '',
                   'diff':'\n'.join(difflib.unified_diff(before_xml.splitlines(), serialise(root).decode().splitlines(), fromfile='before',tofile='after'))}
         if request.preview: return result
         body = {**old['body'], 'kind':'base' if old['body']['kind']=='base' else 'editorial_correction',

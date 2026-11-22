@@ -211,6 +211,14 @@ XML remain immutable, including their original closing material.
 The native dialog, shared grid, IntersectionObserver and browser history provide
 the requested interactions. The root viewer's existing AKN typography is reused.
 
+The visual editor lists each section once and opens its complete wording and
+child provisions together. Clicking a child selects its structural controls
+without reopening the section. The amendment comparison groups instructions
+by affected section while retaining a separate decision for each instruction.
+Navigation labels follow the XML hierarchy and use Indian drafting terms such
+as sub-section, clause, sub-clause and proviso; uncertain source parsing must
+be reviewed against the gazette.
+
 Two deliberate adaptations prevent misleading legal presentation:
 
 - The comparison navigates affected **provisions**, because the generated base
