@@ -83,14 +83,4 @@
 .workspace .section-group [data-eid].active-change{background:#fef3c7;outline:2px solid #ca8a04}
 .workspace #modal [data-action="expand-modal"] svg{display:block;width:18px;height:18px}
 
-/* Less frequently used workspaces are accessible through the admin menu. */
-.utility-menu{position:relative}
-.utility-menu summary{display:inline-flex;align-items:center;gap:8px;padding:.55rem .85rem;border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink);font-size:.88rem;font-weight:550;cursor:pointer;list-style:none;white-space:nowrap}
-.utility-menu summary::-webkit-details-marker{display:none}
-.utility-menu summary:hover,.utility-menu[open] summary{background:#f0f2f5}
-.utility-menu summary:focus-visible{outline:3px solid #84b3ff;outline-offset:2px}
-.utility-menu nav{position:absolute;right:0;top:calc(100% + 7px);z-index:30;min-width:230px;padding:6px;background:white;border:1px solid var(--line);border-radius:8px;box-shadow:0 12px 30px #1018281f}
-.utility-menu nav a{display:block;padding:10px 12px;border-radius:5px;color:var(--ink);font-size:.87rem;white-space:nowrap}
-.utility-menu nav a:hover,.utility-menu nav a:focus-visible{background:#f3f5f8;text-decoration:none}
 .visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
-@media print{.utility-menu{display:none}}
