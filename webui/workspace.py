@@ -234,7 +234,9 @@ def make_canvas(svc, manifest_id, request):
                     for hit in inventory or []:
                         fields=trial.xpath('//*[@eId=$eid]',eid=hit.get('field',''))
                         if fields:
-                            section=next((a for a in [fields[0],*fields[0].iterancestors()] if tag(a)=='section'),None)
+                            section=next((a for a in [fields[0],*fields[0].iterancestors()]
+                                          if tag(a)=='section' or
+                                          (tag(a)=='hcontainer' and a.get('name')=='schedule')),None)
                             if section is not None:
                                 global_sections[section.get('eId')] = (akn_view.provision_label(section,context=True),akn_view._render_block(section))
                 row['expected_hash'] = canonical_hash(target) if target is not None else None

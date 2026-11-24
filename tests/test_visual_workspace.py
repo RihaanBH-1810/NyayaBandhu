@@ -328,3 +328,22 @@ def test_http_review_apply_approve_export_and_repeated_editorial_correction(tmp_
     assert svc.expression(eid)['invalidated_at'] and svc.expression(first['expression']['id'])['invalidated_at']
     assert not svc.expression(parent['id'])['invalidated_at']
     assert svc.export(done['expression']['id']).startswith(b'PK')
+
+
+def test_teachers_school_substitution_renders_schedule_not_deleted_act(tmp_path):
+    svc,work,parent,extracted=setup_first(tmp_path)
+    body=deepcopy(REVIEWS['First'])
+    operation=deepcopy(next(op for op in REVIEWS['Second']['operations'] if op['id']=='sec_3_op_1'))
+    # Bind against this test predecessor, retaining the real Gazette instruction.
+    hits=public_hits(occurrences(parse(svc.expression_xml(parent['id'])),'School',True))
+    operation.pop('expected_hash', None)
+    operation.update(occurrences=hits,count=len(hits))
+    body['operations']=[operation]
+    result=ui.make_canvas(svc,extracted['manifest']['id'],ui.Canvas(
+        expression_id=parent['id'],manifest_revision=extracted['manifest']['revision'],body=body))
+    row=result['rows'][0]
+    assert 'conflict' not in row
+    assert row['views']
+    assert all(view['after_html'] for view in row['views'])
+    assert any('School or Pre-university College' in view['after_html'] for view in row['views'])
+    assert not any('PREFACE' in view['before_html'] for view in row['views'])
