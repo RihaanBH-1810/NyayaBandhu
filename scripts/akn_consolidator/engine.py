@@ -73,13 +73,20 @@ def _normal_map(raw):
                 continue
             c = ' '
         chars.append(c); mapping.append([i, i+1])
-    return ''.join(chars), mapping
+    normal = ''.join(chars)
+    # Gazette editions vary only in the space before a parenthesised citation
+    # number ("sub-section(2)" / "sub-section (2)"). Treat that one layout
+    # difference as equivalent while retaining offsets into the original text.
+    drop = {m.end() - 2 for m in re.finditer(r'\bsub-section \(', normal, re.I)}
+    return ''.join(c for i,c in enumerate(chars) if i not in drop), [span for i,span in enumerate(mapping) if i not in drop]
 
 
-def occurrences(target, needle, whole_word=False):
+def occurrences(target, needle, whole_word=False, *, ignore_case=False, ignore_spacing=False):
     if not needle:
         raise Conflict('Empty text anchor')
-    needle = re.sub(r'\s+', ' ', needle)
+    needle = _normal_map(needle)[0]
+    if ignore_spacing:
+        needle = needle.replace(' ', '')
     hits = []
     for field in target.iter():
         if tag(field) not in {'p', 'heading', 'subheading', 'num'}:
@@ -89,11 +96,20 @@ def occurrences(target, needle, whole_word=False):
         slots = _slots(field)
         combined = ''.join(s[2] for s in slots)
         normal, mapping = _normal_map(combined)
+        if ignore_spacing:
+            pairs = [(c, span) for c, span in zip(normal, mapping) if c != ' ']
+            normal = ''.join(c for c, _ in pairs)
+            mapping = [span for _, span in pairs]
         pattern = re.escape(needle)
-        if whole_word:
+        if whole_word and not ignore_spacing:
             pattern = r'(?<!\w)' + pattern + r'(?!\w)'
-        for match in re.finditer(pattern, normal):
+        for match in re.finditer(pattern, normal, re.I if ignore_case else 0):
             start, end = mapping[match.start()][0], mapping[match.end()-1][1]
+            if whole_word and ignore_spacing and (
+                (start and re.match(r'\w', combined[start-1])) or
+                (end < len(combined) and re.match(r'\w', combined[end]))
+            ):
+                continue
             cursor = 0; involved = []
             for el, attr, raw, protected in slots:
                 if cursor < end and cursor + len(raw) > start:
@@ -103,6 +119,16 @@ def occurrences(target, needle, whole_word=False):
                          'offset': start, 'text': combined[start:end],
                          'protected': any(x[4] for x in involved),
                          'cross_inline': len(involved) != 1, '_slots': involved})
+    if not hits and not ignore_case:
+        # Gazette quotations can change capitalization without changing words.
+        # Keep every candidate so the caller's exact count still rejects
+        # ambiguous targets; never use edit distance or approximate wording.
+        return occurrences(target, needle, whole_word, ignore_case=True)
+    if not hits and ignore_case and not ignore_spacing and tag(target) in {'longTitle', 'preamble'}:
+        # Long-title quotations sometimes split a word at a different point
+        # ("school sand" / "schools and"). Require the identical letter
+        # sequence within this explicitly selected region, never fuzzy text.
+        return occurrences(target, needle, whole_word, ignore_case=True, ignore_spacing=True)
     return hits
 
 
@@ -117,7 +143,15 @@ def _text_operation(node, op):
     if expected is not None and expected != inventory:
         raise Conflict('Occurrence inventory changed; review the new matches')
     if op.get('global') and expected is None:
-        raise Conflict('Whole-Act substitution requires an approved occurrence inventory')
+        quote = op.get('source', {}).get('quote', '')
+        if not re.search(r'\bwherever\s+it\s+occurs\b', quote, re.I):
+            raise Conflict('Whole-Act substitution requires an approved occurrence inventory')
+        if not hits:
+            raise Conflict('Whole-Act substitution found no occurrences')
+        # The Gazette explicitly specifies every occurrence. Bind the complete
+        # inventory from this predecessor; protected-node checks still apply.
+        expected = inventory
+        op = dict(op, count=len(hits), occurrences=inventory)
     if len(hits) != op.get('count', 1):
         raise Conflict(f"Expected {op.get('count', 1)} text match(es), found {len(hits)}")
     removals = op.get('inline_removals', [])
@@ -150,6 +184,31 @@ def _text_operation(node, op):
             parent.remove(el)
         return inventory
     if any(h['cross_inline'] for h in hits):
+        # A verbatim substitution may encompass a complete reference. Its old
+        # destination belongs to the removed words and must not be carried onto
+        # unrelated replacement wording. Only fully covered leaf references
+        # qualify; partial references and other protected markup still conflict.
+        if op['action'] == 'text_replace' and all(
+            not protected or (attr == 'text' and tag(el) == 'ref' and not len(el)
+                              and start == 0 and end == len(el.text or ''))
+            for hit in hits for el, attr, start, end, protected in hit['_slots']
+        ):
+            for hit in reversed(hits):
+                first, first_attr, first_start, _, _ = hit['_slots'][0]
+                refs = []
+                for el, attr, start, end, protected in reversed(hit['_slots']):
+                    raw = getattr(el, attr)
+                    setattr(el, attr, raw[:start] + raw[end:])
+                    if protected: refs.append(el)
+                raw = getattr(first, first_attr)
+                setattr(first, first_attr, raw[:first_start] + op.get('new', '') + raw[first_start:])
+                for ref in refs:
+                    parent = ref.getparent(); previous = ref.getprevious()
+                    replacement = (ref.text or '') + (ref.tail or '')
+                    if previous is None: parent.text = (parent.text or '') + replacement
+                    else: previous.tail = (previous.tail or '') + replacement
+                    parent.remove(ref)
+            return inventory
         raise Conflict('Match crosses inline boundaries; submit explicit slot_edits')
     if any(h['protected'] for h in hits) and not (expected is not None and op.get('allow_protected')):
         raise Conflict('Match affects protected inline text; approve the occurrence inventory explicitly')

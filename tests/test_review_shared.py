@@ -32,7 +32,7 @@ def test_snapshot_approval_and_export(tmp_path, monkeypatch):
 
 
 def test_rejects_non_base_act_and_traversal():
-    for path in ("../data/v0s/eng/BBMP-eng.pdf", "amendment/eng/First_ammendment.xml"):
+    for path in ("../data/acts/2020/ka-0053-2020/bruhat-bengaluru-mahanagara-palike-act-2020__gazette__eng.pdf", "amendment/eng/First_ammendment.xml"):
         with pytest.raises(HTTPException) as exc:
             review._source(path)
         assert exc.value.status_code == 404

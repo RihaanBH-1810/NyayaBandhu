@@ -52,7 +52,7 @@ You can also run `.venv/Scripts/python -m akn_parser.cli --help`.
 
 ## Quick start
 
-Convert every base Act in `data/v0s/` to English Akoma Ntoso:
+Convert every base Act in `data/acts/` (see `data/README.md`) to English Akoma Ntoso:
 
 ```bash
 .venv/Scripts/python scripts/akn-parser.py -t base_act -l eng
@@ -75,7 +75,7 @@ the Akoma Ntoso 3.0 schema before it is written:
 Convert a single file:
 
 ```bash
-.venv/Scripts/python scripts/akn-parser.py --pdf "data/v0s/kan_eng/tranfer_of_teachers.pdf" -l eng
+.venv/Scripts/python scripts/akn-parser.py --pdf "data/acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf" -l eng
 ```
 
 See [docs/cli.md](docs/cli.md) for the full command reference.

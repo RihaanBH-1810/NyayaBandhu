@@ -40,7 +40,7 @@ def test_misencoded_text_is_distinguished_from_clean_text():
     # Right script, wrong codepoints: this needs repair, not transliteration.
     assert (
         transliterate.bcp47(language.KANNADA, language.SUSPECT)
-        == "kn-x-misencoded"
+        == "kn-x-misenc"
     )
 
 

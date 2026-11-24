@@ -9,20 +9,14 @@ import traceback
 from typing import Sequence
 
 from . import language
+from source_corpus import list_pdfs
 from .extract import FOREIGN_POLICIES, FOREIGN_TAG
 from .pipeline import DEFAULT_OVERRIDES, DEFAULT_SCHEMA, REPO_ROOT, ActParser
 
-#: Document type -> the directory under data/ that holds its PDFs.  Both
-#: spellings of "amendments" are accepted because the repository has used the
-#: misspelt one.
-DOC_TYPE_DIRS = {
-    "base_act": ("v0s",),
-    "amendment": ("amendments", "ammendments"),
-}
+#: Document type -> source catalog kind.
+DOC_TYPE_DIRS = {"base_act": "base", "amendment": "amendment"}
 
-#: Language of the text to extract.  This is deliberately separate from the
-#: source directory: data/v0s/kan_eng holds bilingual PDFs from which either
-#: language can be extracted.
+#: Source PDF language is independent of the extraction language.
 LANG_CHOICES = [language.ENGLISH, language.KANNADA]
 
 
@@ -48,7 +42,7 @@ def build_parser() -> argparse.ArgumentParser:
         epilog=(
             "examples:\n"
             "  akn-parser.py -t base_act -l eng\n"
-            "  akn-parser.py --pdf data/v0s/kan_eng/tranfer_of_teachers.pdf -l eng\n"
+            "  akn-parser.py --pdf data/acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf -l eng\n"
             "  akn-parser.py -t base_act -l eng --strict --keep-text\n"
         ),
     )
@@ -67,8 +61,8 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p.add_argument(
         "-d", "--dir", dest="subdir",
-        help="Only read PDFs from this subdirectory of the data folder "
-             "(e.g. 'kan_eng'). Default: every subdirectory.",
+        help="Only read PDFs from this subtree of data/acts "
+             "(e.g. '2020/ka-0053-2020'). Default: all Acts.",
     )
     p.add_argument(
         "-n", "--count", type=non_negative_int, default=0,
@@ -103,27 +97,14 @@ def build_parser() -> argparse.ArgumentParser:
 def collect_pdfs(doc_type: str, subdir: str | None) -> list[str]:
     """Find every PDF for *doc_type* under ``data/``, sorted and de-duplicated.
     """
-    roots = []
-    for name in DOC_TYPE_DIRS[doc_type]:
-        base = os.path.join(REPO_ROOT, "data", name)
-        if os.path.isdir(base):
-            roots.append(base)
-    if not roots:
-        raise NoInputError(
-            f"No data directory for type {doc_type!r}; expected one of: "
-            + ", ".join(os.path.join("data", n) for n in DOC_TYPE_DIRS[doc_type])
-        )
-
-    pdfs = []
-    for root in roots:
-        pattern = os.path.join(root, subdir, "*.pdf") if subdir else os.path.join(
-            root, "**", "*.pdf"
-        )
-        pdfs.extend(glob.glob(pattern, recursive=not subdir))
+    if not os.path.isfile(os.path.join(REPO_ROOT, "data", "catalog.json")):
+        raise NoInputError('No data directory or source catalog found')
+    kind = DOC_TYPE_DIRS[doc_type]
+    pdfs = list_pdfs(kind, subdir, os.path.join(REPO_ROOT, "data"))
     if not pdfs:
-        where = os.path.join("data", "*", subdir or "**")
-        raise NoInputError(f"No PDF files found under {where}")
-    return sorted(set(pdfs))
+        raise NoInputError(f'No PDF files found for {doc_type} under data/acts')
+    return [str(path) for path in pdfs]
+
 
 
 def main(argv: Sequence[str] | None = None) -> int:

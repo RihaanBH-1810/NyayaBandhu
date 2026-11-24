@@ -84,11 +84,11 @@ def test_amendment_used_by_saved_version_cannot_be_deleted(tmp_path):
 def setup_first(tmp_path):
     service = Consolidator(tmp_path)
     base = service.import_source((ROOT / 'out/base_act/eng/tranfer_of_teachers.xml').read_bytes(),
-                                 (ROOT / 'data/v0s/kan_eng/tranfer_of_teachers.pdf').read_bytes(),
+                                 (ROOT / 'data/acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf').read_bytes(),
                                  'base', **AUTH)
     approved = service.approve(base['expression']['id'],base['revision'],base['expression']['xml_hash'],**AUTH)
     imported = service.import_source((ROOT / 'out/amendment/eng/First_ammendment.xml').read_bytes(),
-                                     (ROOT / 'data/ammendments/First_ammendment.pdf').read_bytes(),
+                                     (ROOT / 'data/acts/2021/ka-0027-2021/transfer-of-teachers-amendment-act-2021__gazette__kan-eng.pdf').read_bytes(),
                                      'amendment',work_id=base['work_id'],revision=approved['revision'],**AUTH)
     extracted = service.extract(imported['source_id'],imported['revision'],**AUTH)
     return service,base['work_id'],approved['expression'],extracted
@@ -99,7 +99,7 @@ def test_future_undated_amendment_does_not_block_earlier_version(tmp_path):
     reviewed=service.review(first['manifest']['id'],deepcopy(REVIEWS['First']),
                             first['revision'],first['manifest']['revision'],**AUTH)
     second=service.import_source((ROOT/'out/amendment/eng/Second_ammendment.xml').read_bytes(),
-                                 (ROOT/'data/ammendments/Second_ammendment.pdf').read_bytes(),
+                                 (ROOT/'data/acts/2022/ka-0006-2022/transfer-of-teachers-second-amendment-act-2021__gazette__kan-eng.pdf').read_bytes(),
                                  'amendment',work_id=work,revision=reviewed['revision'],**AUTH)
     assert service.preview(work,base['id'],'2021-04-29')['ok']
     extracted=service.extract(second['source_id'],second['revision'],**AUTH)
@@ -186,7 +186,7 @@ def test_html_catalog_and_inspection_http_flow(tmp_path,monkeypatch):
     status,raw=asyncio.run(asgi_request(app,'GET','/consolidation/api/catalog'))
     catalog=json.loads(raw)
     assert 'base_act/eng/tranfer_of_teachers.xml' in catalog['base_xml']
-    assert 'v0s/kan_eng/tranfer_of_teachers.pdf' in catalog['pdf']
+    assert any('ka-0004-2020/' in path for path in catalog['pdf'])
     service,work,base,extracted=setup_first(tmp_path)
     status,html=asyncio.run(asgi_request(app,'GET',f'/consolidation/read/{base["id"]}'))
     assert status==200 and b'akn-document' in html and b'Approved expression' in html

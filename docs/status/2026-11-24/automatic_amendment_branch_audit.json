@@ -1,0 +1,307 @@
+{
+  "method": "unreviewed extractor proposals; no manual edits, fixture profiles, approvals, or legal date assumptions",
+  "corpus_git_head": "2cc8052dcab93f956f47d7d84076ce10fdea9971",
+  "corpus_worktree_dirty": true,
+  "catalog_sha256": "5140d5e3d538953fee598e62efa2d4fc2b47d359e583fa82740dfc76f001c25c",
+  "sources": 20,
+  "distinct_acts": 17,
+  "base_acts": 5,
+  "amendments": [
+    {
+      "id": "ka-0027-2021",
+      "source_path": "acts/2021/ka-0027-2021/transfer-of-teachers-amendment-act-2021__gazette__kan-eng.pdf",
+      "publication_date": "2021-10-05",
+      "proposed_effective_date": "2021-04-29",
+      "date_evidence": "effect from 29th day of April 2021",
+      "operation_count": 3,
+      "blocked_instructions": [],
+      "targets": [
+        {
+          "id": "ka-0004-2020",
+          "status": "mechanically_applicable",
+          "ok": true,
+          "conflicts": [],
+          "validation": "valid",
+          "applied_count": 3
+        }
+      ],
+      "sequence_status": "mechanically_applicable"
+    },
+    {
+      "id": "ka-0006-2022",
+      "source_path": "acts/2022/ka-0006-2022/transfer-of-teachers-second-amendment-act-2021__gazette__kan-eng.pdf",
+      "publication_date": "2022-01-18",
+      "proposed_effective_date": null,
+      "date_evidence": "Commencement requires a recorded date determination",
+      "operation_count": 23,
+      "blocked_instructions": [],
+      "targets": [
+        {
+          "id": "ka-0004-2020",
+          "status": "conflicts",
+          "ok": false,
+          "conflicts": [
+            {
+              "operation": "ka-0006-2022:sec_4_op_3",
+              "reason": "Match affects protected inline text; approve the occurrence inventory explicitly"
+            }
+          ],
+          "validation": "valid",
+          "applied_count": 6
+        }
+      ],
+      "sequence_status": "conflicts",
+      "sequence_conflicts": [
+        {
+          "operation": "ka-0006-2022:sec_4_op_3",
+          "reason": "Match affects protected inline text; approve the occurrence inventory explicitly"
+        }
+      ]
+    },
+    {
+      "id": "ka-0032-2022",
+      "source_path": "acts/2022/ka-0032-2022/transfer-of-teachers-amendment-act-2022__gazette__eng.pdf",
+      "publication_date": "2022-10-13",
+      "proposed_effective_date": null,
+      "date_evidence": "Commencement requires a recorded date determination",
+      "operation_count": 11,
+      "blocked_instructions": [],
+      "targets": [
+        {
+          "id": "ka-0004-2020",
+          "status": "conflicts",
+          "ok": false,
+          "conflicts": [
+            {
+              "operation": "ka-0032-2022:sec_3_op_1",
+              "reason": "Target must resolve once; found 0 for {'path': [['section', '7'], ['subsection', '1'], ['proviso', '6']]}"
+            }
+          ],
+          "validation": "valid",
+          "applied_count": 3
+        }
+      ],
+      "sequence_status": "blocked_by_ka-0006-2022"
+    },
+    {
+      "id": "ka-0027-2026",
+      "source_path": "acts/2026/ka-0027-2026/transfer-of-teachers-amendment-act-2026__gazette__kan-eng.pdf",
+      "publication_date": "2026-04-10",
+      "proposed_effective_date": null,
+      "date_evidence": "Commencement requires a recorded date determination",
+      "operation_count": 11,
+      "blocked_instructions": [],
+      "targets": [
+        {
+          "id": "ka-0004-2020",
+          "status": "conflicts",
+          "ok": false,
+          "conflicts": [
+            {
+              "operation": "ka-0027-2026:sec_2_op_1",
+              "reason": "Target must resolve once; found 0 for {'path': [['section', '2'], ['clause', 'ca']]}"
+            }
+          ],
+          "validation": "valid",
+          "applied_count": 1
+        }
+      ],
+      "sequence_status": "blocked_by_ka-0006-2022"
+    },
+    {
+      "id": "ka-0007-2024",
+      "source_path": "acts/2024/ka-0007-2024/kannada-language-comprehensive-development-amendment-act-2024__gazette__kan-eng.pdf",
+      "publication_date": "2024-02-26",
+      "proposed_effective_date": null,
+      "date_evidence": "Commencement requires a recorded date determination",
+      "operation_count": 4,
+      "blocked_instructions": [],
+      "targets": [
+        {
+          "id": "ka-0013-2023",
+          "status": "mechanically_applicable",
+          "ok": true,
+          "conflicts": [],
+          "validation": "valid",
+          "applied_count": 4
+        }
+      ],
+      "sequence_status": "mechanically_applicable"
+    },
+    {
+      "id": "ka-0035-2025",
+      "source_path": "acts/2025/ka-0035-2025/bangalore-palace-utilization-and-regulation-of-land-amendment-act-2025__gazette__eng.pdf",
+      "publication_date": "2025-04-15",
+      "proposed_effective_date": null,
+      "date_evidence": "Commencement requires a recorded date determination",
+      "operation_count": 8,
+      "blocked_instructions": [],
+      "targets": [
+        {
+          "id": "ka-0014-2025",
+          "status": "mechanically_applicable",
+          "ok": true,
+          "conflicts": [],
+          "validation": "valid",
+          "applied_count": 8
+        }
+      ],
+      "sequence_status": "mechanically_applicable"
+    },
+    {
+      "id": "ka-0029-2022",
+      "source_path": "acts/2022/ka-0029-2022/bruhat-bengaluru-mahanagara-palike-amendment-act-2022__gazette__kan.pdf",
+      "publication_date": "2022-10-11",
+      "proposed_effective_date": null,
+      "date_evidence": "Commencement requires a recorded date determination",
+      "operation_count": 5,
+      "blocked_instructions": [],
+      "targets": [
+        {
+          "id": "ka-0053-2020",
+          "status": "mechanically_applicable",
+          "ok": true,
+          "conflicts": [],
+          "validation": "valid",
+          "applied_count": 5
+        }
+      ],
+      "sequence_status": "mechanically_applicable"
+    },
+    {
+      "id": "ka-0012-2023",
+      "source_path": "acts/2023/ka-0012-2023/bruhat-bengaluru-mahanagara-palike-amendment-act-2023__gazette__kan.pdf",
+      "publication_date": "2023-03-10",
+      "proposed_effective_date": null,
+      "date_evidence": "Commencement requires a recorded date determination",
+      "operation_count": 3,
+      "blocked_instructions": [],
+      "targets": [
+        {
+          "id": "ka-0053-2020",
+          "status": "mechanically_applicable",
+          "ok": true,
+          "conflicts": [],
+          "validation": "valid",
+          "applied_count": 3
+        }
+      ],
+      "sequence_status": "mechanically_applicable"
+    },
+    {
+      "id": "ka-0017-2024",
+      "source_path": "acts/2024/ka-0017-2024/bruhat-bengaluru-mahanagara-palike-amendment-act-2024__gazette__kan.pdf",
+      "publication_date": "2024-03-07",
+      "proposed_effective_date": null,
+      "date_evidence": "Commencement requires a recorded date determination",
+      "operation_count": 33,
+      "blocked_instructions": [
+        {
+          "id": "sec_11_op_3",
+          "issue": "Insertion position needs review"
+        }
+      ],
+      "targets": [
+        {
+          "id": "ka-0053-2020",
+          "status": "conflicts",
+          "ok": false,
+          "conflicts": [
+            {
+              "operation": "ka-0017-2024:sec_4_op_2",
+              "reason": "Incoming references require explicit href and displayed-text decisions: chp_XIII__sec_142__subsec_4__content__p_1__ref_1"
+            }
+          ],
+          "validation": "valid",
+          "applied_count": 4
+        }
+      ],
+      "sequence_status": "conflicts",
+      "sequence_conflicts": [
+        {
+          "operation": "ka-0017-2024:sec_4_op_2",
+          "reason": "Incoming references require explicit href and displayed-text decisions: chp_XIII__sec_142__subsec_4__content__p_1__ref_1"
+        }
+      ]
+    },
+    {
+      "id": "ka-0037-2024",
+      "source_path": "acts/2024/ka-0037-2024/bruhat-bengaluru-mahanagara-palike-and-certain-other-law-amendment-act-2023__gazette__eng.pdf",
+      "publication_date": "2024-08-16",
+      "proposed_effective_date": null,
+      "date_evidence": "Commencement requires a recorded date determination",
+      "operation_count": 14,
+      "blocked_instructions": [],
+      "targets": [
+        {
+          "id": "ka-0053-2020",
+          "status": "conflicts",
+          "ok": false,
+          "conflicts": [
+            {
+              "operation": "ka-0037-2024:sec_2_op_1",
+              "reason": "Target must resolve once; found 0 for {'path': [['section', '2'], ['clause', '26']]}"
+            }
+          ],
+          "validation": "valid",
+          "applied_count": 1
+        },
+        {
+          "id": "ka-0014-1977",
+          "status": "principal_act_missing"
+        }
+      ],
+      "sequence_status": "blocked_by_ka-0017-2024"
+    },
+    {
+      "id": "ka-0007-2025",
+      "source_path": "acts/2025/ka-0007-2025/bruhat-bengaluru-mahanagara-palike-second-amendment-act-2024__gazette__kan.pdf",
+      "publication_date": "2025-01-10",
+      "proposed_effective_date": null,
+      "date_evidence": "Commencement requires a recorded date determination",
+      "operation_count": 4,
+      "blocked_instructions": [],
+      "targets": [
+        {
+          "id": "ka-0053-2020",
+          "status": "conflicts",
+          "ok": false,
+          "conflicts": [
+            {
+              "operation": "ka-0007-2025:sec_2_op_2",
+              "reason": "Target must resolve once; found 0 for {'path': [['section', '144'], ['subsection', '15'], ['clause', 'b'], ['proviso', '7']]}"
+            }
+          ],
+          "validation": "valid",
+          "applied_count": 2
+        }
+      ],
+      "sequence_status": "blocked_by_ka-0017-2024"
+    },
+    {
+      "id": "ka-0034-2025",
+      "source_path": "acts/2025/ka-0034-2025/bruhat-bengaluru-mahanagara-palike-amendment-act-2025__gazette__kan.pdf",
+      "publication_date": "2025-04-15",
+      "proposed_effective_date": null,
+      "date_evidence": "Commencement requires a recorded date determination",
+      "operation_count": 7,
+      "blocked_instructions": [],
+      "targets": [
+        {
+          "id": "ka-0053-2020",
+          "status": "conflicts",
+          "ok": false,
+          "conflicts": [
+            {
+              "operation": "ka-0034-2025:sec_4_op_1",
+              "reason": "Target must resolve once; found 0 for {'path': [['section', '240A'], ['subsection', '2']]}"
+            }
+          ],
+          "validation": "valid",
+          "applied_count": 3
+        }
+      ],
+      "sequence_status": "blocked_by_ka-0017-2024"
+    }
+  ]
+}

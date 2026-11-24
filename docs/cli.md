@@ -19,9 +19,9 @@ Exactly one of `-t` or `--pdf` is required.
 
 | Option | Description |
 | --- | --- |
-| `-t`, `--type {base_act,amendment}` | Process every PDF of this document type. `base_act` reads `data/v0s/`; `amendment` reads `data/amendments/` or `data/ammendments/`, whichever exists. |
+| `-t`, `--type {base_act,amendment}` | Process every PDF of this document type. Both types read `data/catalog.json` and their PDFs under `data/acts/`. |
 | `--pdf PATH` | Process a single PDF instead. |
-| `-d`, `--dir SUBDIR` | Restrict `-t` to one subdirectory, e.g. `-d kan_eng`. Default: all subdirectories, searched recursively. |
+| `-d`, `--dir SUBDIR` | Restrict `-t` to one subdirectory, e.g. `-d 2020/ka-0053-2020`. Default: all catalogued Acts. |
 | `-n`, `--count N` | Process at most `N` PDFs. `0` (default) means all; negative values are rejected. |
 
 ### Language
@@ -121,7 +121,7 @@ Convert all base Acts, failing the run on any defect:
 Convert only the bilingual sources, keeping intermediate text for inspection:
 
 ```bash
-.venv/Scripts/python scripts/akn-parser.py -t base_act -l eng -d kan_eng --keep-text
+.venv/Scripts/python scripts/akn-parser.py -t base_act -l eng -d 2020/ka-0053-2020 --keep-text
 ```
 
 Convert the first two amending Acts to a scratch directory:
@@ -133,7 +133,7 @@ Convert the first two amending Acts to a scratch directory:
 Inspect what a bilingual PDF looks like without redaction:
 
 ```bash
-.venv/Scripts/python scripts/akn-parser.py --pdf "data/v0s/kan_eng/BBMP Act.pdf" -l eng --foreign keep --keep-text --no-validate
+.venv/Scripts/python scripts/akn-parser.py --pdf "data/acts/2020/ka-0053-2020/bruhat-bengaluru-mahanagara-palike-act-2020__gazette__kan.pdf" -l eng --foreign keep --keep-text --no-validate
 ```
 
 Produce a document that carries no unconverted Kannada at all:

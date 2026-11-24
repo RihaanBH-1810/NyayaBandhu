@@ -2,7 +2,7 @@
 
 ## Inputs and coverage
 
-The base is `out/base_act/eng/tranfer_of_teachers.xml` with `data/v0s/kan_eng/tranfer_of_teachers.pdf`. The three amendment XMLs are under `out/amendment/eng/`, with corresponding PDFs under `data/ammendments/`; their filenames retain the repository's `ammendment` spelling.
+The base is `out/base_act/eng/tranfer_of_teachers.xml` with `data/acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf`. The three amendment XMLs are under `out/amendment/eng/`, with corresponding PDFs under `data/ammendments/`; their filenames retain the repository's `ammendment` spelling.
 
 | Instrument | Work URI suffix | Covered outer sections | Operations | Demo effective date |
 | --- | --- | ---: | ---: | --- |

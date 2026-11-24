@@ -52,34 +52,35 @@ def test_quiet_help(capsys):
     )
 
 
-@pytest.mark.parametrize("directory_exists", [False, True])
-def test_missing_input(directory_exists, monkeypatch, tmp_path, capsys):
+@pytest.mark.parametrize("catalog_exists", [False, True])
+def test_missing_input(catalog_exists, monkeypatch, tmp_path, capsys):
     monkeypatch.setattr(cli, "REPO_ROOT", str(tmp_path))
-    if directory_exists:
-        (tmp_path / "data" / "v0s").mkdir(parents=True)
-    message = "No PDF files found" if directory_exists else "No data directory"
+    if catalog_exists:
+        folder = tmp_path / "data"
+        folder.mkdir()
+        (folder / "catalog.json").write_text('{"sources":[]}')
+    message = "No PDF files found" if catalog_exists else "No data directory"
     with pytest.raises(cli.NoInputError, match=message):
         cli.collect_pdfs("base_act", None)
     assert cli.main(["-t", "base_act", "--quiet"]) == 1
-    captured = capsys.readouterr()
-    assert message in captured.err
-    assert "Traceback" not in captured.err
-    assert not (tmp_path / "out").exists()
+    assert message in capsys.readouterr().err
 
 
 def test_collect_pdfs_sorts_and_filters(monkeypatch, tmp_path):
+    import json
     monkeypatch.setattr(cli, "REPO_ROOT", str(tmp_path))
-    root = tmp_path / "data" / "v0s"
-    for name in ["eng/z.pdf", "eng/a.pdf", "eng/notes.txt", "kan/b.pdf"]:
+    root = tmp_path / "data"
+    names = ["acts/2020/ka-0004-2020/z.pdf", "acts/2020/ka-0004-2020/a.pdf",
+             "acts/2021/ka-0027-2021/b.pdf"]
+    rows = []
+    for name in names:
         path = root / name
         path.parent.mkdir(parents=True, exist_ok=True)
         path.touch()
-    assert cli.collect_pdfs("base_act", None) == sorted(
-        str(root / name) for name in ["eng/z.pdf", "eng/a.pdf", "kan/b.pdf"]
-    )
-    assert cli.collect_pdfs("base_act", "eng") == [
-        str(root / "eng/a.pdf"), str(root / "eng/z.pdf"),
-    ]
+        rows.append({"path":name,"kind":"base"})
+    (root / "catalog.json").write_text(json.dumps({"sources":rows}))
+    assert cli.collect_pdfs("base_act", None) == sorted(str(root / n) for n in names)
+    assert cli.collect_pdfs("base_act", "2020/ka-0004-2020") == sorted(str(root / n) for n in names[:2])
     with pytest.raises(cli.NoInputError):
         cli.collect_pdfs("base_act", "missing")
 

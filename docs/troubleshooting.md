@@ -75,7 +75,7 @@ no text layer will also produce this; it needs OCR first.
 ### `FileNotFoundError`
 
 The path given to `--pdf` does not exist. Note that `-t` expects PDFs under
-`data/v0s/` or `data/amendments/`; use `--pdf` for files elsewhere.
+`data/acts/` (indexed by `data/catalog.json`); use `--pdf` for files elsewhere.
 
 ---
 

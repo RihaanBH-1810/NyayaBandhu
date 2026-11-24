@@ -3,6 +3,7 @@
 This creates approvals by a test persona. It does not attest legal accuracy.
 """
 from __future__ import annotations
+from source_corpus import legacy_pdf
 import argparse
 from copy import deepcopy
 import json
@@ -24,7 +25,7 @@ def main():
     if output.exists(): parser.error('Output exists; choose a new path')
     reviews=json.loads((ROOT/'tests/fixtures/consolidation/reviews.json').read_text())
     result=c.import_source((ROOT/'out/base_act/eng/tranfer_of_teachers.xml').read_bytes(),
-                            (ROOT/'data/v0s/kan_eng/tranfer_of_teachers.pdf').read_bytes(),'base',**AUTH)
+                            (ROOT/'data/acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf').read_bytes(),'base',**AUTH)
     work=result['work_id']
     def approve(result):
         e=result['expression']
@@ -34,7 +35,7 @@ def main():
     print('Base:',parent['id'])
     for name,body in reviews.items():
         imported=c.import_source((ROOT/f'out/amendment/eng/{name}_ammendment.xml').read_bytes(),
-                                 (ROOT/f'data/ammendments/{name}_ammendment.pdf').read_bytes(),'amendment',
+                                 legacy_pdf(f'{name}_ammendment').read_bytes(),'amendment',
                                  work_id=work,revision=result['revision'],**AUTH)
         extracted=c.extract(imported['source_id'],imported['revision'],**AUTH);manifest=extracted['manifest']
         reviewed=c.review(manifest['id'],deepcopy(body),extracted['revision'],manifest['revision'],**AUTH)

@@ -9,8 +9,8 @@ from datetime import datetime
 import pymupdf
 from .common import Q, NS, text, metadata
 
-ORDINALS = {'first':'1', 'second':'2', 'third':'3', 'fourth':'4', 'fifth':'5', 'sixth':'6'}
-KINDS = {'section':'section', 'sub-section':'subsection', 'subsection':'subsection', 'clause':'clause', 'proviso':'proviso'}
+ORDINALS = {'first':'1', 'second':'2', 'third':'3', 'fourth':'4', 'fifth':'5', 'sixth':'6', 'seventh':'7', 'eighth':'8'}
+KINDS = {'section':'section', 'sub-section':'subsection', 'subsection':'subsection', 'sub-clause':'subclause', 'subclause':'subclause', 'clause':'clause', 'proviso':'proviso'}
 
 
 def compact(value):
@@ -18,10 +18,10 @@ def compact(value):
 
 
 def replacement_payload(instruction):
-    payload = instruction.split('namely', 1)[1].lstrip(',:- \t').strip()
+    payload = instruction.split('namely', 1)[1].lstrip(',:.- \t').strip()
     if payload.startswith('"'):
         closing = payload.rfind('"')
-        if closing > 0 and re.fullmatch(r'\s*[.;,]?\s*', payload[closing + 1:]):
+        if closing > 0 and re.fullmatch(r'\s*[.;,]?\s*(?:and\s*)?', payload[closing + 1:]):
             return payload[1:closing].strip()
     return payload.strip('"').strip()
 
@@ -66,9 +66,9 @@ def _split_instructions(content):
 
 def _path_context(segment, path):
     result = list(path)
-    for match in re.finditer(r'\bin\s+(section|sub-section|subsection|clause)\s*\(?([\da-z-]+)\)?', segment, re.I):
+    for match in re.finditer(r'\bin\s+(section|sub-section|subsection|sub-clause|subclause|clause)\s*\(?([\da-z-]+)\)?', segment, re.I):
         kind = KINDS[match[1].lower()]; label = match[2]
-        ranks = {'section':0,'subsection':1,'clause':2}
+        ranks = {'section':0,'subsection':1,'clause':2,'subclause':3}
         result = [x for x in result if ranks.get(x[0],3) < ranks[kind]] + [[kind,label]]
     return result
 
@@ -82,7 +82,8 @@ def _tables(section):
 
 def interpret(segment, path, section, heading):
     s = compact(segment).replace('“','"').replace('”','"')
-    s = re.sub(r'sub-\s+section', 'sub-section', s, flags=re.I)
+    s = re.sub(r'sub[-\s]+section', 'sub-section', s, flags=re.I)
+    s = re.sub(r'\bsection\s+(\d+)\s+([A-Z])\b', r'section \1\2', s)
     s = re.sub(r'^\([a-z0-9-]+\)\s*', '', s)
     path = _path_context(s.split('namely',1)[0], path)
     scope = {'region':'schedule'} if 'schedule' in heading.lower() else _target(path)
@@ -90,7 +91,7 @@ def interpret(segment, path, section, heading):
     if rename:
         return [{'action':'renumber','target':_target(path + [['clause',rename[1]]]),'new_number':'('+rename[2]+')'}],path
     strings = re.findall(r'"([^"]*)"', s)
-    if 'substituted' in s and 'the word' in s and len(strings) >= 2:
+    if 'substituted' in s and ('the word' in s or 'figures and word' in s) and len(strings) >= 2:
         if 'long title and preamble' in s.lower():
             return [{'action':'text_replace','target':{'region':r},'old':strings[0],'new':strings[1],'count':1} for r in ('longTitle','preamble')],path
         whole = 'wherever' in s
@@ -101,6 +102,18 @@ def interpret(segment, path, section, heading):
         return [{'action':'text_insert','target':scope,'old':strings[0],'new':(' ' + strings[1]) if position=='after' else strings[1]+' ', 'position':position,'count':1}],path
     if 'omitted' in s and 'the word' in s and strings:
         return [{'action':'text_omit','target':scope,'old':strings[0],'new':'','count':1}],path
+    # Explicit whole-section and paired subsection omissions need no text guess.
+    pair_omission = re.search(r'sub[-\s]?sections?\s*\((\d+)\)\s+and\s*\((\d+)\)\s+shall be omitted', s, re.I)
+    if pair_omission:
+        nums = sorted((int(pair_omission[1]), int(pair_omission[2])), reverse=True)
+        section_path = [part for part in path if part[0] == 'section']
+        return [{'action':'omit_provision','target':_target(section_path + [['subsection',str(n)]])} for n in nums], path
+    section_omission = re.search(r'\bsection\s+(\d+[A-Z]?)\s+shall be omitted', s, re.I)
+    if section_omission:
+        return [{'action':'omit_provision','target':_target([['section',section_omission[1]]])}], path
+    proviso_omission = re.search(r'\b(first|second|third|fourth|fifth|sixth|seventh|eighth)\s+proviso\s+shall be omitted', s, re.I)
+    if proviso_omission:
+        return [{'action':'omit_provision','target':_target(path + [['proviso',ORDINALS[proviso_omission[1].lower()]]])}], path
     omitted = re.search(r'clause\s*\(([^)]+)\).*shall be omitted',s,re.I)
     if omitted:
         return [{'action':'omit_provision','target':_target(path + [['clause',omitted[1]]])}],path
@@ -131,6 +144,11 @@ def interpret(segment, path, section, heading):
             anchor = re.search(r'after serial number\s+([IVX]+)',s)
             if not anchor: raise ValueError('Schedule insertion anchor needs review')
             return [{'action':'table_insert','target':{'region':'schedule','label':'SCHEDULE-I'},'after_group':anchor[1],'rows':tables[-1]}],path
+        single_proviso = re.search(r'for\s+the\s+(first|second|third|fourth|fifth|sixth|seventh|eighth)\s+proviso', s, re.I)
+        if single_proviso:
+            return [{'action':'replace_provision',
+                     'target':_target(path + [['proviso',ORDINALS[single_proviso[1].lower()]]]),
+                     'fragment':quoted_fragment(payload,'proviso')}], path
         pair = re.search(r'for\s+(first|second|third|fourth|fifth|sixth)\s+and\s+'
                          r'(first|second|third|fourth|fifth|sixth)\s+provisos?\b', s, re.I)
         if pair:
@@ -145,17 +163,17 @@ def interpret(segment, path, section, heading):
                 {'action':'insert_provision','target':_target(path + [['proviso',str(first - 1)]]),
                  'position':'after','fragments':[quoted_fragment(payload,'proviso')]},
             ],[part for part in path if part[0] == 'section']
-        replacement = re.search(r'for\s+(section|sub-section|subsection|clause)\s*\(?([\da-z-]+)\)?',s,re.I)
+        replacement = re.search(r'for\s+(section|sub-section|subsection|sub-clause|subclause|clause)\s*\(?([\da-z-]+)\)?',s,re.I)
         if replacement:
             kind = KINDS[replacement[1].lower()]; label = replacement[2]
             target_path = [[kind,label]] if kind=='section' else path + [[kind,label]]
             return [{'action':'replace_provision','target':_target(target_path),'fragment':quoted_fragment(payload,kind)}],path
-        anchor = re.search(r'(after|before)\s+(section|sub-section|subsection|clause)\s*\(?([\da-z-]+)\)?',s,re.I)
+        anchor = re.search(r'(after|before)\s+(section|sub-section|subsection|sub-clause|subclause|clause)\s*\(?([\da-z-]+)\)?',s,re.I)
         ordinal = re.search(r'after\s+(first|second|third|fourth|fifth) proviso',s,re.I)
         kind = 'proviso' if 'proviso' in s.split('namely')[0] else (KINDS[anchor[2].lower()] if anchor else None)
         if anchor:
             anchor_kind = KINDS[anchor[2].lower()]
-            ranks = {'section':0,'subsection':1,'clause':2}
+            ranks = {'section':0,'subsection':1,'clause':2,'subclause':3}
             target_path = [x for x in path if ranks.get(x[0],3) < ranks[anchor_kind]] + [[anchor_kind,anchor[3]]]
             position = anchor[1].lower()
         elif ordinal:
@@ -186,7 +204,10 @@ def extract(xml_root, pdf_bytes):
     end = raw.find('The above translation',start)
     if end < 0: end=len(raw)
     body = raw[start:end]
-    boundaries = list(re.finditer(r'(?m)^\s*(\d+)\.\s+(Short title|Amendment|Substitution|Repeal)\b',body))
+    enactment = re.search(r'Be it enacted\b.*?as follows\s*[:.\-]*', body, re.I | re.S)
+    scan_offset = start + (enactment.end() if enactment else 0)
+    scan = raw[scan_offset:end]
+    boundaries = list(re.finditer(r'(?m)^\s*(\d+)\.\s+(Short title|Amendment|Substitution|Repeal|Insertion|Validation)\b',scan))
     sections = {normalise_section(e.findtext(Q('num'))):e for e in xml_root.findall('./'+Q('act')+'/'+Q('body')+'/'+Q('section'))}
     operations, coverage = [], []
     match = re.search(r'(?:Karnataka Act\s+0*(\d+)\s+of\s+(\d{4}))',body,re.I)
@@ -196,15 +217,16 @@ def extract(xml_root, pdf_bytes):
     for index,m in enumerate(boundaries):
         number = m[1]; source_eid='sec_'+number
         section = sections.get(number)
-        finish = boundaries[index+1].start() if index+1<len(boundaries) else len(body)
-        chunk = body[m.start():finish]
-        absolute_start, absolute_end = start+m.start(), start+finish
+        finish = boundaries[index+1].start() if index+1<len(boundaries) else len(scan)
+        chunk = scan[m.start():finish]
+        absolute_start, absolute_end = scan_offset+m.start(), scan_offset+finish
         pages = [page for offset,page in page_offsets if offset < absolute_end and (page == len(page_offsets) or page_offsets[page][0] > absolute_start)]
         heading = section.findtext(Q('heading')) if section is not None else m[2]
         provenance = {'source_eid':source_eid, 'pdf_pages':pages, 'quote':compact(chunk)}
         coverage.append({'source_eid':source_eid,'heading':heading,'pdf_pages':pages})
-        if heading and ('commencement' in heading.lower() or 'repeal and savings' in heading.lower()):
-            candidates=[{'action':'effect','classification':'commencement' if 'commencement' in heading.lower() else 'repeal_and_savings','details':compact(chunk)}]
+        if heading and ('commencement' in heading.lower() or 'repeal and savings' in heading.lower() or 'validation' in heading.lower()):
+            classification = 'commencement' if 'commencement' in heading.lower() else 'repeal_and_savings' if 'repeal and savings' in heading.lower() else 'other'
+            candidates=[{'action':'effect','classification':classification,'details':compact(chunk)}]
         elif section is None:
             candidates=[{'action':'blocked','issue':'Source XML section missing'}]
         else:

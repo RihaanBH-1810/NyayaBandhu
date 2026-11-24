@@ -6,16 +6,25 @@
     "damaged, or wrong. Any field of akn_parser.meta.DocumentMeta may be set.",
     "Keys beginning with an underscore are ignored."
   ],
-
-  "tranfer_of_teachers": {
-    "keywords": ["Education", "Teacher transfers", "State civil services"]
+  "karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng": {
+    "keywords": [
+      "Education",
+      "Teacher transfers",
+      "State civil services"
+    ]
   },
-
-  "BBMP-eng": {
-    "keywords": ["Municipal governance", "Urban local body", "Bengaluru"]
+  "bruhat-bengaluru-mahanagara-palike-act-2020__gazette__eng": {
+    "keywords": [
+      "Municipal governance",
+      "Urban local body",
+      "Bengaluru"
+    ]
   },
-
-  "BBMP Act": {
-    "keywords": ["Municipal governance", "Urban local body", "Bengaluru"]
+  "bruhat-bengaluru-mahanagara-palike-act-2020__gazette__kan": {
+    "keywords": [
+      "Municipal governance",
+      "Urban local body",
+      "Bengaluru"
+    ]
   }
 }

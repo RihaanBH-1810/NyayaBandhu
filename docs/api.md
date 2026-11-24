@@ -15,7 +15,7 @@ from akn_parser.pipeline import ActParser
 from akn_parser.pipeline import ActParser
 
 parser = ActParser(target_lang="eng")
-result = parser.parse("data/v0s/kan_eng/tranfer_of_teachers.pdf")
+result = parser.parse("data/acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf")
 
 print(result.report.schema_valid)      # True
 print(result.meta.work_uri)            # /akn/in-ka/act/2020-03-26/4

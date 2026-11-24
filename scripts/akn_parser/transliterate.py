@@ -129,7 +129,7 @@ def bcp47(lang: str, encoding: str, legacy_encoding: str = DEFAULT_ENCODING) -> 
     if encoding == language.SUSPECT:
         # Correct script, wrong codepoints: the text needs repair, not
         # transliteration, and a consumer must not treat it as clean Kannada.
-        return f"{subtag}-x-misencoded"
+        return f"{subtag}-x-misenc"
     return f"{subtag}-Latn-x-{legacy_encoding}"
 
 

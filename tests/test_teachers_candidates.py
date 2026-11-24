@@ -26,7 +26,7 @@ def test_four_distinct_valid_unapproved_drafts():
 def test_source_registration_is_idempotent_and_pending(tmp_path):
     service=Consolidator(tmp_path)
     base=service.import_source((ROOT/'out/base_act/eng/tranfer_of_teachers.xml').read_bytes(),
-                               (ROOT/'data/v0s/kan_eng/tranfer_of_teachers.pdf').read_bytes(),
+                               (ROOT/'data/acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf').read_bytes(),
                                'base','Technical preparer','Prepare pending sources')
     first=service.prepare_teachers_sources(base['work_id'],base['revision'],'Technical preparer','Prepare pending sources')
     again=service.prepare_teachers_sources(base['work_id'],first['revision'],'Technical preparer','Repeat safely')

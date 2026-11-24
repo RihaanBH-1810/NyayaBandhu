@@ -11,13 +11,14 @@ import json
 from pathlib import Path
 from zipfile import ZipFile, ZipInfo, ZIP_DEFLATED
 
+from source_corpus import legacy_pdf
 from .common import canonical_hash, digest, encode, metadata, parse, serialise, validate
 from .engine import apply_one, locate, run, seed_identities, update_metadata
 from .extraction import extract
 
 ROOT = Path(__file__).resolve().parents[2]
 BASE = ('out/base_act/eng/tranfer_of_teachers.xml',
-        'data/v0s/kan_eng/tranfer_of_teachers.pdf')
+        'data/acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf')
 SOURCES = (
     ('First', 'First_ammendment', '2021-04-29'),
     ('Second', 'Second_ammendment', '2022-01-18'),
@@ -28,13 +29,13 @@ HASHES = {
     BASE[0]: 'd3ff9867142661db4ce8a0aebf314492c6c5dbd63045632ffa7e4cec7e90159a',
     BASE[1]: 'ed28d5b0a2f915d92130f9d0196f7cec78d9db4de91a440b6a948f806cbf8052',
     'out/amendment/eng/First_ammendment.xml': '9edd35cf186fe5563f528dd9d6bf263e5a96cb44cb073d514aace42a742ccbfd',
-    'data/ammendments/First_ammendment.pdf': '30fd04892865bf9faa9ab63586cde771f032be5fa9f7d04994f0f97a3fc8232f',
+    'data/acts/2021/ka-0027-2021/transfer-of-teachers-amendment-act-2021__gazette__kan-eng.pdf': '30fd04892865bf9faa9ab63586cde771f032be5fa9f7d04994f0f97a3fc8232f',
     'out/amendment/eng/Second_ammendment.xml': 'c6c41af1747f168eefde00f75eba5734c2b3d46328656a52a8bf994029a359ca',
-    'data/ammendments/Second_ammendment.pdf': '72199013075c4880434d9a714dceee2436a5209ec9b95022af04e6c89d31dc73',
+    'data/acts/2022/ka-0006-2022/transfer-of-teachers-second-amendment-act-2021__gazette__kan-eng.pdf': '72199013075c4880434d9a714dceee2436a5209ec9b95022af04e6c89d31dc73',
     'out/amendment/eng/Teachers_2022.xml': 'ce0e215bf2b3596e736ccadd562d90cb0980110299ff68949274df181f7f1194',
-    'data/ammendments/Teachers_2022.pdf': 'aa615258033adca402148c7dafd50bf581dfe1a7697bdaa49bdda08d25100651',
+    'data/acts/2022/ka-0032-2022/transfer-of-teachers-amendment-act-2022__gazette__eng.pdf': 'aa615258033adca402148c7dafd50bf581dfe1a7697bdaa49bdda08d25100651',
     'out/amendment/eng/Third_ammendment.xml': 'ed7330964cd9259f6afead127e7e39730414f60b0105d5deb99b59bd2022d5a3',
-    'data/ammendments/Third_ammendment.pdf': 'a002050150d69d026f6445eb9f86b1c53e77a4c8314fbf2f1b23e890381bbced',
+    'data/acts/2026/ka-0027-2026/transfer-of-teachers-amendment-act-2026__gazette__kan-eng.pdf': 'a002050150d69d026f6445eb9f86b1c53e77a4c8314fbf2f1b23e890381bbced',
 }
 PROFILE = 'data/candidate_profiles/teachers.json'
 PROFILE_SHA256 = 'ed9f008407e8e1939c66066a1d97b823fcda741fefc2127aee82228004d6da84'
@@ -77,7 +78,7 @@ def build_candidate_package():
     versions = []; seen_uris = set()
     for index,(name,stem,day) in enumerate(SOURCES,1):
         xml_path=f'out/amendment/eng/{stem}.xml'
-        pdf_path=f'data/ammendments/{stem}.pdf'
+        pdf_path=str(legacy_pdf(stem).relative_to(ROOT))
         xml,pdf=checked(xml_path),checked(pdf_path)
         source_root=parse(xml);uri=metadata(source_root)['work_uri']
         if uri in seen_uris: raise ValueError('Duplicate amending Act Work URI: '+uri)

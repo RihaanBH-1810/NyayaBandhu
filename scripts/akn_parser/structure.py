@@ -53,7 +53,7 @@ _RE_SECTION = re.compile(r"^(\d+[A-Z]{0,2})\s*\.\s*(.+)$")
 _RE_SUBSECTION = re.compile(r"^\((\d+[a-z]?)\)\s*(.*)$")
 #: ``(a)`` / ``(bb)``.  Matched only after roman, since ``(ii)`` would
 #: otherwise be read as the two-letter alphabetic marker ``ii``.
-_RE_ALPHA = re.compile(r"^\(([a-z]{1,2})\)\s*(.*)$")
+_RE_ALPHA = re.compile(r"^\(([A-Za-z]{1,2})\)\s*(.*)$")
 _RE_ROMAN = re.compile(rf"^\(({ROMAN})\)\s*(.*)$")
 #: ``Provided that`` / ``Provided further that`` / ``Provided also that``.
 #: Non-greedy up to the first comma, colon or full stop so the proviso's own
@@ -94,7 +94,7 @@ _AMBIGUOUS = {"i", "v", "x"}
 def _predecessor(list_type: str, num: str):
     """The enumerator that would come immediately before *num*, or None if
     *num* opens the sequence."""
-    order = _ALPHA_ORDER if list_type == "alpha" else _ROMAN_ORDER
+    order = (_ALPHA_ORDER.upper() if num.isupper() else _ALPHA_ORDER) if list_type == "alpha" else _ROMAN_ORDER
     try:
         index = list(order).index(num)
     except ValueError:
@@ -226,9 +226,19 @@ class Tokenizer:
         for line in text.split("\n"):
             if not line.strip():
                 continue
-            token = self._classify(line)
-            token.raw = line
-            tokens.append(token)
+            # Quoted replacement lists sometimes start on the same logical
+            # line as their enclosing "namely:-" clause. Give the first item
+            # its own token so later (b), (c), ... nest in that list.
+            match = re.search(r'\bnamely\s*:\s*-\s*"\((a)\)\s*', line, re.I)
+            if match:
+                parts = [line[:match.start(1) - 2].rstrip(),
+                         '(a) ' + line[match.end():]]
+            else:
+                parts = [line]
+            for part in parts:
+                token = self._classify(part)
+                token.raw = part
+                tokens.append(token)
         return self._resolve_ambiguous(tokens)
 
     # -- per-line classification -------------------------------------

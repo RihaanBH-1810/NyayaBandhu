@@ -1,3 +1,4 @@
+from source_corpus import legacy_pdf
 """Amendment rules, source preservation, transactional history, and CMS API."""
 from copy import deepcopy
 from concurrent.futures import ThreadPoolExecutor
@@ -21,7 +22,7 @@ FIXTURES = ROOT / 'tests/fixtures/consolidation'
 REVIEWS = json.loads((FIXTURES / 'reviews.json').read_text())
 AUTH = {'actor':'Fixture reviewer (not legal attestation)','reason':'Regression test only'}
 BASE = ROOT / 'out/base_act/eng/tranfer_of_teachers.xml'
-PDF = ROOT / 'data/v0s/kan_eng/tranfer_of_teachers.pdf'
+PDF = ROOT / 'data/acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf'
 
 
 def approve(c, result):
@@ -37,7 +38,7 @@ def start(directory):
 
 def register(c, work, revision, name, ready=True):
     result = c.import_source((ROOT / f'out/amendment/eng/{name}_ammendment.xml').read_bytes(),
-                             (ROOT / f'data/ammendments/{name}_ammendment.pdf').read_bytes(),
+                             legacy_pdf(f'{name}_ammendment').read_bytes(),
                              'amendment', work_id=work, revision=revision, **AUTH)
     result = c.extract(result['source_id'], result['revision'], **AUTH)
     manifest = result['manifest']
@@ -132,7 +133,7 @@ def test_unreviewed_dates_and_missing_extraction_block(tmp_path):
     c, work, result = start(tmp_path)
     base = result['expression']
     imported = c.import_source((ROOT/'out/amendment/eng/Second_ammendment.xml').read_bytes(),
-                              (ROOT/'data/ammendments/Second_ammendment.pdf').read_bytes(), 'amendment',
+                              (ROOT/'data/acts/2022/ka-0006-2022/transfer-of-teachers-second-amendment-act-2021__gazette__kan-eng.pdf').read_bytes(), 'amendment',
                               work_id=work,revision=result['revision'],**AUTH)
     with pytest.raises(Conflict,match='Extract all'): c.preview(work,base['id'],'2022-01-18')
     extracted = c.extract(imported['source_id'],imported['revision'],**AUTH)
@@ -205,7 +206,7 @@ def test_concurrent_revision_writers(tmp_path):
         other=Consolidator(tmp_path)
         try:
             return other.import_source((ROOT/'out/amendment/eng/First_ammendment.xml').read_bytes(),
-                                       (ROOT/'data/ammendments/First_ammendment.pdf').read_bytes(),'amendment',
+                                       (ROOT/'data/acts/2021/ka-0027-2021/transfer-of-teachers-amendment-act-2021__gazette__kan-eng.pdf').read_bytes(),'amendment',
                                        work_id=work,revision=result['revision'],**AUTH)['source_id']
         except Conflict: return None
     with ThreadPoolExecutor(max_workers=2) as pool:
@@ -411,7 +412,7 @@ def test_http_routes_without_server_socket(tmp_path,monkeypatch):
     status,works=asyncio.run(request('GET','/consolidation/api/works'))
     assert status==200 and works==[]
     status,result=asyncio.run(request('POST','/consolidation/api/sources',{
-        'kind':'base','xml_path':'base_act/eng/tranfer_of_teachers.xml','pdf_path':'v0s/kan_eng/tranfer_of_teachers.pdf',
+        'kind':'base','xml_path':'base_act/eng/tranfer_of_teachers.xml','pdf_path':'acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf',
         'actor':'API tester','reason':'ASGI smoke'}))
     assert status==200 and result['revision']==1
     status,_=asyncio.run(request('POST','/consolidation/api/expressions/'+result['expression']['id']+'/approve',{
@@ -424,7 +425,7 @@ def test_http_routes_without_server_socket(tmp_path,monkeypatch):
 def test_reimport_same_instrument_with_different_serialization_is_blocked(tmp_path):
     c,work,result=start(tmp_path)
     xml=(ROOT/'out/amendment/eng/First_ammendment.xml').read_bytes()
-    pdf=(ROOT/'data/ammendments/First_ammendment.pdf').read_bytes()
+    pdf=(ROOT/'data/acts/2021/ka-0027-2021/transfer-of-teachers-amendment-act-2021__gazette__kan-eng.pdf').read_bytes()
     first=c.import_source(xml,pdf,'amendment',work_id=work,revision=result['revision'],**AUTH)
     changed=etree.tostring(parse(xml),pretty_print=True)
     with pytest.raises(Conflict,match='already registered'):
@@ -434,10 +435,13 @@ def test_reimport_same_instrument_with_different_serialization_is_blocked(tmp_pa
 def test_extraction_does_not_guess_wording_mismatches():
     from akn_consolidator.extraction import extract
     xml=parse((ROOT/'out/amendment/eng/Second_ammendment.xml').read_bytes())
-    body=extract(xml,(ROOT/'data/ammendments/Second_ammendment.pdf').read_bytes())
+    body=extract(xml,(ROOT/'data/acts/2022/ka-0006-2022/transfer-of-teachers-second-amendment-act-2021__gazette__kan-eng.pdf').read_bytes())
     op=next(o for o in body['operations'] if o['id']=='sec_2_op_1')
     root=parse(BASE.read_bytes())
     _,report=run(root,[('exact',op)],seed_identities(root,'test'),[])
+    assert report['ok']  # Identical letters, differing capitalization/spacing.
+    changed = dict(op, old=op['old'].replace('Primary', 'Secondary'))
+    _,report=run(root,[('different-words',changed)],seed_identities(root,'test'),[])
     assert not report['ok'] and 'found 0' in report['conflicts'][0]['reason']
     assert all(o['review_status']=='pending' for o in body['operations'])
     assert body['effective_date'] is None and not body['identity_confirmed']

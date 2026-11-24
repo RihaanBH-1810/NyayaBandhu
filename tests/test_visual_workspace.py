@@ -22,7 +22,7 @@ from test_consolidation_cms import AUTH, REVIEWS, setup_first, asgi_request
 
 def base(svc):
     return svc.import_source((ROOT/'out/base_act/eng/tranfer_of_teachers.xml').read_bytes(),
-                             (ROOT/'data/v0s/kan_eng/tranfer_of_teachers.pdf').read_bytes(),'base',**AUTH)
+                             (ROOT/'data/acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf').read_bytes(),'base',**AUTH)
 
 
 def edit_request(svc, record, expression=None, revision=None, **overrides):
@@ -213,7 +213,7 @@ def test_visual_base_flows_into_real_amendment_engine(tmp_path):
     svc=Consolidator(tmp_path);record=base(svc)
     saved=ui.edit_expression(svc,record['expression']['id'],edit_request(svc,record))
     approved=svc.approve(saved['expression']['id'],saved['revision'],saved['expression']['xml_hash'],**AUTH)
-    imp=svc.import_source((ROOT/'out/amendment/eng/First_ammendment.xml').read_bytes(),(ROOT/'data/ammendments/First_ammendment.pdf').read_bytes(),'amendment',work_id=record['work_id'],revision=approved['revision'],**AUTH)
+    imp=svc.import_source((ROOT/'out/amendment/eng/First_ammendment.xml').read_bytes(),(ROOT/'data/acts/2021/ka-0027-2021/transfer-of-teachers-amendment-act-2021__gazette__kan-eng.pdf').read_bytes(),'amendment',work_id=record['work_id'],revision=approved['revision'],**AUTH)
     ext=svc.extract(imp['source_id'],imp['revision'],**AUTH)
     review=svc.review(ext['manifest']['id'],deepcopy(REVIEWS['First']),ext['revision'],ext['manifest']['revision'],**AUTH)
     report=svc.preview(record['work_id'],approved['expression']['id'],'2021-04-29')
@@ -245,7 +245,7 @@ def test_reader_only_lists_approved_versions_and_generates_pdf(tmp_path,monkeypa
 def test_related_documents_and_issues_are_stored(tmp_path,monkeypatch):
     monkeypatch.setenv('NYAYA_CONSOLIDATION_DIR',str(tmp_path));svc=Consolidator(tmp_path);record=base(svc)
     ap=svc.approve(record['expression']['id'],record['revision'],record['expression']['xml_hash'],**AUTH)
-    linked=ui.add_related(record['work_id'],ui.Related(revision=ap['revision'],title='Example linked source',kind='Rules',category='Education',document_date='2020-03-27',pdf_path='v0s/kan_eng/tranfer_of_teachers.pdf',**AUTH))
+    linked=ui.add_related(record['work_id'],ui.Related(revision=ap['revision'],title='Example linked source',kind='Rules',category='Education',document_date='2020-03-27',pdf_path='acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf',**AUTH))
     assert ui.related_pdf(linked['id']).body==svc.source_artifact(record['source_id'],'pdf')
     issue=ui.report_issue(record['work_id'],ui.Issue(expression_id=record['expression']['id'],message='Please compare section 1 wording with the source.'))
     assert ui.detail(record['work_id'])['issues'][0]['id']==issue['id']
@@ -255,7 +255,7 @@ def test_related_documents_and_issues_are_stored(tmp_path,monkeypatch):
 def test_upload_pair_and_new_page_routes(tmp_path,monkeypatch):
     monkeypatch.setenv('NYAYA_CONSOLIDATION_DIR',str(tmp_path))
     async def upload_with_timer():
-        task=asyncio.create_task(ui.upload(pdf=UploadFile(BytesIO((ROOT/'data/v0s/kan_eng/tranfer_of_teachers.pdf').read_bytes()),filename='base.pdf'),xml=UploadFile(BytesIO((ROOT/'out/base_act/eng/tranfer_of_teachers.xml').read_bytes()),filename='base.xml'),kind='base',actor=AUTH['actor'],reason=AUTH['reason'],work_id=None,revision=None))
+        task=asyncio.create_task(ui.upload(pdf=UploadFile(BytesIO((ROOT/'data/acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf').read_bytes()),filename='base.pdf'),xml=UploadFile(BytesIO((ROOT/'out/base_act/eng/tranfer_of_teachers.xml').read_bytes()),filename='base.xml'),kind='base',actor=AUTH['actor'],reason=AUTH['reason'],work_id=None,revision=None,act_id="ka-0004-2020",title_slug="karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020",source_language="kan-eng",variant="gazette",affected_acts=""))
         for _ in range(800):
             if task.done(): break
             await asyncio.sleep(.01)

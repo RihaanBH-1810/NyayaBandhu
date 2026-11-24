@@ -12,6 +12,7 @@ from .extraction import extract
 from .engine import run, apply_one, seed_identities, update_metadata, locate, occurrences, public_hits, _references
 from .common import Q, tag, text
 from .identity import check as check_identity
+from source_corpus import legacy_pdf
 
 
 class Consolidator:
@@ -153,8 +154,8 @@ class Consolidator:
                 raise Conflict('The imported base source differs from the pinned Teachers source')
         registered=[]
         for name,stem,_day in SOURCES:
-            xml,pdf=(checked(f'{folder}/{stem}.{suffix}') for folder,suffix in
-                     (('out/amendment/eng','xml'),('data/ammendments','pdf')))
+            xml=checked(f'out/amendment/eng/{stem}.xml')
+            pdf=checked(str(legacy_pdf(stem).relative_to(__import__('pathlib').Path(__file__).resolve().parents[2])))
             uri=metadata(parse(xml))['work_uri']
             with self.store.transaction() as db:
                 self._work(db,work_id)

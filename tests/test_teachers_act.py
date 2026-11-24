@@ -31,7 +31,7 @@ def test_kannada_is_kept_and_tagged_rather_than_deleted(teachers_xml):
     spans = teachers_xml.findall(f".//{q('span')}[@{{{XML_NS}}}lang]")
     assert spans
     tags = {s.get(f"{{{XML_NS}}}lang") for s in spans}
-    assert tags <= {"kn", "kn-Latn-x-nudi", "kn-x-misencoded"}
+    assert tags <= {"kn", "kn-Latn-x-nudi", "kn-x-misenc"}
 
 
 def test_legacy_encoded_runs_declare_their_encoding(teachers_xml):

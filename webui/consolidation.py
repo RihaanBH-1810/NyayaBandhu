@@ -14,6 +14,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from akn_consolidator.common import Conflict, NS, parse
 from akn_consolidator.service import Consolidator
 from akn_consolidator.teachers_candidates import build_candidate_package
+from source_corpus import load as load_sources
 from webui import akn_view
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -108,7 +109,7 @@ def catalog():
         meta = akn_view.extract_metadata(root)
         if meta['number'] and meta['assent_date'] and meta['work_uri']:
             base_by_citation[(int(meta['number']), int(meta['assent_date'][:4]))] = meta['work_uri']
-    pdf_by_stem = {path.stem.lower(): path.relative_to(ROOT / 'data').as_posix() for path in pdf_files}
+    pdf_by_stem = {Path(row.get('legacy_path', row['path'])).stem.lower(): row['path'] for row in load_sources()}
     prepared_amendments = []
     for path in amendment_files:
         root = parse(path.read_bytes())
@@ -130,6 +131,7 @@ def catalog():
         'amendment_xml': [p.relative_to(ROOT / 'out').as_posix() for p in amendment_files],
         'prepared_amendments': prepared_amendments,
         'pdf': [p.relative_to(ROOT / 'data').as_posix() for p in pdf_files],
+        'sources': load_sources(),
     }
 
 

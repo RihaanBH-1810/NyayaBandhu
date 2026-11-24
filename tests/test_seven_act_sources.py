@@ -1,3 +1,4 @@
+from source_corpus import legacy_pdf
 """Source intake checks for the two requested Act timelines."""
 from pathlib import Path
 from copy import deepcopy
@@ -16,13 +17,13 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 @pytest.mark.parametrize("source,number,sections", [
-    ("data/v0s/kan_eng/tranfer_of_teachers.pdf", "4", 20),
-    ("data/ammendments/First_ammendment.pdf", "27", 3),
-    ("data/ammendments/Second_ammendment.pdf", "6", 13),
-    ("data/ammendments/Teachers_2022.pdf", "32", 4),
-    ("data/ammendments/Third_ammendment.pdf", "27", 7),
-    ("data/v0s/eng/kannada_language_comprehensive_development_2022.pdf", "13", 31),
-    ("data/ammendments/Kannada_2024.pdf", "7", 3),
+    ("data/acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf", "4", 20),
+    ("data/acts/2021/ka-0027-2021/transfer-of-teachers-amendment-act-2021__gazette__kan-eng.pdf", "27", 3),
+    ("data/acts/2022/ka-0006-2022/transfer-of-teachers-second-amendment-act-2021__gazette__kan-eng.pdf", "6", 13),
+    ("data/acts/2022/ka-0032-2022/transfer-of-teachers-amendment-act-2022__gazette__eng.pdf", "32", 4),
+    ("data/acts/2026/ka-0027-2026/transfer-of-teachers-amendment-act-2026__gazette__kan-eng.pdf", "27", 7),
+    ("data/acts/2023/ka-0013-2023/kannada-language-comprehensive-development-act-2022__excerpt__eng.pdf", "13", 31),
+    ("data/acts/2024/ka-0007-2024/kannada-language-comprehensive-development-amendment-act-2024__gazette__kan-eng.pdf", "7", 3),
 ])
 def test_source_parses_to_valid_act_with_expected_sections(source, number, sections):
     result = ActParser().parse(str(ROOT / source))
@@ -34,9 +35,9 @@ def test_source_parses_to_valid_act_with_expected_sections(source, number, secti
 
 
 def test_kannada_amendment_candidates_apply_to_original_base():
-    base = parse(ActParser().parse(str(ROOT / 'data/v0s/eng/kannada_language_comprehensive_development_2022.pdf')).xml)
-    amendment = parse(ActParser().parse(str(ROOT / 'data/ammendments/Kannada_2024.pdf')).xml)
-    body = extract(amendment, (ROOT / 'data/ammendments/Kannada_2024.pdf').read_bytes())
+    base = parse(ActParser().parse(str(ROOT / 'data/acts/2023/ka-0013-2023/kannada-language-comprehensive-development-act-2022__excerpt__eng.pdf')).xml)
+    amendment = parse(ActParser().parse(str(ROOT / 'data/acts/2024/ka-0007-2024/kannada-language-comprehensive-development-amendment-act-2024__gazette__kan-eng.pdf')).xml)
+    body = extract(amendment, (ROOT / 'data/acts/2024/ka-0007-2024/kannada-language-comprehensive-development-amendment-act-2024__gazette__kan-eng.pdf').read_bytes())
     assert len(body['coverage']) == 3
     assert [op['action'] for op in body['operations']] == [
         'effect', 'replace_provision', 'insert_provision', 'replace_provision',
@@ -51,8 +52,8 @@ def test_kannada_amendment_candidates_apply_to_original_base():
 
 
 def test_teachers_2022_proposes_reviewable_double_proviso_substitution():
-    amendment = parse(ActParser().parse(str(ROOT / 'data/ammendments/Teachers_2022.pdf')).xml)
-    body = extract(amendment, (ROOT / 'data/ammendments/Teachers_2022.pdf').read_bytes())
+    amendment = parse(ActParser().parse(str(ROOT / 'data/acts/2022/ka-0032-2022/transfer-of-teachers-amendment-act-2022__gazette__eng.pdf')).xml)
+    body = extract(amendment, (ROOT / 'data/acts/2022/ka-0032-2022/transfer-of-teachers-amendment-act-2022__gazette__eng.pdf').read_bytes())
     assert len(body['coverage']) == 4
     assert len(body['operations']) == 11
     assert not any(op['action'] == 'blocked' for op in body['operations'])
@@ -74,7 +75,7 @@ def test_all_four_teachers_amendments_can_form_a_reviewed_sequence(tmp_path):
     actor = {'actor': 'Technical fixture', 'reason': 'Sequence regression only'}
     base = service.import_source(
         (ROOT / 'out/base_act/eng/tranfer_of_teachers.xml').read_bytes(),
-        (ROOT / 'data/v0s/kan_eng/tranfer_of_teachers.pdf').read_bytes(), 'base', **actor)
+        (ROOT / 'data/acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf').read_bytes(), 'base', **actor)
     work = base['work_id']
     approved = service.approve(base['expression']['id'], base['revision'],
                                base['expression']['xml_hash'], **actor)
@@ -88,7 +89,7 @@ def test_all_four_teachers_amendments_can_form_a_reviewed_sequence(tmp_path):
     ]:
         imported = service.import_source(
             (ROOT / f'out/amendment/eng/{stem}.xml').read_bytes(),
-            (ROOT / f'data/ammendments/{stem}.pdf').read_bytes(),
+            legacy_pdf(stem).read_bytes(),
             'amendment', work_id=work, revision=approved['revision'], **actor)
         extracted = service.extract(imported['source_id'], imported['revision'], **actor)
         if name in reviews:
@@ -134,13 +135,13 @@ def test_kannada_pair_cms_review_preview_and_export(tmp_path):
     actor = {'actor': 'Technical fixture', 'reason': 'Kannada CMS regression only'}
     base = service.import_source(
         (ROOT / 'out/base_act/eng/kannada_language_comprehensive_development_2022.xml').read_bytes(),
-        (ROOT / 'data/v0s/eng/kannada_language_comprehensive_development_2022.pdf').read_bytes(),
+        (ROOT / 'data/acts/2023/ka-0013-2023/kannada-language-comprehensive-development-act-2022__excerpt__eng.pdf').read_bytes(),
         'base', **actor)
     approved = service.approve(base['expression']['id'], base['revision'],
                                base['expression']['xml_hash'], **actor)
     imported = service.import_source(
         (ROOT / 'out/amendment/eng/Kannada_2024.xml').read_bytes(),
-        (ROOT / 'data/ammendments/Kannada_2024.pdf').read_bytes(),
+        (ROOT / 'data/acts/2024/ka-0007-2024/kannada-language-comprehensive-development-amendment-act-2024__gazette__kan-eng.pdf').read_bytes(),
         'amendment', work_id=base['work_id'], revision=approved['revision'], **actor)
     extracted = service.extract(imported['source_id'], imported['revision'], **actor)
     body = deepcopy(extracted['manifest']['body'])

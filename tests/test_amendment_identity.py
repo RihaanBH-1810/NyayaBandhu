@@ -1,3 +1,4 @@
+from source_corpus import legacy_pdf
 from pathlib import Path
 
 import pytest
@@ -13,13 +14,13 @@ AUTH = {'actor':'Reviewer','reason':'Identity check test'}
 
 def fixture(name):
     return ((ROOT / f'out/amendment/eng/{name}.xml').read_bytes(),
-            (ROOT / f'data/ammendments/{name}.pdf').read_bytes())
+            legacy_pdf(name).read_bytes())
 
 
 def test_wrong_act_is_queued_without_registering(tmp_path):
     svc=Consolidator(tmp_path)
     base=svc.import_source((ROOT/'out/base_act/eng/tranfer_of_teachers.xml').read_bytes(),
-                           (ROOT/'data/v0s/kan_eng/tranfer_of_teachers.pdf').read_bytes(),'base',**AUTH)
+                           (ROOT/'data/acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf').read_bytes(),'base',**AUTH)
     xml,pdf=fixture('Kannada_2024')
     result=svc.import_source(xml,pdf,'amendment',work_id=base['work_id'],revision=base['revision'],**AUTH)
     assert result['status']=='mismatch'
@@ -32,7 +33,7 @@ def test_wrong_act_is_queued_without_registering(tmp_path):
 def test_correct_act_registers(tmp_path):
     svc=Consolidator(tmp_path)
     base=svc.import_source((ROOT/'out/base_act/eng/tranfer_of_teachers.xml').read_bytes(),
-                           (ROOT/'data/v0s/kan_eng/tranfer_of_teachers.pdf').read_bytes(),'base',**AUTH)
+                           (ROOT/'data/acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf').read_bytes(),'base',**AUTH)
     xml,pdf=fixture('First_ammendment')
     result=svc.import_source(xml,pdf,'amendment',work_id=base['work_id'],revision=base['revision'],**AUTH)
     assert result['source_id']
@@ -42,7 +43,7 @@ def test_correct_act_registers(tmp_path):
 def test_unclear_upload_needs_evidence_then_registers(tmp_path):
     svc=Consolidator(tmp_path)
     base=svc.import_source((ROOT/'out/base_act/eng/tranfer_of_teachers.xml').read_bytes(),
-                           (ROOT/'data/v0s/kan_eng/tranfer_of_teachers.pdf').read_bytes(),'base',**AUTH)
+                           (ROOT/'data/acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf').read_bytes(),'base',**AUTH)
     xml,_=fixture('First_ammendment')
     root=parse(xml)
     for name in ('longTitle','preamble'):
@@ -64,6 +65,6 @@ def test_base_provision_has_source_citation(tmp_path,monkeypatch):
     monkeypatch.setenv('NYAYA_CONSOLIDATION_DIR',str(tmp_path))
     svc=Consolidator(tmp_path)
     base=svc.import_source((ROOT/'out/base_act/eng/tranfer_of_teachers.xml').read_bytes(),
-                           (ROOT/'data/v0s/kan_eng/tranfer_of_teachers.pdf').read_bytes(),'base',**AUTH)
+                           (ROOT/'data/acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf').read_bytes(),'base',**AUTH)
     result=ui.citations(base['expression']['id'],'sec_1')
     assert result['citations'][0]['source_id']==base['source_id']

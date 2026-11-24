@@ -32,7 +32,7 @@ STRUCTURAL_START = re.compile(
     r"|(?:THE\s+)?(?:FIRST|SECOND|THIRD|FOURTH|FIFTH|SIXTH)?\s*SCHEDULE\b"
     r"|\d+[A-Z]?\s*\.\s*[A-Z(]"                   # 1. / 12A. section
     r"|\(\d+[a-z]?\)"                             # (1) subsection
-    r"|\([a-z]{1,2}\)"                            # (a) clause
+    r"|\([A-Za-z]{1,2}\)"                            # (a) clause
     rf"|\({ROMAN}\)"                              # (i) clause / sub-clause
     r"|Provided\b"
     r"|Explanation\b"
@@ -121,6 +121,7 @@ class TextNormalizer:
         text = self._dehyphenate(text)
         lines = [ln.strip() for ln in text.split("\n")]
         lines = [ln for ln in lines if ln]
+        lines = self._join_wrapped_titles(lines)
         lines = self._drop_furniture(lines)
         lines = self._stitch_orphans(lines)
         lines = self._reflow(lines)
@@ -157,6 +158,24 @@ class TextNormalizer:
         list dashes are untouched.
         """
         return re.sub(r"(\w)-\n(?=[a-z])", r"\1", text)
+
+    @staticmethod
+    def _join_wrapped_titles(lines):
+        # A Gazette may put the title year on a line by itself. Preserve it
+        # before page-number removal and orphan-enumerator stitching.
+        out = []
+        index = 0
+        while index < len(lines):
+            line = lines[index]
+            if (line.startswith('THE ') and re.search(r'\bACT,\s*$', line)
+                    and index + 1 < len(lines)
+                    and re.fullmatch(r'20\d{2}', lines[index + 1])):
+                out.append(line + ' ' + lines[index + 1])
+                index += 2
+            else:
+                out.append(line)
+                index += 1
+        return out
 
     @staticmethod
     def _drop_furniture(lines):

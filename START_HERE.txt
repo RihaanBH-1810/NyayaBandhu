@@ -27,15 +27,15 @@ The included source sets are:
 
 Teachers Act, 2020:
   Base XML: out/base_act/eng/tranfer_of_teachers.xml
-  Base PDF: data/v0s/kan_eng/tranfer_of_teachers.pdf
+  Base PDF: data/acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf
   Amendments: First_ammendment, Second_ammendment, Teachers_2022,
-              Third_ammendment in out/amendment/eng and data/ammendments.
+              Third_ammendment XML in out/amendment/eng and its PDF in data/acts/.
 
 Kannada Language Comprehensive Development Act, 2022:
   Base XML: out/base_act/eng/kannada_language_comprehensive_development_2022.xml
-  Base PDF: data/v0s/eng/kannada_language_comprehensive_development_2022.pdf
+  Base PDF: data/acts/2023/ka-0013-2023/kannada-language-comprehensive-development-act-2022__excerpt__eng.pdf
   Amendment XML: out/amendment/eng/Kannada_2024.xml
-  Amendment PDF: data/ammendments/Kannada_2024.pdf
+  Amendment PDF: data/acts/2024/ka-0007-2024/kannada-language-comprehensive-development-amendment-act-2024__gazette__kan-eng.pdf
 
 The complete downloaded source files are in sources/original-downloads.
 See docs/consolidation/new-sources.md for source preparation and test results.

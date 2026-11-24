@@ -17,10 +17,11 @@ from lxml import html as html_tree
 import pymupdf
 
 from akn_consolidator.common import (Conflict, Q, canonical_hash, digest, encode,
-                                    iso_date, now, parse, serialise, tag, text, validate)
+                                    iso_date, now, metadata, parse, serialise, tag, text, validate)
 from akn_consolidator.engine import apply_one, locate
 from akn_parser.pipeline import ActParser
 from webui import akn_view, review_editor
+from source_corpus import register, find_by_hash
 from webui.consolidation import service, call, Input, Mutation, source_path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -62,6 +63,7 @@ def work_summary(svc, view):
     latest = versions[-1] if versions else None
     return {**view['work'], 'title': meta.get('title') or view['work']['uri'],
             'year': view['work']['uri'].split('/')[-2][:4],
+            'act_id': f"ka-{int(meta['number']):04d}-{meta['assent_date'][:4]}" if meta.get('number') and meta.get('assent_date') else None,
             'jurisdiction': view['work']['uri'].split('/')[2],
             'last_updated': latest['effective_date'] if latest else None,
             'amendment_count': sum(s['kind'] == 'amendment' for s in view['sources']),
@@ -465,12 +467,87 @@ def visual_save(expression_id: str, body: VisualChange):
     return guarded(edit_expression, service(), expression_id, body)
 
 
+class CatalogImport(Input):
+    source_path: str
+    kind: str
+    actor: str
+    reason: str
+    work_id: str | None = None
+    revision: int | None = None
+
+
+@api.get('/catalog/pdf')
+def catalog_pdf(path: str):
+    from source_corpus import load as load_sources
+    row = next((r for r in load_sources() if r['path'] == path), None)
+    if row is None:
+        raise HTTPException(404, 'Catalog source not found')
+    pdf = source_path(row['path'], 'data', '.pdf').read_bytes()
+    import hashlib
+    if hashlib.sha256(pdf).hexdigest() != row['sha256']:
+        raise HTTPException(409, 'PDF hash differs from its catalog record')
+    return Response(pdf, media_type='application/pdf')
+
+
+@api.post('/import-catalog')
+async def import_catalog(body: CatalogImport):
+    from source_corpus import load as load_sources
+    row = next((r for r in load_sources() if r['path'] == body.source_path), None)
+    if row is None or row['kind'] != body.kind:
+        raise HTTPException(400, 'Choose a cataloged PDF of the correct document type')
+    path = source_path(row['path'], 'data', '.pdf')
+    raw = path.read_bytes()
+    import hashlib
+    if hashlib.sha256(raw).hexdigest() != row['sha256']:
+        raise HTTPException(409, 'PDF hash differs from its catalog record')
+    result = await run_in_threadpool(guarded, ActParser().parse, str(path))
+    if not result.report.ok:
+        raise HTTPException(422, result.report.summary())
+    if not result.meta.title or result.meta.number != str(int(row['id'][3:7])) or result.meta.year != row['id'][-4:]:
+        raise HTTPException(422, 'Parsed Act title or citation does not match the catalog')
+    source_uri = metadata(parse(result.xml))['work_uri']
+    svc = service()
+    if body.kind == 'base':
+        existing = next((w for w in svc.works() if w['uri'] == source_uri), None)
+        if existing:
+            return {'status':'alternate_source','work_id':existing['id'],'source_path':row['path']}
+    elif body.work_id:
+        view = guarded(svc.workspace, body.work_id)
+        if any(s['metadata'].get('work_uri') == source_uri for s in view['sources']):
+            return {'status':'alternate_source','work_id':body.work_id,'source_path':row['path']}
+    imported = await run_in_threadpool(call, 'import_source', result.xml, raw,
+                                       body.kind, body.actor, body.reason,
+                                       body.work_id, body.revision)
+    return {**imported, 'source_path': row['path']}
+
+
 @api.post('/upload')
 async def upload(pdf: UploadFile = File(...), xml: UploadFile | None = File(None),
                  kind: str = Form(...), actor: str = Form(...), reason: str = Form(...),
-                 work_id: str | None = Form(None), revision: int | None = Form(None)):
+                 work_id: str | None = Form(None), revision: int | None = Form(None),
+                 act_id: str = Form(...), title_slug: str = Form(...),
+                 source_language: str = Form('eng'), variant: str = Form('gazette'),
+                 affected_acts: str = Form('')):
     pdf_bytes = await pdf.read(50_000_001)
     if len(pdf_bytes)>50_000_000: raise HTTPException(400,'PDF exceeds 50 MB')
+    if not pdf_bytes.startswith(b'%PDF'):
+        raise HTTPException(400, 'A valid PDF is required')
+    import re as _re
+    from source_corpus import IDENTITY
+    match = IDENTITY.fullmatch(act_id)
+    if not match:
+        raise HTTPException(400, 'Use Act ID ka-NNNN-YYYY')
+    with pymupdf.open(stream=pdf_bytes, filetype='pdf') as source_doc:
+        if not source_doc.page_count:
+            raise HTTPException(400, 'Empty PDF')
+        front = ' '.join(source_doc[i].get_text() for i in range(min(2, source_doc.page_count)))
+    printed = _re.search(r'KARNATAKA\s+ACT\s+NO\.?\s*0*(\d+)\s+OF\s+(\d{4})', front, _re.I)
+    if printed and (int(printed[1]), int(printed[2])) != (int(match[1]), int(match[2])):
+        raise HTTPException(400, 'Act ID disagrees with the PDF front matter')
+    targets = [x.strip() for x in affected_acts.split(',') if x.strip()]
+    row, created = guarded(register, pdf_bytes, act_id=act_id, title_slug=title_slug,
+                           kind=kind, language=source_language, variant=variant,
+                           affected_acts=targets)
     if xml and xml.filename:
         xml_bytes = await xml.read(10_000_001)
         if len(xml_bytes)>10_000_000: raise HTTPException(400,'XML exceeds 10 MB')
@@ -483,9 +560,18 @@ async def upload(pdf: UploadFile = File(...), xml: UploadFile | None = File(None
                     if not doc.page_count: raise ValueError('Empty PDF')
             except Exception as exc:
                 raise HTTPException(400, 'Cannot read source PDF') from exc
-            result = await run_in_threadpool(guarded, ActParser().parse, str(path))
-            xml_bytes = result.xml
-    return await run_in_threadpool(call, 'import_source', xml_bytes,pdf_bytes,kind,actor,reason,work_id,revision)
+            try:
+                result = await run_in_threadpool(guarded, ActParser().parse, str(path))
+                xml_bytes = result.xml
+            except HTTPException as exc:
+                return {'status':'awaiting_conversion','source':row,'detail':exc.detail}
+
+    try:
+        imported = await run_in_threadpool(call, 'import_source', xml_bytes,pdf_bytes,kind,actor,reason,work_id,revision)
+    except HTTPException as exc:
+        return {'status':'awaiting_review','source':row,'detail':exc.detail}
+    return {**imported, 'source_path':row['path']}
+
 
 
 class Related(Mutation):

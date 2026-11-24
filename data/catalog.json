@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "ka-0004-2020",
+      "kind": "base",
+      "title": "Karnataka State Civil Services Regulation Of Transfer Of Teachers Act 2020",
+      "language": "kan-eng",
+      "variant": "gazette",
+      "path": "acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf",
+      "sha256": "ed28d5b0a2f915d92130f9d0196f7cec78d9db4de91a440b6a948f806cbf8052",
+      "affected_acts": [],
+      "legacy_path": "v0s/kan_eng/tranfer_of_teachers.pdf"
+    },
+    {
+      "id": "ka-0027-2021",
+      "kind": "amendment",
+      "title": "Transfer Of Teachers Amendment Act 2021",
+      "language": "kan-eng",
+      "variant": "gazette",
+      "path": "acts/2021/ka-0027-2021/transfer-of-teachers-amendment-act-2021__gazette__kan-eng.pdf",
+      "sha256": "30fd04892865bf9faa9ab63586cde771f032be5fa9f7d04994f0f97a3fc8232f",
+      "affected_acts": [
+        "ka-0004-2020"
+      ],
+      "legacy_path": "ammendments/First_ammendment.pdf"
+    },
+    {
+      "id": "ka-0006-2022",
+      "kind": "amendment",
+      "title": "Transfer Of Teachers Second Amendment Act 2021",
+      "language": "kan-eng",
+      "variant": "gazette",
+      "path": "acts/2022/ka-0006-2022/transfer-of-teachers-second-amendment-act-2021__gazette__kan-eng.pdf",
+      "sha256": "72199013075c4880434d9a714dceee2436a5209ec9b95022af04e6c89d31dc73",
+      "affected_acts": [
+        "ka-0004-2020"
+      ],
+      "legacy_path": "ammendments/Second_ammendment.pdf"
+    },
+    {
+      "id": "ka-0032-2022",
+      "kind": "amendment",
+      "title": "Transfer Of Teachers Amendment Act 2022",
+      "language": "eng",
+      "variant": "gazette",
+      "path": "acts/2022/ka-0032-2022/transfer-of-teachers-amendment-act-2022__gazette__eng.pdf",
+      "sha256": "aa615258033adca402148c7dafd50bf581dfe1a7697bdaa49bdda08d25100651",
+      "affected_acts": [
+        "ka-0004-2020"
+      ],
+      "legacy_path": "ammendments/Teachers_2022.pdf"
+    },
+    {
+      "id": "ka-0027-2026",
+      "kind": "amendment",
+      "title": "Transfer Of Teachers Amendment Act 2026",
+      "language": "kan-eng",
+      "variant": "gazette",
+      "path": "acts/2026/ka-0027-2026/transfer-of-teachers-amendment-act-2026__gazette__kan-eng.pdf",
+      "sha256": "a002050150d69d026f6445eb9f86b1c53e77a4c8314fbf2f1b23e890381bbced",
+      "affected_acts": [
+        "ka-0004-2020"
+      ],
+      "legacy_path": "ammendments/Third_ammendment.pdf"
+    },
+    {
+      "id": "ka-0013-2023",
+      "kind": "base",
+      "title": "Kannada Language Comprehensive Development Act 2022",
+      "language": "eng",
+      "variant": "excerpt",
+      "path": "acts/2023/ka-0013-2023/kannada-language-comprehensive-development-act-2022__excerpt__eng.pdf",
+      "sha256": "d411becf0536b1b083525c401ba5a71d4f3294533c806cf222888c06bbd49dab",
+      "affected_acts": [],
+      "legacy_path": "v0s/eng/kannada_language_comprehensive_development_2022.pdf"
+    },
+    {
+      "id": "ka-0007-2024",
+      "kind": "amendment",
+      "title": "Kannada Language Comprehensive Development Amendment Act 2024",
+      "language": "kan-eng",
+      "variant": "gazette",
+      "path": "acts/2024/ka-0007-2024/kannada-language-comprehensive-development-amendment-act-2024__gazette__kan-eng.pdf",
+      "sha256": "a48589708b02658e7f2edc40b0148ee75628aefc15a592282cb42b81da9c662d",
+      "affected_acts": [
+        "ka-0013-2023"
+      ],
+      "legacy_path": "ammendments/Kannada_2024.pdf"
+    },
+    {
+      "id": "ka-0053-2020",
+      "kind": "base",
+      "title": "Bruhat Bengaluru Mahanagara Palike Act 2020",
+      "language": "eng",
+      "variant": "gazette",
+      "path": "acts/2020/ka-0053-2020/bruhat-bengaluru-mahanagara-palike-act-2020__gazette__eng.pdf",
+      "sha256": "bffc9d9e27a46d3404846852e1321827f2410c9956f99b071b2adf4d6b671778",
+      "affected_acts": [],
+      "legacy_path": "v0s/eng/BBMP-eng.pdf"
+    },
+    {
+      "id": "ka-0053-2020",
+      "kind": "base",
+      "title": "Bruhat Bengaluru Mahanagara Palike Act 2020",
+      "language": "kan",
+      "variant": "gazette",
+      "path": "acts/2020/ka-0053-2020/bruhat-bengaluru-mahanagara-palike-act-2020__gazette__kan.pdf",
+      "sha256": "a8e39b6514fa7705c766e0f56c8954f48fac3a9f91514c47d7773f0b9f2091af",
+      "affected_acts": [],
+      "legacy_path": "v0s/kan_eng/BBMP Act.pdf"
+    },
+    {
+      "id": "ka-0016-2026",
+      "kind": "base",
+      "title": "Chandraguthi Renukamba Kshetra Act 2026",
+      "language": "kan-eng",
+      "variant": "gazette",
+      "path": "acts/2026/ka-0016-2026/chandraguthi-renukamba-kshetra-act-2026__gazette__kan-eng.pdf",
+      "sha256": "2fea832f84d4739ceea1867fe3f49b3ce35a9f89f7691e58c5f7bac49ee6bddd",
+      "affected_acts": [],
+      "legacy_path": "v0s/kan_eng/chandraguthi_renukamba_kshetra.pdf"
+    },
+    {
+      "id": "ka-0013-2023",
+      "kind": "base",
+      "title": "Kannada Language Comprehensive Development Act 2022",
+      "language": "eng",
+      "variant": "gazette",
+      "path": "acts/2023/ka-0013-2023/kannada-language-comprehensive-development-act-2022__gazette__eng.pdf",
+      "sha256": "451c935b704267f15c0166cb3243afed5039d14f08636d0fa8dc4b56a21ad2e7",
+      "affected_acts": [],
+      "legacy_path": "brief/karnataka_acts/kannada_language/The Kannada Language Comprehensive Development Act, 2022 - Act13of2023Karnataka.pdf"
+    },
+    {
+      "id": "ka-0007-2024",
+      "kind": "amendment",
+      "title": "Kannada Language Comprehensive Development Amendment Act 2024",
+      "language": "kan",
+      "variant": "gazette",
+      "path": "acts/2024/ka-0007-2024/kannada-language-comprehensive-development-amendment-act-2024__gazette__kan.pdf",
+      "sha256": "6ad418e0e7880950e1c5322e9b750d6658b322844e21c7f46754c6e26f70fede",
+      "affected_acts": [
+        "ka-0013-2023"
+      ],
+      "legacy_path": "brief/karnataka_acts/kannada_language/The Kannada Language Comprehensive Development Act-amendment.pdf"
+    },
+    {
+      "id": "ka-0014-2025",
+      "kind": "base",
+      "title": "Bangalore Palace Utilization And Regulation Of Land Act 2025",
+      "language": "eng",
+      "variant": "gazette",
+      "path": "acts/2025/ka-0014-2025/bangalore-palace-utilization-and-regulation-of-land-act-2025__gazette__eng.pdf",
+      "sha256": "0c5f7b00603954570fac89dd80293366be457d54e355b01c7f223e2876597ba1",
+      "affected_acts": [],
+      "legacy_path": "brief/karnataka_acts/Bangalore_Palace_Utilization/base.pdf"
+    },
+    {
+      "id": "ka-0035-2025",
+      "kind": "amendment",
+      "title": "Bangalore Palace Utilization And Regulation Of Land Amendment Act 2025",
+      "language": "eng",
+      "variant": "gazette",
+      "path": "acts/2025/ka-0035-2025/bangalore-palace-utilization-and-regulation-of-land-amendment-act-2025__gazette__eng.pdf",
+      "sha256": "3dc011f0dcff0bdb512fc99ec2327023e7720eac9a2443bf74607fbbd993b030",
+      "affected_acts": [
+        "ka-0014-2025"
+      ],
+      "legacy_path": "brief/karnataka_acts/Bangalore_Palace_Utilization/Bangalore Palace (Utilization and Regulation of Land) Amendment Act, 2025 - Ammendment.pdf"
+    },
+    {
+      "id": "ka-0029-2022",
+      "kind": "amendment",
+      "title": "Bruhat Bengaluru Mahanagara Palike Amendment Act 2022",
+      "language": "kan",
+      "variant": "gazette",
+      "path": "acts/2022/ka-0029-2022/bruhat-bengaluru-mahanagara-palike-amendment-act-2022__gazette__kan.pdf",
+      "sha256": "f889174515a839d47f1e183b24d9682ed0097f19960140332bc08e7a42368d32",
+      "affected_acts": [
+        "ka-0053-2020"
+      ],
+      "legacy_path": "brief/karnataka_acts/BBMP/29 of 2022.pdf"
+    },
+    {
+      "id": "ka-0012-2023",
+      "kind": "amendment",
+      "title": "Bruhat Bengaluru Mahanagara Palike Amendment Act 2023",
+      "language": "kan",
+      "variant": "gazette",
+      "path": "acts/2023/ka-0012-2023/bruhat-bengaluru-mahanagara-palike-amendment-act-2023__gazette__kan.pdf",
+      "sha256": "d896898b004c6749049f2db4d7858eafac4b1cf7fd676bdf5d8d720aab9b3f16",
+      "affected_acts": [
+        "ka-0053-2020"
+      ],
+      "legacy_path": "brief/karnataka_acts/BBMP/12of2023BBMP.pdf"
+    },
+    {
+      "id": "ka-0017-2024",
+      "kind": "amendment",
+      "title": "Bruhat Bengaluru Mahanagara Palike Amendment Act 2024",
+      "language": "kan",
+      "variant": "gazette",
+      "path": "acts/2024/ka-0017-2024/bruhat-bengaluru-mahanagara-palike-amendment-act-2024__gazette__kan.pdf",
+      "sha256": "e4eeb6ff599e0aedbaa2cbeca11a19e4f8e9fc716dc34418b727f598a0c5d5f6",
+      "affected_acts": [
+        "ka-0053-2020"
+      ],
+      "legacy_path": "brief/karnataka_acts/BBMP/17of2024.pdf"
+    },
+    {
+      "id": "ka-0037-2024",
+      "kind": "amendment",
+      "title": "Bruhat Bengaluru Mahanagara Palike And Certain Other Law Amendment Act 2023",
+      "language": "eng",
+      "variant": "gazette",
+      "path": "acts/2024/ka-0037-2024/bruhat-bengaluru-mahanagara-palike-and-certain-other-law-amendment-act-2023__gazette__eng.pdf",
+      "sha256": "4afae3530556586cdad37955b5c9cab5e16856768992ac8ecbf20f9bbc9b271f",
+      "affected_acts": [
+        "ka-0053-2020",
+        "ka-0014-1977"
+      ],
+      "legacy_path": "brief/karnataka_acts/BBMP/37of2024(E)BBMP.pdf"
+    },
+    {
+      "id": "ka-0007-2025",
+      "kind": "amendment",
+      "title": "Bruhat Bengaluru Mahanagara Palike Second Amendment Act 2024",
+      "language": "kan",
+      "variant": "gazette",
+      "path": "acts/2025/ka-0007-2025/bruhat-bengaluru-mahanagara-palike-second-amendment-act-2024__gazette__kan.pdf",
+      "sha256": "4375b5542afce9b86ddad6ec478a0fbf408e15e54cb6694fcbd4283ecfa6250c",
+      "affected_acts": [
+        "ka-0053-2020"
+      ],
+      "legacy_path": "brief/karnataka_acts/BBMP/07of2025.pdf"
+    },
+    {
+      "id": "ka-0034-2025",
+      "kind": "amendment",
+      "title": "Bruhat Bengaluru Mahanagara Palike Amendment Act 2025",
+      "language": "kan",
+      "variant": "gazette",
+      "path": "acts/2025/ka-0034-2025/bruhat-bengaluru-mahanagara-palike-amendment-act-2025__gazette__kan.pdf",
+      "sha256": "1f8e4c73fe1435cc1f4972e769673b952c022be76e92e2b0bbb988db49ecb7d8",
+      "affected_acts": [
+        "ka-0053-2020"
+      ],
+      "legacy_path": "brief/karnataka_acts/BBMP/media_to_upload1748252402.pdf"
+    },
+    {
+      "id": "ka-0014-1977",
+      "kind": "base",
+      "title": "Karnataka Municipal Corporations Act 1976",
+      "language": "eng",
+      "variant": "consolidated-through-act-0001-2022",
+      "path": "acts/1977/ka-0014-1977/karnataka-municipal-corporations-act-1976__consolidated-through-act-0001-2022__eng.pdf",
+      "sha256": "f4080d77d155cef0154bfb30670561c03323bcc4d24859ae1444ad72256d3dfc",
+      "affected_acts": []
+    }
+  ]
+}

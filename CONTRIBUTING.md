@@ -35,7 +35,7 @@ Keep the checkout available for the schema, metadata overrides, and input PDFs.
 | `test_teachers_act.py` | End-to-end, against the Teachers Transfer Act |
 
 The first five are unit tests with inline fixtures and run without any PDF.
-`test_teachers_act.py` requires `data/v0s/kan_eng/tranfer_of_teachers.pdf` and
+`test_teachers_act.py` requires `data/acts/2020/ka-0004-2020/karnataka-state-civil-services-regulation-of-transfer-of-teachers-act-2020__gazette__kan-eng.pdf` and
 skips if it is absent.
 
 `test_teachers_act.py` is the regression suite for the pipeline as a whole. It
@@ -46,8 +46,7 @@ there deliberately, not by loosening assertions.
 
 ## Adding a document
 
-1. Put the PDF under `data/v0s/<lang>/` for a base Act, or
-   `data/ammendments/` for an amending Act.
+1. Upload the source PDF through `/admin` with its published Act ID, language, and affected Acts. The source catalog places it under `data/acts/`.
 2. Run the parser and read the report.
 3. If metadata was not extracted correctly, add an entry to
    `config/documents.json`; see
