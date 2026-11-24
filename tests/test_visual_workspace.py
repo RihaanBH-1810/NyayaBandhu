@@ -111,9 +111,14 @@ def test_whole_act_change_has_section_views(tmp_path):
     body['operations']=[{'id':'global_1','action':'text_replace','target':{'region':'act'},
                          'old':'State Government','new':'Government of Karnataka','count':len(hits),
                          'global':True,'whole_word':True,'occurrences':hits,'review_status':'pending',
-                         'source':body['operations'][0]['source']}]
+                         'source':dict(body['operations'][0]['source'], quote='For the words State Government, wherever it occurs, substitute Government of Karnataka.')} ]
     result=ui.make_canvas(svc,extracted['manifest']['id'],ui.Canvas(
         expression_id=parent['id'],manifest_revision=extracted['manifest']['revision'],body=body))
+    assert len(result['rows'][0]['views']) > 1
+    del body['operations'][0]['occurrences']
+    result=ui.make_canvas(svc,extracted['manifest']['id'],ui.Canvas(
+        expression_id=parent['id'],manifest_revision=extracted['manifest']['revision'],body=body))
+    assert 'conflict' not in result['rows'][0]
     assert len(result['rows'][0]['views']) > 1
     assert len({view['scope_eid'] for view in result['rows'][0]['views']}) == len(result['rows'][0]['views'])
 

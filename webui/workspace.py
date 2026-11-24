@@ -18,7 +18,7 @@ import pymupdf
 
 from akn_consolidator.common import (Conflict, Q, canonical_hash, digest, encode,
                                     iso_date, now, metadata, parse, serialise, tag, text, validate)
-from akn_consolidator.engine import apply_one, locate
+from akn_consolidator.engine import apply_one, locate, occurrences, public_hits
 from akn_parser.pipeline import ActParser
 from webui import akn_view, review_editor
 from source_corpus import register, find_by_hash
@@ -228,7 +228,10 @@ def make_canvas(svc, manifest_id, request):
                 target = locate(trial, op['target']) if op.get('target') else None
                 global_sections = {}
                 if op.get('target',{}).get('region') == 'act':
-                    for hit in op.get('occurrences',[]):
+                    inventory = op.get('occurrences')
+                    if inventory is None and op.get('old'):
+                        inventory = public_hits(occurrences(target, op['old'], op.get('whole_word', False)))
+                    for hit in inventory or []:
                         fields=trial.xpath('//*[@eId=$eid]',eid=hit.get('field',''))
                         if fields:
                             section=next((a for a in [fields[0],*fields[0].iterancestors()] if tag(a)=='section'),None)
@@ -242,6 +245,10 @@ def make_canvas(svc, manifest_id, request):
                     scope_eid = result['destination_eid']
                 matches = trial.xpath('//*[@eId=$eid]', eid=scope_eid) if scope_eid else []
                 after = matches[0] if matches else None
+                if before is not None and not scope_eid:
+                    # The whole Act has no eId. Absence of an identifier does
+                    # not mean its text was deleted by a wording substitution.
+                    after = scope_node(trial, op)
                 if op['action'] == 'schedule_add':
                     after = [n for n in trial.iter(Q('hcontainer')) if n.get('name') == 'schedule'][-1]
                     row['before_html'] = ''; before_text = ''
