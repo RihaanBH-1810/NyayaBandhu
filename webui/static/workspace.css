@@ -3,7 +3,7 @@
 .workspace * { box-sizing:border-box; }
 .workspace button,.workspace input,.workspace select,.workspace textarea {font:inherit;}
 .workspace button,.workspace .button {display:inline-flex;gap:.45rem;align-items:center;justify-content:center;cursor:pointer;border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink);padding:.55rem .85rem;text-decoration:none;white-space:nowrap;font-size:.88rem;font-weight:550;}
-.workspace button:hover,.workspace .button:hover {background:#f0f2f5;}
+.workspace button:hover,.workspace .button:hover {background:#f0f2f5;text-decoration:none;}
 .workspace button:disabled {opacity:.45;cursor:not-allowed;}
 .workspace .primary {background:var(--ink);color:white;border-color:var(--ink);}
 .workspace .primary:hover {background:#303b4c;}
