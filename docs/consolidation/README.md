@@ -24,7 +24,7 @@ The workspace shows unsaved edits and requires the current work revision on ever
 From the repository root, with the existing virtual environment:
 
 ```bash
-PYTHONPATH=scripts .venv/bin/python scripts/consolidation_demo.py
+PYTHONPATH=scripts .venv/bin/python scripts/consolidation_replay.py
 ```
 
 This replays the checked-in **test decisions** for all three amendments, validates each complete batch, records approvals under a fixture persona, and writes `consolidation-data/teachers-demo/teachers-demo.zip`. Use `--store /path/to/a/new/directory` for a second run; it never resets a store. Test approvals are not lawyer attestation.

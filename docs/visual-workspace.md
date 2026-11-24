@@ -14,8 +14,8 @@ For additional Karnataka source PDFs and the current evaluation status, see
 
 Run from the repository directory. Stop another server on port 8000 before starting.
 
-Use `./run-normal-demo.sh` to reopen the persistent workspace, or
-`./run-fresh-demo.sh` to start a separate empty workspace for a recording.
+Use `./run.sh` to reopen the persistent workspace, or
+`./run-fresh.sh` to start a separate empty workspace for a recording.
 Both scripts activate `.venv` and start the server.
 On Windows, run `install.bat` once, then use `start.bat` or `start-fresh.bat`.
 See [Windows installation](installation-windows.md).
@@ -50,7 +50,7 @@ To create a **new populated demonstration**, use a fresh store before starting:
 
 ```bash
 export NYAYA_CONSOLIDATION_DIR="$PWD/consolidation-data/visual-demo-$(date +%Y%m%d-%H%M%S)"
-python scripts/consolidation_demo.py --store "$NYAYA_CONSOLIDATION_DIR"
+python scripts/consolidation_replay.py --store "$NYAYA_CONSOLIDATION_DIR"
 python webui/run.py
 ```
 

@@ -16,12 +16,12 @@ AUTH = {'actor':'Fixture reviewer (not legal attestation)', 'reason':'Replay the
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--store',type=Path,default=ROOT/'consolidation-data'/'teachers-demo')
-    parser.add_argument('--output',type=Path,default=None,help='New ZIP path; defaults to STORE/teachers-demo.zip')
+    parser.add_argument('--store',type=Path,default=ROOT/'consolidation-data'/'teachers-replay')
+    parser.add_argument('--output',type=Path,default=None,help='New ZIP path; defaults to STORE/teachers-replay.zip')
     args=parser.parse_args()
-    output=args.output or args.store/'teachers-demo.zip'
+    output=args.output or args.store/'teachers-replay.zip'
     c=Consolidator(args.store)
-    if c.works(): parser.error('Use a fresh store; existing works are never reset by this demo')
+    if c.works(): parser.error('Use a fresh store; existing works are never reset by this replay')
     if output.exists(): parser.error('Output exists; choose a new path')
     reviews=json.loads((ROOT/'tests/fixtures/consolidation/reviews.json').read_text())
     result=c.import_source((ROOT/'out/base_act/eng/tranfer_of_teachers.xml').read_bytes(),

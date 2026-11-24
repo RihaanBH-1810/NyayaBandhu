@@ -12,9 +12,9 @@ fi
 source .venv/bin/activate
 export PYTHONPATH="$repo_dir/scripts${PYTHONPATH:+:$PYTHONPATH}"
 mkdir -p "$repo_dir/consolidation-data"
-export NYAYA_CONSOLIDATION_DIR="$(mktemp -d "$repo_dir/consolidation-data/recording-XXXXXX")"
+export NYAYA_CONSOLIDATION_DIR="$(mktemp -d "$repo_dir/consolidation-data/workspace-XXXXXX")"
 
-echo "Empty demo store: $NYAYA_CONSOLIDATION_DIR"
+echo "Empty workspace store: $NYAYA_CONSOLIDATION_DIR"
 echo "Review workspace: http://127.0.0.1:8000/admin"
 echo "Reader: http://127.0.0.1:8000/library"
 echo "Press Ctrl+C to stop the server. Each run creates a new empty store."

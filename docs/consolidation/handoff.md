@@ -6,7 +6,7 @@
 - New package: `scripts/akn_consolidator/`; CLI entry point: `akn-consolidate` / `python -m akn_consolidator`.
 - Local CMS API: `webui/consolidation.py`, included by the existing viewer app.
 - Browser CMS: `/consolidation`, with source comparison, guided instruction decisions, staged target inspection, batch preview, approval, and version history. `/consolidation/read/{expression_id}` renders the dated Act through the existing viewer renderer.
-- Demonstration: `scripts/consolidation_demo.py`; explicit reviewed manifests and expected snapshots in `tests/fixtures/consolidation/`.
+- Demonstration: `scripts/consolidation_replay.py`; explicit reviewed manifests and expected snapshots in `tests/fixtures/consolidation/`.
 - Project brief and local Indigo checkout were inspected for workflow context. No Indigo implementation code is copied, and no Bluebell/Indigo dependency is added.
 
 ## Verification
