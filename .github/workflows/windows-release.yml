@@ -1,0 +1,28 @@
+name: Publish Windows release
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version, for example v5 or v5.1'
+        required: true
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build installer
+        env:
+          RELEASE_VERSION: ${{ inputs.version || github.ref_name }}
+        run: python scripts/build_windows_release.py --version "$RELEASE_VERSION" --output dist
+      - name: Publish ZIP and checksum
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_VERSION: ${{ inputs.version || github.ref_name }}
+        run: gh release create "$RELEASE_VERSION" dist/*.zip dist/*.sha256 --target "$GITHUB_SHA" --title "NyayaBandhu $RELEASE_VERSION" --generate-notes

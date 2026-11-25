@@ -79,3 +79,61 @@ On 9 November 2026, another Windows test showed that Python's installer exited
 successfully but its executable was not in the custom application folder. The
 installer now uses Python's documented per-user default location and searches
 for the interpreter after installation. This change also needs a Windows rerun.
+
+## Update an installed copy (v5 onward)
+
+Close the NyayaBandhu server, then double-click **update.bat** in the installed
+folder. Internet access is required. The updater downloads the latest published
+Windows release and its SHA-256 checksum from
+`RihaanBH-1810/NyayaBandhu` on GitHub. It verifies the checksum, checks the package,
+backs up review stores, updates application files and dependencies, and checks
+application imports. Start the app again with `start.bat`.
+
+Uploaded PDFs, local catalog entries, review stores, and the Python environment
+are preserved. Conflicting source PDFs stop the update. Replaced application files
+and review stores are backed up in `update-backups/<timestamp>/`. If installation
+fails, application files are restored; dependency installation may still need
+repair with `install.bat`. Backups include review data: retain them securely and
+remove old backups when no longer needed. Stop the server before every update.
+
+The default feed requires a publicly accessible repository/release. A private
+repository will not download anonymously; publish releases in an accessible
+repository before handing out the installer. To use a different GitHub-compatible
+HTTPS release feed, create `update-settings.json` in the installed folder:
+
+```json
+{"release_feed":"https://api.github.com/repos/OWNER/REPOSITORY/releases/latest"}
+```
+
+This setting survives updates. You can check availability without installing:
+
+```bat
+.venv\Scripts\python.exe scripts\update_windows.py --check
+```
+
+The lawyer only needs the new v5 installer once. Older installed copies do not
+contain the updater; install v5 into the same application folder to add it.
+Future releases are fetched by `update.bat`, so there is no need to send the ZIP
+manually each time. An update is available only after a release is published;
+unpublished commits on main are not downloaded.
+
+## Publish future updates
+
+Push the release changes to GitHub. Run **Actions → Publish Windows release**
+with a new version such as `v5.1`, or push a `v*` tag. The workflow builds and
+publishes one `NyayaBandhu-Windows-<version>.zip` and its matching
+`.zip.sha256` file. Those assets are required by the updater. Use a new version
+for every release and test the package before directing users to update.
+
+To build locally from a clean, committed checkout:
+
+```sh
+python scripts/build_windows_release.py --version v5 --output ../brief
+```
+
+The builder packages committed files, including the PDF catalog and source PDFs,
+without developer environments, local review stores, or tests. `release.json`
+inside the ZIP records its version and exact source commit. Downloaded release
+checksums detect corruption; their trust comes from the HTTPS release host.
+This updater has automated file preservation and rollback tests on Linux;
+installation and update still need a complete Windows verification.

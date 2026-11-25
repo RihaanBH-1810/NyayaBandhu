@@ -47,3 +47,6 @@ amendment must be reviewed against the version after the 2022 amendment.
 The Kannada 2024 amendment requires its commencement notification and date.
 The software's test approvals and dates are technical fixtures, not legal
 approval. The reviewer must approve the actual text and dates in the app.
+
+Updates (v5 onward): close the server and double-click update.bat.
+An accessible published GitHub Windows release is required.
